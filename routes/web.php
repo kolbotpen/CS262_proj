@@ -34,7 +34,7 @@ Route::get('/login', function () {
 });
 
 Route::get('/signup', function () {
-    return view('sign-up');
+    return view('signup');
 });
 
 Route::get('/dashboard', function () {
