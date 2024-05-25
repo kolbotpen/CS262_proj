@@ -33,7 +33,7 @@ Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/sign-up', function () {
+Route::get('/signup', function () {
     return view('sign-up');
 });
 
