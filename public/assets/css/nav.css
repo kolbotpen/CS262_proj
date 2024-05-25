@@ -1,0 +1,149 @@
+/* Default state */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: auto;
+    padding-bottom: 90px;
+    padding-top: 50px;
+    background: linear-gradient(to bottom, #000000, #0000006b, #00000000);
+    transition: background 0.3s ease, opacity 0.5s ease, transform 0.3s ease; /* Reappear after hidden */
+}
+
+/* Hide navigation bar */
+.hide-nav {
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: background 0.3s ease, opacity 0.5s ease, transform 0.5s ease; /* Disappear when scrolled down */
+}
+
+/* Logo styles */
+.logo {
+    margin: 10px 1.5vw 0 0;
+    width: 100px;
+    transition: margin 0.3s ease;
+}
+
+/* Navbar styles */
+.navbar {
+    background: linear-gradient(to right, #73C649, #128850);
+    border-radius: 20px;
+    overflow: hidden;
+    min-width: fit-content;
+}
+
+/* Button styles */
+.sign-up-btn {
+    background-color: #05644b;
+}
+
+/* Navbar links */
+.navbar-nav {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+}
+
+/* Navbar tab */
+.navbar-nav .nav-item {
+    margin: 0;
+}
+
+/* Navbar tab link */
+.navbar-nav .nav-link {
+    align-items: center;
+    text-align: center;
+    width: 130px;
+    margin: 2px 5px;
+    padding: auto 20px;
+    border-radius: 12px;
+    color: #C3DFC0;
+    transition-duration: 0s;
+}
+
+/* Hover styles for navbar links */
+.navbar-nav .nav-link:hover {
+    background-color: rgba(24, 66, 0, 0.187);
+}
+
+/* Navbar tab icon */
+.navbar-nav .nav-icon {
+    margin-right: 5px;
+    width: 20px;
+}
+
+/* Navbar toggler */
+.navbar-toggler {
+    margin: 0 auto;
+    justify-content: center;
+    min-width: 130px;
+    border-radius: 12px;
+    border: none;
+    color: rgba(15, 148, 0, 0);
+    background-color: #05644b;
+    /* transition: background-color 0.2s ease; */
+}
+
+.navbar-toggler-icon {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30"><path stroke="rgba(195, 223, 192, 0.5)" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22"/></svg>');
+}
+
+/* Navbar collapse */
+.navbar-collapse {
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    transition-duration: 0.17s;
+}
+
+/* Horizontal and vertical rules */
+.navbar-hr {
+    color: #025942;
+    margin: 5px 10px;
+}
+
+.navbar-hr-vertical {
+    border-left: #05644b4f solid 1px;
+}
+
+
+
+
+/* Media queries */
+
+@media screen and (max-width: 992px) {
+    .navbar-brand-container, .navbar {
+        margin-top: -32px;
+    }
+    .navbar-hr-vertical {
+        border-left: #05644b4f solid 0px;
+    }
+    .navbar-toggler {
+        display: block;
+    }
+    .navbar-collapse {
+        width: 0;
+    }
+    .navbar-nav .nav-link {
+        align-items: center;
+        text-align: left;
+        padding-left: 10px;
+    }
+    .logo {
+        height: 2rem;
+        margin: 7px 5vw 0 0;
+    }
+}
+
+@media screen and (max-width: 290px) {
+    .logo {
+        display: none;
+    }
+}

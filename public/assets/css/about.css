@@ -1,0 +1,62 @@
+/* ----- SECTION 1 ----- */
+#section1 {
+    padding-bottom: 0;
+    background: url('../../assets/images/fall-cropped.gif') no-repeat top right, #151515;
+    background-size: contain;
+    position: relative;
+}
+.pc-hidden {
+    display: none;
+}
+@media screen and (max-width: 991px) {
+    #section1 {
+        background: none;
+    }
+    .pc-hidden {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .row {
+        justify-content: space-evenly;
+    }
+}
+
+
+
+/* ----- SECTION 2 ----- */
+#section2 {
+    background: url('../../assets/images/green-glow.png') no-repeat center, #151515;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+}
+
+/* Justify images center */
+#section2 .col-md-4 {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+
+
+/* ----- SECTION 3 ----- */
+#section3 {
+    padding-bottom: 0;
+    background: url('../../assets/images/summer1-cropped.gif') no-repeat top right;
+    background-size: contain;
+    position: relative;
+}
+.pc-hidden {
+    display: none;
+}
+@media screen and (max-width: 991px) {
+    #section3 {
+        background: none;
+    }
+    .pc-hidden {
+        display: block;
+    }
+}
+

@@ -1,0 +1,155 @@
+/* ----- SECTION 1 ----- */
+#section1 {
+    background: url('../../assets/images/spring-cropped.gif') no-repeat top right, #151515;
+    background-size: contain;
+}
+.section1-textbox {
+    margin-top: max(25%, 290px);
+    margin-bottom: max(20%, 160px);
+    display: flex;
+    flex-direction: column;
+    align-items: left; /* Center the content horizontally */
+}
+.logo1-top {
+    display: none;
+    width: 80px;
+    position: relative;
+    padding-bottom: 20px;
+}
+.logo1-left {
+    margin-top: -120px;
+    width: 160px;
+    position: relative;
+}
+.section1-title1, .section1-title2 {
+    font-size: calc(2rem + min(2.2vw, 80px));
+    line-height: 0.9;
+}
+.section1-title2 {
+    white-space: wrap;
+    overflow: visible;
+    padding-bottom: 30px;
+}
+.button-get-started {
+    margin-top: 20px;
+}
+
+
+/* rounded-squares */
+.svg-background {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    pointer-events: none; /* Prevent the SVG from interfering with other elements */
+}
+@keyframes SquarefadeIn {
+    from {
+        opacity: 0;
+        transform: scale(1.2);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.rounded-square1, .rounded-square2, .rounded-square3 {
+    opacity: 0;
+    transform-origin: center; /* Ensure scaling happens from the center */
+}
+.rounded-square1 {
+    transform-origin: calc(210px + 7.5px) calc(50px + 7.5px); /* Center of the first rectangle */
+}
+.rounded-square2 {
+    transform-origin: calc(228px + 12.5px) calc(138px + 12.5px); /* Center of the second rectangle */
+}
+.rounded-square3 {
+    transform-origin: calc(23px + 9px) calc(115px + 9px); /* Center of the third rectangle */
+}
+.rounded-square1.fade-in {
+    animation: SquarefadeIn 1s ease-in-out forwards 0.2s;
+}
+.rounded-square2.fade-in {
+    animation: SquarefadeIn 1s ease-in-out forwards 0.5s;
+}
+.rounded-square3.fade-in {
+    animation: SquarefadeIn 1s ease-in-out forwards 0.7s;
+}
+
+
+
+@media screen and (max-width: 991px) {
+    #section1 {
+        padding-top: 2vw;
+        padding-bottom: 1vw;
+    }
+    .row {
+        justify-content: space-evenly;
+    }
+    .logo1-top {
+        display: flex;
+        margin: 0 auto;
+    }
+    .logo1-left {
+        display: none;
+    }
+    .section1-textbox {
+        border-radius: 12px;
+        margin: 16vh auto 0 auto;
+        padding: 30px 20px;
+        background-color: rgba(0, 0, 0, 0.668);
+
+        flex-direction: column;
+        align-items: center;
+    }
+    .section1-title2 {
+        white-space: wrap;
+        overflow: visible;
+    }
+    .section1-title1, .section1-title2 {
+        font-size: 40px;
+        text-align: center;
+        filter: brightness(1.2);
+    }
+    .rounded-square1, .rounded-square2, .rounded-square3 {
+        display: none;
+    }
+}
+
+
+
+/* ----- SECTION 2 ----- */
+#section2 {
+    background: url('../../assets/images/green-glow.png') no-repeat center, #151515;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+}
+
+/* Justify images center */
+#section2 .col-md-4 {
+    flex: 0 0 auto;
+    width: auto;
+}
+
+
+
+/* ----- SECTION 3 ----- */
+#section3 {
+    padding-bottom: 0;
+    background: url('../../assets/images/summer1-cropped.gif') no-repeat top right;
+    background-size: contain;
+    position: relative;
+}
+.pc-hidden {
+    display: none;
+}
+@media screen and (max-width: 991px) {
+    #section3 {
+        background: none;
+    }
+    .pc-hidden {
+        display: block;
+    }
+}
+

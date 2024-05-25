@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+html {
+    background-color: rgb(0, 0, 0);
+    overflow-x: hidden;
+    font-size: 16px;
+}
+body {
+    position: relative;
+    background-color: rgb(0, 0, 0);
+    color: #ffffff;
+    font-size: 1rem
+}
+
+/* ----- IMAGES ----- */
+.rounded {
+    border-radius: 12px !important;
+}
+.icon-huge {
+    width: 55px;
+    margin-right:25px;
+    margin-bottom: 10px;
+}
+.icon {
+  width: 24px;
+  margin-right:10px;
+  margin-bottom:3px;
+}
+@media screen and (max-width: 991px){
+  .icon-huge {
+    width: 40px;
+    margin-right:15px;
+    margin-bottom: 10px;
+  }
+  .icon {
+    width: 18px;
+    margin-right:9px;
+    margin-bottom:3px;
+  }
+}
+.img-hover {
+  transition-duration: 0.22s;
+  filter: drop-shadow(0px 0px 5px rgb(0, 0, 0, 0.8));
+}
+.img-hover:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.8)) brightness(1.15);
+}
+
+/* ----- BACKGROUND IMAGES ----- */
+.bg-gray {
+    background-color: #222222;
+}
+.bg-green-gradient {
+    background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);
+}
+
+/* ----- TEXTS ----- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+} 
+p, a, span, label, address, input, textarea, select {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-size: 20px;
+}
+@media (max-width: 991px){
+  h6 {
+    font-size: 13px;
+  }
+  p, a, span, label, address, input, textarea, select {
+    font-size: 16px;
+  }
+}
+button {
+  font-size: 16px;
+  text-wrap: nowrap;
+}
+
+/* text alignments */
+.text-center-justify{
+  text-align:justify !important;
+  text-align-last:center !important;
+}
+.text-justify{
+  text-align:justify !important;
+}
+
+/* text colors */
+.form-control::placeholder {
+  color: #8a8a8a7d;
+}
+.text-gray {
+  color: #8a8a8a;
+}
+.text-green {
+  color: #07EE90;
+}
+.text-green-gradient {
+  background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+.text-blue-gradient {
+  background: linear-gradient(244.74deg, #12a4ff 13.05%, rgb(14, 8, 191) 68.77%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+/* fonts */
+.poppins {
+    font-family: "Poppins", sans-serif;
+    /* font-optical-sizing: auto; */
+    font-style: normal;
+}
+.outfit {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.inter {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: 600;
+}
+.bold-100 {
+  font-weight: 100;
+}
+.bold-200 {
+  font-weight: 200;
+}
+.bold-300 {
+  font-weight: 300;
+}
+.bold-400 {
+  font-weight: 400;
+}
+.bold-500 {
+  font-weight: 500;
+}
+.bold-600 {
+  font-weight: 600;
+}
+.bold-700 {
+  font-weight: 700;
+}
+.bold-800 {
+  font-weight: 800;
+}
+.bold-900 {
+  font-weight: 900;
+}
+
+.display-4 {
+  font-weight: 600;
+}
+.display-5 {
+  font-weight: 600;
+}
+.display-6 {
+  font-weight: 500;
+}
+
+/* ----- BUTTONS ----- */
+/* gray button */
+.button-gray-social {
+  padding: 0 26px;
+  min-width: fit-content;
+  max-width: 100%;
+  height: 45px;
+  color: white;
+  background: #191919;
+  border:#444444 1px solid;
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.15s;
+}
+.button-gray-social:hover {
+  filter: brightness(1.2);
+}
+.button-gray-social:active {
+  transform: translateY(-1px);
+}
+.button-gray {
+  padding: 0 26px;
+  min-width: fit-content;
+  max-width: 100%;
+  height: 40px;
+  color: white;
+  background: #222222;
+  mix-blend-mode: normal;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), inset 0px 2px 1px rgba(255, 255, 255, 0.2), inset 0px -1px 1px rgba(0, 0, 0, 0.79);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.15s;
+}
+.button-gray:hover {
+  filter: brightness(1.2);
+}
+.button-gray:active {
+  transform: translateY(-1px);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), inset 0px 0px 0px rgba(255, 255, 255, 0.2), inset 0px -1px 1px rgba(0, 0, 0, 0.79);
+}
+/* green gradient button */
+.button-green-gradient {
+  padding: 0 20px;
+  max-width: 135px;
+  height: 40px;
+  color: white;
+  background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);
+  mix-blend-mode: normal;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), inset 0px 2px 1px rgba(255, 255, 255, 0.2), inset 0px -1px 1px rgba(0, 0, 0, 0.79);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition-duration: 0.15s;
+}
+.button-green-gradient:hover {
+  filter: brightness(1.2);
+}
+.button-green-gradient:active {
+  transform: translateY(-1.2px);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1), inset 0px 0px 0px rgba(255, 255, 255, 0.2), inset 0px -1px 1px rgba(0, 0, 0, 0.79);
+}
+
+/* ----- SCROLLBAR ----- */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent !important; /* Set background to transparent */
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #444444;
+  border-radius: 3px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(325deg, rgba(115, 198, 74, 1) 0%, rgba(16, 131, 76, 1) 100%);
+}
+
+/* ----- ANIMATIONS ----- */
+/* Initial state for all sections */
+section {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+/* Fade-in animation when section becomes visible */
+section.fade-in {
+  opacity: 1;
+}
+.floating { 
+	animation-name: floating;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in-out;
+}
+@keyframes floating {
+	0% { transform: translate(0, 0px); }
+	50% { transform: translate(0, 14px); }
+	100% { transform: translate(0, -0px); } 
+}
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+/* ----- SECTION 1 ----- */
+#section1 {
+    padding-bottom: 0;
+    background: url('../../assets/images/summer1-cropped.gif') no-repeat top right, #151515;
+    background-size: contain;
+    position: relative;
+}
+.pc-hidden {
+    display: none;
+}
+@media screen and (max-width: 991px) {
+    #section1 {
+        background: none;
+    }
+    .pc-hidden {
+        display: block;
+    }
+}
+/* @media screen and (max-width: 991px) {
+    .row {
+        justify-content: space-evenly;
+    }
+} */
+.map{
+    /* position: absolute; */
+    border-radius: 10px;
+    height: 338px;
+    width: 100%;
+    margin-bottom: 20px;
+    filter: grayscale(100%) invert(92%) contrast(83%);
+    transition-duration: 0.4s;
+}
+
+
+
+/* ----- SECTION 2 ----- */
+#section2 {
+    background: url('../../assets/images/green-glow.png') no-repeat center, #151515;
+    background-size: cover;
+    color: #fff;
+    position: relative;
+}
+
+/* Justify images center */
+#section2 .col-md-4 {
+    flex: 0 0 auto;
+    width: auto;
+}
+.contact-address td, 
+.contact-address th {
+    background-color: transparent !important; /* Makes the background transparent */
+    color: white !important; /* Ensures the text color is white */
+    padding: 0;
+}
+.contact-address a {
+    color: white;
+}
+.contact-address tr {
+    height: fit-content;
+}
+.contact-input textarea {
+    width: 100%;
+    min-height: 130px;
+    max-height: 130px;
+    resize: vertical;
+}
+.contact-hr {
+    display: none;
+}
+@media screen and (max-width: 767px) {
+    .mobile-flex-reverse {
+        flex-direction: column-reverse;
+    }
+    .contact-address {
+        background: #222222;
+    }
+    .contact-hr {
+        opacity: 1;
+        color: #383838;
+        height: 2px;
+        margin: 0 auto;
+        display: block;
+    }
+}

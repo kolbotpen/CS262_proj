@@ -1,0 +1,137 @@
+/* Footer General */
+footer {
+    overflow: hidden;
+}
+
+/* Footer Container */
+.footer-grid-container {
+    padding: 40px;
+    gap: 50px;
+    display: grid;
+    grid-template-areas: 'left middle right';
+    background-color: #1c1c1c;
+    color: rgb(151, 151, 151);
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Media Query for Smaller Screens */
+@media screen and (max-width: 768px) {
+    .footer-grid-container {
+        grid-template-areas: 
+            'left'
+            'middle'
+            'right';
+    }
+}
+
+/* Common Styles for Footer Sections */
+.footer1, .footer2, .footer3 {
+    height: 100%;
+    border-radius: 10px;
+    padding: 25px;
+    background-color: rgb(40, 40, 40);
+}
+
+/* Header Styles */
+.footer1 h6, .footer2 h6, .footer3 h6 {
+    color: greenyellow;
+}
+/* Link Styles */
+.footer1 a, .footer-icon-name {
+    color: rgb(151, 151, 151);
+}
+.footer2 .powered-by {
+    margin-top: 12px;
+    inline-size: 0;
+    line-height: 1;
+}
+
+/* Footer 3 Styles */
+.footer3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.footer3 ul {
+    margin-top: auto; /* Center the entire footer3 content vertically */
+    margin-bottom: auto;
+    list-style: none;
+    text-align: left;
+}
+.footer3 ul li {
+    display: flex;
+    align-items: center;
+    margin-top: 8px; /* Add spacing between list items (social media icons) */
+}
+.footer3 ul li a {
+    display: flex;
+    text-decoration: none;
+    /* color: #88f414; */
+    align-items: center; /* Center vertically */
+}
+.footer3 ul li a:hover .footer-icon,
+.footer3 ul li a:hover .footer-icon-name {
+    transform: scale(1.06);
+    filter: brightness(0.8);
+    cursor: pointer;
+}
+/* Icon Styles */
+.footer-icon {
+    width: 40px;
+    vertical-align: middle;
+    margin-left: 10px;
+    margin-right: 10px; /* Add spacing between icon and name */
+    transition-duration: 0.2s;
+}
+.footer-icon-name {
+    text-wrap: nowrap;
+    font-size: 18px;
+    color: #88f414;
+    vertical-align: middle;
+    margin-top: 10px; /* Move the icon names 10px lower vertically */
+    text-decoration: none; /* Remove underlines */
+}
+/* Media Query for Screen Width Less Than or Equal to 986px */
+@media (max-width: 1046px) {
+    .footer-icon-name {
+        display: none;
+    }
+}
+/* Footer Logo and Slogan */
+.footer-logo-slogan {
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    height: 100px; /* Set a fixed height for the container */
+    text-align: center;
+}
+.footer-logo {
+    margin-top: -20px;
+    max-width: 140px; /* Limit the height of the logo to prevent collision */
+    min-width: 80px;
+}
+
+/* Footer HR */
+footer hr {
+    margin: 0 40px 20px;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+
+/* Footer Copyright */
+.footer-copyright {
+    height: 100%;
+    padding-bottom: 1px;
+    text-align: center;
+    text-decoration: none;
+    color: gray;
+    background-color: #1c1c1c;
+}
+
+@media screen and (max-width: 768px) {
+    .footer-copyright p, .footer-copyright span {
+        font-size: 12px;
+    }
+    
+}
