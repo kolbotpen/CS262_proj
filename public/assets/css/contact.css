@@ -16,11 +16,7 @@
         display: block;
     }
 }
-/* @media screen and (max-width: 991px) {
-    .row {
-        justify-content: space-evenly;
-    }
-} */
+
 .map{
     /* position: absolute; */
     border-radius: 10px;

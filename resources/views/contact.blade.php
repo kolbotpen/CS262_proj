@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.master')
 @section('content')
 
 <link href="assets/css/contact.css" rel="stylesheet">

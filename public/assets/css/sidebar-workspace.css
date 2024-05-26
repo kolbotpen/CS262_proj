@@ -1,0 +1,23 @@
+main {
+        background-color: #121212;
+    }
+
+    a.sidebar-tab {
+        color: #8a8a8a;
+    }
+    a.sidebar-tab:hover {
+        color: #8a8a8a;
+        filter: brightness(1.4);
+    }
+    a.sidebar-tab:focus img,
+    a.sidebar-tab:focus {
+        color: #8a8a8a;
+    }
+
+    /* Custom styles for sidebar */
+    .sidebar {
+        background-color: #121212;
+        transition: all 0.3s;
+        /* height: 100%; */
+    }
+

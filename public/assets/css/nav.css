@@ -39,6 +39,20 @@ nav {
 .sign-up-btn {
     background-color: #05644b;
 }
+.sign-up-btn:hover {
+    background-color: #035b44 !important;
+}
+.logout-btn {
+    background-color: #05644b;
+    text-align: center !important;
+}
+@media screen and (max-width: 992px) {
+    .logout-btn {
+        text-align: left !important;
+        padding-left: 12px !important;
+    }
+    
+}
 
 /* Navbar links */
 .navbar-nav {
@@ -56,6 +70,7 @@ nav {
 
 /* Navbar tab link */
 .navbar-nav .nav-link {
+    text-wrap: nowrap;
     align-items: center;
     text-align: center;
     width: 130px;
@@ -66,9 +81,22 @@ nav {
     transition-duration: 0s;
 }
 
+/* Add this CSS to your stylesheet */
+.nav-link.active {
+    background-color: rgba(0, 66, 2, 0.317);
+    color: #C3DFC0 !important;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+}
+
+/* .nav-link.active .nav-icon {
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.4));
+} */
+
 /* Hover styles for navbar links */
 .navbar-nav .nav-link:hover {
-    background-color: rgba(24, 66, 0, 0.187);
+    /* background-color: rgba(24, 66, 0, 0.115); */
+    animation: pulsate 1s infinite;
+    filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }
 
 /* Navbar tab icon */
@@ -113,11 +141,7 @@ nav {
     border-left: #05644b4f solid 1px;
 }
 
-
-
-
 /* Media queries */
-
 @media screen and (max-width: 992px) {
     .navbar-brand-container, .navbar {
         margin-top: -32px;
@@ -147,3 +171,41 @@ nav {
         display: none;
     }
 }
+
+
+
+
+
+/* Keyboard Navigations */
+.nav-link:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.nav-link.navigate {
+    /* background-color: rgba(24, 66, 0, 0.256) !important; */
+    border: none !important;
+    animation: pulsate 1s infinite;
+}
+
+.nav-link.navigate.active {
+    /* background-color: rgba(24, 66, 0, 0.256) !important; */
+    border: none !important;
+    animation: none;
+}
+
+@keyframes pulsate {
+    0% {
+        filter: opacity(1);
+    }
+    50% {
+        filter: opacity(0.5);
+    }
+    100% {
+        filter: opacity(1);
+    }
+}
+
+
+
+

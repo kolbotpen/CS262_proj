@@ -1,0 +1,122 @@
+/* ----- TEXTS ----- */
+
+/* bullet points */
+ul.todo-list li {
+    color: #8a8a8a;
+}
+ul.todo-list li a {
+    font-weight: 400 !important;
+    font-size: 18px !important;
+    color: #8a8a8a;
+}
+
+p, a, span, label, address, input, textarea, select {
+    font-size: 18px !important;
+}
+
+@media (max-width: 991px){
+    p, a, span, label, address, input, textarea, select {
+      font-size: 16px !important;
+    }
+}
+
+
+/* ----- TABLE ----- */
+.table-company-name {
+    border-bottom: rgb(73, 73, 73) 1px solid;
+}
+.container-border, .table-border {
+    border: rgb(73, 73, 73) 1px solid;
+}
+table, th, tr, td {
+    padding-left: 15px !important;
+    padding-right: 15px;
+    font-family: 'Outfit', sans-serif !important;
+    color: white !important;
+    border: none;
+}
+th {
+    background-color: #343436 !important;
+    height: 55px; /* Set a specific height */
+    display: table-cell;
+    vertical-align: middle;
+}
+tbody tr:nth-child(even) td {
+    background-color: #282828 !important;
+}
+tbody tr:nth-child(odd) td {
+    background-color: #202020 !important;
+}
+td {
+    height: fit-content; /* Match the height of the header */
+    display: table-cell;
+    vertical-align: middle;
+}
+button.btn {
+    height: 100%; /* Adjust button height if needed */
+}
+img.icon {
+    height: 20px; /* Adjust icon height if needed */
+    margin-right: 5px;
+}
+
+
+/* ----- PILLS ----- */
+.pill {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    text-align: center;
+    min-width: 0px;
+    max-width: fit-content;
+    height: 30px;
+    border-radius: 16px;
+
+    padding: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.pill-red {
+    background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);
+}
+.pill-yellow {
+    background: linear-gradient(90deg, #FED816 0%, #D38001 100%);
+}
+.pill-green {
+    background: linear-gradient(90deg, #73C649 0%, #128850 100%);
+}
+
+
+
+/* ----- CALENDAR ----- */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    padding: 10px;
+    background-color: #282828;
+    /* border-radius: 10px; */
+}
+.calendar div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    color: white;
+}
+.calendar .header {
+    font-weight: bold;
+}
+.calendar .day {
+    background-color: #202020;
+    border-radius: 5px;
+}
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2em;
+    color: white;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
