@@ -80,4 +80,4 @@
 </nav>
 
 <script src="{{ asset('assets/js/nav-hide.js') }}"></script>
-<script src="{{ asset('assets/js/nav-keyboard.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/nav-keyboard.js') }}"></script> --}}
