@@ -10,7 +10,7 @@
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
-                    <th class="align-middle">TEAM 10</th>
+                    <th class="align-middle">TEAM 1</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
                         <button class="btn button-gray d-inline-flex align-items-center">
