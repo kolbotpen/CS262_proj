@@ -60,11 +60,14 @@ Route::get('/workspace', function () {
 Route::get('/tasks', function () {
     return view('task-all');
 });
-Route::get('/task-insert', function () {
-    return view('task-insert');
-});
 Route::get('/task-details', function () {
     return view('task-details');
+});
+Route::get('/task-details-edit', function () {
+    return view('task-details-edit');
+});
+Route::get('/task-insert', function () {
+    return view('task-insert');
 });
 Route::get('/calendar', function () {
     return view('calendar');

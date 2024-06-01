@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-    <h1 class="mt-4">Add Task</h1>
+    <h1 class="mt-4">Edit Task</h1>
   
     {{-- CONTAINER 1 --}}
     <div class="container bg-gray p-4 mb-4 rounded container-border">
@@ -10,11 +10,11 @@
           <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
               <thead>
                   <tr>
-                      <th class="align-middle">Insert File</th>
+                      <th class="align-middle">Details</th>
                       <th class="align-middle"></th>
                       <th class="align-middle text-center">
                         <a class="btn button-gray d-inline-flex align-items-center" href="task-details">
-                            <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
+                            <img class="icon me-2 mt-1" src="assets/images/icon-edit.svg" draggable="false">Save Changes
                         </a>
                     </th>
                   </tr>
@@ -62,22 +62,9 @@
               </div>
             </div>
           </div>
-
-          <div class="row d-flex p-4">
-            <div class="col-md-12">
-              <div id="fileDropArea" class="p-5 text-center bg-dark text-white border rounded">
-                <p class="mb-4">Drag and drop file here</p>
-                <input type="file" id="fileElem" multiple accept="image/*" style="display:none">
-                <button onclick="fileElem.click()" class="btn btn-secondary">Or click here to select file(s)</button>
-              </div>
-            </div>
-          </div>
           
       </div>
   </div>
 </div>
 
-<script src="{{asset ('assets/js/task-insert.js')}}"></script>
-
 @stop
-

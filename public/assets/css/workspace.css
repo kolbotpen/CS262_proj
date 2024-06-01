@@ -62,19 +62,24 @@ img.icon {
 
 
 /* ----- PILLS ----- */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .pill {
     display: flex;
-    flex-direction: row;
     align-items:center;
     text-align: center;
+    flex-direction: row;
     min-width: 0px;
     max-width: fit-content;
     height: 30px;
     border-radius: 16px;
 
     padding: 16px;
-    margin-left: auto;
-    margin-right: auto;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 .pill-red {
     background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);

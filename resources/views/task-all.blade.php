@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4">Assign Tasks</h1>
+  <h1 class="mt-4">Tasks</h1>
 
   {{-- CONTAINER 1 --}}
   <div class="container bg-gray p-4 mb-4 rounded container-border">
@@ -13,9 +13,9 @@
                     <th class="align-middle">TEAM 1</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <button class="btn button-gray d-inline-flex align-items-center">
+                        <a class="btn button-gray d-inline-flex align-items-center" href="task-insert">
                             <img class="icon me-2 mt-1" src="assets/images/icon-add.svg" draggable="false">Add Task
-                        </button>
+                        </a>
                     </th>
                 </tr>
             </thead>
@@ -37,10 +37,10 @@
                     <td class="align-middle">Review Wireframes</td>
                     <td class="align-middle">Barry Allen</td>
                     <td class="align-middle">Today</td>
-                    <td class="align-middle text-center"><div class="pill pill-yellow">Medium</div></td>
-                    <td class="align-middle text-center"><div class="pill pill-yellow">In-Progress</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -53,10 +53,10 @@
                     <td class="align-middle">Update user documentation</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle">Tomorrow</td>
-                    <td class="align-middle text-center"><div class="pill pill-yellow">Medium</div></td>
-                    <td class="align-middle text-center"><div class="pill pill-yellow">In-Progress</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -69,10 +69,10 @@
                     <td class="align-middle">Test new features</td>
                     <td class="align-middle">John Doe</td>
                     <td class="align-middle">April 24th</td>
-                    <td class="align-middle text-center"><div class="pill pill-red">High</div></td>
-                    <td class="align-middle text-center"><div class="pill">Not Started</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
+                    <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -85,10 +85,10 @@
                     <td class="align-middle">Fix CSS bugs</td>
                     <td class="align-middle">Ben Dover</td>
                     <td class="align-middle">Today</td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -101,10 +101,10 @@
                     <td class="align-middle">Reports monthly financial </td>
                     <td class="align-middle">Tony Stark</td>
                     <td class="align-middle">Today</td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -117,10 +117,10 @@
                     <td class="align-middle">Kill Hydra</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle">Tomorrow</td>
-                    <td class="align-middle text-center"><div class="pill pill-red">High</div></td>
-                    <td class="align-middle text-center"><div class="pill">Not Started</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
+                    <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">
@@ -133,10 +133,10 @@
                     <td class="align-middle">HTML Design</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle">Today</td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
-                    <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
+                    <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary">
+                        <a class="btn btn-secondary" href="task-details-edit">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
                         </a>
                         <a class="btn btn-danger">

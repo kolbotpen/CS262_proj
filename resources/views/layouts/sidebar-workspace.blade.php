@@ -1,6 +1,6 @@
 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse p-0" style="background-color: #000000;">
   <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 100%; height: 100%; background-color: #121212;">
-    <div class="text-left mb-4 rounded" style="background-color: rgb(40, 40, 40);">
+    <div class="text-left mb-4 rounded" style="background-color: #222222;">
       <div class="d-flex align-items-center p-4 text-green-gradient">
         <h5 class="inter m-0"><strong>WELCOME,<br>{{ Auth::user()->name }}</strong></h5>
       </div>
@@ -15,7 +15,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link text-gray sidebar-tab" href="tasks">
-          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">Assign Tasks
+          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">Tasks
         </a>
       </li>
       <li class="nav-item">
