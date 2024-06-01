@@ -42,15 +42,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/', function () {
     return view('landing');
 });
-
 Route::get('/landing', function () {
     return view('landing');
 });
-
 Route::get('/about', function () {
     return view('about');
 });
-
 Route::get('/contact', function () {
     return view('contact');
 });
@@ -68,7 +65,8 @@ Route::get('/calendar', function () {
 });
 Route::get('/settings', function () {
     return view('settings');
-});
+})->name('settings');
+
 // VISOTH CODE
 
 require __DIR__.'/auth.php';
