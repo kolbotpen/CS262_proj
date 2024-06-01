@@ -58,7 +58,13 @@ Route::get('/workspace', function () {
     return redirect('/companies');
 });
 Route::get('/tasks', function () {
-    return view('assign-tasks');
+    return view('task-all');
+});
+Route::get('/task-insert', function () {
+    return view('task-insert');
+});
+Route::get('/task-details', function () {
+    return view('task-details');
 });
 Route::get('/calendar', function () {
     return view('calendar');
