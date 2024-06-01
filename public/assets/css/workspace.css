@@ -37,7 +37,7 @@ table, th, tr, td {
 }
 th {
     background-color: #343436 !important;
-    height: 55px; /* Set a specific height */
+    height: 55px; /* specific height */
     display: table-cell;
     vertical-align: middle;
 }
@@ -52,11 +52,11 @@ td {
     display: table-cell;
     vertical-align: middle;
 }
-button.btn {
-    height: 100%; /* Adjust button height if needed */
+a.btn {
+    height: 100%;
 }
 img.icon {
-    height: 20px; /* Adjust icon height if needed */
+    height: 20px;
     margin-right: 5px;
 }
 

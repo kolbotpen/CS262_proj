@@ -40,12 +40,12 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 2 --}}
@@ -56,12 +56,12 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 3 --}}
@@ -72,12 +72,12 @@
                     <td class="align-middle text-center"><div class="pill pill-red">High</div></td>
                     <td class="align-middle text-center"><div class="pill">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 4 --}}
@@ -88,12 +88,12 @@
                     <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 5 --}}
@@ -104,12 +104,12 @@
                     <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 6 --}}
@@ -120,12 +120,12 @@
                     <td class="align-middle text-center"><div class="pill pill-red">High</div></td>
                     <td class="align-middle text-center"><div class="pill">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
                 {{-- Task 7 --}}
@@ -136,12 +136,12 @@
                     <td class="align-middle text-center"><div class="pill pill-green">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green">Completed</div></td>
                     <td class="align-middle text-center">
-                        <button class="btn btn-secondary">
+                        <a class="btn btn-secondary">
                             <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </button>
-                        <button class="btn btn-danger">
+                        </a>
+                        <a class="btn btn-danger">
                             <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </button>
+                        </a>
                     </td>
                 </tr>
             </tbody>
