@@ -62,22 +62,30 @@
               </div>
             </div>
           </div>
-
-          <div class="row d-flex p-4">
-            <div class="col-md-12">
-              <div id="fileDropArea" class="p-5 text-center bg-dark text-white border rounded">
-                <p class="mb-4">Drag and drop file here</p>
-                <input type="file" id="fileElem" multiple accept="image/*" style="display:none">
-                <button onclick="fileElem.click()" class="btn btn-secondary">Or click here to select file(s)</button>
+          <form method="POST" action="{{route('upload.post')}}" enctype="multipart/form-data">
+            @csrf
+            <div class="row d-flex p-4">
+              <div class="col-md-12">
+                <div id="fileDropArea" class="p-5 text-center bg-dark text-white border rounded">
+                  <p class="mb-4">Drag and drop file here</p>
+                  <input name="file" type="file" id="fileElem" multiple accept="image/*,.zip,.pdf" style="display:none">                  
+                  <button id="uploadButton" class="btn btn-secondary">Or click here to select file(s)</button>
+                </div>
+                <div class="m-3 d-flex justify-content-center"><input type="submit" class="btn btn-primary"></div>              
               </div>
             </div>
-          </div>
-          
+          </form>
       </div>
   </div>
 </div>
 
 <script src="{{asset ('assets/js/task-insert.js')}}"></script>
+<script>
+    document.getElementById('uploadButton').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('fileElem').click();
+    });
+</script>
 
 @stop
 

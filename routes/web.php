@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UploadManager;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
+Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 // VISOTH CODE
 Route::get('/', function () {
     return view('landing');
