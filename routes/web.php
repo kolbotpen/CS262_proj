@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
+
+
 // VISOTH CODE
 Route::get('/', function () {
     return view('landing');
