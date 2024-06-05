@@ -57,9 +57,9 @@ Route::get('/contact', function () {
 Route::get('/companies', function () {
     return view('companies');
 });
-Route::get('/workspace', function () {
-    return redirect('/companies');
-});
+// Route::get('/workspace', function () {
+//     return redirect('/companies');
+// });
 Route::get('/team', function () {
     return view('team');
 });
