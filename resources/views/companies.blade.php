@@ -13,8 +13,14 @@
                     <th class="align-middle">OURDEN co.ltd</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <a class="btn button-gray d-inline-flex align-items-center">
+                        <a class="btn button-green-gradient d-inline-flex align-items-center">
                             <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
+                        </a>
+                        <a class="btn button-gray d-inline-flex align-items-center">
+                            <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
+                        </a>
+                        <a class="btn button-gray d-inline-flex align-items-center">
+                            <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                         </a>
                     </th>
                 </tr>
