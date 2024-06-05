@@ -13,9 +13,9 @@
                     <th class="align-middle">OURDEN co.ltd</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <button class="btn button-gray d-inline-flex align-items-center">
+                        <a class="btn button-gray d-inline-flex align-items-center">
                             <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
-                        </button>
+                        </a>
                     </th>
                 </tr>
             </thead>
@@ -33,26 +33,35 @@
                     <td class="align-middle">1</td>
                     <td class="align-middle">Front-end Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
-                        </a>                          
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                        </a>                         
                     </td>
                 </tr>
                 <tr>
                     <td class="align-middle">2</td>
                     <td class="align-middle">API Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
-                        </a>   
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td class="align-middle">3</td>
                     <td class="align-middle">Back-end Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>
@@ -90,8 +99,11 @@
                     <td class="align-middle">1</td>
                     <td class="align-middle">Front-end Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>
@@ -99,8 +111,11 @@
                     <td class="align-middle">2</td>
                     <td class="align-middle">API Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>
@@ -108,8 +123,11 @@
                     <td class="align-middle">3</td>
                     <td class="align-middle">Back-end Developer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>
@@ -147,17 +165,23 @@
                     <td class="align-middle">1</td>
                     <td class="align-middle">Lead Engineer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
-                        </a>   
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                        </a>
                     </td>
                 </tr>
                 <tr>
                     <td class="align-middle">2</td>
                     <td class="align-middle">Overseer</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>
@@ -165,8 +189,11 @@
                     <td class="align-middle">3</td>
                     <td class="align-middle">Advertising</td>
                     <td class="align-middle text-center">
-                        <a href="tasks" class="btn btn-primary">
-                            <img class="icon" src="assets/images/icon-view.svg" draggable="false"> View Team
+                        <a href="team" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                        </a>
+                        <a href="tasks" class="btn btn-secondary">
+                            <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                         </a>   
                     </td>
                 </tr>

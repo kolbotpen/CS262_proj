@@ -13,7 +13,7 @@ class HomeController extends Controller
            $usertype=Auth()->user()->usertype;
 
            if($usertype=='user'){
-            return view('dashboard');
+            return view('companies');
            }
            else if($usertype=='admin'){
             return view('admin.adminhome');
@@ -33,7 +33,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('dashboard');
+             return view('companies');
             }
             else if($usertype=='admin'){
              return view('admin.workspace');
@@ -49,7 +49,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('dashboard');
+             return view('companies');
             }
             else if($usertype=='admin'){
              return view('admin.edit');
@@ -64,7 +64,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('dashboard');
+             return view('companies');
             }
             else if($usertype=='admin'){
              return view('admin.edituser');
@@ -79,7 +79,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('dashboard');
+             return view('companies');
             }
             else if($usertype=='admin'){
              return view('admin.setting');

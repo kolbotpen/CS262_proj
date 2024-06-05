@@ -60,6 +60,9 @@ Route::get('/companies', function () {
 Route::get('/workspace', function () {
     return redirect('/companies');
 });
+Route::get('/team', function () {
+    return view('team');
+});
 Route::get('/tasks', function () {
     return view('task-all');
 });
