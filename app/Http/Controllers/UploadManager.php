@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 
 class UploadManager extends Controller
 {
-    function upload(){
+    function upload()
+    {
         return view("task-insert");
     }
     public function uploadPost(Request $request)
@@ -24,7 +25,9 @@ class UploadManager extends Controller
 
             // Move the file
             if ($file->move($destinationPath, $file->getClientOriginalName())) {
-                return response()->json(['message' => 'Upload Success'], 200);
+                // Set a session variable
+                session()->flash('status', 'upload-success');
+                return redirect()->back();
             } else {
                 return response()->json(['message' => 'Upload Fail'], 500);
             }
@@ -32,4 +35,5 @@ class UploadManager extends Controller
             return response()->json(['message' => 'No file uploaded.'], 400);
         }
     }
+
 }
