@@ -17,9 +17,9 @@
             <th class="align-middle">Insert File</th>
             <th class="align-middle"></th>
             <th class="align-middle text-center">
-              <a class="btn button-gray d-inline-flex align-items-center" href="task-details">
+              {{-- <a class="btn button-gray d-inline-flex align-items-center" href="task-details">
                 <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
-              </a>
+              </a> --}}
             </th>
           </tr>
         </thead>
@@ -58,31 +58,36 @@
             </div>
           </div>
         </div>
-      <!-- </form>
 
-      <form method="POST" action="{{route('upload.post')}}" enctype="multipart/form-data"> -->
-      <!-- @csrf -->
-      <div class="row d-flex p-4">
-        <div class="col-md-12">
-          <div id="fileDropArea" class="p-5 text-center bg-dark text-white border rounded">
-            <p class="mb-4">Drag and drop file here</p>
-            <input name="file" type="file" id="fileElem" multiple accept="image/*,.zip,.pdf" style="display:none">
-            <button id="uploadButton" class="btn btn-secondary">Or click here to select file(s)</button>
+        {{-- File upload section --}}
+        <div class="row d-flex p-4">
+          <div class="col-md-12">
+              <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
+                  <p class="mb-3">Drag and drop file here</p>
+                  <button id="uploadButton" class="btn btn-secondary mb-2">Or click here to select file(s)</button>
+                  <!-- Display area for uploaded files -->
+                  <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0">
+                  <div id="fileListContainer" class="d-flex flex-column align-items-center">
+                      <div id="fileList"></div>
+                  </div>
+              </div>
+              {{-- <div class="m-3 d-flex justify-content-center"><input type="submit" class="btn btn-primary"></div> --}}
+              <div class="m-3 d-flex justify-content-center">
+                  <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center" style="height: 40px;">
+                      <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
+                  </button>
+              </div>
           </div>
-          <div class="m-3 d-flex justify-content-center"><input type="submit" class="btn btn-primary"></div>
         </div>
-      </div>
+       
+
     </form>
   </div>
 </div>
 </div>
 
 <script src="{{asset('assets/js/task-insert.js')}}"></script>
-<script>
-  document.getElementById('uploadButton').addEventListener('click', function (e) {
-    e.preventDefault();
-    document.getElementById('fileElem').click();
-  });
-</script>
+<script src="{{asset('assets/js/task-insert-click.js')}}"></script>
+<script src="{{ asset('assets/js/task-insert-display.js')}}"></script>
 
 @stop

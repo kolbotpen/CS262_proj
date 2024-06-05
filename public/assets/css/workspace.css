@@ -1,3 +1,8 @@
+input#fileElem.left-0 {
+    display: none !important;
+    background-color: #73C649 !important;
+}
+
 /* ----- TEXTS ----- */
 
 /* bullet points */

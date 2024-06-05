@@ -14,7 +14,5 @@ fileDropArea.addEventListener('drop', function(e) {
   e.preventDefault();
   fileDropArea.classList.remove('bg-primary');
   var files = e.dataTransfer.files;
-  // Handle dropped files here
-  console.log(files);
+  handleFiles({ target: { files } });
 });
-
