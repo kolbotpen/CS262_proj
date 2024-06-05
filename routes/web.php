@@ -17,7 +17,7 @@ use App\Http\Controllers\UploadManager;
 */
 
 Route::get('/', function () {
-    return view('/landing');
+    return view('/welcome');
 });
 
 // Route::get('/dashboard', function () {
