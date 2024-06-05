@@ -42,7 +42,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
-
 // VISOTH CODE
 Route::get('/', function () {
     return view('landing');
@@ -59,11 +58,8 @@ Route::get('/contact', function () {
 Route::get('/companies', function () {
     return view('companies');
 });
-// Route::get('/workspace', function () {
-//     return redirect('/companies');
-// });
-Route::get('/team', function () {
-    return view('team');
+Route::get('/workspace', function () {
+    return redirect('/companies');
 });
 Route::get('/tasks', function () {
     return view('task-all');
