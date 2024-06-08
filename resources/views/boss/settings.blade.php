@@ -5,10 +5,10 @@
 <link rel="stylesheet" href="{{ asset('assets/css/sign-up.css')}}">
 
 <div class="container">
-  <h1 class="mt-4">Settings</h1>
+  <h1 class="mt-4 mb-4">Settings</h1>
 
   {{-- CONTAINER 1 --}}
-  <div class="container bg-gray p-4 mb-4 rounded container-border">
+  <div class="container bg-transparent p-0 mb-4 rounded container-border">
     <div class="table-border rounded" style="overflow: hidden;">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
@@ -20,7 +20,7 @@
             </thead>
         </table>
 
-        <div class="container" style="width: 100%; display: flex; justify-content: center; padding: 20px 0;">
+        <div class="container bg-gray" style="width: 100%; display: flex; justify-content: center; padding: 20px 0;">
             <div class="profile-section" style="width: 80%; display: flex; flex-direction: column; align-items: center;">
                 @if (session('status') === 'profile-updated')
                     <div class="alert alert-success">
@@ -30,7 +30,7 @@
                 <div class="d-flex justify-content-between" style="width: 100%; gap: 20px;">
 
                     <!-- Profile Picture Section -->
-                    <div class="contact-input rounded p-4 text-center" style="border: #383838 1px solid; flex: 1;">
+                    <div class="contact-input rounded p-4 text-center" style=" flex: 1;">
                         <div class="rounded-circle mb-3">
                             <img src="{{ asset('assets/images/avatar.png') }}" alt="Profile Picture" class="rounded-circle">
                         </div>
@@ -40,7 +40,7 @@
                     </div>
 
                     <!-- Profile Edit Form -->
-                    <div class="contact-input rounded p-4" style="border: #383838 1px solid; flex: 1;">
+                    <div class="contact-input rounded p-4" style=" flex: 1;">
                         <form method="POST" action="{{ route('profile.update') }}">
                             @csrf
                             @method('PATCH')
@@ -100,7 +100,7 @@
                     </div>
 
                     <!-- Password Update Form -->
-                    <div class="contact-input rounded p-4" style="border: #383838 1px solid; flex: 1;">
+                    <div class="contact-input rounded p-4" style=" flex: 1;">
                         <form method="POST" action="{{ route('password.update') }}">
                             @csrf
                             @method('PUT')

@@ -13,11 +13,11 @@
           <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-companies.svg')}}" draggable="false">Companies
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link text-gray sidebar-tab" href="tasks">
-          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">Tasks
+      {{-- <li class="nav-item">
+        <a class="nav-link text-gray sidebar-tab" href="task-all">
+          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">All Tasks
         </a>
-      </li>
+      </li> --}}
       <li class="nav-item">
         <a class="nav-link text-gray sidebar-tab" href="calendar">
           <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-calendar.svg')}}" draggable="false">Calendar

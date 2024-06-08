@@ -38,13 +38,14 @@ function getFileIcon(file) {
         case 'jpeg':
         case 'png':
         case 'gif':
+        case 'webp':
             return URL.createObjectURL(file); // Show the image itself
         case 'pdf':
             return 'assets/images/icon-file-pdf.svg';
+        case 'docx':
+            return 'assets/images/icon-file-docx.svg';
         case 'zip':
             return 'assets/images/icon-file-zip.svg';
-        case 'txt':
-            return 'assets/images/icon-file-txt.svg';
         case 'mp4':
         case 'mkv':
         case 'mov':
@@ -62,7 +63,15 @@ function getFileIcon(file) {
         case 'exe':
         case 'py':
             return 'assets/images/icon-file-code.svg';
+        case 'txt':
+        case 'xml':
+        case 'csv':
+        case 'xls':
+        case 'xlsx':
+            return 'assets/images/icon-file-text.svg';
         default:
             return 'assets/images/icon-file-unknown.svg';
     }
 }
+
+

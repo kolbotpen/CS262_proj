@@ -28,10 +28,13 @@ p, a, span, label, address, input, textarea, select {
 
 /* ----- TABLE ----- */
 .table-company-name {
-    border-bottom: rgb(73, 73, 73) 1px solid;
+    border-bottom: rgb(73, 73, 73) 2px solid;
 }
-.container-border, .table-border {
-    border: rgb(73, 73, 73) 1px solid;
+.container-border {
+    border: rgb(73, 73, 73) 0px solid;
+}
+.table-border {
+    border: rgb(73, 73, 73) 2px solid;
 }
 table, th, tr, td {
     padding-left: 15px !important;
@@ -41,13 +44,13 @@ table, th, tr, td {
     border: none;
 }
 th {
-    background-color: #343436 !important;
+    background-color: #373738 !important;
     height: 55px; /* specific height */
     display: table-cell;
     vertical-align: middle;
 }
 tbody tr:nth-child(even) td {
-    background-color: #282828 !important;
+    background-color: #232323 !important;
 }
 tbody tr:nth-child(odd) td {
     background-color: #202020 !important;
@@ -115,7 +118,7 @@ img.icon {
     color: white;
 }
 .calendar .header {
-    font-weight: bold;
+    font-weight: 600;
 }
 .calendar .day {
     background-color: #202020;

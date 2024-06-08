@@ -2,20 +2,22 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4">Tasks</h1>
+  <h1 class="mt-4 mb-4">Task</h1>
 
   {{-- CONTAINER 1 --}}
-  <div class="container bg-gray p-4 mb-4 rounded container-border">
-    <div class="table-border rounded" style="overflow: hidden;">
+  <div class="container bg-transparent p-0 rounded container-border">
+    <div class="table-border rounded mb-5" style="overflow: hidden;">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
                     <th class="align-middle">TEAM 1</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <a class="btn button-gray d-inline-flex align-items-center" href="task-insert">
-                            <img class="icon me-2 mt-1" src="assets/images/icon-add.svg" draggable="false">Add Task
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-insert" role="button">
+                                <img class="icon me-2" src="assets/images/icon-add.svg" draggable="false">Add Task
+                            </a>
+                        </div>
                     </th>
                 </tr>
             </thead>
@@ -40,12 +42,14 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 2 --}}
@@ -56,12 +60,14 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 3 --}}
@@ -72,12 +78,14 @@
                     <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
                     <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 4 --}}
@@ -88,12 +96,14 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 5 --}}
@@ -104,12 +114,14 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 6 --}}
@@ -120,12 +132,14 @@
                     <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
                     <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
                 {{-- Task 7 --}}
@@ -136,12 +150,14 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <a class="btn btn-secondary" href="task-details-edit">
-                            <img class="icon" src="assets/images/icon-edit.svg" draggable="false">
-                        </a>
-                        <a class="btn btn-danger">
-                            <img class="icon" src="assets/images/icon-trash.svg" draggable="false">
-                        </a>
+                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
+                            </a>
+                            <a class="btn btn-danger" href="#" role="button">
+                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
+                            </a>
+                        </div>
                     </td>
                 </tr>
             </tbody>

@@ -56,7 +56,11 @@ body {
 
 /* ----- BACKGROUND IMAGES ----- */
 .bg-gray {
-    background-color: #222222;
+    /* background-color: #222222; */
+    background-color: #1c1c1c;
+}
+.bg-gray-dark {
+  background-color: #181818;
 }
 .bg-green-gradient {
     background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);

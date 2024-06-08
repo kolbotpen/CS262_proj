@@ -42,7 +42,8 @@ Route::middleware('auth')->group(function () {
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
-// VISOTH CODE
+// ---------- VISOTH'S CODE | START ----------
+// Landing
 Route::get('/', function () {
     return view('landing');
 });
@@ -55,31 +56,81 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+
+// LOGGED IN STARTS FROM HERE
+// Get Started
+Route::get('/start', function () {
+    return view('start');
+});
+Route::get('/create', function () {
+    return view('start-create');
+});
+Route::get('/search', function () {
+    return view('start-search');
+});
+Route::get('/request', function () {
+    return view('start-request');
+});
+
+
+// LOGGED IN AS "BOSS" STARTS FROM HERE
+// Companies
 Route::get('/companies', function () {
-    return view('companies');
+    return view('boss.companies');
 });
 Route::get('/workspace', function () {
     return redirect('/companies');
 });
-Route::get('/tasks', function () {
-    return view('task-all');
+
+// Team
+Route::get('/team-all', function () {
+    return view('boss.team-all');
 });
+Route::get('/team', function () {
+    return view('boss.team');
+});
+Route::get('/team-add', function () {
+    return view('boss.team-add');
+});
+Route::get('/team-add-member', function () {
+    return view('boss.team-add-member');
+});
+
+// Task
+Route::get('/task-all', function () {
+    return view('boss.task-all');
+});
+Route::get('/task', function () {
+    return view('boss.task');
+});
+
+// Task Details
 Route::get('/task-details', function () {
-    return view('task-details');
+    return view('boss.task-details');
 });
 Route::get('/task-details-edit', function () {
-    return view('task-details-edit');
+    return view('boss.task-details-edit');
 });
-Route::get('/task-insert', function () {
-    return view('task-insert');
-});
-Route::get('/calendar', function () {
-    return view('calendar');
-});
-Route::get('/settings', function () {
-    return view('settings');
-})->name('settings');
 
-// VISOTH CODE
+// Task Insert
+Route::get('/task-insert', function () {
+    return view('boss.task-insert');
+});
+
+// Calendar
+Route::get('/calendar', function () {
+    return view('boss.calendar');
+});
+
+// Settings
+Route::get('/settings', function () {
+    return view('boss.settings');
+})->name('boss.settings');
+
+// LOGGED IN AS "WORKER" STARTS FROM HERE
+// nothing here yet, just us chickens
+
+
+// ---------- VISOTH'S CODE | END ----------
 
 require __DIR__.'/auth.php';

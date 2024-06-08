@@ -2,7 +2,8 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4">Companies</h1>
+  <h1 class="mt-4">Hello!</h1>
+  <h5>Join a company, or create yours!</h5>
 
   {{-- CONTAINER 1 --}}
   <div class="container bg-gray p-4 mb-4 rounded container-border">
