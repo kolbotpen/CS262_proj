@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadManager;
+use App\Http\Controllers\TeamsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -95,6 +96,9 @@ Route::get('/team-add', function () {
 Route::get('/team-add-member', function () {
     return view('boss.team-add-member');
 });
+
+Route::post('/teams', [TeamsController::class, 'store'])->name('teams.store');
+Route::get('/companies', [App\Http\Controllers\HomeController::class, 'showCompanies'])->name('companies');
 
 // Task
 Route::get('/task-all', function () {

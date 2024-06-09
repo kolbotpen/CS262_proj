@@ -7,6 +7,7 @@
     {{-- CONTAINER 1 --}}
     <div class="container bg-transparent p-0 rounded container-border">
         {{-- COMPANY 1 --}}
+
         <div class="table-border rounded mb-5" style="overflow: hidden;">
             <table class="table table-company-name m-0" style="table-layout: fixed; width: 100%;">
                 <thead>
@@ -42,48 +43,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="align-middle">1</td>
-                        <td class="align-middle">FRONTEND DEVELOPMENT</td>
-                        <td class="align-middle text-center">
-                            <div class="btn-group table-border" role="group" aria-label="Button group">
-                                <a href="team" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-team.svg" draggable="false">
-                                </a>
-                                <a href="task" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">2</td>
-                        <td class="align-middle">API DEVELOPMENT</td>
-                        <td class="align-middle text-center">
-                            <div class="btn-group table-border" role="group" aria-label="Button group">
-                                <a href="team" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-team.svg" draggable="false">
-                                </a>
-                                <a href="task" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="align-middle">3</td>
-                        <td class="align-middle">BACKEND DEVELOPMENT</td>
-                        <td class="align-middle text-center">
-                            <div class="btn-group table-border" role="group" aria-label="Button group">
-                                <a href="team" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-team.svg" draggable="false">
-                                </a>
-                                <a href="task" class="btn btn-secondary">
-                                    <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+
+                    @foreach ($teams as $team)
+                        <tr>
+                            <td class="align-middle">{{ $loop->iteration }}</td>
+                            <td class="align-middle">{{ $team->name }}</td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group table-border" role="group" aria-label="Button group">
+                                    <a href="team" class="btn btn-secondary">
+                                        <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                                    </a>
+                                    <a href="task" class="btn btn-secondary">
+                                        <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -254,7 +231,7 @@
             </table>
         </div>
 
-        
+
     </div>
 </div>
 

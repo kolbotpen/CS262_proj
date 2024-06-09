@@ -5,7 +5,7 @@
   <h1 class="mt-4 mb-4">Team</h1>
   @if (session('status') === 'upload-success')
     <div class="alert alert-success">
-      Upload success!
+    Upload success!
     </div>
   @endif
   {{-- CONTAINER 1 --}}
@@ -21,14 +21,15 @@
         </thead>
       </table>
 
-      <form action="" method="post" enctype="multipart/form-data">
+      <form action="{{ route('teams.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row d-flex">
           {{-- LEFT BOX --}}
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="container m-3 text-white p-3 rounded h-100">
-              <label for="team_name">Team name</label>
-              <input type="text" name="team_name" class="form-control bg-black text-white border-0" placeholder="Team name" value="" required>
+              <label for="name">Team name</label>
+              <input type="text" name="name" class="form-control bg-black text-white border-0" placeholder="Team name"
+                value="" required>
             </div>
           </div>
 
@@ -37,13 +38,14 @@
             <div class="container m-3 text-white p-3 rounded h-100">
               <label for="team_no">Team No.</label>
               <select name="team_no" class="form-select bg-black text-white border-0" disabled>
-                  <option value="1" selected>1</option>
+                <option value="1" selected>1</option>
               </select>
             </div>
           </div>
         </div>
         <div class="m-3 d-flex justify-content-center">
-          <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center" style="height: 40px;">
+          <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center"
+            style="height: 40px;">
             <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
           </button>
         </div>

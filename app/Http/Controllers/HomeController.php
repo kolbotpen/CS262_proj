@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Team;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,8 @@ class HomeController extends Controller
            $usertype=Auth()->user()->usertype;
 
            if($usertype=='user'){
-            return view('companies');
+            $teams = Team::all();
+            return view('companies', ['teams' => $teams]);
            }
            else if($usertype=='admin'){
             return view('admin.adminhome');
@@ -31,9 +33,9 @@ class HomeController extends Controller
     public function workspace(){
         if(Auth::id()){
             $usertype=Auth()->user()->usertype;
- 
+            $teams = Team::all();
             if($usertype=='user'){
-             return view('companies');
+                return view('companies', ['teams' => $teams]);
             }
             else if($usertype=='admin'){
              return view('admin.workspace');
@@ -88,5 +90,9 @@ class HomeController extends Controller
              return redirect()->back();
             }
          }
+    }
+    public function showCompanies() {
+        $teams = Team::all(); // Retrieve all teams from the database
+        return view('boss.companies', ['teams' => $teams]); // Pass the teams to the view
     }
 }
