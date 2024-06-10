@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadManager;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\CompanyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +43,14 @@ Route::middleware('auth')->group(function () {
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
+Route::get('/admin-addcompany', function () {
+    return view('admin.admin-addcompany');
+})->name('admin.addcompany');
+
+// Route for storing a new company
+Route::post('/admin-addcompany', [App\Http\Controllers\CompanyController::class, 'store'])->name('companies.store');
+// Route for showing the workspace
+Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
 // ---------- VISOTH'S CODE | START ----------
 // Landing
 Route::get('/', function () {
@@ -79,9 +87,9 @@ Route::get('/request', function () {
 Route::get('/companies', function () {
     return view('boss.companies');
 });
-Route::get('/workspace', function () {
-    return redirect('/companies');
-});
+// Route::get('/workspace', function () {
+//     return redirect('/companies');
+// });
 
 // Team
 Route::get('/team-all', function () {
