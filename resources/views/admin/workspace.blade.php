@@ -4,7 +4,7 @@
 <div class="container-fluid my-2">
 	<div class="row mb-2">
 		<div class="col-sm-6">
-			<h1>Workspace Table</h1>
+			<h1>Company</h1>
 		</div>
 		<div class="col-sm-6 text-right">
 			<a href="{{ route('admin.addcompany') }}" class="btn btn-primary">Add Company</a>
@@ -19,7 +19,7 @@
 	<div class="container-fluid">
 		<div class="card">
 			<div class="card-header">
-				<h3 class="card-title">Workspace Table</h3>
+				<h3 class="card-title">Comapany Table</h3>
 				<div class="card-tools">
 					<div class="input-group input-group" style="width: 250px;">
 						<input type="text" name="table_search" class="form-control float-right" placeholder="Search">
@@ -36,7 +36,7 @@
 				<table class="table table-hover text-nowrap">
 					<thead>
 						<tr>
-							<th width="900">Workspace</th>
+							<th width="900">Companies</th>
 							<th width="100">Boss</th>
 							<th width="100">Option</th>
 						</tr>
