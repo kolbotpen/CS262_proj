@@ -51,6 +51,9 @@ Route::get('/admin-addcompany', function () {
 Route::post('/admin-addcompany', [App\Http\Controllers\CompanyController::class, 'store'])->name('companies.store');
 // Route for showing the workspace
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
+
+Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('comapnies.show');
+
 // ---------- VISOTH'S CODE | START ----------
 // Landing
 Route::get('/', function () {

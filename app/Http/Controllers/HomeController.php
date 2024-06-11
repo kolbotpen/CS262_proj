@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Team;
+use App\Models\Company;
 
 class HomeController extends Controller
 {
@@ -93,6 +94,9 @@ class HomeController extends Controller
     }
     public function showCompanies() {
         $teams = Team::all(); // Retrieve all teams from the database
-        return view('boss.companies', ['teams' => $teams]); // Pass the teams to the view
+        $companies = Company::all(); // Retrieve all companies from the database
+    
+        return view('boss.companies', ['teams' => $teams, 'companies' => $companies]); // Pass the teams and companies to the view
     }
+    
 }

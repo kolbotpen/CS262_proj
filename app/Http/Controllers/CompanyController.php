@@ -15,10 +15,11 @@ class CompanyController extends Controller
 
         return redirect('/admin-addcompany')->with('status', 'Company added successfully!');
     }
-
+    // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
-{
-    $companies = Company::all();
-    return view('admin.workspace', ['companies' => $companies]);
-}
-}
+    {
+        $companies = Company::all();
+        return view('admin.workspace', ['companies' => $companies]);
+    }
+    // SHOW COMPANIES IN BOSS WORKSPACE
+}   

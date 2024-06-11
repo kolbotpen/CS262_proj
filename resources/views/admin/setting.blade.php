@@ -40,8 +40,8 @@
                                         </div> -->
                             <div class="col-md-6">
                                 <div class="md-6">
-                                    <label for="name">Fullname</label>
-                                    <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                                    <label for="name">Email</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Email">
                                 </div>
                             </div>
                             <div class="col-md-3">
