@@ -38,6 +38,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Add the boss.settings route
+    Route::get('/boss/settings', [ProfileController::class, 'settings'])->name('boss.settings');
 });
 
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
