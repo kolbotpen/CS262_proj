@@ -24,7 +24,7 @@
           </li>        
           <li class="nav-item">
             @auth
-                <a class="nav-link {{ request()->is('workspace') ? 'active' : '' }}" href="{{ url('workspace') }}">
+                <a class="nav-link {{ request()->is('companies') ? 'active' : '' }}" href="{{ url('companies') }}">
                     <img src="{{ asset('assets/images/nav-workspace.svg') }}" class="nav-icon">
                     Workspace
                 </a>

@@ -88,6 +88,8 @@ Route::get('/request', function () {
 Route::get('/companies', function () {
     return view('boss.companies');
 });
+
+// Overlapping with admin
 // Route::get('/workspace', function () {
 //     return redirect('/companies');
 // });

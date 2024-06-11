@@ -15,7 +15,7 @@ class HomeController extends Controller
 
            if($usertype=='user'){
             $teams = Team::all();
-            return view('companies', ['teams' => $teams]);
+            return view('landing', ['teams' => $teams]);
            }
            else if($usertype=='admin'){
             return view('admin.adminhome');
@@ -35,7 +35,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
             $teams = Team::all();
             if($usertype=='user'){
-                return view('companies', ['teams' => $teams]);
+                return view('landing', ['teams' => $teams]);
             }
             else if($usertype=='admin'){
              return view('admin.workspace');
@@ -51,7 +51,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('companies');
+             return view('landing');
             }
             else if($usertype=='admin'){
              return view('admin.edit');
@@ -66,7 +66,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('companies');
+             return view('landing');
             }
             else if($usertype=='admin'){
              return view('admin.edituser');
@@ -81,7 +81,7 @@ class HomeController extends Controller
             $usertype=Auth()->user()->usertype;
  
             if($usertype=='user'){
-             return view('companies');
+             return view('landing');
             }
             else if($usertype=='admin'){
              return view('admin.setting');
