@@ -69,8 +69,6 @@
                                 </label>
                                 <select class="form-control bg-black text-white border-0" id="role" name="role">
                                     <option value="Worker" {{ old('role', auth()->user()->role) == 'Worker' ? 'selected' : '' }}>Worker</option>
-                                    <option value="Boss" {{ old('role', auth()->user()->role) == 'Boss' ? 'selected' : '' }}>Boss</option>
-                                    <option value="Admin" {{ old('role', auth()->user()->role) == 'Admin' ? 'selected' : '' }}>Admin</option>
                                 </select>
                             </div>
 
