@@ -22,4 +22,10 @@ class CompanyController extends Controller
         return view('admin.workspace', ['companies' => $companies]);
     }
     // SHOW COMPANIES IN BOSS WORKSPACE
+    // public function showCompanies()
+    // {
+    //     $companies = Company::all(); 
+
+    //     return view('boss.companies', ['companies' => $companies]);
+    // }
 }   
