@@ -61,7 +61,12 @@ td {
     vertical-align: middle;
 }
 a.btn {
+    min-width: 0;
     height: 100%;
+}
+.btn-group {
+    min-width: 0;
+    border-radius: 8px;
 }
 img.icon {
     height: 20px;

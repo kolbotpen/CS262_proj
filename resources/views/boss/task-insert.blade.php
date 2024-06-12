@@ -96,7 +96,6 @@
 </div>
 
 <script src="{{asset('assets/js/task-insert.js')}}"></script>
-<script src="{{asset('assets/js/task-insert-click.js')}}"></script>
 <script src="{{ asset('assets/js/task-insert-display.js')}}"></script>
 
 @stop

@@ -1,3 +1,8 @@
+document.getElementById('uploadButton').addEventListener('click', function (e) {
+  e.preventDefault();
+  document.getElementById('fileElem').click();
+});
+
 var fileDropArea = document.getElementById('fileDropArea');
 
 fileDropArea.addEventListener('dragover', function(e) {

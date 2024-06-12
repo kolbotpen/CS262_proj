@@ -15,8 +15,8 @@
                             <th class="align-middle">
                                 {{ $company->name }}
                             </th>                        
-                            <th class="align-middle"></th>
-                            <th class="align-middle text-center">
+                            {{-- <th class="align-middle"></th> --}}
+                            <th colspan="2" class="align-middle whitespace-nowrap ms-auto text-end">
                                 <div class="btn-group table-border" style="background-color: #303030" role="group"
                                     aria-label="Button group">
                                     <a class="btn btn-success bg-green-gradient" href="team-add" role="button">
@@ -26,8 +26,7 @@
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                     </a>
                                     <a class="btn btn-secondary" href="task-all" role="button">
-                                        <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg"
-                                            draggable="false">All
+                                        <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                                     </a>
                                 </div>
                             </th>
@@ -50,7 +49,7 @@
                                 <td class="align-middle">{{ $loop->iteration }}</td>
                                 <td class="align-middle">{{ $team->name }}</td>
                                 <td class="align-middle text-center">
-                                    <div class="btn-group table-border" role="group" aria-label="Button group">
+                                    <div class="btn-group table-border" role="group" aria-label="Button group"  style="overflow-x: auto; white-space: nowrap;">
                                         <a href="team" class="btn btn-secondary">
                                             <img class="icon" src="assets/images/icon-team.svg" draggable="false">
                                         </a>
