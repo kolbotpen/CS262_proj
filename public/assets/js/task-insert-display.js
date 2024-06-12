@@ -72,7 +72,7 @@ function getFileIcon(file) {
         case 'csv':
         case 'xls':
         case 'xlsx':
-            return 'assets/images/icon-file-text.svg';
+            return 'assets/images/icon-file-txt.svg';
         default:
             return 'assets/images/icon-file-unknown.svg';
     }
