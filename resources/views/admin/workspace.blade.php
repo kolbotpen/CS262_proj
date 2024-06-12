@@ -36,7 +36,7 @@
 				<table class="table table-hover text-nowrap">
 					<thead>
 						<tr>
-							<th width="900">Companies</th>
+							<th width="900">Name</th>
 							<th width="100">Boss</th>
 							<th width="100">Option</th>
 						</tr>
