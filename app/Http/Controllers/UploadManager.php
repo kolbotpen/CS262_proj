@@ -38,7 +38,7 @@ class UploadManager extends Controller
             $file = $request->file('file');
 
             // Set destination path
-            $destinationPath = public_path('upload');
+            $destinationPath = storage_path('app/public/upload');
 
             // Create directory if not exists
             if (!file_exists($destinationPath)) {
