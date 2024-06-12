@@ -65,6 +65,7 @@ function getFileIcon(file) {
         case 'exe':
         case 'py':
         case 'php':
+        case 'sql':
             return 'assets/images/icon-file-code.svg';
         case 'txt':
         case 'xml':

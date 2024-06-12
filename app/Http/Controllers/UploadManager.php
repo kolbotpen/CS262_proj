@@ -21,7 +21,7 @@ class UploadManager extends Controller
             'priority' => 'required|string',
             'progress' => 'required|string',
             // 'file_upload' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,'
-            'file_upload' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php',
+            'file_upload' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
 
         ]);
 
