@@ -32,27 +32,18 @@ class UploadManager extends Controller
         $task->assigned_email = $request->assigned_email;
         $task->priority = $request->priority;
         $task->progress = $request->progress;
-        $task->save();
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
+            $path = $file->store('public/tasks');
+            $task->file_path = $path;
+        }
 
-            // Set destination path
-            $destinationPath = storage_path('app/public/upload');
+        $task->save();
 
-            // Create directory if not exists
-            if (!file_exists($destinationPath)) {
-                mkdir($destinationPath, 0755, true);
-            }
-
-            // Move the file
-            if ($file->move($destinationPath, $file->getClientOriginalName())) {
-                // Set a session variable
-                session()->flash('status', 'upload-success');
-                return redirect()->back();
-            } else {
-                return response()->json(['message' => 'Upload Fail'], 500);
-            }
+        if ($request->hasFile('file')) {
+            session()->flash('status', 'upload-success');
+            return redirect()->back();
         } else {
             return response()->json(['message' => 'No file uploaded.'], 400);
         }

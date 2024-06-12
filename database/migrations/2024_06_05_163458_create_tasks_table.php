@@ -21,6 +21,7 @@ class CreateTasksTable extends Migration
             $table->string('assigned_email');
             $table->string('priority');
             $table->string('progress');
+            $table->string('file_path')->nullable();
             $table->timestamps();
         });
     }
