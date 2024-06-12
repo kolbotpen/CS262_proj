@@ -59,9 +59,12 @@ function getFileIcon(file) {
         case 'css':
         case 'js':
         case 'cpp':
+        case 'cs':
+        case 'c':
         case 'java':
         case 'exe':
         case 'py':
+        case 'php':
             return 'assets/images/icon-file-code.svg';
         case 'txt':
         case 'xml':
