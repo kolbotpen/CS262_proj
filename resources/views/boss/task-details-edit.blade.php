@@ -20,7 +20,6 @@
                   </tr>
               </thead>
           </table>
-          
           <div class="row d-flex">
             {{-- LEFT BOX --}}
             <div class="col-md-6 d-flex align-items-stretch">

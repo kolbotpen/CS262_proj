@@ -35,7 +35,7 @@ class UploadManager extends Controller
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('public/tasks');
+            $path = $file->store('tasks', 'public');
             $task->file_path = $path;
         }
 
