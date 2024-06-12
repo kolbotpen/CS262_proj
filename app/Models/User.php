@@ -10,6 +10,9 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
+
+    protected $table = 'users'; // Name of table for admin or user. Change it to 'admins' if you want to put it into admin session 
+    /** protected $table = 'admins';  */  
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
