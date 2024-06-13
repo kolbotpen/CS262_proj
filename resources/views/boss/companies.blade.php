@@ -2,13 +2,16 @@
 @section('content')
 
 <div class="container">
-    <h1 class="mt-4 mb-4">Companies</h1>
+    {{-- BREADCRUMB --}}
+    <div class="breadcrumb mt-4 mb-4">
+        <a href="#" class="breadcrumb-link">Companies</a>
+    </div>
 
     {{-- CONTAINER 1 --}}
     <div class="container bg-transparent p-0 rounded container-border">
         {{-- Loop through each company --}}
         @foreach ($companies as $company)
-            <div class="table-border rounded mb-5" style="overflow: hidden;">
+            <div class="table-container table-border rounded mb-5">
                 <table class="table table-company-name m-0" style="table-layout: fixed; width: 100%;">
                     <thead>
                         <tr>
@@ -16,9 +19,8 @@
                                 {{ $company->name }}
                             </th>                        
                             {{-- <th class="align-middle"></th> --}}
-                            <th colspan="2" class="align-middle whitespace-nowrap ms-auto text-end">
-                                <div class="btn-group table-border" style="background-color: #303030" role="group"
-                                    aria-label="Button group">
+                            <th colspan="2" class="align-middle text-end">
+                                <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                     <a class="btn btn-success bg-green-gradient" href="team-add" role="button">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
                                     </a>
@@ -29,7 +31,7 @@
                                         <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                                     </a>
                                 </div>
-                            </th>
+                            </th>                                
                         </tr>
                     </thead>
                 </table>
@@ -49,7 +51,7 @@
                                 <td class="align-middle">{{ $loop->iteration }}</td>
                                 <td class="align-middle">{{ $team->name }}</td>
                                 <td class="align-middle text-center">
-                                    <div class="btn-group table-border" role="group" aria-label="Button group"  style="overflow-x: auto; white-space: nowrap;">
+                                    <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
                                         <a href="team" class="btn btn-secondary">
                                             <img class="icon" src="assets/images/icon-team.svg" draggable="false">
                                         </a>

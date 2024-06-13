@@ -3,19 +3,24 @@
 
 {{-- CONTAINER 1 --}}
 <div class="container">
-    <h1 class="mt-4 mb-4">Task (All)</h1>
+    <div class="breadcrumb mt-4 mb-4">
+        <a href="/companies" class="breadcrumb-link">Companies</a>
+        <i class="arrow-right"></i>
+        <a href="#" class="breadcrumb-link">All Tasks</a>
+    </div>
     <!-- THIS TAG IS FOR VIEWING THE FILE THAT WAS UPLOADED INTO TO THE DATABASE -->
     <!-- <a href="storage/tasks/5NGWB2alZPmzAdrwuMkdC6VCclgepXcgVPE3VnRX.pdf">Click here to view the PDF</a> --> 
+    
     <div class="container bg-transparent p-0 rounded container-border">
         {{-- Team 1 --}}
-        <div class="table-border rounded mb-5" style="overflow: hidden;">
+        <div class="table-container-scroll table-border rounded mb-5">
             <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
                 <thead>
                     <tr>
                         <th class="align-middle">TEAM 1</th>
                         <th class="align-middle">FRONTEND DEVELOPEMENT</th>
                         <th class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-insert" role="button">
                                     <img class="icon me-2" src="assets/images/icon-add.svg" draggable="false">Add Task
                                 </a>
@@ -48,7 +53,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -70,7 +75,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -92,7 +97,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -114,7 +119,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -136,7 +141,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -158,7 +163,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -180,7 +185,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -195,14 +200,14 @@
         </div>
 
         {{-- Team 2 --}}
-        <div class="table-border rounded mb-5" style="overflow: hidden;">
+        <div class="table-container-scroll table-border rounded mb-5">
             <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
                 <thead>
                     <tr>
                         <th class="align-middle">TEAM 2</th>
                         <th class="align-middle">API DEVELOPEMENT</th>
                         <th class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-insert" role="button">
                                     <img class="icon me-2" src="assets/images/icon-add.svg" draggable="false">Add Task
                                 </a>
@@ -235,7 +240,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -257,7 +262,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -279,7 +284,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -301,7 +306,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -323,7 +328,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -345,7 +350,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -367,7 +372,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -382,14 +387,14 @@
         </div>
 
         {{-- Team 3 --}}
-        <div class="table-border rounded mb-5" style="overflow: hidden;">
+        <div class="table-container-scroll table-border rounded mb-5">
             <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
                 <thead>
                     <tr>
                         <th class="align-middle">TEAM 3</th>
                         <th class="align-middle">BACKEND DEVELOPEMENT</th>
                         <th class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-insert" role="button">
                                     <img class="icon me-2" src="assets/images/icon-add.svg" draggable="false">Add Task
                                 </a>
@@ -422,7 +427,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -444,7 +449,7 @@
                             <div class="pill pill-yellow center">In-Progress</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -466,7 +471,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -488,7 +493,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -510,7 +515,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -532,7 +537,7 @@
                             <div class="pill center">Not Started</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>
@@ -554,7 +559,7 @@
                             <div class="pill pill-green center">Completed</div>
                         </td>
                         <td class="align-middle text-center">
-                            <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="task-details-edit" role="button">
                                     <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
                                 </a>

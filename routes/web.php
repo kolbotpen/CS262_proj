@@ -92,18 +92,18 @@ Route::get('/contact', function () {
 });
 
 // LOGGED IN STARTS FROM HERE
-// Get Started
-Route::get('/start', function () {
-    return view('start');
+// Browse
+Route::get('/browse', function () {
+    return view('browse');
 });
-Route::get('/create', function () {
-    return view('start-create');
+Route::get('/browse-create', function () {
+    return view('browse-create');
 });
-Route::get('/search', function () {
-    return view('start-search');
+Route::get('/browse-search', function () {
+    return view('browse-search');
 });
-Route::get('/request', function () {
-    return view('start-request');
+Route::get('/browse-request', function () {
+    return view('browse-request');
 });
 
 

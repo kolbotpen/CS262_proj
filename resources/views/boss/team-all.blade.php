@@ -2,19 +2,23 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4 mb-4">Team (All)</h1>
+    <div class="breadcrumb mt-4 mb-4">
+        <a href="/companies" class="breadcrumb-link">Companies</a>
+        <i class="arrow-right"></i>
+        <a href="#" class="breadcrumb-link">All Teams</a>
+    </div>
 
   {{-- CONTAINER 1 --}}
   <div class="container bg-transparent p-0 rounded container-border">
     {{-- Team 1 --}}
-    <div class="table-border rounded mb-5" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
                     <th class="align-middle">TEAM 1</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-success bg-green-gradient" href="team-add-member" role="button">
                                     <img class="icon me-2" src="assets/images/icon-user-add.svg" draggable="false">Add Member
                                 </a>
@@ -37,7 +41,7 @@
                     <td class="align-middle">1.</td>
                     <td class="align-middle">Barry Allen</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -52,7 +56,7 @@
                     <td class="align-middle">2.</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -67,7 +71,7 @@
                     <td class="align-middle">3.</td>
                     <td class="align-middle">John Doe</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -82,7 +86,7 @@
                     <td class="align-middle">4.</td>
                     <td class="align-middle">Ben Dover</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -97,7 +101,7 @@
                     <td class="align-middle">5.</td>
                     <td class="align-middle">Tony Stark</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -113,17 +117,17 @@
     </div>
 
     {{-- Team 2 --}}
-    <div class="table-border rounded mb-5" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
                     <th class="align-middle">TEAM 2</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
-                                <a class="btn btn-success bg-green-gradient" href="team-add-member" role="button">
-                                    <img class="icon me-2" src="assets/images/icon-user-add.svg" draggable="false">Add Member
-                                </a>
+                        <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-success bg-green-gradient" href="team-add-member" role="button">
+                                <img class="icon me-2" src="assets/images/icon-user-add.svg" draggable="false">Add Member
+                            </a>
                         </div>
                     </th>
                 </tr>
@@ -143,7 +147,7 @@
                     <td class="align-middle">1.</td>
                     <td class="align-middle">Barry Allen</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -158,7 +162,7 @@
                     <td class="align-middle">2.</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -173,7 +177,7 @@
                     <td class="align-middle">3.</td>
                     <td class="align-middle">John Doe</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -188,7 +192,7 @@
                     <td class="align-middle">4.</td>
                     <td class="align-middle">Ben Dover</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -203,7 +207,7 @@
                     <td class="align-middle">5.</td>
                     <td class="align-middle">Tony Stark</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -219,14 +223,14 @@
     </div>
 
     {{-- Team 3 --}}
-    <div class="table-border rounded mb-5" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
                     <th class="align-middle">TEAM 3</th>
                     <th class="align-middle"></th>
                     <th class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                 <a class="btn btn-success bg-green-gradient" href="team-add-member" role="button">
                                     <img class="icon me-2" src="assets/images/icon-user-add.svg" draggable="false">Add Member
                                 </a>
@@ -249,7 +253,7 @@
                     <td class="align-middle">1.</td>
                     <td class="align-middle">Barry Allen</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -264,7 +268,7 @@
                     <td class="align-middle">2.</td>
                     <td class="align-middle">Clark Kent</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -279,7 +283,7 @@
                     <td class="align-middle">3.</td>
                     <td class="align-middle">John Doe</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -294,7 +298,7 @@
                     <td class="align-middle">4.</td>
                     <td class="align-middle">Ben Dover</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>
@@ -309,7 +313,7 @@
                     <td class="align-middle">5.</td>
                     <td class="align-middle">Tony Stark</td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border" style="background-color: #303030" role="group" aria-label="Button group">
+                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                             <a class="btn btn-secondary" href="mailto:test@gmail.com" role="button">
                                 <img class="icon me-2" src="assets/images/icon-mail.svg" draggable="false">
                             </a>

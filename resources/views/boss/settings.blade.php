@@ -5,11 +5,13 @@
 <link rel="stylesheet" href="{{ asset('assets/css/sign-up.css')}}">
 
 <div class="container">
-  <h1 class="mt-4 mb-4">Settings</h1>
+    <div class="breadcrumb mt-4 mb-4">
+        <a href="#" class="breadcrumb-link">Settings</a>
+    </div>
 
   {{-- CONTAINER 1 --}}
   <div class="container bg-transparent p-0 mb-4 rounded container-border">
-    <div class="table-border rounded" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>

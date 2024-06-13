@@ -9,15 +9,15 @@
     <h6 class="pb-2 mb-0 text-gray">MAIN MENU</h6>
     <ul class="nav nav-pills flex-column main-menu">
       <li class="nav-item">
+        <a class="nav-link text-gray sidebar-tab" href="browse">
+          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-browse.svg')}}" draggable="false">Browse
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-gray sidebar-tab" href="companies">
           <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-companies.svg')}}" draggable="false">Companies
         </a>
       </li>
-      {{-- <li class="nav-item">
-        <a class="nav-link text-gray sidebar-tab" href="task-all">
-          <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">All Tasks
-        </a>
-      </li> --}}
       <li class="nav-item">
         <a class="nav-link text-gray sidebar-tab" href="calendar">
           <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-calendar.svg')}}" draggable="false">Calendar

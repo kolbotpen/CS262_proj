@@ -5,9 +5,12 @@
 <link rel="stylesheet" href="{{asset ('assets/css/calendar.css')}}">
 
 <div class="container">
-    <h1 class="mt-4 mb-4">Calendar</h1>
+    {{-- BREADCRUMB --}}
+    <div class="breadcrumb mt-4 mb-4">
+        <a href="#" class="breadcrumb-link">Calendar</a>
+    </div>
 
-    <div class="calendar-container mb-4 table-border">
+    <div class="table-container table-border rounded mb-5">
         <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
             <thead>
                 <tr>
