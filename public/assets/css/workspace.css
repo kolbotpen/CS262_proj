@@ -61,13 +61,23 @@ td {
     vertical-align: middle;
 }
 a.btn {
-    min-width: 0;
+    min-width: 0 !important;
     height: 100%;
+    flex: 1 1 auto;
 }
 .btn-group {
-    min-width: 0;
+    margin: auto;
+    min-width: 0 !important;
+    max-width: fit-content;
     border-radius: 8px;
+    display: flex;
+    flex-wrap: nowrap;
 }
+a.btn.option-btn {
+    max-width: 50px;
+    min-width: 0 !important;
+}
+
 img.icon {
     height: 20px;
     margin-right: 5px;
