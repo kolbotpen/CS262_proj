@@ -1,51 +1,53 @@
 main {
-        background-color: #121212;
-    }
+    background-color: #121212;
+}
 
-    a.sidebar-tab {
-        color: #8a8a8a;
-    }
-    a.sidebar-tab:hover {
-        color: #8a8a8a;
-        filter: brightness(1.4);
-    }
-    a.sidebar-tab:focus img,
-    a.sidebar-tab:focus {
-        color: #8a8a8a;
-    }
+a.sidebar-tab {
+    color: #8a8a8a;
+}
 
-    /* Custom styles for sidebar */
-    .sidebar {
-        background-color: #121212;
-        transition: all 0.3s;
-        /* height: 100%; */
-    }
-    .nav-link.active {
-        background-color: #343a40; /* Darker background color */
-        color: #fff; /* White text color */
-    }
-    
-    .nav-link.active i {
-        color: #fff; /* White icon color */
-    }
+a.sidebar-tab:hover {
+    color: #8a8a8a;
+    filter: brightness(1.4);
+}
 
-    .nav-treeview .nav-link.active {
-        position: relative;
-        background-color: transparent; /* No background color */
-        color: #fff; /* White text color */
-    }
+a.sidebar-tab:focus img,
+a.sidebar-tab:focus {
+    color: #8a8a8a;
+}
 
-    .nav-treeview .nav-link.active::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 0;
-        bottom: 0;
-        width: 4px; /* Width of the vertical bar */
-        background-color: #007bff; /* Color of the vertical bar */
-    }
+/* Custom styles for sidebar */
+.sidebar {
+    background-color: #121212;
+    transition: all 0.3s;
+    /* height: 100%; */
+}
 
-    .nav-treeview .nav-link {
-        margin-left: 15px; /* Indentation for dropdown items */
-    }
+.nav-link.active {
+    background-color: #343a40; /* Darker background color */
+    color: #fff; /* White text color */
+}
 
+.nav-link.active i {
+    color: #fff; /* White icon color */
+}
+
+.nav-treeview .nav-link.active {
+    position: relative;
+    background-color: transparent; /* No background color */
+    color: #fff; /* White text color */
+}
+
+.nav-treeview .nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px; /* Width of the vertical bar */
+    background-color: #007bff; /* Color of the vertical bar */
+}
+
+.nav-treeview .nav-link {
+    margin-left: 15px; /* Indentation for dropdown items */
+}

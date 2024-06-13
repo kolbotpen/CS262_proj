@@ -41,7 +41,6 @@ class TeamsController extends Controller
         $teams = Team::with('company')->get(); // Eager load the company relationship
         return view('admin.team-workspace', ['teams' => $teams]);
     }
-
     // DELETE TEAM IN ADMIN
     public function destroy(Team $team)
     {

@@ -35,14 +35,16 @@
 				<table class="table table-hover text-nowrap">
 					<thead>
 						<tr>
-							<th width="900">Companies</th>
+							<th width="25">#</th>
+							<th width="875">Companies</th>
 							<th width="100">Boss</th>
 							<th width="100">Option</th>
 						</tr>
 					</thead>
 					<tbody>
-						@foreach ($companies as $company )
+						@foreach ($companies as $index => $company)
 							<tr>
+								<td>{{$index+1}}</td>
 								<td>{{ $company->name }}</td>
 								<td>Admin</td>
 								<td>

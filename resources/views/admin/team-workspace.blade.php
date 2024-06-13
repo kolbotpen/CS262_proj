@@ -35,18 +35,18 @@
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th style="width: 5%;">#</th>
-                            <th style="width: 35%;">Team</th>
-                            <th class="text-center" style="width: 40%;">Company</th>
-                            <th class="text-right" style="width: 20%;">Option</th>
+                            <th style="width: 5%;" class="text-center">#</th>
+                            <th style="width: 35%;" class="text-left">Team</th>
+                            <th style="width: 40%;" class="text-center">Company</th>
+                            <th style="width: 20%;" class="text-right">Option</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($teams as $index => $team)
                             <tr>
-                                <td>{{ $index + 1 }}</td>
-                                <td>{{ $team->name }}</td>
-                                <td>{{ $team->company->name }}</td>
+                                <td class="text-center">{{ $index + 1 }}</td>
+                                <td class="text-left">{{ $team->name }}</td>
+                                <td class="text-center">{{ $team->company->name }}</td>
                                 <td class="text-right">
                                     <a href="edit">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"

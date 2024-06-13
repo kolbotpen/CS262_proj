@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadManager;
@@ -30,6 +31,7 @@ Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
+Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 
 
 // EDITING
@@ -56,14 +58,17 @@ Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.
 // ADDING COMPS, TEAMS
 Route::get('/admin-addcompany', [CompanyController::class, 'showAddCompanyForm'])->name('admin.addcompany');
 Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name('admin.addteam');
+Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
 
 // ROUTE FOR STORING
 Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
 Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
+Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
 
 // ROUTE FOR DELETING
 Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
+Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // ROUTE FOR SHOWING THE WORKSPACE
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');

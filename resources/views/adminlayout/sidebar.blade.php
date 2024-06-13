@@ -26,8 +26,8 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview {{ Request::is('company*') ? 'menu-open' : '' }}">
-                    <a href="{{ route('company.workspace') }}" class="nav-link {{ Request::is('company*') ? 'active' : '' }}">
+                <li class="nav-item has-treeview {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Workspace
@@ -36,24 +36,24 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('company.workspace') }}" class="nav-link {{ Request::is('company*') ? 'active' : '' }}">
+                            <a href="{{ route('company.workspace') }}" class="nav-link {{ Request::is('workspace/companies*') ? 'active' : '' }}">
                                 <p>Company</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('team.workspace')}}" class="nav-link {{ Request::is('team*') ? 'active' : '' }}">
+                            <a href="{{ route('team.workspace') }}" class="nav-link {{ Request::is('workspace/teams*') ? 'active' : '' }}">
                                 <p>Team</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link {{ Request::is('user*') ? 'active' : '' }}">
+                            <a href="{{route('user.workspace')}}" class="nav-link {{ Request::is('workspace/users*') ? 'active' : '' }}">
                                 <p>Users</p>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('setting*') ? 'active' : '' }}">
+                    <a href="#" class="nav-link {{ Request::is('workspace/settings*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Setting</p>
                     </a>
