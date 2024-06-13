@@ -48,9 +48,8 @@
             </div>
           </div>
         </div>
-        <div class="m-3 d-flex justify-content-center">
-          <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center"
-            style="height: 40px;">
+        <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
+          <button type="submit" class="btn btn-secondary" role="button">
             <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
           </button>
         </div>
