@@ -60,22 +60,45 @@ td {
     display: table-cell;
     vertical-align: middle;
 }
+
+
+/* The minimum width of the table is 836px and will become scrollable it tries to get any smaller */
+.table-container {
+    overflow: hidden;
+}
+.table-container-scroll {
+    overflow-x: auto;
+}
+.table-container-scroll table {
+    min-width: 836px;
+    width: 100%;
+    table-layout: fixed;
+}
+@media (max-width: 836px) {
+    .table-container-scroll table {
+        width: 836px;
+    }
+}
+
+
 a.btn {
     min-width: 0 !important;
     height: 100%;
     flex: 1 1 auto;
 }
 .btn-group {
-    margin: auto;
+    /* margin: auto; */
     min-width: 0 !important;
     max-width: fit-content;
     border-radius: 8px;
     display: flex;
     flex-wrap: nowrap;
 }
-a.btn.option-btn {
-    max-width: 50px;
-    min-width: 0 !important;
+.btn-group.th-btn {
+    margin-left: auto;
+}
+.btn-group.option-btn {
+    margin: auto;
 }
 
 img.icon {

@@ -19,6 +19,42 @@ body {
     font-size: 1rem
 }
 
+/* ----- BREADCRUMB ----- */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+}
+.breadcrumb-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  margin-right: 10px; /* Adjust as needed */
+  font-size: 32px !important; /* Font size equivalent to h1 */
+  font-weight: bold; /* Optionally, match h1 font weight */
+}
+.arrow-right {
+  background-image: url('../../assets/images/arrow-right.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 24px; /* Adjust width as needed */
+  height: 24px; /* Adjust height as needed */
+  margin: 0 10px; /* Adjust as needed */
+}
+@media (max-width: 991px) {
+  .breadcrumb-link {
+      font-size: 24px !important; /* Adjust font size for smaller screens */
+  }
+  .arrow-right {
+      width: 16px; /* Adjust arrow size for smaller screens */
+      height: 16px; /* Adjust arrow size for smaller screens */
+      margin: 0 5px; /* Adjust margin for smaller screens */
+  }
+}
+
+
+
+
 /* ----- IMAGES ----- */
 .rounded {
     border-radius: 12px !important;
@@ -201,8 +237,13 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .btn-secondary {
   border: #303030 1px solid;
   background-color: #303030;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 .btn-secondary:hover {
+  border: #282828 1px solid;
+  background-color: #282828;
+}
+.btn-secondary:focus, .btn-secondary:active {
   border: #282828 1px solid;
   background-color: #282828;
 }

@@ -2,21 +2,29 @@
 @section('content')
 
 <div class="container">
-    <h1 class="mt-4 mb-4">Task</h1>
+  <div class="breadcrumb mt-4 mb-4">
+    <a href="/companies" class="breadcrumb-link">Companies</a>
+    <i class="arrow-right"></i>
+    <a href="/task" class="breadcrumb-link">Task</a>
+    <i class="arrow-right"></i>
+    <a href="#" class="breadcrumb-link">Details</a>
+  </div>
   
     {{-- CONTAINER 1 --}}
     <div class="container bg-gray p-0 rounded container-border">
-      <div class="table-border rounded" style="overflow: hidden;">
+      <div class="table-container table-border rounded mb-5">
           <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
               <thead>
                   <tr>
-                      <th class="align-middle">Task Details</th>
+                      <th class="align-middle">Details</th>
                       <th class="align-middle"></th>
                       <th class="align-middle text-center">
-                        <a class="btn button-gray d-inline-flex align-items-center" href="task-details-edit">
-                            <img class="icon me-2 mt-1" src="assets/images/icon-edit.svg" draggable="false">Edit Task
-                        </a>
-                    </th>
+                        <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
+                            <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">Edit
+                            </a>
+                        </div>
+                      </th>
                   </tr>
               </thead>
           </table>

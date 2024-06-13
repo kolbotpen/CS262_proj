@@ -2,7 +2,14 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4 mb-4">Task</h1>
+  <div class="breadcrumb mt-4 mb-4">
+    <a href="/companies" class="breadcrumb-link">Companies</a>
+    <i class="arrow-right"></i>
+    <a href="/task" class="breadcrumb-link">Task</a>
+    <i class="arrow-right"></i>
+    <a href="#" class="breadcrumb-link">Add</a>
+  </div>
+
   @if (session('status') === 'upload-success')
   <div class="alert alert-success">
     Upload success!
@@ -10,11 +17,11 @@
   @endif
   {{-- CONTAINER 1 --}}
   <div class="container bg-gray p-0 rounded container-border">
-    <div class="table-border rounded mb-5" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
       <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
         <thead>
           <tr>
-            <th class="align-middle">Add Task</th>
+            <th class="align-middle">Add</th>
             <th class="align-middle"></th>
             <th class="align-middle text-center">
               {{-- <a class="btn button-gray d-inline-flex align-items-center" href="task-details">
@@ -72,17 +79,15 @@
           <div class="col-md-12">
             <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
               <p class="mb-3">Drag and drop file here</p>
-              <button id="uploadButton" class="btn btn-secondary mb-2">Or click here to select file(s)</button>
+              <button id="uploadButton" class="btn btn-secondary mb-2 table-border">Or click here to select file(s)</button>
               <!-- Display area for uploaded files -->
               <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0">
               <div id="fileListContainer" class="d-flex flex-column align-items-center">
                 <div id="fileList"></div>
               </div>
             </div>
-            {{-- <div class="m-3 d-flex justify-content-center"><input type="submit" class="btn btn-primary"></div> --}}
-            <div class="m-3 d-flex justify-content-center">
-              <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center"
-                style="height: 40px;">
+            <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
+              <button type="submit" class="btn btn-secondary" role="button">
                 <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
               </button>
             </div>
