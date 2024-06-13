@@ -28,4 +28,12 @@ class CompanyController extends Controller
 
     //     return view('boss.companies', ['companies' => $companies]);
     // }
+
+    // DELETE COMPANY IN ADMIN
+    public function destroy(Company $company)
+    {
+        $company->delete();
+        return redirect(route('workspace.show'))->with('success', 'Company Deleted Successfully');
+
+    }
 }   
