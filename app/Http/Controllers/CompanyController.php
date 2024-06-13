@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
+    // ADD COMPANIES
+    public function showAddCompanyForm()
+    {
+        $companies = Company::all(); // Fetch all companies
+        return view('admin.admin-addcompany');
+    }
+    // STORE COMPANIES
     public function store(Request $request)
     {
         $company = new Company;
@@ -19,7 +26,7 @@ class CompanyController extends Controller
     public function showWorkspace()
     {
         $companies = Company::all();
-        return view('admin.workspace', ['companies' => $companies]);
+        return view('admin.company-workspace', ['companies' => $companies]);
     }
     // SHOW COMPANIES IN BOSS WORKSPACE
     // public function showCompanies()
@@ -28,6 +35,7 @@ class CompanyController extends Controller
 
     //     return view('boss.companies', ['companies' => $companies]);
     // }
+
 
     // DELETE COMPANY IN ADMIN
     public function destroy(Company $company)

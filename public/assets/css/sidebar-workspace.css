@@ -20,4 +20,32 @@ main {
         transition: all 0.3s;
         /* height: 100%; */
     }
+    .nav-link.active {
+        background-color: #343a40; /* Darker background color */
+        color: #fff; /* White text color */
+    }
+    
+    .nav-link.active i {
+        color: #fff; /* White icon color */
+    }
+
+    .nav-treeview .nav-link.active {
+        position: relative;
+        background-color: transparent; /* No background color */
+        color: #fff; /* White text color */
+    }
+
+    .nav-treeview .nav-link.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 4px; /* Width of the vertical bar */
+        background-color: #007bff; /* Color of the vertical bar */
+    }
+
+    .nav-treeview .nav-link {
+        margin-left: 15px; /* Indentation for dropdown items */
+    }
 

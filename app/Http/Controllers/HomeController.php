@@ -39,7 +39,7 @@ class HomeController extends Controller
                 return view('landing', ['teams' => $teams]);
             }
             else if($usertype=='admin'){
-             return view('admin.workspace');
+             return view('admin.company-workspace');
             }
             else {
              return redirect()->back();

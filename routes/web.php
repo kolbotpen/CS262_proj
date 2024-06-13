@@ -25,13 +25,20 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
+// WORKSPACE
 Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
+Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
+Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 
+
+// EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
 Route::get('/setting', [HomeController::class,'setting'])->name('setting');
 
+
+// AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
 
 Route::middleware('auth')->group(function () {
@@ -42,19 +49,24 @@ Route::middleware('auth')->group(function () {
     // Add the boss.settings route
     Route::get('/boss/settings', [ProfileController::class, 'settings'])->name('boss.settings');
 });
-
+// INSERTING FILES
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
-Route::get('/admin-addcompany', function () {
-    return view('admin.admin-addcompany');
-})->name('admin.addcompany');
+// ADDING COMPS, TEAMS
+Route::get('/admin-addcompany', [CompanyController::class, 'showAddCompanyForm'])->name('admin.addcompany');
+Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name('admin.addteam');
 
-// Route for storing a new company
-Route::post('/admin-addcompany', [App\Http\Controllers\CompanyController::class, 'store'])->name('companies.store');
-// Route for showing the workspace
+// ROUTE FOR STORING
+Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
+Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
+
+// ROUTE FOR DELETING
+Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
+
+// ROUTE FOR SHOWING THE WORKSPACE
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
-Route::delete('/workspace/{company}/destroy', [CompanyController::class, 'destroy'])->name('companies.destroy');
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
 
 // ---------- VISOTH'S CODE | START ----------
@@ -114,7 +126,7 @@ Route::get('/team-add-member', function () {
 });
 
 Route::post('/teams', [TeamsController::class, 'store'])->name('teams.store');
-Route::get('/companies', [App\Http\Controllers\HomeController::class, 'showCompanies'])->name('companies');
+Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
 
 // Task
 Route::get('/task-all', function () {
