@@ -4,7 +4,8 @@
 {{-- CONTAINER 1 --}}
 <div class="container">
     <h1 class="mt-4 mb-4">Task (All)</h1>
-
+    <!-- THIS TAG IS FOR VIEWING THE FILE THAT WAS UPLOADED INTO TO THE DATABASE -->
+    <!-- <a href="storage/tasks/5NGWB2alZPmzAdrwuMkdC6VCclgepXcgVPE3VnRX.pdf">Click here to view the PDF</a> --> 
     <div class="container bg-transparent p-0 rounded container-border">
         {{-- Team 1 --}}
         <div class="table-border rounded mb-5" style="overflow: hidden;">
