@@ -22,7 +22,7 @@
 			<div class="col-lg-4 col-6">
 				<div class="small-box card">
 					<div class="inner">
-						<h3>3</h3>
+						<h3>{{ $totalCompanies }}</h3>
 						<p>Total Organizations</p>
 					</div>
 					<div class="icon">
@@ -36,8 +36,8 @@
 			<div class="col-lg-4 col-6">
 				<div class="small-box card">
 					<div class="inner">
-						<h3>50</h3>
-						<p>Total Users</p>
+						<h3>{{ $totalTeams }}</h3>
+						<p>Total Teams</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-stats-bars"></i>
@@ -50,8 +50,8 @@
 			<div class="col-lg-4 col-6">
 				<div class="small-box card">
 					<div class="inner">
-						<h3>50</h3>
-						<p>Total Workers</p>
+						<h3>{{ $totalUsers }}</h3>
+						<p>Total Users</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-person-add"></i>

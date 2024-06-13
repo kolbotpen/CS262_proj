@@ -39,6 +39,8 @@ Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
 Route::get('/setting', [HomeController::class,'setting'])->name('setting');
 
+// TOTAL COUNT
+
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
