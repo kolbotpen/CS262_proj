@@ -17,17 +17,12 @@ use App\Http\Controllers\CompanyController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+// ---------- FRONTEND | START ----------------
+// LARAVEL WELCOME
 Route::get('/', function () {
     return view('/welcome');
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 // WORKSPACE
-Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
@@ -39,8 +34,6 @@ Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
 Route::get('/setting', [HomeController::class,'setting'])->name('setting');
 
-// TOTAL COUNT
-
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
@@ -49,32 +42,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Add the boss.settings route
-    Route::get('/boss/settings', [ProfileController::class, 'settings'])->name('boss.settings');
 });
+
 // INSERTING FILES
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
-// ADDING COMPS, TEAMS
-Route::get('/admin-addcompany', [CompanyController::class, 'showAddCompanyForm'])->name('admin.addcompany');
-Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name('admin.addteam');
-Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
 
-// ROUTE FOR STORING
-Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
-Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
-Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
-
-// ROUTE FOR DELETING
-Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
-Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
-Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
-// ROUTE FOR SHOWING THE WORKSPACE
+// SHOW COMPANY 
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
-Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
 
 // ---------- VISOTH'S CODE | START ----------
 // Landing
@@ -113,10 +89,6 @@ Route::get('/companies', function () {
     return view('boss.companies');
 });
 
-// Overlapping with admin
-// Route::get('/workspace', function () {
-//     return redirect('/companies');
-// });
 
 // Team
 Route::get('/team-all', function () {
@@ -155,7 +127,8 @@ Route::get('/task-details-edit', function () {
 Route::get('/task-insert', function () {
     return view('boss.task-insert');
 });
-
+// Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
+Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 // Calendar
 Route::get('/calendar', function () {
     return view('boss.calendar');
@@ -171,5 +144,53 @@ Route::get('/settings', function () {
 
 
 // ---------- VISOTH'S CODE | END ----------
+// ---------- FRONTEND | END --------------
+
+
+
+// ---------- BACKEND | START ----------------
+// WORKSPACE
+Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
+Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
+Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
+Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
+
+
+// EDITING
+Route::get('/edit', [HomeController::class,'edit'])->name('edit');
+Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
+Route::get('/setting', [HomeController::class,'setting'])->name('setting');
+
+
+// AUTHENTICATION
+Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Add the boss.settings route
+    Route::get('/boss/settings', [ProfileController::class, 'settings'])->name('boss.settings');
+});
+
+// ADDING COMPS, TEAMS
+Route::get('/admin-addcompany', [CompanyController::class, 'showAddCompanyForm'])->name('admin.addcompany');
+Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name('admin.addteam');
+Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
+
+// ROUTE FOR STORING
+Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
+Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
+Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
+
+// ROUTE FOR DELETING
+Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
+Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
+// // ROUTE FOR SHOWING THE WORKSPACE
+Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
+
 
 require __DIR__.'/auth.php';

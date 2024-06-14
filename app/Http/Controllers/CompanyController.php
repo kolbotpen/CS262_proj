@@ -28,13 +28,14 @@ class CompanyController extends Controller
         $companies = Company::all();
         return view('admin.company-workspace', ['companies' => $companies]);
     }
+    
     // SHOW COMPANIES IN BOSS WORKSPACE
-    // public function showCompanies()
-    // {
-    //     $companies = Company::all(); 
+    public function showCompanies()
+    {
+        $companies = Company::all(); 
 
-    //     return view('boss.companies', ['companies' => $companies]);
-    // }
+        return view('boss.companies', ['companies' => $companies]);
+    }
 
 
     // DELETE COMPANY IN ADMIN
