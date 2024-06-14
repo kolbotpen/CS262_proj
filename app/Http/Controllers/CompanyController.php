@@ -13,6 +13,7 @@ class CompanyController extends Controller
         $companies = Company::all(); // Fetch all companies
         return view('admin.admin-addcompany');
     }
+
     // STORE COMPANIES
     public function store(Request $request)
     {
@@ -25,6 +26,7 @@ class CompanyController extends Controller
 
         return back()->with('status', 'Company added successfully!');
     }
+
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {
@@ -40,7 +42,6 @@ class CompanyController extends Controller
         return view('boss.companies', ['companies' => $companies]);
     }
 
-
     // DELETE COMPANY IN ADMIN
     public function destroy(Company $company)
     {
@@ -52,6 +53,10 @@ class CompanyController extends Controller
     public function update(Request $request, Company $company)
     {
         $company->name = $request->name;
+        $company->industry = $request->industry;
+        $company->description = $request->description;
+        $company->visibility = $request->visibility;
+        
         $company->save();
 
         return redirect()->back()->with('success', 'Company updated successfully!');

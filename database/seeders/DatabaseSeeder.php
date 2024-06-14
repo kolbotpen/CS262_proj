@@ -17,6 +17,5 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(5)->create();
         Team::factory(5)->create();
-        Company::factory(5)->create();
     }
 }
