@@ -53,7 +53,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('workspace/settings*') ? 'active' : '' }}">
+                    <a href="setting" class="nav-link {{ Request::is('admin/setting') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Setting</p>
                     </a>
