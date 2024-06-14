@@ -19,7 +19,7 @@ class TeamFactory extends Factory
     {
         return [
             'name' => fake()->company(),
-            'company_id' => rand(6,10),
+            'company_id' => Company::factory()->create()->id,
             //
         ];
     }
