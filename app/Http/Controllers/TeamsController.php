@@ -14,6 +14,7 @@ class TeamsController extends Controller
         return view('admin.admin-addteam', compact('companies'));
     }
     
+    // STORING TEAM
     public function store(Request $request)
     {
         $request->validate([
