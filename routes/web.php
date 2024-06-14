@@ -28,12 +28,14 @@ Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 
+// WORKSPACE EDITING
+Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
+Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');
 
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
-Route::get('/setting', [HomeController::class,'setting'])->name('setting');
-
+Route::get('/settings', [HomeController::class,'setting'])->name('setting');
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
@@ -159,7 +161,7 @@ Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
-Route::get('/setting', [HomeController::class,'setting'])->name('setting');
+Route::get('/settings', [HomeController::class,'setting'])->name('setting');
 
 
 // AUTHENTICATION

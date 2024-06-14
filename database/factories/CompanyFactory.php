@@ -18,6 +18,9 @@ class CompanyFactory extends Factory
     {
         return [
             'name' => fake()->company(),
+            'industry' => fake()->jobTitle(),
+            'description' => fake()->sentence(),
+            'visibility' => fake()->randomElement(['public', 'private'])
         ];
     }
 }
