@@ -1,6 +1,12 @@
 @extends('layouts.master-workspace')
 @section('content')
 
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+
 <div class="container">
     {{-- BREADCRUMB --}}
     <div class="breadcrumb mt-4 mb-4">
@@ -23,14 +29,14 @@
                 </thead>
             </table>
 
-            <form action="#" method="post">
-
+            <form action="{{ route('companies.store') }}" method="POST" enctype="multipart/form-data">
+                @csrf
                 <div class="row d-flex">
                     {{-- LEFT BOX --}}
                     <div class="col-md-6 d-flex align-items-stretch">
                         <div class="container m-3 text-white p-3 rounded h-100">
-                            <label for="company-name">Company Name</label>
-                            <input type="text" name="company-name"
+                            <label for="name">Company Name</label>
+                            <input type="text" name="name"
                                 class="form-control bg-black text-white border-0 mb-2" placeholder="John Co.Ltd"
                                 value="" required>
                             <label for="industry">Industry</label>
@@ -45,11 +51,11 @@
                     {{-- RIGHT BOX --}}
                     <div class="col-md-6 d-flex align-items-stretch">
                         <div class="container m-3 text-white p-3 rounded h-100">
-                            <label for="priority">Visibility</label>
-                            <select name="priority" class="form-select bg-black text-white border-0 mb-2"
-                                placeholder="Priority" required>
-                                <option value="Low" selected>Public</option>
-                                <option value="Medium">Private</option>
+                            <label for="visibility">Visibility</label>
+                            <select name="visibility" class="form-select bg-black text-white border-0 mb-2"
+                                placeholder="Visibility" required>
+                                <option value="Public" selected>Public</option>
+                                <option value="Private">Private</option>
                             </select>
                         </div>
                     </div>

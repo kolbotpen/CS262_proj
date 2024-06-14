@@ -18,9 +18,12 @@ class CompanyController extends Controller
     {
         $company = new Company;
         $company->name = $request->name;
+        $company->industry = $request->industry;
+        $company->description = $request->description;
+        $company->visibility = $request->visibility;
         $company->save();
 
-        return redirect('/admin-addcompany')->with('status', 'Company added successfully!');
+        return back()->with('status', 'Company added successfully!');
     }
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()

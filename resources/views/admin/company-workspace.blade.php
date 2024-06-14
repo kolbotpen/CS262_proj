@@ -36,7 +36,9 @@
 					<thead>
 						<tr>
 							<th width="25">#</th>
-							<th width="875">Companies</th>
+							<th width="300">Companies</th>
+							<th width="100">Industry</th>
+							<th width="100">Visibility</th>
 							<th width="100">Boss</th>
 							<th width="100">Option</th>
 						</tr>
@@ -46,6 +48,8 @@
 							<tr>
 								<td>{{$index+1}}</td>
 								<td>{{ $company->name }}</td>
+								<td>{{ $company->industry }}</td>
+								<td>{{ $company->visibility }}</td>
 								<td>Admin</td>
 								<td>
 									<a href="edit">
