@@ -23,12 +23,12 @@
 				<div class="small-box card">
 					<div class="inner">
 						<h3>{{ $totalCompanies }}</h3>
-						<p>Total Organizations</p>
+						<p>Total Companies</p>
 					</div>
 					<div class="icon">
 						<i class="ion ion-bag"></i>
 					</div>
-					<a href="#" class="small-box-footer text-dark">More info <i
+					<a href="{{route('company.workspace')}}" class="small-box-footer text-dark">More info <i
 							class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 					<div class="icon">
 						<i class="ion ion-stats-bars"></i>
 					</div>
-					<a href="#" class="small-box-footer text-dark">More info <i
+					<a href="{{route('team.workspace')}}" class="small-box-footer text-dark">More info <i
 							class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
@@ -56,7 +56,8 @@
 					<div class="icon">
 						<i class="ion ion-person-add"></i>
 					</div>
-					<a href="javascript:void(0);" class="small-box-footer">&nbsp;</a>
+					<a href="{{route('user.workspace')}}" class="small-box-footer text-dark">More info <i
+						class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
