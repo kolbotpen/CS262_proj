@@ -41,12 +41,15 @@
           {{-- RIGHT BOX --}}
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="container m-3 text-white p-3 rounded h-100">
-              <label for="team_no">Team No.</label>
-              <select name="team_no" class="form-select bg-black text-white border-0" disabled>
-                <option value="1" selected>1</option>
-              </select>
-            </div>
+                <label for="company_id">Select Company</label>
+                <select name="company_id" class="form-select bg-black border-0" required>
+                    <option value="">Select Company</option>
+                    @foreach ($companies as $company)
+                        <option value="{{ $company->id }}">{{ $company->name }}</option>
+                    @endforeach
+                </select>
           </div>
+        </div>
         </div>
         <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
           <button type="submit" class="btn btn-secondary" role="button">

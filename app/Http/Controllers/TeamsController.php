@@ -19,7 +19,11 @@ class TeamsController extends Controller
         $companies = Company::all(); // Fetch all companies
         return view('admin.admin-addteam', compact('companies'));
     }
-    
+    public function showTeamAddForm()
+    {
+        $companies = Company::all(); // Fetch all companies
+        return view('boss.team-add', compact('companies')); // Pass companies to the view
+    }
     // STORING TEAM
     public function store(Request $request)
     {
