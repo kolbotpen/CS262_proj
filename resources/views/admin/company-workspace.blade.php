@@ -52,12 +52,12 @@
 								<td>{{ $company->visibility }}</td>
 								<td>Admin</td>
 								<td>
-									<a href="edit">
+									<button class="btn btn-link" onclick="editCompany({{ $company }})">
 										<svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
 											viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 											<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
 										</svg>
-									</a>
+									</button>
 									<form action="{{ route('companies.destroy', $company) }}" method="POST" style="display:inline;">
 										@csrf
 										@method('DELETE')
@@ -86,4 +86,43 @@
 		</div>
 	</div>
 	<!-- /.card -->
+
+	<!-- Edit Company Modal -->
+	<div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="editCompanyModalLabel">Edit Company</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form id="editCompanyForm" method="POST" action="{{ route('companies.update', ['company' => 0]) }}">
+					@csrf
+					@method('PUT')
+					<div class="modal-body">
+						<input type="hidden" name="company_id" id="company_id">
+						<div class="form-group">
+							<label for="company_name" class="col-form-label">Company Name:</label>
+							<input type="text" class="form-control" id="company_name" name="name">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save changes</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</section>
+
+<script>
+	function editCompany(company) {
+		$('#editCompanyModal').modal('show');
+		$('#editCompanyForm').attr('action', '/companies/' + company.id);
+		$('#company_id').val(company.id);
+		$('#company_name').val(company.name);
+	}
+</script>
 @stop

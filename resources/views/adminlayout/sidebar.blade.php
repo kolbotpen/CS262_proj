@@ -53,9 +53,9 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link {{ Request::is('workspace/settings*') ? 'active' : '' }}">
+                    <a href="{{route('setting')}}" class="nav-link {{ Request::is('settings*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
-                        <p>Setting</p>
+                        <p>Settings</p>
                     </a>
                 </li>
                 <!-- Add more sidebar items here -->

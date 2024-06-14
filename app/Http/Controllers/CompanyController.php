@@ -46,6 +46,14 @@ class CompanyController extends Controller
     {
         $company->delete();
         return redirect(route('workspace.show'))->with('success', 'Company Deleted Successfully');
-
     }
-}   
+
+    // UPDATE COMPANY IN ADMIN
+    public function update(Request $request, Company $company)
+    {
+        $company->name = $request->name;
+        $company->save();
+
+        return redirect()->back()->with('success', 'Company updated successfully!');
+    }
+}
