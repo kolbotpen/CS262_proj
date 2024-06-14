@@ -35,7 +35,7 @@ Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.upda
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
-Route::get('/settings', [HomeController::class,'setting'])->name('setting');
+Route::get('/setting', [HomeController::class,'setting'])->name('setting');
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
@@ -162,7 +162,7 @@ Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
-Route::get('/settings', [HomeController::class,'setting'])->name('setting');
+Route::get('/setting', [HomeController::class,'setting'])->name('setting');
 
 
 // AUTHENTICATION
