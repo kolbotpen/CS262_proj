@@ -1,3 +1,5 @@
+<!-- team-workspace.blade.php -->
+
 @extends('adminlayout.master')
 @section('content')
 
@@ -110,6 +112,12 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="users" class="col-form-label">Users:</label>
+                            <ul id="team_users" class="list-group">
+                                <!-- Users will be dynamically populated here -->
+                            </ul>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -128,6 +136,12 @@
         $('#team_id').val(team.id);
         $('#team_name').val(team.name);
         $('#company_id').val(team.company_id);
+
+        // Clear and populate the users list
+        $('#team_users').empty();
+        team.users.forEach(user => {
+            $('#team_users').append('<li class="list-group-item">' + user.name + '</li>');
+        });
     }
 </script>
 @stop
