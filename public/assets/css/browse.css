@@ -1,0 +1,31 @@
+/* General tab styling */
+.tab-container {
+    padding: 10px; /* Add padding to create space between tabs */
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 2px solid rgb(73, 73, 73);
+    background-color: #303030;
+    color: white;
+    height: 300px;
+    margin: 5px;
+    transition-duration: 0.2s;
+}
+.tab:hover {
+    filter: brightness(1.1);
+}
+
+#tabs-container .tab h2 {
+    margin-bottom: 15px;
+}
+
+#tabs-container .tab p {
+    font-size: 18px;
+}
+
+

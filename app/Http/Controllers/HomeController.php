@@ -46,10 +46,9 @@ class HomeController extends Controller
             $teams = Team::all();
             if ($usertype == 'user') {
                 return view('landing', ['teams' => $teams]);
-            } else if ($usertype == 'admin') {
-                return view('admin.company-workspace');
-            } else {
-                return redirect()->back();
+            }
+            else {
+             return redirect()->back();
             }
         }
     }

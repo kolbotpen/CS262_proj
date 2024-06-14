@@ -2,7 +2,14 @@
 @section('content')
 
 <div class="container">
-  <h1 class="mt-4 mb-4">Team</h1>
+  <div class="breadcrumb mt-4 mb-4">
+    <a href="/companies" class="breadcrumb-link">Companies</a>
+    <i class="arrow-right"></i>
+    <a href="/team" class="breadcrumb-link">Team</a>
+    <i class="arrow-right"></i>
+    <a href="#" class="breadcrumb-link">Add Member</a>
+  </div>
+
   @if (session('status') === 'upload-success')
     <div class="alert alert-success">
       Upload success!
@@ -10,7 +17,7 @@
   @endif
   {{-- CONTAINER 1 --}}
   <div class="container bg-gray p-0 rounded container-border">
-    <div class="table-border rounded mb-5" style="overflow: hidden;">
+    <div class="table-container table-border rounded mb-5">
       <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
         <thead>
           <tr>
@@ -46,8 +53,8 @@
             </div>
           </div>
         </div>
-        <div class="m-3 d-flex justify-content-center">
-          <button type="submit" class="btn button-gray d-inline-flex align-items-center justify-content-center" style="height: 40px;">
+        <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
+          <button type="submit" class="btn btn-secondary" role="button">
             <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
           </button>
         </div>
