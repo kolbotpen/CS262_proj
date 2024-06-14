@@ -37,16 +37,19 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('company.workspace') }}" class="nav-link {{ Request::is('workspace/companies*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-building"></i>
                                 <p>Company</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('team.workspace') }}" class="nav-link {{ Request::is('workspace/teams*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-users"></i>
                                 <p>Team</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{route('user.workspace')}}" class="nav-link {{ Request::is('workspace/users*') ? 'active' : '' }}">
+                            <a href="{{ route('user.workspace') }}" class="nav-link {{ Request::is('workspace/users*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-user"></i>
                                 <p>Users</p>
                             </a>
                         </li>
