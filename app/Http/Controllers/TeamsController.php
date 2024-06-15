@@ -60,4 +60,9 @@ class TeamsController extends Controller
 
         return redirect()->back()->with('success', 'Team updated successfully!');
     }
+    public function showAllTeams()
+    {
+        $teams = Team::with('users')->get(); // Fetch all teams and their associated users from the database
+        return view('boss.team-all', ['teams' => $teams]); // Pass the teams to the view
+    }
 }

@@ -96,6 +96,7 @@ Route::get('/companies', function () {
 Route::get('/team-all', function () {
     return view('boss.team-all');
 });
+Route::get('/team-all', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET THE TEAM MEMBERS
 Route::get('/team', function () {
     return view('boss.team');
 });
