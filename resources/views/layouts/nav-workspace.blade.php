@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="height: 60px; background-color: #1c1c1c;">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1c1c1c;">
   <div class="container-fluid">
     <a id="sidebarToggleBtn" class="navbar-brand px-2 me-5" style="cursor: pointer; user-select: none;">
       <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
@@ -12,15 +12,16 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav ms-auto align-items-center">
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="background-color: #1c1c1c;">
+      <ul class="navbar-nav">
+        
         <!-- Logout -->
         <li class="nav-item">
-          <form method="POST" action="{{ route('logout') }}" class="nav-link p-0">
+          <form method="POST" action="{{ route('logout') }}" class="p-0">
             @csrf
-            <button type="submit" class="btn btn-link text-white d-flex align-items-center" style="background: none;">
-              <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" style="margin-right: 6px; filter: brightness(0.6);">
-              {{ __('Log out') }}
+            <button type="submit" class="btn btn-secondary d-flex align-items-center rounded nav-link px-3 py-2" style="background: none;">
+              <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" style="margin-right: 8px; filter: brightness(0.6); width: 20px;">
+              <span class="text-white">{{ __('Log out') }}</span>
             </button>
           </form>
         </li>
