@@ -39,7 +39,7 @@
                     <tbody>
                         @foreach ($team->users as $index => $user)
                             <tr>
-                                <td class="align-middle">{{ $index + 1 }}.</td>
+                                <td class="align-middle">{{ $index + 1 }}</td>
                                 <td class="align-middle">{{ $user->name }}</td> <!-- Replace 'name' with the actual field name for the user name in your database -->
                                 <td class="align-middle text-center">
                                     <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
