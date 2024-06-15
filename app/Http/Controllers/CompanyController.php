@@ -17,14 +17,21 @@ class CompanyController extends Controller
     // STORE COMPANIES
     public function store(Request $request)
     {
-        $company = new Company;
-        $company->name = $request->name;
-        $company->industry = $request->industry;
-        $company->description = $request->description;
-        $company->visibility = $request->visibility;
-        $company->save();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'industry' => 'nullable|string',
+            'visibility' => 'required|in:public,private',
+        ]);
 
-        return back()->with('status', 'Company added successfully!');
+        Company::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'industry' => $request->industry,
+            'visibility' => $request->visibility,
+        ]);
+
+        return redirect()->route('company.workspace')->with('success', 'Company added successfully.');
     }
 
     // SHOW COMPANIES IN ADMIN WORKSPACE
@@ -52,13 +59,20 @@ class CompanyController extends Controller
     // UPDATE COMPANY IN ADMIN
     public function update(Request $request, Company $company)
     {
-        $company->name = $request->name;
-        $company->industry = $request->industry;
-        $company->description = $request->description;
-        $company->visibility = $request->visibility;
-        
-        $company->save();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'industry' => 'nullable|string',
+            'visibility' => 'required|in:public,private',
+        ]);
 
-        return redirect()->back()->with('success', 'Company updated successfully!');
+        $company->update([
+            'name' => $request->name,
+            'description' => $request->description,
+            'industry' => $request->industry,
+            'visibility' => $request->visibility,
+        ]);
+
+        return redirect()->route('company-workspace')->with('success', 'Company updated successfully.');
     }
 }
