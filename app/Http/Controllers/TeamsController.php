@@ -31,14 +31,14 @@ class TeamsController extends Controller
         $team->company_id = $request->company_id;
         $team->save();
 
-        return redirect()->back()->with('status', 'Team added successfully!');
+        return redirect()->route('team.workspace')->with('status', 'Team added successfully!');
     }
 
     public function showWorkspace()
     {
-        $teams = Team::with('company')->get();
+        $teams = Team::with('company', 'users')->get();
         $companies = Company::all();
-        return view('admin.team-workspace', ['teams' => $teams],['companies' => $companies]);
+        return view('admin.team-workspace', compact('teams', 'companies'));
     }
 
     public function destroy(Team $team)
@@ -58,6 +58,11 @@ class TeamsController extends Controller
         $team->company_id = $request->company_id;
         $team->save();
 
-        return redirect()->back()->with('success', 'Team updated successfully!');
+        return redirect()->route('team.workspace')->with('success', 'Team updated successfully!');
+    }
+    public function showAllTeams()
+    {
+        $teams = Team::with('users')->get(); // Fetch all teams and their associated users from the database
+        return view('boss.team-all', ['teams' => $teams]); // Pass the teams to the view
     }
 }

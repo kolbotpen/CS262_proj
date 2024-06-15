@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('industry'); // New column for Industry
             $table->text('description'); // New column for Description
             $table->string('visibility'); // New column for Visibility
+            $table->string('company_code', 6)->unique(); // Add this line for Company Code
             $table->timestamps();
         });
     }

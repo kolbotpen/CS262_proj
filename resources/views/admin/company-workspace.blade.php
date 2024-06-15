@@ -7,7 +7,7 @@
             <h1>Company</h1>
         </div>
         <div class="col-sm-6 text-right">
-            <a href="{{ route('admin.addcompany') }}" class="btn btn-primary">Add Company</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addCompanyModal">Add Company</button>
         </div>
     </div>
 </div>
@@ -39,6 +39,7 @@
                             <th width="300">Companies</th>
                             <th width="100">Industry</th>
                             <th width="100">Visibility</th>
+                            <th width="100">Code</th>
                             <th width="100">Boss</th>
                             <th width="100">Option</th>
                         </tr>
@@ -50,6 +51,7 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->industry }}</td>
                                 <td>{{ $company->visibility }}</td>
+                                <td>{{ $company->company_code }}</td>
                                 <td>Admin</td>
                                 <td>
                                     <button class="btn btn-link" onclick="editCompany({{ json_encode($company) }})">
@@ -86,6 +88,48 @@
         </div>
     </div>
     <!-- /.card -->
+
+    <!-- Add Company Modal -->
+    <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCompanyModalLabel">Add Company</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addCompanyForm" method="POST" action="{{ route('companies.store') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="add_company_name" class="col-form-label">Company Name:</label>
+                            <input type="text" class="form-control" id="add_company_name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="add_company_description" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_industry" class="col-form-label">Industry:</label>
+                            <input type="text" class="form-control" id="add_company_industry" name="industry">
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_visibility" class="col-form-label">Visibility:</label>
+                            <select class="form-control" id="add_company_visibility" name="visibility">
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Edit Company Modal -->
     <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
@@ -130,17 +174,18 @@
             </div>
         </div>
     </div>
+
 </section>
 
 <script>
     function editCompany(company) {
+        $('#editCompanyModal #company_id').val(company.id);
+        $('#editCompanyModal #company_name').val(company.name);
+        $('#editCompanyModal #company_description').val(company.description);
+        $('#editCompanyModal #company_industry').val(company.industry);
+        $('#editCompanyModal #company_visibility').val(company.visibility);
         $('#editCompanyModal').modal('show');
-        $('#editCompanyForm').attr('action', '/companies/' + company.id);
-        $('#company_id').val(company.id);
-        $('#company_name').val(company.name);
-        $('#company_description').val(company.description);
-        $('#company_industry').val(company.industry);
-        $('#company_visibility').val(company.visibility);
     }
 </script>
-@stop
+
+@endsection

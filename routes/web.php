@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadManager;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\CompanyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,7 @@ use App\Http\Controllers\CompanyController;
 Route::get('/', function () {
     return view('/welcome');
 });
+
 // WORKSPACE
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
@@ -31,6 +33,7 @@ Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('
 // WORKSPACE EDITING
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
 
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
@@ -49,7 +52,6 @@ Route::middleware('auth')->group(function () {
 // INSERTING FILES
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
-
 
 // SHOW COMPANY 
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
@@ -83,7 +85,8 @@ Route::get('/browse-search', function () {
 Route::get('/browse-request', function () {
     return view('browse-request');
 });
-
+Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('company.join');
+Route::get('/browse-search', [CompanyController::class, 'showBrowseSearch']);
 
 // LOGGED IN AS "BOSS" STARTS FROM HERE
 // Companies
@@ -96,6 +99,7 @@ Route::get('/companies', function () {
 Route::get('/team-all', function () {
     return view('boss.team-all');
 });
+Route::get('/team-all', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET THE TEAM MEMBERS
 Route::get('/team', function () {
     return view('boss.team');
 });
@@ -149,8 +153,6 @@ Route::get('/settings', function () {
 // ---------- VISOTH'S CODE | END ----------
 // ---------- FRONTEND | END --------------
 
-
-
 // ---------- BACKEND | START ----------------
 // WORKSPACE
 Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
@@ -158,12 +160,10 @@ Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 
-
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
 Route::get('/setting', [HomeController::class,'setting'])->name('setting');
-
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
@@ -183,9 +183,12 @@ Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name(
 Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
 
 // ROUTE FOR STORING
-Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
+Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('team.store');
 Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
 Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
+
+// ROUTE FOR UPDATING
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
 
 // ROUTE FOR DELETING
 Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
@@ -194,6 +197,5 @@ Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destro
 
 // // ROUTE FOR SHOWING THE WORKSPACE
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
-
 
 require __DIR__.'/auth.php';

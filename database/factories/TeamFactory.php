@@ -4,10 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Company;
+use App\Models\Team;
+use App\Models\User;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Teanm>
- */
 class TeamFactory extends Factory
 {
     /**
@@ -18,9 +17,21 @@ class TeamFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->company(),
+            'name' => $this->faker->company(),
             'company_id' => Company::factory()->create()->id,
-            //
         ];
+    }
+
+    /**
+     * Configure the factory.
+     *
+     * @return $this
+     */
+    public function configure()
+    {
+        return $this->afterCreating(function (Team $team) {
+            $user = User::factory()->create(); // Create a single user
+            $team->users()->attach($user); // Attach the user to the team
+        });
     }
 }

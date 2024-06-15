@@ -7,7 +7,7 @@
             <h1>Team</h1>
         </div>
         <div class="col-sm-6 text-right">
-            <a href="{{ route('admin.addteam') }}" class="btn btn-primary">Add Team</a>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#addTeamModal">Add Team</button>
         </div>
     </div>
 </div>
@@ -110,6 +110,12 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="form-group">
+                            <label for="users" class="col-form-label">Users:</label>
+                            <ul id="team_users" class="list-group">
+                                <!-- Users will be dynamically populated here -->
+                            </ul>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -119,6 +125,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Add Team Modal -->
+    <div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTeamModalLabel">Add Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addTeamForm" method="POST" action="{{ route('team.store') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="new_team_name" class="col-form-label">Team Name:</label>
+                            <input type="text" class="form-control" id="new_team_name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_company_id" class="col-form-label">Company:</label>
+                            <select class="form-control" id="new_company_id" name="company_id">
+                                @foreach($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Team</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </section>
 
 <script>
@@ -128,6 +170,12 @@
         $('#team_id').val(team.id);
         $('#team_name').val(team.name);
         $('#company_id').val(team.company_id);
+
+        // Clear and populate the users list
+        $('#team_users').empty();
+        team.users.forEach(user => {
+            $('#team_users').append('<li class="list-group-item">' + user.name + '</li>');
+        });
     }
 </script>
 @stop
