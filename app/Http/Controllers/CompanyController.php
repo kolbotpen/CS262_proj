@@ -63,6 +63,13 @@ class CompanyController extends Controller
         return redirect()->back()->with('success', 'Company updated successfully!');
     }
 
+    // SHOW BROWSE SEARCH
+    // public function showBrowseSearch()
+    // {
+    //     $companies = Company::all(); // Fetch all companies
+    //     return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
+    // }
+
     // JOIN COMPANY USING INVITE CODE
     public function joinCompany(Request $request)
     {
