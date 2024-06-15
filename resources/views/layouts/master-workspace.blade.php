@@ -15,16 +15,16 @@
 </head>
 <body>
   @include('layouts.nav-workspace')
+  @include('layouts.sidebar-workspace')
 
   <div class="container-fluid">
     <div class="row">
-      @include('layouts.sidebar-workspace')
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main>
+        {{-- @include('layouts.sidebar-workspace') --}}
         @yield('content')
       </main>
     </div>
   </div>
-
   @include('layouts.footer')
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
