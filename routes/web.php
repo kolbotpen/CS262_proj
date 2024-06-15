@@ -83,6 +83,7 @@ Route::get('/browse-search', function () {
 Route::get('/browse-request', function () {
     return view('browse-request');
 });
+Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('company.join');
 
 
 // LOGGED IN AS "BOSS" STARTS FROM HERE

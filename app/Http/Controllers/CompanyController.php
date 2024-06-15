@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -61,4 +62,25 @@ class CompanyController extends Controller
 
         return redirect()->back()->with('success', 'Company updated successfully!');
     }
+
+    // JOIN COMPANY USING INVITE CODE
+    public function joinCompany(Request $request)
+    {
+        $request->validate([
+            'company_code' => 'required|string|size:6',
+        ]);
+
+        $company = Company::where('company_code', $request->company_code)->first();
+
+        if (!$company) {
+            return redirect()->back()->withErrors(['company_code' => 'Invalid company code.']);
+        }
+
+        $user = Auth::user();
+        $user->company_id = $company->id;
+        $user->save();
+
+        return redirect()->route('company.dashboard')->with('success', 'Joined company successfully.');
+    }
 }
+

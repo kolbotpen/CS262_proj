@@ -39,6 +39,7 @@
                             <th width="300">Companies</th>
                             <th width="100">Industry</th>
                             <th width="100">Visibility</th>
+                            <th width="100">Code</th>
                             <th width="100">Boss</th>
                             <th width="100">Option</th>
                         </tr>
@@ -50,6 +51,7 @@
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->industry }}</td>
                                 <td>{{ $company->visibility }}</td>
+                                <td>{{ $company->company_code }}</td>
                                 <td>Admin</td>
                                 <td>
                                     <button class="btn btn-link" onclick="editCompany({{ json_encode($company) }})">
