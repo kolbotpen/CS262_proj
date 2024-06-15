@@ -185,7 +185,7 @@ Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name(
 Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
 
 // ROUTE FOR STORING
-Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('teams.store');
+Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('team.store');
 Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
 Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
 
