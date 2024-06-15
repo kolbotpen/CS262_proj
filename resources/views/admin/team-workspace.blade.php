@@ -1,3 +1,5 @@
+<!-- team-workspace.blade.php -->
+
 @extends('adminlayout.master')
 @section('content')
 
@@ -48,12 +50,12 @@
                                 <td class="text-left">{{ $team->name }}</td>
                                 <td class="text-center">{{ $team->company->name }}</td>
                                 <td class="text-right">
-                                    <a href="edit">
+                                    <button class="btn btn-link" onclick="editTeam({{ $team }})">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
                                         </svg>
-                                    </a>
+                                    </button>
                                     <form action="{{ route('team.destroy', $team->id) }}" method="POST" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
@@ -82,4 +84,64 @@
         </div>
     </div>
     <!-- /.card -->
+
+    <!-- Edit Team Modal -->
+    <div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="editTeamModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTeamModalLabel">Edit Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editTeamForm" method="POST" action="{{ route('team.update', ['team' => 0]) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="hidden" name="team_id" id="team_id">
+                        <div class="form-group">
+                            <label for="team_name" class="col-form-label">Team Name:</label>
+                            <input type="text" class="form-control" id="team_name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="company_id" class="col-form-label">Company:</label>
+                            <select class="form-control" id="company_id" name="company_id">
+                                @foreach($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="users" class="col-form-label">Users:</label>
+                            <ul id="team_users" class="list-group">
+                                <!-- Users will be dynamically populated here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    function editTeam(team) {
+        $('#editTeamModal').modal('show');
+        $('#editTeamForm').attr('action', '/teams/' + team.id);
+        $('#team_id').val(team.id);
+        $('#team_name').val(team.name);
+        $('#company_id').val(team.company_id);
+
+        // Clear and populate the users list
+        $('#team_users').empty();
+        team.users.forEach(user => {
+            $('#team_users').append('<li class="list-group-item">' + user.name + '</li>');
+        });
+    }
+</script>
 @stop

@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\User;
-use App\Models\Company;
 use App\Models\Team;
+use App\Models\User;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,8 +13,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(5)->create();
-        // Team::factory(5)->create();
-        // Company::factory(5)->create();
+        // Create teams and associated users
+        Team::factory()->count(5)->create()->each(function ($team) {
+            $user = User::factory()->create();
+            $team->users()->attach($user->id);
+        });
     }
 }
