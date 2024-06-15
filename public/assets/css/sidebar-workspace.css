@@ -1,19 +1,34 @@
+.rotated-icon {
+    transform: rotate(-90deg);
+    transition-duration: 0.2s;
+}
+
 /* General styles */
 main {
     background-color: #121212;
+    transition-duration: 0.2s;
+}
+
+.main-content {
+    padding-left: 65px; /* Adjust padding when sidebar is collapsed */
+    transition: padding-left 0.2s ease;
+}
+
+.main-shifted {
+    padding-left: 270px; /* Adjust padding when sidebar is expanded */
 }
 
 /* Sidebar Styles */
 #sidebarMenu {
+    z-index: 0;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    z-index: 1;
-    width: 270px; /* Collapsed width by default */
-    background-color: #121212;
+    width: 270px; /* Default width */
+    background-color: #1C1C1C;
     overflow-y: auto;
-    transition: width 0.3s ease;
+    transition: width 0.2s ease;
 }
 
 @media (min-width: 768px) {
@@ -28,14 +43,10 @@ main {
     width: 65px; /* Collapsed width */
 }
 
-#sidebarMenu.expanded {
-    width: 270px; /* Expanded width */
-}
-
 .sidebar-inner {
     padding: 0;
     overflow: hidden;
-    transition: opacity 0.3s ease; /* Opacity transition */
+    transition: opacity 0.2s ease; /* Opacity transition */
 }
 
 .sidebar-inner.collapsed {
@@ -48,7 +59,7 @@ main {
     padding: 10px 20px;
     display: flex;
     align-items: center;
-    transition: background-color 0.3s, color 0.3s;
+    transition: background-color 0.2s, color 0.2s;
     white-space: nowrap;
     overflow: hidden;
 }
@@ -56,22 +67,27 @@ main {
 .nav-link:hover,
 .nav-link:focus {
     color: #8a8a8a;
-    background-color: #343a40;
+    background-color: #282828;
 }
 
 .nav-link .icon {
+    margin-top: 4px;
     margin-right: 10px;
-    opacity: 0.7;
-    transition: opacity 0.3s ease;
+    opacity: 0.75;
+    transition-duration: 0.2s;
+}
+
+.nav-link.active .icon {
+    filter: brightness(1) !important;
 }
 
 .nav-link.active {
-    background-color: #343a40;
+    background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);
     color: #fff;
 }
 
 .nav-link span {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     opacity: 1;
 }
 
@@ -83,8 +99,26 @@ main {
     opacity: 1; /* Show icon when collapsed */
 }
 
+/* Welcome message box */
+.welcome-message {
+    background-color: #222222;
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+#sidebarMenu.collapsed .welcome-message {
+    opacity: 0; /* Hide welcome message when collapsed */
+}
+
+.welcome-title,
+.welcome-text {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+/* To-do list */
 .todo-list {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     opacity: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -94,8 +128,9 @@ main {
     opacity: 0; /* Hide todo list when collapsed */
 }
 
+/* Main menu & upcoming deadlines heading text */
 .sidebar-menu h6 {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
     opacity: 1;
     white-space: nowrap;
     overflow: hidden;
@@ -105,22 +140,6 @@ main {
     opacity: 0; /* Hide heading when collapsed */
 }
 
-.welcome-message {
-    background-color: #222222;
-    transition: opacity 0.3s ease;
-    opacity: 1;
-}
 
-#sidebarMenu.collapsed .welcome-message {
-    opacity: 0; /* Hide welcome message when collapsed */
-}
 
-.welcome-title {
-    margin: 0;
-    padding: 0;
-}
 
-.welcome-text {
-    transition: opacity 0.3s ease;
-    opacity: 1;
-}

@@ -1,3 +1,16 @@
+/* Flex Container for Full Page Layout */
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+/* Content Area */
+.content {
+    flex: 1;
+}
+
+
 /* Footer General */
 footer {
     overflow: hidden;
@@ -9,7 +22,7 @@ footer {
     gap: 50px;
     display: grid;
     grid-template-areas: 'left middle right';
-    background-color: #1c1c1c;
+    background-color: #181818;
     color: rgb(151, 151, 151);
     margin: 0 auto; /* Center the container horizontally */
 }
@@ -126,7 +139,7 @@ footer hr {
     text-align: center;
     text-decoration: none;
     color: gray;
-    background-color: #1c1c1c;
+    background-color: #181818;
 }
 
 @media screen and (max-width: 768px) {
