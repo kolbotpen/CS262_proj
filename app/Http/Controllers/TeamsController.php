@@ -36,7 +36,7 @@ class TeamsController extends Controller
 
     public function showWorkspace()
     {
-        $teams = Team::with('company')->get();
+        $teams = Team::with('company', 'users')->get();
         $companies = Company::all();
         return view('admin.team-workspace', ['teams' => $teams],['companies' => $companies]);
     }
