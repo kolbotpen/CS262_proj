@@ -1,53 +1,145 @@
+.rotated-icon {
+    transform: rotate(-90deg);
+    transition-duration: 0.2s;
+}
+
+/* General styles */
 main {
     background-color: #121212;
+    transition-duration: 0.2s;
 }
 
-a.sidebar-tab {
+.main-content {
+    padding-left: 65px; /* Adjust padding when sidebar is collapsed */
+    transition: padding-left 0.2s ease;
+}
+
+.main-shifted {
+    padding-left: 270px; /* Adjust padding when sidebar is expanded */
+}
+
+/* Sidebar Styles */
+#sidebarMenu {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 270px; /* Default width */
+    background-color: #1C1C1C;
+    overflow-y: auto;
+    transition: width 0.2s ease;
+}
+
+@media (min-width: 768px) {
+    #sidebarMenu {
+        top: 0;
+        height: 100vh;
+        padding-top: 60px; /* Adjust as needed for your navbar height */
+    }
+}
+
+#sidebarMenu.collapsed {
+    width: 65px; /* Collapsed width */
+}
+
+.sidebar-inner {
+    padding: 0;
+    overflow: hidden;
+    transition: opacity 0.2s ease; /* Opacity transition */
+}
+
+.sidebar-inner.collapsed {
+    opacity: 0; /* Hide content when collapsed */
+    pointer-events: none; /* Disable interaction when collapsed */
+}
+
+.nav-link {
     color: #8a8a8a;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
-a.sidebar-tab:hover {
+.nav-link:hover,
+.nav-link:focus {
     color: #8a8a8a;
-    filter: brightness(1.4);
+    background-color: #282828;
 }
 
-a.sidebar-tab:focus img,
-a.sidebar-tab:focus {
-    color: #8a8a8a;
+.nav-link .icon {
+    margin-top: 4px;
+    margin-right: 10px;
+    opacity: 0.75;
+    transition-duration: 0.2s;
 }
 
-/* Custom styles for sidebar */
-.sidebar {
-    background-color: #121212;
-    transition: all 0.3s;
-    /* height: 100%; */
+.nav-link.active .icon {
+    filter: brightness(1) !important;
 }
 
 .nav-link.active {
-    background-color: #343a40; /* Darker background color */
-    color: #fff; /* White text color */
+    background: linear-gradient(325deg, #73C64A 0%, #10834c 100%);
+    color: #fff;
 }
 
-.nav-link.active i {
-    color: #fff; /* White icon color */
+.nav-link span {
+    transition: opacity 0.2s ease;
+    opacity: 1;
 }
 
-.nav-treeview .nav-link.active {
-    position: relative;
-    background-color: transparent; /* No background color */
-    color: #fff; /* White text color */
+#sidebarMenu.collapsed .nav-link span {
+    opacity: 0; /* Hide text when collapsed */
 }
 
-.nav-treeview .nav-link.active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 4px; /* Width of the vertical bar */
-    background-color: #007bff; /* Color of the vertical bar */
+#sidebarMenu.collapsed .nav-link .icon {
+    opacity: 1; /* Show icon when collapsed */
 }
 
-.nav-treeview .nav-link {
-    margin-left: 15px; /* Indentation for dropdown items */
+/* Welcome message box */
+.welcome-message {
+    background-color: #222222;
+    transition: opacity 0.2s ease;
+    opacity: 1;
 }
+
+#sidebarMenu.collapsed .welcome-message {
+    opacity: 0; /* Hide welcome message when collapsed */
+}
+
+.welcome-title,
+.welcome-text {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+}
+
+/* To-do list */
+.todo-list {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#sidebarMenu.collapsed .todo-list {
+    opacity: 0; /* Hide todo list when collapsed */
+}
+
+/* Main menu & upcoming deadlines heading text */
+.sidebar-menu h6 {
+    transition: opacity 0.2s ease;
+    opacity: 1;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#sidebarMenu.collapsed .sidebar-menu h6 {
+    opacity: 0; /* Hide heading when collapsed */
+}
+
+
+
+

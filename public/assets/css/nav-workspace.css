@@ -1,0 +1,28 @@
+.navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 60px;
+}
+
+
+/* PROFILE & NOTIFICATION */
+.navbar-nav .nav-item .nav-link {
+    transition: filter 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link:hover {
+    background-color: transparent;
+    filter: brightness(1.17);
+}
+
+/* LOGOUT */
+.navbar-nav .nav-item .nav-link.btn-secondary {
+    transition: background-color 0.3s ease;
+}
+
+.navbar-nav .nav-item .nav-link.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.019) !important;
+    color: #fff;
+}

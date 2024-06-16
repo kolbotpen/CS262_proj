@@ -14,18 +14,23 @@
   <link href="{{ asset('assets/css/workspace.css') }}" rel="stylesheet">
 </head>
 <body>
+
   @include('layouts.nav-workspace')
 
+  @include('layouts.sidebar-workspace')
+  
   <div class="container-fluid">
-    <div class="row">
-      @include('layouts.sidebar-workspace')
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        @yield('content')
-      </main>
-    </div>
-  </div>
+      <div class="row">
+          <main class="flex-container main-content">
+              @yield('content')
+              @include('layouts.footer')
+            </main>   
+          </div>
+        </div>
 
-  @include('layouts.footer')
+  {{-- @include('layouts.footer') --}}
+
+  
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
