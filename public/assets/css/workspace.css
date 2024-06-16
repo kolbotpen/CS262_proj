@@ -171,3 +171,51 @@ img.icon {
     margin-bottom: 10px;
     font-weight: 600;
 }
+
+/* CUSTOM ALERT BOX */
+.custom-alert {
+    position: fixed;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.custom-alert.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+    animation: bounceIn 0.35s forwards, fadeOut 0.45s 2s forwards;
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: translateX(-50%) scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: translateX(-50%) scale(1.1);
+        opacity: 1;
+    }
+    80% {
+        transform: translateX(-50%) scale(0.95);
+    }
+    100% {
+        transform: translateX(-50%) scale(1);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}

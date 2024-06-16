@@ -17,7 +17,12 @@
                         <tr>
                             <th class="align-middle">
                                 {{ $company->name }}
-                            </th>                        
+                                <a class="ms-2 copy-code" href="javascript:void(0);" data-code="{{ $company->company_code }}" style="text-decoration: none;" title="Copy Invite Code">
+                                    <code style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
+                                        {{ $company->company_code }}
+                                    </code>
+                                </a>
+                            </th>                 
                             {{-- <th class="align-middle"></th> --}}
                             <th colspan="2" class="align-middle text-end">
                                 <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
@@ -68,5 +73,7 @@
         @endforeach
     </div>
 </div>
+
+<script src="{{asset('assets/js/alert-copy.js')}}"></script>
 
 @stop
