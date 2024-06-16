@@ -78,15 +78,17 @@ Route::get('/browse', function () {
 });
 Route::get('/browse-create', function () {
     return view('browse-create');
-});
+})->name('browse-create');
 Route::get('/browse-search', function () {
     return view('browse-search');
 });
 Route::get('/browse-request', function () {
     return view('browse-request');
 });
+
 Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('company.join');
 Route::get('/browse-search', [CompanyController::class, 'showBrowseSearch']);
+Route::post('/browse-create', [CompanyController::class, 'storeInBrowse'])->name('browse.store');
 
 // LOGGED IN AS "BOSS" STARTS FROM HERE
 // Companies
