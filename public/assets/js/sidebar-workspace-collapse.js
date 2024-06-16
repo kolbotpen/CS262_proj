@@ -32,4 +32,18 @@ document.addEventListener("DOMContentLoaded", function() {
             link.classList.add('active');
         }
     });
+
+    // Adjust main content padding on window resize
+    window.addEventListener('resize', function() {
+        if (window.innerWidth <= 700) {
+            mainContent.classList.remove('main-shifted');
+        } else {
+            mainContent.classList.toggle('main-shifted', !isSidebarCollapsed);
+        }
+    });
+
+    // Initialize main content padding on page load
+    if (window.innerWidth <= 700) {
+        mainContent.classList.remove('main-shifted');
+    }
 });

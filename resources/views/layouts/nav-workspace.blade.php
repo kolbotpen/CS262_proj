@@ -1,19 +1,17 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1c1c1c;">
-  <div class="container-fluid">
-    <a id="sidebarToggleBtn" class="navbar-brand px-2 me-5" style="cursor: pointer; user-select: none;">
-      <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
-    </a>
-  
-    <a class="navbar-brand text-white d-flex align-items-center me-4" href="landing">
-      <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
-    </a>
+  <div class="container-fluid d-flex justify-content-between">
+    <div class="d-flex align-items-center">
+      <a id="sidebarToggleBtn" class="navbar-brand px-2 me-5" style="cursor: pointer; user-select: none;">
+        <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
+      </a>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <a class="navbar-brand text-white d-flex align-items-center me-4" href="landing">
+        <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
+      </a>
+    </div>
 
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav" style="background-color: #1c1c1c;">
-      <ul class="navbar-nav">
+    <div class="d-flex align-items-center">
+      <ul class="navbar-nav flex-row">
         
         <!-- Logout -->
         <li class="nav-item">

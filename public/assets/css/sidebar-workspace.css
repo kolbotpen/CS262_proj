@@ -3,20 +3,28 @@
     transition-duration: 0.2s;
 }
 
-/* General styles */
-main {
+.main-content {
+    padding-left: 65px;
+    transition: padding-left 0.2s ease;
     background-color: #121212;
     transition-duration: 0.2s;
 }
 
-.main-content {
-    padding-left: 65px; /* Adjust padding when sidebar is collapsed */
-    transition: padding-left 0.2s ease;
+@media (max-width: 768px) {
+    .main-content {
+        padding-left: 80px;
+    }
+    .main-shifted {
+        padding-left: 80px !important;
+    }
 }
+
 
 .main-shifted {
     padding-left: 270px; /* Adjust padding when sidebar is expanded */
 }
+
+
 
 /* Sidebar Styles */
 #sidebarMenu {
@@ -29,13 +37,14 @@ main {
     background-color: #1C1C1C;
     overflow-y: auto;
     transition: width 0.2s ease;
+    padding-top: 60px;
 }
 
 @media (min-width: 768px) {
     #sidebarMenu {
         top: 0;
         height: 100vh;
-        padding-top: 60px; /* Adjust as needed for your navbar height */
+        padding-top: 60px;
     }
 }
 
