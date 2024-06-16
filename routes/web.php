@@ -112,8 +112,8 @@ Route::get('/team-add-member', function () {
     return view('boss.team-add-member');
 });
 
-Route::post('/teams', [TeamsController::class, 'store'])->name('teams.store');
-Route::get('/team-add', [TeamsController::class, 'showTeamAddForm']); // FOR BOSS.ADDTEAM To WORK
+Route::post('/team-add', [TeamsController::class, 'storeInBoss'])->name('boss.add'); // ADDing TO 
+Route::get('/team-add', [TeamsController::class, 'showTeamAddForm'])->name('boss.team-add'); // FOR BOSS.ADDTEAM To WORK
 Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
 
 // Task

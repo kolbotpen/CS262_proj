@@ -18,7 +18,7 @@ class TeamsController extends Controller
         $companies = Company::all(); // Fetch all companies
         return view('boss.team-add', compact('companies')); // Pass companies to the view
     }
-    // STORING TEAM
+    // STORING TEAM IN ADMIN 
     public function store(Request $request)
     {
         $request->validate([
@@ -32,6 +32,21 @@ class TeamsController extends Controller
         $team->save();
 
         return redirect()->route('team.workspace')->with('status', 'Team added successfully!');
+    }
+    // STORING TEAM IN BOSS
+    public function storeInBoss(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'company_id' => 'required|exists:companies,id',
+        ]);
+
+        $team = new Team;
+        $team->name = $request->name;
+        $team->company_id = $request->company_id;
+        $team->save();
+
+        return redirect()->route('boss.team-add')->with('status', 'Team added successfully!');
     }
 
     public function showWorkspace()

@@ -83,7 +83,7 @@ class CompanyController extends Controller
         $companies = Company::all(); // Fetch all companies
         return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
     }
-    // CREATE COMPANY IN BROWSE
+    
     // CREATE COMPANY IN BROWSE
     public function storeInBrowse(Request $request)
     {

@@ -33,7 +33,7 @@
         </thead>
       </table>
 
-      <form action="{{ route('teams.store') }}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('boss.add') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row d-flex">
           {{-- LEFT BOX --}}
