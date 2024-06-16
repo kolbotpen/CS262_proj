@@ -46,7 +46,8 @@ class TeamsController extends Controller
         $team->company_id = $request->company_id;
         $team->save();
 
-        return redirect()->route('boss.team-add')->with('status', 'Team added successfully!');
+        // Redirect back to the same page
+        return back()->with('status', 'Team added successfully!');
     }
 
     public function showWorkspace()
