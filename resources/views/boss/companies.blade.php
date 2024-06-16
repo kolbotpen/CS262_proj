@@ -17,30 +17,34 @@
                         <tr>
                             <th class="align-middle">
                                 {{ $company->name }}
-                                <a class="ms-2 copy-code" href="javascript:void(0);" data-code="{{ $company->company_code }}" style="text-decoration: none;" title="Copy Invite Code">
-                                    <code style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
-                                        {{ $company->company_code }}
-                                    </code>
+                                <a class="ms-2 copy-code" href="javascript:void(0);"
+                                    data-code="{{ $company->company_code }}" style="text-decoration: none;"
+                                    title="Copy Invite Code">
+                                    <code
+                                        style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
+                                    {{ $company->company_code }}
+                                </code>
                                 </a>
-                            </th>                 
-                            {{-- <th class="align-middle"></th> --}}
+                            </th>
                             <th colspan="2" class="align-middle text-end">
-                                <div class="btn-group table-border th-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                                    <a class="btn btn-success bg-green-gradient" href="team-add" role="button">
+                                <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
+                                    aria-label="Button group">
+                                    <a class="btn btn-success bg-green-gradient"
+                                        href="{{ url('team-add?company_id=' . $company->id) }}" role="button">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
                                     </a>
                                     <a class="btn btn-secondary" href="team-all" role="button">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                     </a>
                                     <a class="btn btn-secondary" href="task-all" role="button">
-                                        <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
+                                        <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg"
+                                            draggable="false">All
                                     </a>
                                 </div>
-                            </th>                                
+                            </th>
                         </tr>
                     </thead>
                 </table>
-
                 <table class="table m-0" style="table-layout: fixed; width: 100%;">
                     <thead>
                         <tr>

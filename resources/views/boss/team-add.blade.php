@@ -1,7 +1,6 @@
 @extends('layouts.master-workspace')
 @section('content')
 
-
 @if (session('status'))
     <div class="alert alert-success">
         {{ session('status') }}
@@ -35,28 +34,22 @@
 
       <form action="{{ route('boss.add') }}" method="post" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="company_id" value="{{ request('company_id') }}">
         <div class="row d-flex">
           {{-- LEFT BOX --}}
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="container m-3 text-white p-3 rounded h-100">
               <label for="name">Team name</label>
-              <input type="text" name="name" class="form-control bg-black text-white border-0" placeholder="Team name"
-                value="" required>
+              <input type="text" name="name" class="form-control bg-black text-white border-0" placeholder="Team name" value="" required>
             </div>
           </div>
-
+          
           {{-- RIGHT BOX --}}
           <div class="col-md-6 d-flex align-items-stretch">
             <div class="container m-3 text-white p-3 rounded h-100">
-                <label for="company_id">Select Company</label>
-                <select name="company_id" class="form-select bg-black border-0" required>
-                    <option value="">Select Company</option>
-                    @foreach ($companies as $company)
-                        <option value="{{ $company->id }}">{{ $company->name }}</option>
-                    @endforeach
-                </select>
+                <label for="company">Company</label>
+                <input type="text" id="company" class="form-control bg-black text-white border-0" value="{{ optional($companies->firstWhere('id', request('company_id')))->name }}" readonly>            </div>
           </div>
-        </div>
         </div>
         <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
           <button type="submit" class="btn btn-secondary" role="button">
