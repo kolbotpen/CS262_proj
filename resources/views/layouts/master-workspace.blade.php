@@ -21,7 +21,7 @@
   
   <div class="container-fluid">
       <div class="row">
-          <main class="flex-container main-content">
+            <main class="flex-container main-content">
               @yield('content')
               @include('layouts.footer')
             </main>   

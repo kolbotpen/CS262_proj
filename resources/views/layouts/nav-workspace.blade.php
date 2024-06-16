@@ -5,7 +5,7 @@
         <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
       </a>
 
-      <a class="navbar-brand text-white d-flex align-items-center me-4" href="landing">
+      <a class="navbar-brand text-white d-flex align-items-center" href="landing">
         <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
       </a>
     </div>
@@ -14,7 +14,7 @@
       <ul class="navbar-nav flex-row">
         
         <!-- Logout -->
-        <li class="nav-item">
+        <li class="nav-item" style="scale: 0.9;">
           <form method="POST" action="{{ route('logout') }}" class="p-0">
             @csrf
             <button type="submit" class="btn btn-secondary d-flex align-items-center rounded nav-link px-3 py-2" style="background: none;">

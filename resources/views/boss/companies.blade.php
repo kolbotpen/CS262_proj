@@ -23,7 +23,7 @@
                                     <code
                                         style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
                                     {{ $company->company_code }}
-                                </code>
+                                    </code>
                                 </a>
                             </th>
                             <th colspan="2" class="align-middle text-end">

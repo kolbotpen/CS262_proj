@@ -4,16 +4,16 @@
 <link href="{{ asset('assets/css/landing.css') }}" rel="stylesheet">
 
 <!-- Section 1: Task Automation & Workflow Management Tool -->
-<section id="section1">
+<section id="section1" style="position: relative; overflow: hidden;">
 
     <div class="container align-content-center">
-        <div class="row align-items-center" style="overflow-x: hidden; position: relative;">
+        <div class="row align-items-center">
             <img src="{{ asset('assets/images/logo1.svg') }}" alt="logo1" class="logo1-left floating" draggable="false">
             <div class="section1-textbox col-md-7 text-md-start">
                 <img src="{{ asset('assets/images/logo1.svg') }}" alt="logo1" class="logo1-top floating" draggable="false">
                 <h6 class="text-center text-green mb-4 bold-300 inter">WELCOME, NEWCOMER!</h6>
-                <h1 class="section1-title1 text-green-gradient">Task Automation&nbsp;&</h1>
-                <h1 class="section1-title2 text-blue-gradient">Workflow Mgmt.&nbsp;Tool</h1>
+                <h1 class="section1-title1 text-green-gradient text-nowrap">Task Automation&nbsp;&</h1>
+                <h1 class="section1-title2 text-blue-gradient text-nowrap">Workflow Mgmt.&nbsp;Tool</h1>
                 <p class="text-center text-gray">Unleash peak productivity with <b class="bold">OURDEN</b>. Automate tasks &
                     streamline workflows. Built for modern teams to achieve more.</p>
                 <div class="row">
@@ -29,7 +29,17 @@
             </svg>
         </div>
     </div>
-    
+
+    <!-- NEWS TICKER -->
+    <div class="news-ticker news-ticker-rl text-right" style="color: #ffffff01; margin-top: -160px;">
+        <span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span><span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span>
+    </div>
+    <div class="news-ticker news-ticker-lr" style="color: #ffffff02; margin-top: -80px;">
+        <span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span><span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span>
+    </div>
+    <div class="news-ticker news-ticker-rl text-right" style="color: #ffffff04;">
+        <span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span><span class="news-ticker-text">WELCOME TO OURDEN - A TASK AUTOMATION AND WORKFLOW MANAGEMENT TOOL</span>
+    </div>
     
     <div class="container p-4 d-flex justify-content-center align-items-center">
         <div class="row">
@@ -39,6 +49,7 @@
         </div>
     </div>
 </section>
+
 
 
 <!-- Section 3 -->

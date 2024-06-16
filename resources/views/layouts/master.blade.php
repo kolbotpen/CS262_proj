@@ -16,8 +16,6 @@
   <link href="{{ asset('assets/css/footer.css') }}" rel="stylesheet">
 </head>
 
-
-
 <body>
   {{-- @include('layout.nav') --}}
  <div class="container-fluid">
@@ -26,7 +24,7 @@
       {{-- <main class="col-md-9 ms-sm-auto col-lg-10 p-0"> --}}
         <main class="col-12 p-0">
         @yield('content')
-      </main>
+        </main>
     </div>
   </div>
 

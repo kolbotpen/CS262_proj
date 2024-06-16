@@ -22,7 +22,7 @@
             </thead>
         </table>
 
-        <div class="container bg-gray" style="width: 100%; display: flex; justify-content: center; padding: 20px 0;">
+        <div class="container bg-gray" style="width: 100%; display: flex; justify-content: center; padding: 20px 0; overflow-x: scroll;">
             <div class="profile-section" style="width: 80%; display: flex; flex-direction: column; align-items: center;">
                 @if (session('status') === 'profile-updated')
                     <div class="alert alert-success">
