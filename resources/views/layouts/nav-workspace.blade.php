@@ -5,7 +5,7 @@
         <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
       </a>
 
-      <a class="navbar-brand text-white d-flex align-items-center" href="landing">
+      <a class="navbar-brand text-white d-flex align-items-center" href="{{ url('/landing') }}">
         <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
       </a>
     </div>

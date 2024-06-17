@@ -58,6 +58,7 @@ class TeamsController extends Controller
         return view('admin.team-workspace', compact('teams', 'companies'));
     }
 
+
     public function destroy(Team $team)
     {
         $team->delete();
@@ -80,10 +81,7 @@ class TeamsController extends Controller
     public function showAllTeams($companyId)
     {
         $teams = Team::where('company_id', $companyId)->get();
-        $company = Company::find($companyId);
-        // Optionally, you can eager load relationships if needed
-        // $teams = Team::where('company_id', $companyId)->with('users')->get();
-
+        $company = Company::findOrFail($companyId);
         return view('boss.team-all', ['teams' => $teams, 'company' => $company]);
     }
 }

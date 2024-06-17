@@ -13,25 +13,25 @@
             <h6 class="pb-2 ms-3 mt-4 mb-2 text-gray">MAIN MENU</h6>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" href="browse">
+                    <a class="nav-link" href="{{ url('/browse') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-browse.svg')}}" draggable="false">
                         <span class="text">Browse</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="companies">
+                    <a class="nav-link" href="{{ url('/companies') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-companies.svg')}}" draggable="false">
                         <span class="text">Companies</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="calendar">
+                    <a class="nav-link" href="{{ url('/calendar') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-calendar.svg')}}" draggable="false">
                         <span class="text">Calendar</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="settings">
+                    <a class="nav-link" href="{{ url('/settings') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-settings.svg')}}" draggable="false">
                         <span class="text">Settings</span>
                     </a>
