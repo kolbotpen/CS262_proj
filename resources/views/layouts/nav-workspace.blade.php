@@ -12,17 +12,6 @@
 
     <div class="d-flex align-items-center">
       <ul class="navbar-nav flex-row">
-        
-        <!-- Logout -->
-        <li class="nav-item" style="scale: 0.9;">
-          <form method="POST" action="{{ route('logout') }}" class="p-0">
-            @csrf
-            <button type="submit" class="btn btn-secondary d-flex align-items-center rounded nav-link px-3 py-2" style="background: none;">
-              <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" style="margin-right: 8px; filter: brightness(0.6); width: 20px;">
-              <span class="text-white">{{ __('Log out') }}</span>
-            </button>
-          </form>
-        </li>
 
         <!-- Profile Picture -->
         <li class="nav-item ms-3">
@@ -39,6 +28,21 @@
             </div>
           </a>
         </li>
+
+        
+        <!-- Logout -->
+        <li class="nav-item" style="scale: 0.9;">
+          <form method="POST" action="{{ route('logout') }}" class="p-0">
+              @csrf
+              <button type="submit" class="btn btn-secondary d-flex align-items-center rounded nav-link px-3 py-2 logout-btn" style="background: none;">
+                  <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" class="logout-icon" style="margin-right: 8px; width: 20px;">
+                  <span class="text-white">{{ __('Log out') }}</span>
+              </button>
+          </form>
+        </li>
+
+
+
       </ul>
     </div>
   </div>

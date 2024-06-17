@@ -19,10 +19,25 @@
 
 /* LOGOUT */
 .navbar-nav .nav-item .nav-link.btn-secondary {
-    transition: background-color 0.3s ease;
+    transition: background-color 0.25s ease-in-out;
+}
+
+.navbar-nav .nav-item .nav-link.btn-secondary .logout-icon,
+.navbar-nav .nav-item .nav-link.btn-secondary span {
+    transition: all 0.25s ease-in-out;
+}
+
+.navbar-nav .nav-item .nav-link.btn-secondary:hover .logout-icon {
+    opacity: 0.5;
+    filter: brightness(0);
+}
+
+.navbar-nav .nav-item .nav-link.btn-secondary:hover span {
+    color: rgb(57, 0, 0) !important;
 }
 
 .navbar-nav .nav-item .nav-link.btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.019) !important;
-    color: #fff;
+    background-color: rgb(140, 35, 18) !important;
 }
+
+
