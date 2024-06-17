@@ -33,6 +33,7 @@ class TeamsController extends Controller
 
         return redirect()->route('team.workspace')->with('status', 'Team added successfully!');
     }
+
     // STORING TEAM IN BOSS
     public function storeInBoss(Request $request)
     {
@@ -76,9 +77,13 @@ class TeamsController extends Controller
 
         return redirect()->route('team.workspace')->with('success', 'Team updated successfully!');
     }
-    public function showAllTeams()
+    public function showAllTeams($companyId)
     {
-        $teams = Team::with('users')->get(); // Fetch all teams and their associated users from the database
-        return view('boss.team-all', ['teams' => $teams]); // Pass the teams to the view
+        $teams = Team::where('company_id', $companyId)->get();
+        $company = Company::find($companyId);
+        // Optionally, you can eager load relationships if needed
+        // $teams = Team::where('company_id', $companyId)->with('users')->get();
+
+        return view('boss.team-all', ['teams' => $teams, 'company' => $company]);
     }
 }

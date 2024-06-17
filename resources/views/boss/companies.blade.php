@@ -36,7 +36,7 @@
                                         data-target="#addTeamModal" data-companyid="{{ $company->id }}">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
                                     </button>
-                                    <a class="btn btn-secondary" href="team-all" role="button">
+                                    <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                     </a>
                                     <a class="btn btn-secondary" href="task-all" role="button">

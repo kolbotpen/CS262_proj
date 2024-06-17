@@ -101,10 +101,11 @@ Route::get('/companies', function () {
 Route::get('/team-all', function () {
     return view('boss.team-all');
 });
-Route::get('/team-all', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET THE TEAM MEMBERS
+Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET THE TEAM MEMBERS
 Route::get('/team', function () {
     return view('boss.team');
 });
+
 Route::get('/team-add', function () {
     return view('boss.team-add');
 });
@@ -116,6 +117,7 @@ Route::post('/team-add', [TeamsController::class, 'storeInBoss'])->name('boss.ad
 Route::get('/team-add', [TeamsController::class, 'showTeamAddForm'])->name('boss.team-add'); // FOR BOSS.ADDTEAM To WORK
 Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
 
+Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams'])->name('team.all');
 // Task
 Route::get('/task-all', function () {
     return view('boss.task-all');
