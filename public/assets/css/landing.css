@@ -35,47 +35,45 @@
 }
 
 
-/* rounded-squares */
+/* SVG styles */
 .svg-background {
     width: 100%;
-    height: 100%;
+    height: auto; /* Maintain aspect ratio */
     overflow: hidden;
     position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none; /* Prevent the SVG from interfering with other elements */
+    min-width: 1200px; /* Set a minimum width equivalent to your ideal size (1920px) */
+    max-width: 100%; /* Ensure SVG doesn't grow larger than the viewport width */
 }
+
+/* Square styles */
+.rounded-square1, .rounded-square2, .rounded-square3 {
+    opacity: 0; /* Start with opacity 0 to make them initially invisible */
+    animation: SquarefadeIn 1s ease forwards; /* Apply the fade-in animation */
+}
+.rounded-square1 {
+    transform-origin: center top;
+}
+.rounded-square2 {
+    transform-origin: center top;
+}
+.rounded-square3 {
+    transform-origin: center top;
+}
+
 @keyframes SquarefadeIn {
     from {
         opacity: 0;
-        transform: scale(1.2);
+        transform: scaleY(0.2) scaleX(0.2); /* Start with a smaller scale */
     }
     to {
         opacity: 1;
-        transform: scale(1);
+        transform: scaleY(1) scaleX(1); /* End with full scale */
     }
 }
-.rounded-square1, .rounded-square2, .rounded-square3 {
-    opacity: 0;
-    transform-origin: center; /* Ensure scaling happens from the center */
-}
-.rounded-square1 {
-    transform-origin: calc(210px + 7.5px) calc(50px + 7.5px); /* Center of the first rectangle */
-}
-.rounded-square2 {
-    transform-origin: calc(228px + 12.5px) calc(138px + 12.5px); /* Center of the second rectangle */
-}
-.rounded-square3 {
-    transform-origin: calc(23px + 9px) calc(115px + 9px); /* Center of the third rectangle */
-}
-.rounded-square1.fade-in {
-    animation: SquarefadeIn 1s ease-in-out forwards 0.2s;
-}
-.rounded-square2.fade-in {
-    animation: SquarefadeIn 1s ease-in-out forwards 0.5s;
-}
-.rounded-square3.fade-in {
-    animation: SquarefadeIn 1s ease-in-out forwards 0.7s;
-}
-
 
 
 
@@ -124,12 +122,12 @@
 }
 
 .news-ticker-rl {
-    animation: scrolling-rl 160s linear infinite;
-    animation-delay: -78s;
+    animation: scrolling-rl 200s linear infinite;
+    animation-delay: -95s;
 }
 
 .news-ticker-lr {
-    animation: scrolling-lr 160s linear infinite;
+    animation: scrolling-lr 200s linear infinite;
     animation-delay: -20s;
 }
 

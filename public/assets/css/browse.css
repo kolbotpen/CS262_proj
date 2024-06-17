@@ -4,28 +4,74 @@
 }
 
 .tab {
+    margin: 0 !important;
+    padding: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    border: 2px solid rgb(73, 73, 73);
+    /* border: 2px solid rgb(73, 73, 73); */
     background-color: #303030;
     color: white;
     height: 300px;
     margin: 5px;
-    transition-duration: 0.2s;
-}
-.tab:hover {
-    filter: brightness(1.1);
 }
 
 #tabs-container .tab h2 {
+    font-size: 45px;
     margin-bottom: 15px;
+    opacity: 0.8;
 }
 
 #tabs-container .tab p {
     font-size: 18px;
+    opacity: 0.85;
 }
 
+.image-container {
+    transition: 0.3s ease;
+}
 
+.image-container:hover {
+    transform: scale(1.018);
+}
+
+.image-container.boing-animation {
+    animation: boing 0.43s;
+}
+
+@keyframes boing {
+    10% {
+        transform: scale(1.0);
+    }
+    40% {
+        transform: scale(1.028);
+    }
+    80% {
+        transform: scale(1.015);
+    }
+    100% {
+        transform: scale(1.018);
+    }
+}
+
+.image1 {
+    background-image: url('../../assets/images/browse-create.png');
+    background-size: cover;
+    background-position: right bottom;
+}
+
+.image2 {
+    background-image: url('../../assets/images/browse-join.png');
+    background-size: cover;
+    background-position: right bottom;
+}
+
+.image1, .image2 {
+    transition: 0.55s ease;
+}
+.image1:hover, .image2:hover {
+    filter: brightness(1.17) saturate(1.06);
+    transform: scale(1.05);
+}

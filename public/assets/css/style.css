@@ -259,7 +259,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
   border:#444444 1px solid;
   border-radius: 8px;
   cursor: pointer;
-  transition-duration: 0.15s;
+  transition-duration: 0.18s;
 }
 .button-gray-social:hover {
   filter: brightness(1.2);
@@ -358,6 +358,69 @@ section.fade-in {
 	0% { transform: translate(0, 0px); }
 	50% { transform: translate(0, 14px); }
 	100% { transform: translate(0, -0px); } 
+}
+
+.bounce:hover {
+  animation: bounce 0.4s;
+}
+
+.bounce-click:active {
+  animation: bounce 0.3s;
+}
+
+@keyframes bounceInAlert {
+  0% {
+      transform: translateX(-50%) scale(0.5);
+      opacity: 0;
+  }
+  60% {
+      transform: translateX(-50%) scale(1.1);
+      opacity: 1;
+  }
+  80% {
+      transform: translateX(-50%) scale(0.95);
+  }
+  100% {
+      transform: translateX(-50%) scale(1);
+  }
+}
+@keyframes bounceIn {
+  0% {
+      transform: scale(0.5);
+      opacity: 0;
+  }
+  55% {
+      transform: scale(1.07);
+      opacity: 1;
+  }
+  80% {
+      transform: scale(0.95);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+@keyframes bounce {
+  0% {
+      transform: scale(0.85);
+  }
+  60% {
+      transform: scale(1.08);
+  }
+  80% {
+      transform: scale(0.9);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+@keyframes fadeOut {
+  from {
+      opacity: 1;
+  }
+  to {
+      opacity: 0;
+  }
 }
 
 

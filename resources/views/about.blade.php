@@ -58,7 +58,7 @@
                 <p class="mb-1">Chansovisoth Wattanak</p>
                 <p class="text-gray mb-4 bold-400" style="font-size: 16px;">Front-End Development</p>
                 <div class="mb-1"> <!-- Added classes here -->
-                    <a href="mailto:cwattanak@paragoniu.edu.kh"><button class="button-gray">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
+                    <a href="mailto:cwattanak@paragoniu.edu.kh"><button class="button-gray bounce">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
                 </div>
             </div>
             <div class="col-md-4 text-center mb-4">
@@ -67,7 +67,7 @@
                 <p class="mb-1">Kolbot Pen</p>
                 <p class="text-gray mb-4 bold-400" style="font-size: 16px;">API Integration</p>
                 <div class="mb-1"> <!-- Added classes here -->
-                    <a href="mailto:kpen@paragoniu.edu.kh"><button class="button-gray">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
+                    <a href="mailto:kpen@paragoniu.edu.kh"><button class="button-gray bounce">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
                 </div>
             </div>
             <div class="col-md-4 text-center mb-4">
@@ -76,7 +76,7 @@
                 <p class="mb-1">Soponloe Sovann</p>
                 <p class="text-gray mb-4 bold-400" style="font-size: 16px;">Back-End Development</p>
                 <div class="mb-1"> <!-- Added classes here -->
-                    <a href="mailto:ssovann1@paragoniu.edu.kh"><button class="button-gray">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
+                    <a href="mailto:ssovann1@paragoniu.edu.kh"><button class="button-gray bounce">Contact<img src="assets/images/arrow-right.svg" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
                 </div>
             </div>
             
