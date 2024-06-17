@@ -25,5 +25,12 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('test1234'),
             'usertype' => 'admin',
         ]);
+        // User for Testing (Ponloe)
+        User::create([
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin123'),
+            'usertype' => 'admin',
+        ]);
     }
 }
