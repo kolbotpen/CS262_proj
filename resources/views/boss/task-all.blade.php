@@ -9,7 +9,7 @@
         <a href="#" class="breadcrumb-link">All Tasks</a>
     </div>
     <!-- THIS TAG IS FOR VIEWING THE FILE THAT WAS UPLOADED INTO TO THE DATABASE -->
-    <!-- <a href="storage/tasks/5NGWB2alZPmzAdrwuMkdC6VCclgepXcgVPE3VnRX.pdf">Click here to view the PDF</a> --> 
+    <!-- <a href="storage/tasks/5NGWB2alZPmzAdrwuMkdC6VCclgepXcgVPE3VnRX.pdf">Click here to view the PDF</a>  -->
     <div class="container bg-transparent p-0 rounded container-border">
         {{-- Team 1 --}}
         <div class="table-container-scroll table-border rounded mb-5">
