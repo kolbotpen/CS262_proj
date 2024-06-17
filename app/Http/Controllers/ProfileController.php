@@ -59,4 +59,10 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+    public function settings(Request $request): View
+    {
+        return view('boss.settings', [
+            'user' => $request->user(),
+        ]);
+    }
 }
