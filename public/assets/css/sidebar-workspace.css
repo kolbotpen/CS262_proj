@@ -3,25 +3,26 @@
     transition-duration: 0.2s;
 }
 
+/* Padding-left is 65px when sidebar is collapsed, and 270px when sidebar is expanded */
 .main-content {
+    /* default padding-left is 65px because the sidebar is collapsed by default */
     padding-left: 65px;
     transition: padding-left 0.2s ease;
     background-color: #121212;
     transition-duration: 0.2s;
 }
-
 @media (max-width: 768px) {
     .main-content {
         padding-left: 80px;
     }
+    /* prevent the padding-left from being 270px when expanded while the screen is too small */
     .main-shifted {
         padding-left: 80px !important;
     }
 }
-
-
+/* PC screen, padding-left 270px */
 .main-shifted {
-    padding-left: 270px; /* Adjust padding when sidebar is expanded */
+    padding-left: 270px;
 }
 
 

@@ -172,7 +172,10 @@ img.icon {
     font-weight: 600;
 }
 
-/* CUSTOM ALERT BOX */
+
+
+
+/* ----- CUSTOM ALERT BOX ----- */
 .custom-alert {
     position: fixed;
     top: 70px;
@@ -185,16 +188,58 @@ img.icon {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .custom-alert.show {
     opacity: 1;
     transform: translateX(-50%) scale(1);
-    animation: bounceIn 0.35s forwards, fadeOut 0.45s 2s forwards;
+    animation: bounceInAlert 0.35s forwards, fadeOut 0.45s 2s forwards;
 }
 
-@keyframes bounceIn {
+/* ----- MODAL ----- */
+
+.modal-dialog {
+    overflow: hidden;
+    border: 2px solid rgb(73, 73, 73);
+    border-radius: 8px;
+    background: none;
+    transition: background-color 0.3s ease;
+    box-shadow: rgba(0, 0, 0, 0.726) 0px 0px 20px;
+}
+
+.modal-content {
+    border: none;
+    background: none;
+}
+
+.modal-header {
+    border-bottom: none;
+    background-color: #373738;
+}
+
+.modal-header:active {
+    cursor: grabbing;
+}
+
+.modal-body {
+    background-color: #202020;
+}
+
+.modal.fade .modal-dialog {
+    transition: transform 0.1s ease-out, opacity 0.5s ease-out;
+}
+
+.modal.fade.show .modal-dialog {
+    animation: bounceIn 0.4s;
+}
+
+.modal.fade:not(.show) .modal-dialog {
+    animation: fadeOut 0.3s;
+}
+
+/* ----- ANIMATIONS ----- */
+@keyframes bounceInAlert {
     0% {
         transform: translateX(-50%) scale(0.5);
         opacity: 0;
@@ -210,7 +255,22 @@ img.icon {
         transform: translateX(-50%) scale(1);
     }
 }
-
+@keyframes bounceIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.07);
+        opacity: 1;
+    }
+    80% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 @keyframes fadeOut {
     from {
         opacity: 1;
