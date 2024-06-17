@@ -18,15 +18,18 @@
                     streamline workflows. Built for modern teams to achieve more.</p>
                 <div class="row">
                     <div class="col-md-12 d-flex justify-content-center">
-                        <a href="login"><button class="button-get-started button-gray">Get Started<img src="{{ asset('assets/images/arrow-right.svg') }}" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
+                        <a href="login"><button class="button-get-started button-gray bounce">Get Started<img src="{{ asset('assets/images/arrow-right.svg') }}" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
                     </div>
                 </div>
             </div>
-            <svg class="position-absolute svg-background" viewBox="0 0 400 200">
-                <rect class="rounded-square1" x="210" y="50" width="15" height="15" rx="3" ry="3" fill="rgba(83, 83, 83, 0.1)" />
-                <rect class="rounded-square2" x="228" y="138" width="25" height="25" rx="4" ry="4" fill="rgba(83, 83, 83, 0.3)" />
-                <rect class="rounded-square3" x="23" y="115" width="18" height="18" rx="3" ry="3" fill="rgba(83, 83, 83, 0.22)" />
+            <svg class="svg-background" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid meet">
+                <rect class="rounded-square1" x="50%" y="20%" width="15" height="15" rx="3" ry="3" fill="rgba(83, 83, 83, 0.1)" />
+                <rect class="rounded-square2" x="58%" y="60%" width="25" height="25" rx="4" ry="4" fill="rgba(83, 83, 83, 0.28)" />
+                <rect class="rounded-square3" x="13%" y="53%" width="18" height="18" rx="3" ry="3" fill="rgba(83, 83, 83, 0.1)" />
             </svg>
+            
+            
+            
         </div>
     </div>
 
@@ -49,6 +52,7 @@
         </div>
     </div>
 </section>
+
 
 
 
@@ -112,7 +116,7 @@
         </div>
         <div class="row">
             <div class="col-md-12 d-flex justify-content-center mb-4">
-                <a href="about"><button class="button-get-started button-gray">Learn more<img src="{{ asset('assets/images/arrow-right.svg') }}" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
+                <a href="about"><button class="button-get-started button-gray bounce">Learn more<img src="{{ asset('assets/images/arrow-right.svg') }}" style="width:8px; margin-left:10px; filter: brightness(0.4);"></button></a>
             </div>
         </div>
     </div>

@@ -88,8 +88,8 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Team</h4>
-                <a class="close" data-dismiss="modal">
-                    <i><img src="assets/images/close.svg" alt="Close" draggable="false" style="cursor: pointer"></i>
+                <a class="close bounce-click" data-dismiss="modal">
+                    <i><img src="assets/images/close.svg" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);"></i>
                 </a>
             </div>
             <div class="modal-body bg-gray">
@@ -129,6 +129,11 @@
         // Make the modal draggable
         $('#addTeamModal .modal-dialog').draggable({
             handle: ".modal-header"
+        });
+
+        // Make the logo draggable
+        $('.footer-logo').draggable({
+            cursor: 'grabbing'
         });
     });
 </script>

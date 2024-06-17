@@ -231,51 +231,12 @@ img.icon {
 }
 
 .modal.fade.show .modal-dialog {
-    animation: bounceIn 0.4s;
+    animation: bounceIn 0.35s;
 }
 
 .modal.fade:not(.show) .modal-dialog {
-    animation: fadeOut 0.3s;
+    animation: fadeOut 0.4s;
 }
 
-/* ----- ANIMATIONS ----- */
-@keyframes bounceInAlert {
-    0% {
-        transform: translateX(-50%) scale(0.5);
-        opacity: 0;
-    }
-    60% {
-        transform: translateX(-50%) scale(1.1);
-        opacity: 1;
-    }
-    80% {
-        transform: translateX(-50%) scale(0.95);
-    }
-    100% {
-        transform: translateX(-50%) scale(1);
-    }
-}
-@keyframes bounceIn {
-    0% {
-        transform: scale(0.5);
-        opacity: 0;
-    }
-    60% {
-        transform: scale(1.07);
-        opacity: 1;
-    }
-    80% {
-        transform: scale(0.95);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
-}
+/* ANIMATION KEYFRAMES CAN BE FOUND STYLE.CSS */
+
