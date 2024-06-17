@@ -57,6 +57,9 @@ Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
 
 // ---------- VISOTH'S CODE | START ----------
+Route::get('/rat', function () {
+    return view('RAT');
+});
 // Landing
 Route::get('/', function () {
     return view('landing');
