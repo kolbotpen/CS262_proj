@@ -38,6 +38,7 @@
                             <th width="25">#</th>
                             <th width="375">User</th>
                             <th width="300">Email</th>
+                            <th width="300">Team</th>
                             <th width="300">Status</th>
                             <th width="100">Option</th>
                         </tr>
@@ -45,24 +46,36 @@
                     <tbody>
                         @foreach ($users as $index => $user)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$index + 1}}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{$user->email}}</td>
+                                <td>
+                                    @foreach($user->teams as $team)
+                                        {{ $team->name }}
+                                    @endforeach
+                                </td>
                                 <td>Active</td>
                                 <td>
-                                    <button class="btn btn-link" data-toggle="modal" data-target="#editUserModal-{{ $user->id }}">
+                                    <button class="btn btn-link" data-toggle="modal"
+                                        data-target="#editUserModal-{{ $user->id }}">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                            <path
+                                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                            </path>
                                         </svg>
                                     </button>
-                                    <form action="{{ route('users.destroy', $user) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('users.destroy', $user) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure you want to delete this user?');">
+                                        <button type="submit" class="btn btn-link text-danger p-0"
+                                            onclick="return confirm('Are you sure you want to delete this user?');">
                                             <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                <path ath fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </button>
                                     </form>
@@ -70,7 +83,8 @@
                             </tr>
 
                             <!-- Edit User Modal -->
-                            <div class="modal fade" id="editUserModal-{{ $user->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel-{{ $user->id }}" aria-hidden="true">
+                            <div class="modal fade" id="editUserModal-{{ $user->id }}" tabindex="-1" role="dialog"
+                                aria-labelledby="editUserModalLabel-{{ $user->id }}" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -85,24 +99,32 @@
                                             <div class="modal-body">
                                                 <div class="form-group">
                                                     <label for="name-{{ $user->id }}" class="col-form-label">Name:</label>
-                                                    <input type="text" class="form-control" id="name-{{ $user->id }}" name="name" value="{{ $user->name }}" required>
+                                                    <input type="text" class="form-control" id="name-{{ $user->id }}"
+                                                        name="name" value="{{ $user->name }}" required>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="email-{{ $user->id }}" class="col-form-label">Email:</label>
-                                                    <input type="email" class="form-control" id="email-{{ $user->id }}" name="email" value="{{ $user->email }}" required>
+                                                    <input type="email" class="form-control" id="email-{{ $user->id }}"
+                                                        name="email" value="{{ $user->email }}" required>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="password-{{ $user->id }}" class="col-form-label">Password:</label>
-                                                    <input type="password" class="form-control" id="password-{{ $user->id }}" name="password">
-                                                    <small class="form-text text-muted">Leave blank if you don't want to change the password.</small>
+                                                    <label for="password-{{ $user->id }}"
+                                                        class="col-form-label">Password:</label>
+                                                    <input type="password" class="form-control"
+                                                        id="password-{{ $user->id }}" name="password">
+                                                    <small class="form-text text-muted">Leave blank if you don't want to
+                                                        change the password.</small>
                                                 </div>
                                                 <div class="form-group form-check">
-                                                    <input type="checkbox" class="form-check-input" id="is_admin-{{ $user->id }}" name="is_admin" {{ $user->usertype == 'admin' ? 'checked' : '' }}>
-                                                    <label class="form-check-label" for="is_admin-{{ $user->id }}">Admin</label>
+                                                    <input type="checkbox" class="form-check-input"
+                                                        id="is_admin-{{ $user->id }}" name="is_admin" {{ $user->usertype == 'admin' ? 'checked' : '' }}>
+                                                    <label class="form-check-label"
+                                                        for="is_admin-{{ $user->id }}">Admin</label>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-dismiss="modal">Close</button>
                                                 <button type="submit" class="btn btn-primary">Save changes</button>
                                             </div>
                                         </form>
@@ -127,7 +149,8 @@
     <!-- /.card -->
 
     <!-- Add User Modal -->
-    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
