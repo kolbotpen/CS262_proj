@@ -16,7 +16,12 @@ class Company extends Model
     {
         return $this->hasMany(Team::class);
     }
-
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'company_to_user')
+                    ->withPivot('is_boss')
+                    ->withTimestamps();
+    }
 
     // THIS IS FOR GENERATING THE CODE FOR JOINING COMPANY
     protected static function boot()
