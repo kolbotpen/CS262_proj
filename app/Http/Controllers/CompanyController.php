@@ -17,30 +17,30 @@ class CompanyController extends Controller
 
     // STORE COMPANIES
     public function store(Request $request)
-{
-    // Validate the request data
-    $request->validate([
-        'name' => 'required|string|max:255',
-        'description' => 'nullable|string',
-        'industry' => 'required|string|max:255',
-        'visibility' => 'required|string|in:public,private',
-    ]);
+    {
+        // Validate the request data
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'industry' => 'required|string|max:255',
+            'visibility' => 'required|string|in:public,private',
+        ]);
 
-    // Create a new company
-    $company = new Company();
-    $company->name = $request->name;
-    $company->description = $request->description;
-    $company->industry = $request->industry;
-    $company->visibility = $request->visibility;
-    $company->save();
+        // Create a new company
+        $company = new Company();
+        $company->name = $request->name;
+        $company->description = $request->description;
+        $company->industry = $request->industry;
+        $company->visibility = $request->visibility;
+        $company->save();
 
-    // Attach the company to the authenticated user and set is_boss to 1
-    $user = Auth::user();
-    $company->users()->attach($user->id, ['is_boss' => 1]);
+        // Attach the company to the authenticated user and set is_boss to 1
+        $user = Auth::user();
+        $company->users()->attach($user->id, ['is_boss' => 1]);
 
-    // Redirect to the companies index with a success message
-    return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
-}
+        // Redirect to the companies index with a success message
+        return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
+    }
     
 
     // EDIT 
@@ -101,20 +101,27 @@ class CompanyController extends Controller
     // CREATE COMPANY IN BROWSE
     public function storeInBrowse(Request $request)
     {
+        // Validate the request data
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'industry' => 'nullable|string',
-            'visibility' => 'required|in:Public,Private',
+            'industry' => 'required|string|max:255',
+            'visibility' => 'required|string|in:Public,Private',
         ]);
 
-        Company::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'industry' => $request->industry,
-            'visibility' => $request->visibility,
-        ]);
+        // Create a new company
+        $company = new Company();
+        $company->name = $request->name;
+        $company->description = $request->description;
+        $company->industry = $request->industry;
+        $company->visibility = $request->visibility;
+        $company->save();
 
+        // Attach the company to the authenticated user and set is_boss to 1
+        $user = Auth::user();
+        $company->users()->attach($user->id, ['is_boss' => 1]);
+
+        // Redirect to the companies index with a success message
         return redirect()->route('browse-create')->with('success', 'Company added successfully.');
     }
 
