@@ -11,30 +11,44 @@ class CompanyController extends Controller
     // ADD COMPANIES
     public function showAddCompanyForm()
     {
-        $companies = Company::all(); // Fetch all companies
-        return view('admin.admin-addcompany');
+        $companies = Company::with('users')->get(); // Fetch all companies
+        return view('admin.admin-addcompany',['companies' => $companies]);
     }
 
     // STORE COMPANIES
     public function store(Request $request)
+{
+    // Validate the request data
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'description' => 'nullable|string',
+        'industry' => 'required|string|max:255',
+        'visibility' => 'required|string|in:public,private',
+    ]);
+
+    // Create a new company
+    $company = new Company();
+    $company->name = $request->name;
+    $company->description = $request->description;
+    $company->industry = $request->industry;
+    $company->visibility = $request->visibility;
+    $company->save();
+
+    // Attach the company to the authenticated user and set is_boss to 1
+    $user = Auth::user();
+    $company->users()->attach($user->id, ['is_boss' => 1]);
+
+    // Redirect to the companies index with a success message
+    return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
+}
+    
+
+    // EDIT 
+    public function edit($id)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'industry' => 'nullable|string',
-            'visibility' => 'required|in:public,private',
-        ]);
-
-        Company::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'industry' => $request->industry,
-            'visibility' => $request->visibility,
-        ]);
-
-        return redirect()->route('company.workspace')->with('success', 'Company added successfully.');
+        $company = Company::with('users')->findOrFail($id);
+        return response()->json($company);
     }
-
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {

@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
         // User for Testing (Ponloe)
         User::create([
             'name' => 'ponloe',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin1@gmail.com',
             'password' => bcrypt('admin123'),
             'usertype' => 'admin',
         ]);

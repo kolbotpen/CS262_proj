@@ -11,8 +11,8 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
 
-    protected $table = 'admins'; // Name of table for admin or user. Change it to 'admins' if you want to put it into admin session 
-    // protected $table = 'users';
+    // protected $table = 'admins'; // Name of table for admin or user. Change it to 'admins' if you want to put it into admin session 
+    protected $table = 'users';
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
@@ -29,6 +29,12 @@ class User extends Authenticatable
     public function teams()
     {
         return $this->belongsToMany(Team::class, 'team_to_user');
+    }
+    public function companies()
+    {
+        return $this->belongsToMany(Company::class, 'company_to_user')
+                    ->withPivot('is_boss')
+                    ->withTimestamps();
     }
     /**
      * The attributes that should be hidden for serialization.
