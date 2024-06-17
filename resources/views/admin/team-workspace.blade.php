@@ -46,7 +46,7 @@
                             <tr>
                                 <td class="text-center">{{ $index + 1 }}</td>
                                 <td class="text-left">{{ $team->name }}</td>
-                                <td class="text-center">{{ $team->company->name }}</td>
+                                <td class="text-center">{{ $team->company ? $team->company->name : 'No Company' }}</td>
                                 <td class="text-right">
                                     <button class="btn btn-link" onclick="editTeam({{ $team }})">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
