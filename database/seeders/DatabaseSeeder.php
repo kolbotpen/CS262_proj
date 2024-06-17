@@ -20,16 +20,23 @@ class DatabaseSeeder extends Seeder
         });
         // User for Testing (Kolbot)
         User::create([
-            'name' => 'test',
+            'name' => 'kolbot',
             'email' => 'test@gmail.com',
             'password' => bcrypt('test1234'),
             'usertype' => 'admin',
         ]);
         // User for Testing (Ponloe)
         User::create([
-            'name' => 'admin',
+            'name' => 'ponloe',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin123'),
+            'usertype' => 'admin',
+        ]);
+        // User for Testing (Ponloe)
+        User::create([
+            'name' => 'visoth',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('12345678'),
             'usertype' => 'admin',
         ]);
     }
