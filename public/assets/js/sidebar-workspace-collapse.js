@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function() {
     mainContent.classList.toggle('main-shifted', !isSidebarCollapsed);
     sidebarToggleIcon.style.transform = isSidebarCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
 
-    // Set active menu item based on current URL (optional, remove if not needed)
+    // Set ACTIVE menu item based on current URL
     navLinks.forEach(link => {
         if (link.href === window.location.href) {
             link.classList.add('active');
