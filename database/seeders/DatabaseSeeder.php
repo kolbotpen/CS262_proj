@@ -18,5 +18,12 @@ class DatabaseSeeder extends Seeder
             $user = User::factory()->create();
             $team->users()->attach($user->id);
         });
+        // User for Testing (Kolbot)
+        User::create([
+            'name' => 'test',
+            'email' => 'test@gmail.com',
+            'password' => bcrypt('test1234'),
+            'usertype' => 'admin',
+        ]);
     }
 }
