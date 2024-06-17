@@ -67,11 +67,11 @@
 @keyframes SquarefadeIn {
     from {
         opacity: 0;
-        transform: scaleY(0.2) scaleX(0.2); /* Start with a smaller scale */
+        /* transform: scaleY(0.2) scaleX(0.2); */
     }
     to {
         opacity: 1;
-        transform: scaleY(1) scaleX(1); /* End with full scale */
+        /* transform: scaleY(1) scaleX(1); */
     }
 }
 
