@@ -59,8 +59,8 @@ class CompanyController extends Controller
     // SHOW COMPANIES IN BOSS WORKSPACE
     public function showCompanies()
     {
-        $companies = Company::all();
-
+        $user = Auth::user();
+        $companies = $user->companies; // Fetch only the companies associated with the authenticated user
         return view('boss.companies', ['companies' => $companies]);
     }
 

@@ -34,6 +34,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Company::class, 'company_to_user')
                     ->withPivot('is_boss')
+                    ->wherePivot('is_boss', 1)
                     ->withTimestamps();
     }
     /**
