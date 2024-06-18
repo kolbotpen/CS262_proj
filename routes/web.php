@@ -89,8 +89,11 @@ Route::get('/browse-request', function () {
     return view('browse-request');
 });
 
+// Routes for browsing and joining companies
+Route::get('/browse-search', [CompanyController::class, 'showBrowseSearch'])->name('browse-search');
 Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('company.join');
-Route::get('/browse-search', [CompanyController::class, 'showBrowseSearch']);
+
+// Route for creating a company in the browse section
 Route::post('/browse-create', [CompanyController::class, 'storeInBrowse'])->name('browse.store');
 
 // LOGGED IN AS "BOSS" STARTS FROM HERE

@@ -140,10 +140,17 @@ class CompanyController extends Controller
         }
 
         $user = Auth::user();
-        $user->company_id = $company->id;
-        $user->save();
+        $isMemberOrBoss = $company->users()->where('user_id', $user->id)->exists();
 
-        return redirect()->route('company.dashboard')->with('success', 'Joined company successfully.');
+        if ($isMemberOrBoss) {
+            return redirect()->back()->with('message', 'You are already in the company.');
+        }
+
+        // Attach the user to the company with is_boss set to 0
+        $company->users()->attach($user->id, ['is_boss' => 0]);
+
+        return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
+
 }
 
