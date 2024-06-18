@@ -200,6 +200,7 @@ img.icon {
 /* ----- MODAL ----- */
 
 .modal-dialog {
+    top: 30%;
     overflow: hidden;
     border: 2px solid rgb(73, 73, 73);
     border-radius: 8px;
