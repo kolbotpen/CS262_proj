@@ -84,4 +84,17 @@ class TeamsController extends Controller
         $company = Company::findOrFail($companyId);
         return view('boss.team-all', ['teams' => $teams, 'company' => $company]);
     }
+    public function addMember(Request $request)
+    {
+        $request->validate([
+            'team_id' => 'required|exists:teams,id',
+            'user_id' => 'required|exists:users,id',
+        ]);
+
+        $team = Team::findOrFail($request->team_id);
+        $team->users()->attach($request->user_id);
+
+        return back()->with('status', 'Member added successfully!');
+    }
+
 }

@@ -123,6 +123,8 @@ Route::get('/team-add', [TeamsController::class, 'showTeamAddForm'])->name('boss
 Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
 
 Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams'])->name('team.all');
+Route::post('/team/add-member', [TeamsController::class, 'addMember'])->name('team.add.member');
+
 // Task
 Route::get('/task-all', function () {
     return view('boss.task-all');
