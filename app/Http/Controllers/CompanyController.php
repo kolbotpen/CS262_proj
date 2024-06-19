@@ -152,5 +152,22 @@ class CompanyController extends Controller
         return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
 
+    public function showJoinedCompanies()
+    {
+        $user = Auth::user();
+
+        // Fetch companies where the user is the boss
+        $bossCompanies = $user->companies()->wherePivot('is_boss', 1)->get();
+
+        // Fetch companies where the user is not the boss
+        $joinedCompanies = $user->companies()->wherePivot('is_boss', 0)->get();
+
+        // Merge both collections
+        $allCompanies = $bossCompanies->merge($joinedCompanies);
+
+        return view('boss.companies', ['companies' => $allCompanies]);
+    }
+
+
 }
 
