@@ -102,7 +102,6 @@ Route::get('/companies', function () {
     return view('boss.companies');
 });
 
-
 // Team
 Route::get('/team-all', function () {
     return view('boss.team-all');

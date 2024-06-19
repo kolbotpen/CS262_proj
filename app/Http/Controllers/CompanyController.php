@@ -60,9 +60,19 @@ class CompanyController extends Controller
     public function showCompanies()
     {
         $user = Auth::user();
-        $companies = $user->companies; // Fetch only the companies associated with the authenticated user
-        return view('boss.companies', ['companies' => $companies]);
+
+        // Fetch companies where the user is the boss
+        $createdCompanies = $user->companies()->wherePivot('is_boss', 1)->get();
+
+        // Fetch companies where the user is not the boss
+        $joinedCompanies = $user->companies()->wherePivot('is_boss', 0)->get();
+
+        return view('boss.companies', [
+            'createdCompanies' => $createdCompanies,
+            'joinedCompanies' => $joinedCompanies
+        ]);
     }
+
 
     // DELETE COMPANY IN ADMIN
     public function destroy(Company $company)
@@ -151,6 +161,23 @@ class CompanyController extends Controller
 
         return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
+
+    // public function showJoinedCompanies()
+    // {
+    //     $user = Auth::user();
+
+    //     // Fetch companies where the user is the boss
+    //     $bossCompanies = $user->companies()->wherePivot('is_boss', 1)->get();
+
+    //     // Fetch companies where the user is not the boss
+    //     $joinedCompanies = $user->companies()->wherePivot('is_boss', 0)->get();
+
+    //     // Merge both collections
+    //     $allCompanies = $bossCompanies->merge($joinedCompanies);
+
+    //     return view('boss.companies', ['companies' => $allCompanies]);
+    // }
+
 
 }
 

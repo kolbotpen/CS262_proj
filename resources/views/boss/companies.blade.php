@@ -9,15 +9,13 @@
         <a href="#" class="breadcrumb-link">Companies</a>
     </div>
 
-    {{-- CONTAINER 1 --}}
-    @if ($companies->isEmpty())
-        <div class="container bg-transparent p-0 rounded container-border text-center">
-            <p class="mt-5">Just getting started? Go to <a href="browse">Browse</a> to create or join a company.</p>
-        </div>
-    @else
-        <div class="container bg-transparent p-0 rounded container-border">
-            {{-- Loop through each company --}}
-            @foreach ($companies as $company)
+    {{-- Companies Created by User --}}
+    <div class="container bg-transparent p-0 rounded container-border mb-5">
+        <h3>Companies You Created</h3>
+        @if ($createdCompanies->isEmpty())
+            <p>You have not created any companies.</p>
+        @else
+            @foreach ($createdCompanies as $company)
                 <div class="table-container table-border rounded mb-5">
                     <table class="table table-company-name m-0" style="table-layout: fixed; width: 100%;">
                         <thead>
@@ -34,15 +32,14 @@
                                     </a>
                                 </th>
                                 <th colspan="2" class="align-middle text-end">
-                                    <div class="btn-group table-border th-btn" style="background-color: #303030"
-                                        role="group" aria-label="Button group">
+                                    <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
+                                        aria-label="Button group">
                                         <!-- Trigger the modal with a button -->
                                         <button type="button" class="btn btn-success bg-green-gradient" data-toggle="modal"
                                             data-target="#addTeamModal" data-companyid="{{ $company->id }}">
                                             <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
                                         </button>
-                                        <a class="btn btn-secondary"
-                                            href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
+                                        <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
                                             <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                         </a>
                                         <a class="btn btn-secondary" href="task-all" role="button">
@@ -69,14 +66,12 @@
                                     <td class="align-middle">{{ $loop->iteration }}</td>
                                     <td class="align-middle">{{ $team->name }}</td>
                                     <td class="align-middle text-center">
-                                        <div class="btn-group table-border option-btn" role="group"
-                                            aria-label="Button group">
+                                        <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
                                             <a href="team" class="btn btn-secondary">
                                                 <img class="icon" src="assets/images/icon-team.svg" draggable="false">
                                             </a>
                                             <a href="task" class="btn btn-secondary">
-                                                <img class="icon" src="assets/images/icon-sidebar-tasks.svg"
-                                                    draggable="false">
+                                                <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
                                             </a>
                                         </div>
                                     </td>
@@ -86,8 +81,78 @@
                     </table>
                 </div>
             @endforeach
-        </div>
-    @endif
+        @endif
+    </div>
+
+    {{-- Companies Joined by User --}}
+    <div class="container bg-transparent p-0 rounded container-border">
+        <h3>Companies You Joined</h3>
+        @if ($joinedCompanies->isEmpty())
+            <p>You have not joined any companies.</p>
+        @else
+            @foreach ($joinedCompanies as $company)
+                <div class="table-container table-border rounded mb-5">
+                    <table class="table table-company-name m-0" style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">
+                                    {{ $company->name }}
+                                    <a class="ms-2 copy-code" href="javascript:void(0);"
+                                        data-code="{{ $company->company_code }}" style="text-decoration: none;"
+                                        title="Copy Invite Code">
+                                        <code
+                                            style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
+                                                {{ $company->company_code }}
+                                                </code>
+                                    </a>
+                                </th>
+                                <th colspan="2" class="align-middle text-end">
+                                    <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
+                                        aria-label="Button group">
+                                        <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
+                                            <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
+                                        </a>
+                                        <a class="btn btn-secondary" href="task-all" role="button">
+                                            <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg"
+                                                draggable="false">All
+                                        </a>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table m-0" style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">No.</th>
+                                <th class="align-middle">Team</th>
+                                <th class="align-middle text-center">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- Loop through each team of the current company --}}
+                            @foreach ($company->teams as $team)
+                                <tr>
+                                    <td class="align-middle">{{ $loop->iteration }}</td>
+                                    <td class="align-middle">{{ $team->name }}</td>
+                                    <td class="align-middle text-center">
+                                        <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
+                                            <a href="team" class="btn btn-secondary">
+                                                <img class="icon" src="assets/images/icon-team.svg" draggable="false">
+                                            </a>
+                                            <a href="task" class="btn btn-secondary">
+                                                <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            @endforeach
+        @endif
+    </div>
 </div>
 
 <!-- Modal -->
