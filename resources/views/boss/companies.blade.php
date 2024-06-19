@@ -163,7 +163,8 @@
             <div class="modal-header">
                 <h4 class="modal-title">Add Team</h4>
                 <a class="close bounce-click" data-dismiss="modal">
-                    <i><img src="assets/images/close.svg" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);"></i>
+                    <i><img src="assets/images/close.svg" alt="Close" draggable="false"
+                            style="cursor: pointer; transform: scale(1.1);"></i>
                 </a>
             </div>
             <div class="modal-body bg-gray">
@@ -173,12 +174,19 @@
                     <div class="col-md-12 d-flex align-items-stretch">
                         <div class="container text-white p-3 rounded h-100">
                             <label for="name">Team name</label>
-                            <input type="text" name="name" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Team Name" value="" required>
+                            <input type="text" name="name"
+                                class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Team Name"
+                                value="" required>
                         </div>
                     </div>
-                    <div class="btn-group table-border th-btn center" style="background-color: #303030" role="group" aria-label="Button group">
-                        <button type="submit" class="btn btn-secondary" role="button">
-                            <img class="icon" src="assets/images/icon-submit.svg" draggable="false">Submit
+                    <div class="btn-group table-border th-btn center"
+                        style="background-color: #303030" role="group"
+                        aria-label="Button group">
+                        <button type="submit" class="btn btn-secondary"
+                            role="button">
+                            <img class="icon"
+                                src="assets/images/icon-submit.svg"
+                                draggable="false">Submit
                         </button>
                     </div>
                 </form>
@@ -188,9 +196,12 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="{{ asset('assets/js/alert-copy.js') }}"></script>
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script
+    src="{{ asset('assets/js/alert-copy.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('#addTeamModal').on('show.bs.modal', function (event) {
