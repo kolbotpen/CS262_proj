@@ -102,9 +102,6 @@ Route::get('/companies', function () {
     return view('boss.companies');
 });
 
-// Route for showing companies the user created and joined
-Route::get('/companies', [CompanyController::class, 'showJoinedCompanies'])->name('boss.companies');
-
 // Team
 Route::get('/team-all', function () {
     return view('boss.team-all');
