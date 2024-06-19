@@ -35,9 +35,9 @@
                                 <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
                                     aria-label="Button group">
                                     <a class="btn btn-success bg-green-gradient" href="#" role="button"
-                                        data-bs-toggle="modal" data-bs-target="#addTeamModal">
-                                        <img class="icon me-2" src="{{ asset('assets/images/icon-user-add.svg') }}"
-                                            draggable="false">Add Member
+                                        data-bs-toggle="modal" data-bs-target="#addTeamModal{{ $team->id }}">
+                                        <img class="icon me-2" src="{{ asset('assets/images/icon-user-add.svg') }}" draggable="false">
+                                        Add Member
                                     </a>
                                 </div>
                             </th>
@@ -78,11 +78,10 @@
                 </table>
             </div>
         </div>
-    @endforeach
 
 </div>
 <!-- Modal -->
-<div id="addTeamModal" class="modal fade" role="dialog">
+<div class="modal fade" id="addTeamModal{{ $team->id }}" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content">
@@ -117,7 +116,7 @@
     </div>
 </div>
 
-
+@endforeach
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -125,12 +124,13 @@
 <script src="{{ asset('assets/js/alert-copy.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('#addTeamModal').on('show.bs.modal', function (event) {
+        $('#addTeamModal{{ $team->id }}').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var companyId = button.data('companyid');
             var modal = $(this);
             modal.find('.modal-body #company_id').val(companyId);
         });
+
 
         // Make the modal draggable
         $('#addTeamModal .modal-dialog').draggable({
