@@ -96,5 +96,17 @@ class TeamsController extends Controller
 
         return back()->with('status', 'Member added successfully!');
     }
+    public function showTeam(Team $team)
+    {
+        return view('boss.team', compact('team'));
+    }
+    public function showOneTeam($id)
+    {
+        $team = Team::with('users')->findOrFail($id);
+        $companyId = $team->company_id; // Assuming company_id exists on the Team model
+        $company = Company::findOrFail($companyId);
+
+        return view('boss.team', compact('team', 'company'));
+    }
 
 }

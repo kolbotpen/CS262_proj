@@ -106,10 +106,15 @@ Route::get('/companies', function () {
 Route::get('/team-all', function () {
     return view('boss.team-all');
 });
-Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET THE TEAM MEMBERS
+Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET ALL THE TEAM MEMBERS
+
 Route::get('/team', function () {
     return view('boss.team');
 });
+
+Route::get('/team/{team}', [TeamsController::class, 'showTeam'])->name('team.show'); // THIS ONE IS TO GET JUST THE ONE TEAM YOU SELECT 
+Route::get('/team/{id}', [TeamsController::class, 'showOneTeam'])->name('team.one');
+
 
 Route::get('/team-add', function () {
     return view('boss.team-add');
