@@ -199,6 +199,22 @@ img.icon {
 
 /* ----- MODAL ----- */
 
+.btn-close {
+    width: 10px;
+    height: 10px;
+    background-image: url('../images/close.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-close:active {
+    border: none;
+}
+
+
 .modal-dialog {
     top: 30%;
     overflow: hidden;

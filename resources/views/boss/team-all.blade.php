@@ -1,6 +1,8 @@
 @extends('layouts.master-workspace')
 @section('content')
 
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 @if (session('success'))
 <div class="alert alert-success">
     {{ session('success') }}
@@ -12,7 +14,7 @@
     {{ session('error') }}
 </div>
 @endif
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
         <a href="/companies" class="breadcrumb-link">Companies</a>
@@ -88,7 +90,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Add Member</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <a type="button" class="btn-close bounce-click" data-bs-dismiss="modal" aria-label="Close" title="Close"></a>
                 </div>
                 <div class="modal-body bg-gray">
                     <form action="{{ route('team.add.member') }}" method="post">
@@ -133,15 +135,9 @@
             modal.find('.modal-body #company_id').val(companyId);
         });
 
-
         // Make the modal draggable
-        $('#addTeamModal .modal-dialog').draggable({
+        $('.modal .modal-dialog').draggable({
             handle: ".modal-header"
-        });
-
-        // Make the logo draggable
-        $('.footer-logo').draggable({
-            cursor: 'grabbing'
         });
     });
 </script>

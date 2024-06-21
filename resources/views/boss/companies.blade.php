@@ -162,9 +162,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Add Team</h4>
-                <a class="close bounce-click" data-dismiss="modal">
-                    <img src="{{asset ('assets/images/close.svg')}}" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);">
-                </a>
+                <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
             </div>
             <div class="modal-body bg-gray">
                 <form action="{{ route('boss.add') }}" method="post" enctype="multipart/form-data">
@@ -194,12 +192,9 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-    src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<script
-    src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script
-    src="{{ asset('assets/js/alert-copy.js') }}"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="{{ asset('assets/js/alert-copy.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('#addTeamModal').on('show.bs.modal', function (event) {
@@ -210,7 +205,7 @@
         });
 
         // Make the modal draggable
-        $('#addTeamModal .modal-dialog').draggable({
+        $('.modal .modal-dialog').draggable({
             handle: ".modal-header"
         });
 
