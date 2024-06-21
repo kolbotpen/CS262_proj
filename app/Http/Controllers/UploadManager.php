@@ -1,16 +1,19 @@
 <?php
 
+
 namespace App\Http\Controllers;
 use App\Models\Task;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UploadManager extends Controller
 {
     function upload()
     {
-        return view("task-insert");
+        $users = User::all(); // Fetch all users
+        return view("boss.task-insert", compact('users'));
     }
+
     public function uploadPost(Request $request)
     {
         $validatedData = $request->validate([
@@ -20,9 +23,8 @@ class UploadManager extends Controller
             'assigned_email' => 'required|email',
             'priority' => 'required|string',
             'progress' => 'required|string',
-            // 'file_upload' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,'
-            'file_upload' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
-
+            'user_id' => 'required|exists:users,id',
+            'file' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
         ]);
 
         $task = new Task;
@@ -32,17 +34,16 @@ class UploadManager extends Controller
         $task->assigned_email = $request->assigned_email;
         $task->priority = $request->priority;
         $task->progress = $request->progress;
+        $task->user_id = $request->user_id;
 
         if ($request->hasFile('file')) {
             $file = $request->file('file');
-            $path = $file->store('tasks', 'public');
+            $path = $file->store('public/tasks');
             $task->file_path = $path;
         }
 
         $task->save();
 
-        session()->flash('status', 'upload-success');
-        return redirect()->back();
+        return redirect()->route('upload')->with('status', 'upload-success');
     }
-
 }

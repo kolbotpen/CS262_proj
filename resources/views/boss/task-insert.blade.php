@@ -1,3 +1,4 @@
+{{-- task-insert.blade.php --}}
 @extends('layouts.master-workspace')
 @section('content')
 
@@ -24,15 +25,12 @@
             <th class="align-middle">Add</th>
             <th class="align-middle"></th>
             <th class="align-middle text-center">
-              {{-- <a class="btn button-gray d-inline-flex align-items-center" href="task-details">
-                <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
-              </a> --}}
             </th>
           </tr>
         </thead>
       </table>
 
-      <form action="{{route('upload.post')}}" method="post" enctype="multipart/form-data">
+      <form action="{{ route('upload.post') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row d-flex">
           {{-- LEFT BOX --}}
@@ -47,9 +45,15 @@
               <label for="assigned_to">Assigned To</label>
               <input type="text" name="assigned_to" class="form-control bg-black text-white border-0 mb-2"
                 placeholder="Assigned to" required>
-              <label for="title">Assigned Email</label>
+              <label for="assigned_email">Assigned Email</label>
               <input type="email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2"
                 placeholder="Assigned email">
+              <label for="user_id">Select User</label>
+              <select name="user_id" class="form-select bg-black text-white border-0 mb-2" required>
+                @foreach ($users as $user)
+                  <option value="{{ $user->id }}">{{ $user->name }}</option>
+                @endforeach
+              </select>
             </div>
           </div>
 
@@ -93,14 +97,12 @@
             </div>
           </div>
         </div>
-
-
       </form>
     </div>
   </div>
 </div>
 
-<script src="{{asset('assets/js/task-insert.js')}}"></script>
-<script src="{{ asset('assets/js/task-insert-display.js')}}"></script>
+<script src="{{ asset('assets/js/task-insert.js') }}"></script>
+<script src="{{ asset('assets/js/task-insert-display.js') }}"></script>
 
 @stop

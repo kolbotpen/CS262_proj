@@ -150,7 +150,7 @@ Route::get('/task-details-edit', function () {
 Route::get('/task-insert', function () {
     return view('boss.task-insert');
 });
-// Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
+Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 // Calendar
 Route::get('/calendar', function () {
