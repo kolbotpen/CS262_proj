@@ -22,8 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Set initial sidebar state based on session storage
     const isSidebarCollapsed = sessionStorage.getItem('sidebarCollapsed') === 'true';
-    sidebarMenu.classList.toggle('collapsed', isSidebarCollapsed);
-    mainContent.classList.toggle('main-shifted', !isSidebarCollapsed);
+    // sidebarMenu.classList.toggle('collapsed', !isSidebarCollapsed); // Remove collapsed class when isSidebarCollapsed is false
+    sidebarMenu.classList.toggle('collapsed', isSidebarCollapsed); // Add sidebar collapsed class when isSidebarCollapsed is true
+    mainContent.classList.toggle('main-shifted', !isSidebarCollapsed); // Add sidebar shifted class when isSidebarCollapsed is false
     sidebarToggleIcon.style.transform = isSidebarCollapsed ? 'rotate(-90deg)' : 'rotate(0deg)';
 
     // Set ACTIVE menu item based on current URL
