@@ -41,12 +41,8 @@ class UploadManager extends Controller
 
         $task->save();
 
-        if ($request->hasFile('file')) {
-            session()->flash('status', 'upload-success');
-            return redirect()->back();
-        } else {
-            return response()->json(['message' => 'No file uploaded.'], 400);
-        }
+        session()->flash('status', 'upload-success');
+        return redirect()->back();
     }
 
 }
