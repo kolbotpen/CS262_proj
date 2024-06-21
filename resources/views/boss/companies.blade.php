@@ -163,7 +163,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Add Team</h4>
                 <a class="close bounce-click" data-dismiss="modal">
-                    <img src="{{asset ('assets/image/close.svg')}}" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);">
+                    <img src="{{asset ('assets/images/close.svg')}}" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);">
                 </a>
             </div>
             <div class="modal-body bg-gray">
