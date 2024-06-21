@@ -68,10 +68,10 @@
                                     <td class="align-middle text-center">
                                         <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
                                             <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
-                                                <img class="icon" src="assets/images/icon-team.svg" draggable="false"> 
+                                                <img class="icon" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
                                             </a>
                                             <a href="task" class="btn btn-secondary">
-                                                <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                                                <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
                                             </a>
                                         </div>
                                     </td>
@@ -110,10 +110,10 @@
                                     <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
                                         aria-label="Button group">
                                         <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
-                                            <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
+                                            <img class="icon me-2" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false">All
                                         </a>
                                         <a class="btn btn-secondary" href="task-all" role="button">
-                                            <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg"
+                                            <img class="icon me-2" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}"
                                                 draggable="false">All
                                         </a>
                                     </div>
@@ -138,10 +138,10 @@
                                     <td class="align-middle text-center">
                                         <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
                                             <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
-                                                <img class="icon" src="assets/images/icon-team.svg" draggable="false"> 
+                                                <img class="icon" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
                                             </a>
                                             <a href="task" class="btn btn-secondary">
-                                                <img class="icon" src="assets/images/icon-sidebar-tasks.svg" draggable="false">
+                                                <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
                                             </a>
                                         </div>
                                     </td>
@@ -163,8 +163,7 @@
             <div class="modal-header">
                 <h4 class="modal-title">Add Team</h4>
                 <a class="close bounce-click" data-dismiss="modal">
-                    <i><img src="assets/images/close.svg" alt="Close" draggable="false"
-                            style="cursor: pointer; transform: scale(1.1);"></i>
+                    <img src="{{asset ('assets/image/close.svg')}}" alt="Close" draggable="false" style="cursor: pointer; transform: scale(1.1);">
                 </a>
             </div>
             <div class="modal-body bg-gray">
@@ -185,8 +184,7 @@
                         <button type="submit" class="btn btn-secondary"
                             role="button">
                             <img class="icon"
-                                src="assets/images/icon-submit.svg"
-                                draggable="false">Submit
+                                src="{{asset ('assets/images/icon-submit.svg')}}" draggable="false">Submit
                         </button>
                     </div>
                 </form>
