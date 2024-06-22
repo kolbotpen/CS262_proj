@@ -43,11 +43,13 @@
               <textarea name="description" class="form-control bg-black text-white border-0 mb-2" rows="5"
                 placeholder="Task Description"></textarea>
               <label for="assigned_to">Assigned To</label>
-              <input type="text" name="assigned_to" class="form-control bg-black text-white border-0 mb-2"
-                placeholder="Assigned to" value="{{ $user->name }}">
+              <select id="assigned_to" name="assigned_to" class="form-control bg-black text-white border-0 mb-2">
+              @foreach($users as $user)
+                  <option value="{{ $user->id }}" data-email="{{ $user->email }}">{{ $user->name }}</option>
+              @endforeach
+              </select>
               <label for="assigned_email">Assigned Email</label>
-              <input type="email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2"
-                placeholder="Assigned email" value="{{ $user->email }}">
+              <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
             </div>
           </div>
 
@@ -100,5 +102,10 @@
 
 <script src="{{ asset('assets/js/task-insert.js') }}"></script>
 <script src="{{ asset('assets/js/task-insert-display.js') }}"></script>
-
+<script>
+  document.getElementById('assigned_to').addEventListener('change', function() {
+      var selectedUserEmail = this.options[this.selectedIndex].getAttribute('data-email');
+      document.getElementById('assigned_email').value = selectedUserEmail;
+  });
+</script>
 @stop

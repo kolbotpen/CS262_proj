@@ -43,7 +43,7 @@
                                             <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                         </a>
                                         <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
-                                            <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
+                                            <img class="icon me-2" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">All
                                         </a>
                                     </div>
                                 </th>
@@ -111,9 +111,8 @@
                                         <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
                                             <img class="icon me-2" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false">All
                                         </a>
-                                        <a class="btn btn-secondary" href="task-all" role="button">
-                                            <img class="icon me-2" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}"
-                                                draggable="false">All
+                                        <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
+                                            <img class="icon me-2" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">All
                                         </a>
                                     </div>
                                 </th>
