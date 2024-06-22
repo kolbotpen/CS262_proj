@@ -3,11 +3,18 @@
 
 namespace App\Http\Controllers;
 use App\Models\Task;
+use App\Models\Team;
 use App\Models\User;
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class UploadManager extends Controller
 {
+    public function tasksForCompany(Company $company)
+    {
+        $teams = Team::where('company_id', $company->id)->get();
+        return view('boss.task-all', compact('teams', 'company'));
+    }
     function upload()
     {
         $users = User::all(); // Fetch all users
@@ -46,4 +53,5 @@ class UploadManager extends Controller
 
         return redirect()->route('upload')->with('status', 'upload-success');
     }
+
 }

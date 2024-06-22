@@ -16,6 +16,7 @@ class CreateTasksTable extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->string('title');
             $table->text('description');
             $table->string('assigned_to');
@@ -23,8 +24,9 @@ class CreateTasksTable extends Migration
             $table->string('priority');
             $table->string('progress');
             $table->string('file_path')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null');
         });
     }
 

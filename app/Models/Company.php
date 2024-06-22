@@ -41,6 +41,17 @@ class Company extends Model
 
         return $code;
     }
+    public function tasks()
+{
+    return $this->hasManyThrough(
+        Task::class, // The model to access through the relationship
+        Team::class, // The intermediate model
+        'company_id', // Foreign key on the Team model
+        'team_id', // Foreign key on the Task model
+        'id', // Local key on the Company model
+        'id'  // Local key on the Team model
+    );
+}
 }
 
 

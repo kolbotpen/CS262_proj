@@ -135,6 +135,7 @@ Route::get('/task-all', function () {
 Route::get('/task', function () {
     return view('boss.task');
 });
+Route::get('/task-all/{company}', [UploadManager::class, 'tasksForCompany'])->name('task.forCompany');
 
 // INSERTING FILES
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
