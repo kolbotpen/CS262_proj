@@ -69,6 +69,8 @@
     pointer-events: none; /* Disable interaction when collapsed */
 }
 
+
+/* Navigation link styles */
 .nav-link {
     color: #8a8a8a;
     padding: 10px 20px;
@@ -92,6 +94,12 @@
     transition-duration: 0.2s;
 }
 
+/* Apply the jumping animation on hover */
+.nav-link:hover .icon,
+.nav-link:focus .icon {
+    animation: jump 0.5s infinite;
+}
+
 .nav-link.active .icon {
     filter: brightness(1) !important;
 }
@@ -105,6 +113,7 @@
     transition: opacity 0.2s ease;
     opacity: 1;
 }
+
 
 #sidebarMenu.collapsed .nav-link span {
     opacity: 0; /* Hide text when collapsed */

@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-md-6 mb-4 d-flex flex-column justify-content-center">
                 <h6 class="text-center text-green mb-3 bold-300 inter">WE'D LIKE TO HEAR SO MUCH FROM YOU!</h6>
-                <h1 class="text-green-gradient display-4 text-center"><img class="icon-huge" src="assets/images/icon-contact.svg" draggable="false">Contact Us</h1>
+                <h1 class="text-green-gradient display-4 text-center"><img class="icon-huge heartbeat" src="assets/images/icon-contact.svg" draggable="false">Contact Us</h1>
                 <p class="text-gray text-center-justify">We value your feedback and are here to assist you. Please contact our team with the provided email or fill out the contact form on our website.</p>
             </div>
             <div class="col-md-6 justify-content-center align-content-center overflow-hidden pc-hidden">

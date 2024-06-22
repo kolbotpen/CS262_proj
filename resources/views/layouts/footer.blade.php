@@ -20,7 +20,7 @@
 
         <div class="footer3">
             <div class="footer-logo-slogan">
-                <img class="footer-logo" src="{{ asset('assets/images/logo2.svg') }}" alt="LOGO" draggable="false">
+                <img class="footer-logo floating" src="{{ asset('assets/images/logo2.svg') }}" alt="LOGO" draggable="false">
                 <h6>FIND OUT WHAT WE'RE UP TO!</h6>
             </div>
             <ul class="social-icons">
