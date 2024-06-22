@@ -31,6 +31,12 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ url('/requests') }}">
+                        <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-requests.svg')}}" draggable="false">
+                        <span class="text">Requests</span>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url('/settings') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-settings.svg')}}" draggable="false">
                         <span class="text">Settings</span>
