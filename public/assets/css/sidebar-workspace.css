@@ -3,27 +3,32 @@
     transition-duration: 0.2s;
 }
 
-/* Padding-left is 65px when sidebar is collapsed, and 270px when sidebar is expanded */
-.main-content {
+/* COLLAPSED (PC SCREEN) */
+.main-content, .footer {
     /* default padding-left is 65px because the sidebar is collapsed by default */
     padding-left: 65px;
     transition: padding-left 0.2s ease;
     background-color: #121212;
     transition-duration: 0.2s;
 }
+
+/* EXPANDED (PC SCREEN) */
+.main-shifted, .footer-shifted {
+    padding-left: 270px;
+}
+
+/* COLLAPSED + EXPANDED (MOBILE SCREEN) */
 @media (max-width: 768px) {
-    .main-content {
+    .main-content, .footer {
         padding-left: 80px;
     }
     /* prevent the padding-left from being 270px when expanded while the screen is too small */
-    .main-shifted {
+    .main-shifted, .footer-shifted {
         padding-left: 80px !important;
     }
 }
-/* PC screen, padding-left 270px */
-.main-shifted {
-    padding-left: 270px;
-}
+
+
 
 
 
@@ -64,6 +69,8 @@
     pointer-events: none; /* Disable interaction when collapsed */
 }
 
+
+/* Navigation link styles */
 .nav-link {
     color: #8a8a8a;
     padding: 10px 20px;
@@ -87,6 +94,12 @@
     transition-duration: 0.2s;
 }
 
+/* Apply the jumping animation on hover */
+.nav-link:hover .icon,
+.nav-link:focus .icon {
+    animation: jump 0.5s infinite;
+}
+
 .nav-link.active .icon {
     filter: brightness(1) !important;
 }
@@ -100,6 +113,7 @@
     transition: opacity 0.2s ease;
     opacity: 1;
 }
+
 
 #sidebarMenu.collapsed .nav-link span {
     opacity: 0; /* Hide text when collapsed */

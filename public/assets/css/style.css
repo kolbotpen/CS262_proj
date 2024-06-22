@@ -423,6 +423,36 @@ section.fade-in {
   }
 }
 
+@keyframes jump {
+  0%, 100% {
+      transform: translateY(2);
+  }
+  50% {
+      transform: translateY(-3px);
+  }
+}
+
+.heartbeat {
+  animation: heartbeat 1s infinite;
+}
+
+.heartbeat-hover:hover {
+  animation: heartbeat 1s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 14%, 28%, 42%, 70%, 100% {
+      transform: scale(1);
+  }
+  20%, 50% {
+      transform: scale(1.2);
+  }
+  35%, 55% {
+      transform: scale(1.07);
+  }
+}
+
+
 
 
 

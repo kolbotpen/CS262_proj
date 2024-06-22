@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UploadManager;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JoinRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -159,6 +160,13 @@ Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.
 Route::get('/calendar', function () {
     return view('boss.calendar');
 });
+
+// Requests
+Route::get('/requests', [JoinRequestController::class, 'index'])->name('requests.index');
+Route::patch('/requests/{request}/approve', [JoinRequestController::class, 'approve'])->name('requests.approve');
+Route::delete('/requests/{request}/reject', [JoinRequestController::class, 'reject'])->name('requests.reject');
+
+
 
 // Settings
 Route::get('/settings', function () {

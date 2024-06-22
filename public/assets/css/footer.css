@@ -2,7 +2,7 @@
 .flex-container {
     display: flex;
     flex-direction: column;
-    min-height: 70vh;
+    min-height: 60vh;
 }
 
 /* Content Area */
@@ -121,7 +121,8 @@ footer {
     text-align: center;
 }
 .footer-logo {
-    margin-top: -20px;
+    margin-top: -40px;
+    margin-bottom: 20px;
     max-width: 140px; /* Limit the height of the logo to prevent collision */
     min-width: 80px;
 }
