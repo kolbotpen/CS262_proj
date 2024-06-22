@@ -12,9 +12,9 @@
   </div>
 
   @if (session('status') === 'upload-success')
-  <div class="alert alert-success">
+    <div class="alert alert-success">
     Upload success!
-  </div>
+    </div>
   @endif
   {{-- CONTAINER 1 --}}
   <div class="container bg-gray p-0 rounded container-border">
@@ -44,16 +44,10 @@
                 placeholder="Task Description"></textarea>
               <label for="assigned_to">Assigned To</label>
               <input type="text" name="assigned_to" class="form-control bg-black text-white border-0 mb-2"
-                placeholder="Assigned to" required>
+                placeholder="Assigned to" value="{{ $user->name }}">
               <label for="assigned_email">Assigned Email</label>
               <input type="email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2"
-                placeholder="Assigned email">
-              <label for="user_id">Select User</label>
-              <select name="user_id" class="form-select bg-black text-white border-0 mb-2" required>
-                @foreach ($users as $user)
-                  <option value="{{ $user->id }}">{{ $user->name }}</option>
-                @endforeach
-              </select>
+                placeholder="Assigned email" value="{{ $user->email }}">
             </div>
           </div>
 
@@ -83,14 +77,16 @@
           <div class="col-md-12">
             <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
               <p class="mb-3">Drag and drop file here</p>
-              <button id="uploadButton" class="btn btn-secondary mb-2 table-border">Or click here to select file(s)</button>
+              <button id="uploadButton" class="btn btn-secondary mb-2 table-border">Or click here to select
+                file(s)</button>
               <!-- Display area for uploaded files -->
               <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0">
               <div id="fileListContainer" class="d-flex flex-column align-items-center">
                 <div id="fileList"></div>
               </div>
             </div>
-            <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
+            <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group"
+              aria-label="Button group">
               <button type="submit" class="btn btn-secondary" role="button">
                 <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
               </button>
