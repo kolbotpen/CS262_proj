@@ -10,7 +10,7 @@ class JoinRequestController extends Controller
     public function index()
     {
         $requests = JoinRequest::all();
-        return view('boss.requests', compact('requests'));
+        return view('boss.all-members', compact('requests'));
     }
 
     public function approve($id)
@@ -19,7 +19,7 @@ class JoinRequestController extends Controller
         $request->status = 'approved';
         $request->save();
 
-        return redirect()->route('requests.index')->with('success', 'Request approved.');
+        return redirect()->route('all-members.index')->with('success', 'Request approved.');
     }
 
     public function reject($id)
@@ -27,6 +27,6 @@ class JoinRequestController extends Controller
         $request = JoinRequest::findOrFail($id);
         $request->delete();
 
-        return redirect()->route('requests.index')->with('success', 'Request rejected.');
+        return redirect()->route('all-members.index')->with('success', 'Request rejected.');
     }
 }

@@ -46,14 +46,21 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 2 --}}
@@ -64,14 +71,21 @@
                     <td class="align-middle text-center"><div class="pill pill-yellow center">Medium</div></td>
                     <td class="align-middle text-center"><div class="pill pill-yellow center">In-Progress</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 3 --}}
@@ -82,14 +96,21 @@
                     <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
                     <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 4 --}}
@@ -100,14 +121,21 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 5 --}}
@@ -118,14 +146,21 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 6 --}}
@@ -136,14 +171,21 @@
                     <td class="align-middle text-center"><div class="pill pill-red center">High</div></td>
                     <td class="align-middle text-center"><div class="pill center">Not Started</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
                 {{-- Task 7 --}}
@@ -154,14 +196,21 @@
                     <td class="align-middle text-center"><div class="pill pill-green center">Low</div></td>
                     <td class="align-middle text-center"><div class="pill pill-green center">Completed</div></td>
                     <td class="align-middle text-center">
-                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
-                            <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                <img class="icon me-2" src="assets/images/icon-edit.svg" draggable="false">
-                            </a>
-                            <a class="btn btn-danger" href="#" role="button">
-                                <img class="icon me-2" src="assets/images/icon-trash.svg" draggable="false">
-                            </a>
-                        </div>
+                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                    role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" href="#" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
+                                            draggable="false">
+                                    </a>
+                                </div>
                     </td>
                 </tr>
             </tbody>

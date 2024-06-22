@@ -47,11 +47,11 @@
                                 <div class="btn-group table-border option-btn" style="background-color: #303030"
                                     role="group" aria-label="Button group">
                                     <a class="btn btn-secondary" href="mailto:{{ $member->email }}" role="button">
-                                        <img class="icon me-2" src="{{ asset('assets/images/icon-mail.svg') }}"
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
                                             draggable="false">
                                     </a>
                                     <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon me-2" src="{{ asset('assets/images/icon-trash.svg') }}"
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
                                             draggable="false">
                                     </a>
                                 </div>

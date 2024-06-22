@@ -161,10 +161,13 @@ Route::get('/calendar', function () {
     return view('boss.calendar');
 });
 
-// Requests
-Route::get('/requests', [JoinRequestController::class, 'index'])->name('requests.index');
-Route::patch('/requests/{request}/approve', [JoinRequestController::class, 'approve'])->name('requests.approve');
-Route::delete('/requests/{request}/reject', [JoinRequestController::class, 'reject'])->name('requests.reject');
+// ALL MEMBERS - REQUESTS
+Route::get('/all-members', function () {
+    return view('boss.all-members');
+});
+Route::get('/all-members', [JoinRequestController::class, 'index'])->name('all-members.index');
+Route::patch('/all-members/{request}/approve', [JoinRequestController::class, 'approve'])->name('all-members.approve');
+Route::delete('/all-members/{request}/reject', [JoinRequestController::class, 'reject'])->name('all-members.reject');
 
 
 

@@ -1,12 +1,6 @@
 @extends('layouts.master-workspace')
 @section('content')
 
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-
 <div class="container">
     {{-- BREADCRUMB --}}
     <div class="breadcrumb mt-4 mb-4">
@@ -14,6 +8,12 @@
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">Create</a>
     </div>
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">{{ session('success') }}
+    </div>
+    @endif
 
     {{-- CONTAINER 1 --}}
     <div class="container bg-gray p-0 rounded container-border">

@@ -41,6 +41,11 @@ class Company extends Model
 
         return $code;
     }
+    // THIS IS FOR SHOWING ONLY PUBLIC COMPANIES IN BROWSE-SEARCH
+    public function scopePublic($query)
+    {
+        return $query->where('visibility', 'public');
+    }
     public function tasks()
 {
     return $this->hasManyThrough(

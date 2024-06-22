@@ -19,9 +19,9 @@
                             <th class="align-middle">Team</th>
                             <th class="align-middle">{{ $team->name }}</th>
                             <th class="align-middle text-center">
-                                <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
+                                <div class="btn-group table-border th-btn" role="group"
                                     aria-label="Button group">
-                                    <a class="btn btn-secondary" href="{{ url('task-insert?team_id=' . $team->id) }}"
+                                    <a class="btn btn-success bg-green-gradient" href="{{ url('task-insert?team_id=' . $team->id) }}"
                                         role="button">
                                         <img class="icon me-2" src="{{ asset('assets/images/icon-add.svg') }}"
                                             draggable="false">Add Task
@@ -58,12 +58,16 @@
                             <td class="align-middle text-center">
                                 <div class="btn-group table-border option-btn" style="background-color: #303030"
                                     role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
                                     <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-edit.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                             draggable="false">
                                     </a>
                                     <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-trash.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
                                             draggable="false">
                                     </a>
                                 </div>
@@ -83,12 +87,16 @@
                             <td class="align-middle text-center">
                                 <div class="btn-group table-border option-btn" style="background-color: #303030"
                                     role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
                                     <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-edit.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                             draggable="false">
                                     </a>
                                     <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-trash.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
                                             draggable="false">
                                     </a>
                                 </div>
@@ -108,12 +116,16 @@
                             <td class="align-middle text-center">
                                 <div class="btn-group table-border option-btn" style="background-color: #303030"
                                     role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
                                     <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-edit.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                             draggable="false">
                                     </a>
                                     <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-trash.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
                                             draggable="false">
                                     </a>
                                 </div>
@@ -133,12 +145,16 @@
                             <td class="align-middle text-center">
                                 <div class="btn-group table-border option-btn" style="background-color: #303030"
                                     role="group" aria-label="Button group">
+                                    <a class="btn btn-secondary" href="task-details" role="button">
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                            draggable="false">
+                                    </a>
                                     <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-edit.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                             draggable="false">
                                     </a>
                                     <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon me-2" src="{{asset('assets/images/icon-trash.svg')}}"
+                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
                                             draggable="false">
                                     </a>
                                 </div>

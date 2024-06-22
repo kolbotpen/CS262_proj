@@ -8,6 +8,14 @@ use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
+    // SHOW PUBLIC COMPANIES IN BROWSE-SEARCH
+    public function showBrowseSearch()
+    {
+        // $companies = Company::all(); // Fetch all companies
+        $companies = Company::public()->get(); // Fetch only public companies
+        return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
+    }
+
     // ADD COMPANIES
     public function showAddCompanyForm()
     {
@@ -99,13 +107,6 @@ class CompanyController extends Controller
         ]);
 
         return redirect()->route('company-workspace')->with('success', 'Company updated successfully.');
-    }
-
-    // SHOW BROWSE SEARCH
-    public function showBrowseSearch()
-    {
-        $companies = Company::all(); // Fetch all companies
-        return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
     }
     
     // CREATE COMPANY IN BROWSE

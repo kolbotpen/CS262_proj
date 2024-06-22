@@ -66,11 +66,11 @@
                                 role="group" aria-label="Button group">
                                 <a class="btn btn-secondary" href="mailto:{{ $user->email }}" role="button">
                                     <!-- Replace 'email' with the actual field name for the user email in your database -->
-                                    <img class="icon me-2" src="{{ asset('assets/images/icon-mail.svg') }}"
+                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
                                         draggable="false">
                                 </a>
                                 <a class="btn btn-danger" href="#" role="button">
-                                    <img class="icon me-2" src="{{ asset('assets/images/icon-trash.svg') }}"
+                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
                                         draggable="false">
                                 </a>
                             </div>

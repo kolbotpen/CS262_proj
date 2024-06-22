@@ -31,7 +31,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/requests') }}">
+                    <a class="nav-link" href="{{ url('/all-members') }}">
                         <img class="icon" style="filter: brightness(0.5)" src="{{ asset('assets/images/icon-sidebar-requests.svg')}}" draggable="false">
                         <span class="text">Requests</span>
                     </a>

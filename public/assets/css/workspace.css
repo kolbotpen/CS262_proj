@@ -5,6 +5,13 @@ input#fileElem.left-0 {
 
 /* ----- TEXTS ----- */
 
+.count {
+    background-color: #B6192A;
+    border-radius: 12px;
+    margin-left: 5px;
+    padding: 2px 8px;
+}
+
 /* bullet points */
 ul.todo-list li {
     color: #8a8a8a;
