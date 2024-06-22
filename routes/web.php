@@ -49,9 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-// INSERTING FILES
-Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
-Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
+
 
 // SHOW COMPANY 
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
@@ -137,6 +135,10 @@ Route::get('/task-all', function () {
 Route::get('/task', function () {
     return view('boss.task');
 });
+
+// INSERTING FILES
+Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
+Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
 
 // Task Details
 Route::get('/task-details', function () {
