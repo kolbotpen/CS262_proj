@@ -50,6 +50,7 @@
               </select>
               <label for="assigned_email">Assigned Email</label>
               <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
+              <input type="hidden" name="team_id" value="{{ $teamId }}">
             </div>
           </div>
 
