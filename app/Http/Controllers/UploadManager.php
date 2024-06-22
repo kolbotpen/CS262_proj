@@ -20,7 +20,21 @@ class UploadManager extends Controller
     public function upload()
     {
         $user = Auth::user(); // Get the currently authenticated user
-        $users = User::all();
+
+        // Assuming a user can belong to multiple teams, and there's a 'teams' relationship defined in the User model
+        $teams = $user->teams;
+
+        // Get all user IDs from these teams
+        $userIds = [];
+        foreach ($teams as $team) {
+            $teamUserIds = $team->users->pluck('id')->toArray(); // Assuming there's a 'users' relationship defined in the Team model
+            $userIds = array_merge($userIds, $teamUserIds);
+        }
+        $userIds = array_unique($userIds); // Remove duplicate user IDs
+
+        // Fetch users that are part of the authenticated user's teams
+        $users = User::whereIn('id', $userIds)->get();
+
         return view("boss.task-insert", compact('user', 'users'));
     }
 
