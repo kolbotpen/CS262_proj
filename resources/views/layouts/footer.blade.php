@@ -1,4 +1,4 @@
-<footer class="position-relative">
+<footer class="position-relative footer">
     <div class="footer-grid-container">
         <div class="footer1 outfit">
             <h6>CONTACT US &bull; 💌</h6>
