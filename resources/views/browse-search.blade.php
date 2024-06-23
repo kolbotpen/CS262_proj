@@ -176,7 +176,7 @@
             modal.find('#company_description').text(companyDescription);
         });
 
-        // Initialize the draggable functionality
+        // Make modal draggable
         $('#companyDetailsModal .modal-dialog').draggable({
             handle: ".modal-header"
         });
