@@ -71,6 +71,8 @@
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
               </select>
+              <label for="due_date">Due Date</label>
+              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date">
             </div>
           </div>
         </div>
@@ -101,12 +103,61 @@
   </div>
 </div>
 
-<script src="{{ asset('assets/js/task-insert.js') }}"></script>
-<script src="{{ asset('assets/js/task-insert-display.js') }}"></script>
+<!-- Include jQuery and jQuery UI -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Custom styles for jQuery UI Datepicker -->
+<style>
+  .ui-datepicker {
+    background: black;
+    border: 1px solid #555;
+    color: white;
+  }
+  
+  .ui-datepicker-header {
+    background: #333;
+    color: white;
+  }
+  
+  .ui-datepicker-title {
+    color: white;
+  }
+  
+  .ui-datepicker th {
+    color: white;
+  }
+  
+  .ui-datepicker td span, .ui-datepicker td a {
+    color: white;
+  }
+  
+  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, .ui-button:active, .ui-button:focus {
+    background: #444;
+    border: 1px solid #555;
+    color: white;
+  }
+  
+  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-button.ui-state-active:hover {
+    background: #666;
+    border: 1px solid #777;
+    color: white;
+  }
+</style>
+
 <script>
   document.getElementById('assigned_to').addEventListener('change', function() {
       var selectedUserEmail = this.options[this.selectedIndex].getAttribute('data-email');
       document.getElementById('assigned_email').value = selectedUserEmail;
   });
 </script>
+<script>
+  $(function() {
+    $("#due_date").datepicker({
+      dateFormat: 'yy-mm-dd'
+    });
+  });
+</script>
+
 @stop

@@ -45,6 +45,7 @@ class UploadManager extends Controller
             'priority' => 'required|string',
             'progress' => 'required|string',
             'assigned_to' => 'required|exists:users,id',
+            'due_date' => 'nullable|date',
             'team_id' => 'required|exists:teams,id', // Validate team_id
             'file' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
         ]);
@@ -57,6 +58,7 @@ class UploadManager extends Controller
         $task->assigned_email = $assignedUser->email;
         $task->priority = $request->priority;
         $task->progress = $request->progress;
+        $task->due_date = $request->due_date;
         $task->user_id = $assignedUser->id;
         $task->team_id = $request->team_id; // Save the team_id from the request
 

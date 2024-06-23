@@ -50,7 +50,7 @@
                                 <tr>
                                     <td>{{ $task->title }}</td>
                                     <td>{{ $task->assigned_to }}</td>
-                                    <td>TODAY</td>
+                                    <td>{{ $task->due_date}}</td>
                                     <td class="text-center">
                                         <div class="pill {{ $task->priority == 'Low' ? 'pill-green' : ($task->priority == 'Medium' ? 'pill-yellow' : 'pill-red') }} center">{{ $task->priority }}</div>
                                     </td>
