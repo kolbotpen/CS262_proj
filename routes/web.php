@@ -138,7 +138,7 @@ Route::get('/task', function () {
     return view('boss.task');
 });
 Route::get('/task-all/{company}', [UploadManager::class, 'tasksForCompany'])->name('task.forCompany');
-
+Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
 // INSERTING FILES
 Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
 Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");

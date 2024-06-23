@@ -19,4 +19,23 @@ class Task extends Model
     {
         return $this->belongsTo(Team::class); 
     }
+    public function priorityColor()
+    {
+        switch ($this->priority) {
+            case 'High':
+                return 'pill-red';
+            case 'Medium':
+                return 'pill-yellow';
+            case 'Low':
+                return 'pill-green';
+            case 'In-Progress':
+                return 'pill-yellow'; // Assuming you want the same color as Medium
+            case 'Not Started':
+                return ''; // Default pill class, no additional color
+            case 'Completed':
+                return 'pill-green';
+            default:
+                return ''; // Default case if none of the above matches
+        }
+    }
 }

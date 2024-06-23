@@ -19,10 +19,9 @@
                             <th class="align-middle">Team</th>
                             <th class="align-middle">{{ $team->name }}</th>
                             <th class="align-middle text-center">
-                                <div class="btn-group table-border th-btn" role="group"
-                                    aria-label="Button group">
-                                    <a class="btn btn-success bg-green-gradient" href="{{ url('task-insert?team_id=' . $team->id) }}"
-                                        role="button">
+                                <div class="btn-group table-border th-btn" role="group" aria-label="Button group">
+                                    <a class="btn btn-success bg-green-gradient"
+                                        href="{{ url('task-insert?team_id=' . $team->id) }}" role="button">
                                         <img class="icon me-2" src="{{ asset('assets/images/icon-add.svg') }}"
                                             draggable="false">Add Task
                                     </a>
@@ -45,121 +44,59 @@
                     <tbody>
                         {{-- Iterate over tasks for this team --}}
                         {{-- Task 1 --}}
-                        <tr>
-                            <td class="align-middle">Review Wireframes</td>
-                            <td class="align-middle">Barry Allen</td>
-                            <td class="align-middle">Today</td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-yellow center">Medium</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-yellow center">In-Progress</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                    role="group" aria-label="Button group">
-                                    <a class="btn btn-secondary" href="task-details" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Task 2 --}}
-                        <tr>
-                            <td class="align-middle">Update user documentation</td>
-                            <td class="align-middle">Clark Kent</td>
-                            <td class="align-middle">Tomorrow</td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-yellow center">Medium</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-yellow center">In-Progress</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                    role="group" aria-label="Button group">
-                                    <a class="btn btn-secondary" href="task-details" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Task 3 --}}
-                        <tr>
-                            <td class="align-middle">Test new features</td>
-                            <td class="align-middle">John Doe</td>
-                            <td class="align-middle">April 24th</td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-red center">High</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="pill center">Not Started</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                    role="group" aria-label="Button group">
-                                    <a class="btn btn-secondary" href="task-details" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- Task 4 --}}
-                        <tr>
-                            <td class="align-middle">Fix CSS bugs</td>
-                            <td class="align-middle">Ben Dover</td>
-                            <td class="align-middle">Today</td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-green center">Low</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="pill pill-green center">Completed</div>
-                            </td>
-                            <td class="align-middle text-center">
-                                <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                    role="group" aria-label="Button group">
-                                    <a class="btn btn-secondary" href="task-details" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-secondary" href="task-details-edit" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                    <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon mx-auto" src="{{asset('assets/images/icon-trash.svg')}}"
-                                            draggable="false">
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
+                        @if($tasks->isNotEmpty())
+                            @foreach($tasks->where('team_id', $team->id) as $task)
+                                {{-- Display each task --}}
+                                <tr>
+                                    <td>{{ $task->title }}</td>
+                                    <td>{{ $task->assigned_to }}</td>
+                                    <td>TODAY</td>
+                                    <td class="text-center">
+                                        <div class="pill {{ $task->priority == 'Low' ? 'pill-green' : ($task->priority == 'Medium' ? 'pill-yellow' : 'pill-red') }} center">{{ $task->priority }}</div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="pill {{ $task->progress == 'Completed' ? 'pill-green' : ($task->progress == 'In Progress' ? 'pill-yellow' : '') }} center">
+                                            {{ $task->progress }}
+                                        </div>
+                                    </td>
+                                    <td class="text-center">
+                                        <div class="btn-group" role="group" aria-label="Task options">
+                                            <!-- <button src="{{asset('assets/images/icon-trash.svg')}}" type="button"
+                                                class="btn btn-danger"
+                                                onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();"></button>
+                                            <form id="delete-task-form-{{ $task->id }}"
+                                                action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form> -->
+                                        </div>
+                                        <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                            role="group" aria-label="Button group">
+                                            <a class="btn btn-secondary" href="task-details/{{ $task->id }}" role="button">
+                                                <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
+                                                    draggable="false">
+                                            </a>
+                                            <a class="btn btn-secondary" href="task-details-edit/{{ $task->id }}" role="button">
+                                                <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
+                                                    draggable="false">
+                                            </a>
+                                            <form id="delete-task-form-{{ $task->id }}" action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                            <button type="button" class="btn btn-danger" onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();">
+                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false">
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        @else
+                            <tr>
+                                <td colspan="6" class="text-center">No tasks found</td>
+                            </tr>
+                        @endif
+
                     </tbody>
                 </table>
             </div>

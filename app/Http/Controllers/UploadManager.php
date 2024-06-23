@@ -15,7 +15,10 @@ class UploadManager extends Controller
     public function tasksForCompany(Company $company)
     {
         $teams = Team::where('company_id', $company->id)->get();
-        return view('boss.task-all', compact('teams', 'company'));
+        $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get(); // This line is correct but ensure it's used properly in the view
+
+        // Ensure the view differentiates tasks by team correctly
+        return view('boss.task-all', compact('teams', 'company', 'tasks'));
     }
     public function upload(Request $request)
     {
@@ -27,7 +30,7 @@ class UploadManager extends Controller
             $userIds = array_merge($userIds, $teamUserIds);
         }
 
-        
+
         $userIds = array_unique($userIds);
         $users = User::whereIn('id', $userIds)->get();
         $teamId = $request->query('team_id'); // Retrieve the team ID from the query parameters
@@ -65,4 +68,13 @@ class UploadManager extends Controller
         $task->save();
         return redirect()->route('upload')->with('status', 'upload-success');
     }
+
+    public function destroy($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->delete();
+
+        return redirect()->back()->with('success', 'Task deleted successfully.');
+    }
+
 }
