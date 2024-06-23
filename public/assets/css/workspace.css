@@ -16,19 +16,35 @@ input#fileElem.left-0 {
 ul.todo-list li {
     color: #8a8a8a;
 }
+
 ul.todo-list li a {
     font-weight: 400 !important;
     font-size: 18px !important;
     color: #8a8a8a;
 }
 
-p, a, span, label, address, input, textarea, select {
+p,
+a,
+span,
+label,
+address,
+input,
+textarea,
+select {
     font-size: 18px !important;
 }
 
-@media (max-width: 991px){
-    p, a, span, label, address, input, textarea, select {
-      font-size: 16px !important;
+@media (max-width: 991px) {
+
+    p,
+    a,
+    span,
+    label,
+    address,
+    input,
+    textarea,
+    select {
+        font-size: 16px !important;
     }
 }
 
@@ -37,33 +53,45 @@ p, a, span, label, address, input, textarea, select {
 .table-company-name {
     border-bottom: rgb(73, 73, 73) 2px solid;
 }
+
 .container-border {
     border: rgb(73, 73, 73) 0px solid;
 }
+
 .table-border {
     border: rgb(73, 73, 73) 2px solid;
 }
-table, th, tr, td {
+
+table,
+th,
+tr,
+td {
     padding-left: 15px !important;
     padding-right: 15px;
     font-family: 'Outfit', sans-serif !important;
     color: white !important;
     border: none;
 }
+
 th {
     background-color: #373738 !important;
-    height: 55px; /* specific height */
+    height: 55px;
+    /* specific height */
     display: table-cell;
     vertical-align: middle;
 }
+
 tbody tr:nth-child(even) td {
     background-color: #232323 !important;
 }
+
 tbody tr:nth-child(odd) td {
     background-color: #202020 !important;
 }
+
 td {
-    height: fit-content; /* Match the height of the header */
+    height: fit-content;
+    /* Match the height of the header */
     display: table-cell;
     vertical-align: middle;
 }
@@ -73,14 +101,17 @@ td {
 .table-container {
     overflow: hidden;
 }
+
 .table-container-scroll {
     overflow-x: auto;
 }
+
 .table-container-scroll table {
     min-width: 836px;
     width: 100%;
     table-layout: fixed;
 }
+
 @media (max-width: 836px) {
     .table-container-scroll table {
         width: 836px;
@@ -93,6 +124,7 @@ a.btn {
     height: 100%;
     flex: 1 1 auto;
 }
+
 .btn-group {
     /* margin: auto; */
     min-width: 0 !important;
@@ -101,9 +133,11 @@ a.btn {
     display: flex;
     flex-wrap: nowrap;
 }
+
 .btn-group.th-btn {
     margin-left: auto;
 }
+
 .btn-group.option-btn {
     margin: auto;
 }
@@ -122,7 +156,7 @@ img.icon {
 
 .pill {
     display: flex;
-    align-items:center;
+    align-items: center;
     text-align: center;
     flex-direction: row;
     min-width: 0px;
@@ -134,12 +168,15 @@ img.icon {
     /* margin-left: auto;
     margin-right: auto; */
 }
+
 .pill-red {
     background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);
 }
+
 .pill-yellow {
     background: linear-gradient(90deg, #FED816 0%, #D38001 100%);
 }
+
 .pill-green {
     background: linear-gradient(90deg, #73C649 0%, #128850 100%);
 }
@@ -155,6 +192,7 @@ img.icon {
     background-color: #282828;
     /* border-radius: 10px; */
 }
+
 .calendar div {
     display: flex;
     align-items: center;
@@ -162,13 +200,16 @@ img.icon {
     height: 40px;
     color: white;
 }
+
 .calendar .header {
     font-weight: 600;
 }
+
 .calendar .day {
     background-color: #202020;
     border-radius: 5px;
 }
+
 .calendar-header {
     display: flex;
     justify-content: center;
@@ -229,13 +270,17 @@ body.modal-open {
 .modal {
     padding-bottom: 70px;
     overflow-y: scroll;
-    -ms-overflow-style: none !important; /* Hide scrollbar in Internet Explorer and Edge */
-    scrollbar-width: none !important; /* Hide scrollbar in Firefox */
+    -ms-overflow-style: none !important;
+    /* Hide scrollbar in Internet Explorer and Edge */
+    scrollbar-width: none !important;
+    /* Hide scrollbar in Firefox */
 }
 
 .modal::-webkit-scrollbar {
-    width: 0px; /* Hide scrollbar in WebKit browsers */
-    background: transparent; /* Optional: helps with visibility in some cases */
+    width: 0px;
+    /* Hide scrollbar in WebKit browsers */
+    background: transparent;
+    /* Optional: helps with visibility in some cases */
 }
 
 .modal-dialog {
@@ -288,5 +333,103 @@ body.modal-open {
     width: 100% !important;
 }
 
-/* ANIMATION KEYFRAMES CAN BE FOUND STYLE.CSS */
+/* ----- JQuery UI Datepicker ----- */
+/* WHOLE DATEPICKER CONTAINER */
+.ui-datepicker {
+    overflow: hidden !important;
+    padding: 0 !important;
+    border-radius: 5px !important;
+    border: 2px solid #2f2f2f !important;
+    position: absolute !important;
+    width: fit-content !important;
+    background: #202020 !important;
+    color: white !important;
+    box-shadow: #0000008f 0px 0px 25px !important;
+}
 
+/* MONTH NEXT BUTTONS */
+.ui-datepicker-prev,
+.ui-datepicker-next {
+    transition: background 0.1s ease-in-out !important;
+}
+
+.ui-datepicker-prev:hover,
+.ui-datepicker-next:hover {
+    border: none !important;
+    background: #3a224a !important;
+    cursor: pointer !important;
+}
+
+/* MONTH CONTAINER */
+.ui-datepicker-header {
+    border: none !important;
+    border-radius: 0 !important;
+    background: #202020 !important;
+    color: white !important;
+}
+
+/* MONTH TEXT */
+.ui-datepicker-title {
+    border: none !important;
+    color: white !important;
+}
+
+/* DAY CONTAINER */
+.ui-datepicker th {
+    background: #7c16c0 !important;
+    color: white !important;
+}
+
+/* DATE UNSELECTED */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+.ui-button:active,
+.ui-button:focus {
+    text-align: center !important;
+    border: none !important;
+    background: none !important;
+    color: white !important;
+    width: 2em !important;
+    height: 2em !important;
+    line-height: 2em !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transition: background 0.1s ease-in-out !important;
+}
+
+/* DATE HOVER EFFECT */
+.ui-state-default:hover,
+.ui-widget-content .ui-state-default:hover,
+.ui-widget-header .ui-state-default:hover,
+.ui-button:hover,
+.ui-button:active:hover,
+.ui-button:focus:hover {
+    background: #3a224a !important;
+    color: white !important;
+    border-radius: 50% !important;
+}
+
+/* DATE SELECTED */
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+.ui-button.ui-state-active:hover {
+    text-align: center !important;
+    border: none !important;
+    border-radius: 50% !important;
+    background: #7c16c0 !important;
+    color: white !important;
+}
+
+.ui-datepicker-calendar tbody tr td {
+    padding: 5px !important;
+}
+
+/* WEEKEND (SAT & SUN) */
+/* .ui-datepicker-week-end a {
+    color: red !important;
+} */

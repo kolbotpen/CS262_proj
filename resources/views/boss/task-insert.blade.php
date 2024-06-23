@@ -82,7 +82,7 @@
           <div class="col-md-12">
             <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
               <p class="mb-3">Drag and drop file here</p>
-              <button id="uploadButton" class="btn btn-secondary mb-2 table-border">Or click here to select
+              <button id="uploadButton" class="btn btn-secondary mb-2">Or click here to select
                 file(s)</button>
               <!-- Display area for uploaded files -->
               <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0">
@@ -107,44 +107,8 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-<!-- Custom styles for jQuery UI Datepicker -->
-<style>
-  .ui-datepicker {
-    background: black;
-    border: 1px solid #555;
-    color: white;
-  }
-  
-  .ui-datepicker-header {
-    background: #333;
-    color: white;
-  }
-  
-  .ui-datepicker-title {
-    color: white;
-  }
-  
-  .ui-datepicker th {
-    color: white;
-  }
-  
-  .ui-datepicker td span, .ui-datepicker td a {
-    color: white;
-  }
-  
-  .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, .ui-button:active, .ui-button:focus {
-    background: #444;
-    border: 1px solid #555;
-    color: white;
-  }
-  
-  .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-button.ui-state-active:hover {
-    background: #666;
-    border: 1px solid #777;
-    color: white;
-  }
-</style>
+<script src="{{asset ('assets/js/task-insert.js')}}"></script>
+<script src="{{asset ('assets/js/task-insert-display.js')}}"></script>
 
 <script>
   document.getElementById('assigned_to').addEventListener('change', function() {
