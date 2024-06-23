@@ -42,13 +42,17 @@
                                             method="post" style="display:inline-block;">
                                             @csrf
                                             @method('PATCH')
-                                            <button type="submit" class="btn btn-success mx-auto rounded-0">Approve</button>
+                                            <button type="submit" class="btn btn-success rounded-0">
+                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-checkmark.svg') }}" draggable="false">
+                                            </button>
                                         </form>
                                         <form action="{{ route('requests.reject', ['request' => $request->id]) }}" method="post"
                                             style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger mx-auto rounded-0">Reject</button>
+                                            <button type="submit" class="btn btn-danger rounded-0">
+                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-cross.svg') }}" draggable="false">
+                                            </button>
                                         </form>
                                     </div>
                                 </td>
