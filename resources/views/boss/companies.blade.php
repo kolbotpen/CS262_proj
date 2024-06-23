@@ -91,14 +91,10 @@
                         <thead>
                             <tr>
                                 <th class="align-middle">
-                                    {{ $company->name }}
-                                    <a class="ms-2 copy-code" href="javascript:void(0);"
-                                        data-code="{{ $company->company_code }}" style="text-decoration: none;"
-                                        title="Copy Invite Code">
-                                        <code
-                                            style="font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 2px 4px; border-radius: 4px; color: #808080;">
-                                                {{ $company->company_code }}
-                                                </code>
+                                    {{ $company->name }}&nbsp;&nbsp;
+                                    <a class="copy-code" href="javascript:void(0);" data-code="{{ $company->company_code }}" style="text-decoration: none;" title="Copy Invite Code">
+                                        <code style="white-space: nowrap; font-family: 'Courier New', Courier, monospace; font-weight: 800; background-color: #202020; padding: 3px 5px; border-radius: 4px; color: #808080;"><img class="icon ms-1" style="width: 12px; filter: opacity(0.6);" src="{{asset ('assets/images/icon-copy.svg')}}">{{ $company->company_code }}
+                                        </code>
                                     </a>
                                 </th>
                                 <th colspan="2" class="align-middle text-end">
