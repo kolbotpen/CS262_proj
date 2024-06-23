@@ -69,10 +69,13 @@
                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
                                         draggable="false">
                                 </a>
-                                <a class="btn btn-danger" href="#" role="button">
-                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
-                                        draggable="false">
-                                </a>
+                                <form action="{{ route('team.remove.member', ['team_id' => $team->id, 'user_id' => $user->id]) }}" method="POST" onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger" role="button">
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false">
+                                    </button>
+                                </form>
                             </div>
                         </td>
                     </tr>

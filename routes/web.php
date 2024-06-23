@@ -114,6 +114,7 @@ Route::get('/team', function () {
 Route::get('/team/{team}', [TeamsController::class, 'showTeam'])->name('team.show'); // THIS ONE IS TO GET JUST THE ONE TEAM YOU SELECT 
 Route::get('/team/{id}', [TeamsController::class, 'showOneTeam'])->name('team.one');
 
+Route::delete('/team/{team_id}/remove/{user_id}', [TeamsController::class, 'removeMember'])->name('team.remove.member');
 
 Route::get('/team-add', function () {
     return view('boss.team-add');

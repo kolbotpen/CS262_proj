@@ -108,5 +108,11 @@ class TeamsController extends Controller
 
         return view('boss.team', compact('team', 'company'));
     }
-
+    public function removeMember($team_id, $user_id)
+    {
+        $team = Team::findOrFail($team_id);
+        $team->users()->detach($user_id);
+    
+        return back()->with('success', 'User removed from the team successfully.');
+    }
 }
