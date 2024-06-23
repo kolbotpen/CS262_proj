@@ -43,7 +43,7 @@
                     <tr>
                         <th class="align-middle">Invite Code</th>
                         <th colspan="2" class="align-middle text-end">
-                            <div class="btn-group table-border th-btn"
+                            <div class="btn-group table-border th-btn overflow-hidden"
                                 style="background-color: #202020; display: flex; align-items: center;" role="group"
                                 aria-label="Button group">
                                 <form method="POST" action="{{ route('company.join') }}"
@@ -52,7 +52,7 @@
                                     <input type="text" class="form-control bg-transparent border-0 text-white"
                                         id="company_code" name="company_code" placeholder="Code" required
                                         style="flex: 1;">
-                                    <button class="btn btn-secondary" type="submit" style="flex: none;">
+                                    <button class="btn btn-secondary rounded-0" type="submit" style="flex: none;">
                                         <img src="{{ asset('assets/images/icon-checkmark.svg') }}" class="icon"
                                             draggable="false">
                                     </button>
