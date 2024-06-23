@@ -123,4 +123,16 @@ class TeamsController extends Controller
 
         return back()->with('success', 'User removed from the team successfully.');
     }
+
+
+    // VISOTH WAS HERE
+    public function checkTeamName(Request $request)
+    {
+        $exists = Team::where('name', $request->name)
+                    ->where('company_id', $request->company_id)
+                    ->exists();
+        return response()->json(['exists' => $exists]);
+    }
+
+    
 }

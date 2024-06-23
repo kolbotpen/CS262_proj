@@ -116,6 +116,10 @@ Route::get('/team/{id}', [TeamsController::class, 'showOneTeam'])->name('team.on
 
 Route::delete('/team/{team_id}/remove/{user_id}', [TeamsController::class, 'removeMember'])->name('team.remove.member');
 
+Route::post('/check-team-name', [TeamsController::class, 'checkTeamName'])->name('check.team.name'); // THIS CHECKS IF TEAM NAME ALREADY EXISTS IN COMPANY
+Route::post('/check-member-exists', [TeamsController::class, 'checkMemberExists'])->name('check.member.exists'); // THIS CHECKS IF MEMBER ALREADY EXISTS IN TEAM
+
+
 Route::get('/team-add', function () {
     return view('boss.team-add');
 });

@@ -155,15 +155,18 @@
                 <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
             </div>
             <div class="modal-body bg-gray">
-                <form action="{{ route('boss.add') }}" method="post" enctype="multipart/form-data">
+                <form id="addTeamForm" action="{{ route('boss.add') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="company_id" id="company_id">
                     <div class="col-md-12 d-flex align-items-stretch">
                         <div class="container text-white p-3 rounded h-100">
                             <label for="name">Team name</label>
-                            <input type="text" name="name"
+                            <input type="text" id="teamName" name="name"
                                 class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Team Name"
                                 value="" required>
+                            <div id="teamNameError" class="text-danger mt-2" style="display: none;">
+                                Team name already exists.
+                            </div>
                         </div>
                     </div>
                     <div class="btn-group table-border th-btn center"
@@ -172,7 +175,7 @@
                         <button type="submit" class="btn btn-secondary"
                             role="button">
                             <img class="icon"
-                                src="{{asset ('assets/images/icon-submit.svg')}}" draggable="false">Submit
+                                src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">Submit
                         </button>
                     </div>
                 </form>
@@ -192,6 +195,36 @@
             var companyId = button.data('companyid');
             var modal = $(this);
             modal.find('.modal-body #company_id').val(companyId);
+        });
+
+        // Check input to see if team name already exists
+        $('#teamName').on('input', function () {
+            var teamName = $(this).val().trim();
+            var companyId = $('#company_id').val();
+
+            if (teamName.length > 0) {
+                $.ajax({
+                    url: '{{ route("check.team.name") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        name: teamName,
+                        company_id: companyId
+                    },
+                    success: function (response) {
+                        if (response.exists) {
+                            $('#teamNameError').show();
+                            $('#addTeamForm button[type="submit"]').prop('disabled', true);
+                        } else {
+                            $('#teamNameError').hide();
+                            $('#addTeamForm button[type="submit"]').prop('disabled', false);
+                        }
+                    }
+                });
+            } else {
+                $('#teamNameError').hide();
+                $('#addTeamForm button[type="submit"]').prop('disabled', false);
+            }
         });
 
         // Make the modal draggable
