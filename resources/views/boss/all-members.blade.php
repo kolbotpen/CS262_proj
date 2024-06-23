@@ -84,7 +84,17 @@
                                 <td class="align-middle">{{ $user->email }}</td>
                                 <td class="align-middle">{{ $user->company->name ?? 'N/A' }}</td>
                                 <td class="align-middle text-center">
-                                    <!-- Options if needed -->
+                                    <div class="btn-group table-border option-btn" style="background-color: #303030"
+                                        role="group" aria-label="Button group">
+                                        <a class="btn btn-secondary" href="mailto:jane.smith@example.com" role="button">
+                                            <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
+                                                draggable="false">
+                                        </a>
+                                        <a class="btn btn-danger" href="#" role="button">
+                                            <img class="icon mx-auto" src="{{ asset('assets/images/nav-logout.svg') }}"
+                                                draggable="false">
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
