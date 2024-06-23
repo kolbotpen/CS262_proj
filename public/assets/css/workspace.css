@@ -221,6 +221,10 @@ img.icon {
     border: none;
 }
 
+/* Override Bootstrap padding for modal */
+body.modal-open {
+    padding-right: 0 !important;
+}
 
 .modal-dialog {
     top: 30%;
@@ -260,6 +264,16 @@ img.icon {
 
 .modal.fade:not(.show) .modal-dialog {
     animation: fadeOut 0.4s;
+}
+
+/* Default styles for larger screens */
+.modal-image-container {
+    max-height: 380px;
+    overflow: hidden;
+}
+
+.modal-image {
+    width: 100% !important;
 }
 
 /* ANIMATION KEYFRAMES CAN BE FOUND STYLE.CSS */
