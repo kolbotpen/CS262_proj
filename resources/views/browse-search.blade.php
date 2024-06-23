@@ -114,7 +114,7 @@
                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-view.svg') }}" draggable="false">
                                 </a>
                                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#joinRequestModal" data-companyid="{{ $company->id }}">
-                                    <img class="icon" src="{{ asset('assets/images/icon-plus.svg') }}" draggable="false"></button>
+                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false"></button>
                             </div>
                         </td>
                     </tr>
@@ -125,7 +125,7 @@
     </div>
 </div>
 
-<!-- Company Details Modal -->
+<!-- MODAL FOR COMPANY DETAILS -->
 <div id="companyDetailsModal" class="modal fade" role="dialog">
     <div class="modal-dialog" style="top: 7% !important; --bs-modal-width: 650px;">
         <!-- Modal content-->
@@ -137,17 +137,17 @@
             <div class="modal-body bg-gray">
                 <div class="col-md-12 d-flex align-items-stretch">
                     <div class="container text-white p-3 rounded h-100">
-                        {{-- Company Image --}}
+                        <!-- Company Image -->
                         <div class="modal-image-container mb-4 rounded">
-                            <img class="modal-image company_image" src="{{asset ('assets/images/photo2.png')}}">
+                            <img class="modal-image company_image" src="{{ asset('assets/images/photo2.png') }}">
                         </div>
 
                         <label for="company_name">Company Name</label>
                         <p id="company_name" class="text-gray mt-2"></p>
-                        
+
                         <label for="company_industry">Industry</label>
                         <p id="company_industry" class="text-gray mt-2"></p>
-                        
+
                         <label for="company_description">Description</label>
                         <p id="company_description" class="text-gray mt-2"></p>
                     </div>
@@ -156,9 +156,11 @@
         </div>
     </div>
 </div>
+
 <!-- MODAL FOR REQUEST TO JOIN -->
 <div id="joinRequestModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="top: 20% !important; --bs-modal-width: 650px;">
+        <!-- Modal content -->
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title">Join Request</h4>
@@ -166,20 +168,30 @@
             </div>
             <form action="{{ route('join-request.store') }}" method="POST">
                 @csrf
-                <div class="modal-body">
-                    <input type="hidden" name="company_id" id="joinRequestCompanyId">
-                    <div class="form-group">
-                        <label for="description" class="form-control bg-gray text-white border-0 mt-2">Description:</label>
-                        <textarea class="form-control bg-gray" id="description" name="description" required></textarea>
+                <div class="modal-body bg-gray">
+                    <div class="col-md-12 d-flex align-items-stretch">
+                        <div class="container text-white p-3 rounded h-100">
+                            <input type="hidden" name="company_id" id="joinRequestCompanyId">
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea class="form-control bg-black text-white border-0 mt-2" id="description" name="description" placeholder="My reason to join the company" style="min-height: 200px;" required></textarea>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer bg-black text-white">
-                    <button type="submit" class="btn btn-primary">Send Request</button>
+                    <div class="btn-group table-border th-btn center" style="background-color: #303030" role="group" aria-label="Button group">
+                        <button type="submit" class="btn btn-secondary"
+                            role="button">
+                            <img class="icon"
+                                src="{{asset ('assets/images/icon-submit.svg')}}" draggable="false">Send Request
+                        </button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
+
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -200,6 +212,10 @@
 
         // Make modal draggable
         $('#companyDetailsModal .modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+
+        $('#joinRequestModal .modal-dialog').draggable({
             handle: ".modal-header"
         });
     });
