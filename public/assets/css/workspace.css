@@ -127,6 +127,7 @@ a.btn {
 
 .btn-group {
     /* margin: auto; */
+    overflow: hidden;
     min-width: 0 !important;
     max-width: fit-content;
     border-radius: 8px;

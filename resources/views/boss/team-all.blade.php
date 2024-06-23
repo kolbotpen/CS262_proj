@@ -1,22 +1,26 @@
 @extends('layouts.master-workspace')
 @section('content')
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-@if (session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-@endif
-@if (session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
+
 <div class="container">
+
     <div class="breadcrumb mt-4 mb-4">
         <a href="/companies" class="breadcrumb-link">Companies</a>
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">{{ $company->name }}</a>
     </div>
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">{{ session('success') }}
+    </div>
+    @endif
+    @if (session('error'))
+        <div class="alert alert-danger">
+            <img class="me-2" src="{{asset ('assets/images/icon-cross-red.svg')}}">{{ session('error') }}
+        </div>
+    @endif
+
     @if($teams->isEmpty())
         <div class="alert alert-info" role="alert">
             There are currently no teams available. Please add a team.
@@ -72,7 +76,7 @@
                                                 onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-danger" role="button">
+                                                <button type="submit" class="btn btn-danger rounded-0" role="button">
                                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
                                                         draggable="false">
                                                 </button>
