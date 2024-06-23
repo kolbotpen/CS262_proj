@@ -16,9 +16,8 @@ class JoinRequestController extends Controller
     public function approve($id)
     {
         $request = JoinRequest::findOrFail($id);
-        $request->status = 'approved';
+        $request->status = 'accepted'; // Corrected from 'approved' to 'accepted'
         $request->save();
-
         return redirect()->route('all-members.index')->with('success', 'Request approved.');
     }
 
