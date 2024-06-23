@@ -79,4 +79,38 @@ class UploadManager extends Controller
         return redirect()->back()->with('success', 'Task deleted successfully.');
     }
 
+    // Method to view a task's details
+    public function show($id)
+    {
+        $task = Task::findOrFail($id);
+        return view('boss.task-details', compact('task'));
+    }
+
+    // Method to edit a task's details
+    public function edit(Request $request, $id)
+    {
+        // Check if the request is a POST request: this means we're updating
+        if ($request->isMethod('PUT')) {
+            // Perform validation
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                // Add other fields as necessary
+            ]);
+
+            // Find the task and update it
+            $task = Task::findOrFail($id);
+            $task->title = $validatedData['title'];
+            // Update other fields as necessary
+            $task->save();
+
+            // Redirect after update
+            return redirect()->back()->with('success', 'Task updated successfully.');
+        }
+
+        // If not a POST request, proceed to show the edit form
+        $task = Task::findOrFail($id);
+        $users = User::all();
+        return view('boss.task-details-edit', compact('task', 'users'));
+    }
+
 }

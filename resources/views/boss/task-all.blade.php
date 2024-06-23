@@ -4,7 +4,7 @@
 {{-- CONTAINER 1 --}}
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
-        <a href="/companies" class="breadcrumb-link">Companies</a>
+        <a href="#" class="breadcrumb-link">Companies</a>
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">All Tasks</a>
     </div>
@@ -72,11 +72,11 @@
                                         </div>
                                         <div class="btn-group table-border option-btn" style="background-color: #303030"
                                             role="group" aria-label="Button group">
-                                            <a class="btn btn-secondary" href="task-details/{{ $task->id }}" role="button">
+                                            <a class="btn btn-secondary" href="{{ url('task-details/' . $task->id) }}"  role="button">
                                                 <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
                                                     draggable="false">
                                             </a>
-                                            <a class="btn btn-secondary" href="task-details-edit/{{ $task->id }}" role="button">
+                                            <a class="btn btn-secondary" href="{{ url('task-details-edit/' . $task->id) }}" role="button">
                                                 <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                                     draggable="false">
                                             </a>

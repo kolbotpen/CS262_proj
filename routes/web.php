@@ -150,6 +150,12 @@ Route::get('/task-details', function () {
 Route::get('/task-details-edit', function () {
     return view('boss.task-details-edit');
 });
+// Viewing a task
+Route::get('/task-details/{id}', [UploadManager::class, 'show'])->name('task.show');
+
+// Editing task details
+Route::get('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
+Route::put('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
 
 // Task Insert
 Route::get('/task-insert', function () {
