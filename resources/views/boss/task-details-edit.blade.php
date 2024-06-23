@@ -1,6 +1,13 @@
 @extends('layouts.master-workspace')
 
 @section('content')
+
+@if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
+@endif
+
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
         <a href="/companies" class="breadcrumb-link">Companies</a>
