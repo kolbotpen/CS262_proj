@@ -89,17 +89,27 @@ class UploadManager extends Controller
     // Method to edit a task's details
     public function edit(Request $request, $id)
     {
-        // Check if the request is a POST request: this means we're updating
+        // Check if the request is a PUT request: this means we're updating
         if ($request->isMethod('PUT')) {
             // Perform validation
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
-                // Add other fields as necessary
+                'description' => 'required|string',
+                'assigned_to' => 'required|integer',
+                'priority' => 'required|string',
+                'progress' => 'required|string',
+                'due_date' => 'required|date',
+                // Validate other fields as necessary
             ]);
 
             // Find the task and update it
             $task = Task::findOrFail($id);
             $task->title = $validatedData['title'];
+            $task->description = $validatedData['description'];
+            $task->user_id = $validatedData['assigned_to']; // Assuming 'assigned_to' is stored in 'user_id' column
+            $task->priority = $validatedData['priority'];
+            $task->progress = $validatedData['progress'];
+            $task->due_date = $validatedData['due_date'];
             // Update other fields as necessary
             $task->save();
 
@@ -107,7 +117,7 @@ class UploadManager extends Controller
             return redirect()->back()->with('success', 'Task updated successfully.');
         }
 
-        // If not a POST request, proceed to show the edit form
+        // If not a PUT request, proceed to show the edit form
         $task = Task::findOrFail($id);
         $users = User::all();
         return view('boss.task-details-edit', compact('task', 'users'));

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
-        <a href="/workspace" class="breadcrumb-link">Workspace</a>
+        <a href="/companies" class="breadcrumb-link">Companies</a>
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">Edit Task</a>
     </div>
