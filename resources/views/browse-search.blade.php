@@ -113,10 +113,8 @@
                                     data-companydescription="{{ $company->description }}">
                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-view.svg') }}" draggable="false">
                                 </a>
-                                <a href="company-request-join/{{ $company->id }}" class="btn btn-secondary">
-                                    <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">
-                                </a>
-                                
+                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#joinRequestModal" data-companyid="{{ $company->id }}">
+                                    <img class="icon" src="{{ asset('assets/images/icon-plus.svg') }}" draggable="false"></button>
                             </div>
                         </td>
                     </tr>
@@ -155,6 +153,30 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+<!-- MODAL FOR REQUEST TO JOIN -->
+<div id="joinRequestModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Join Request</h4>
+                <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
+            </div>
+            <form action="{{ route('join-request.store') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <input type="hidden" name="company_id" id="joinRequestCompanyId">
+                    <div class="form-group">
+                        <label for="description" class="form-control bg-gray text-white border-0 mt-2">Description:</label>
+                        <textarea class="form-control bg-gray" id="description" name="description" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer bg-black text-white">
+                    <button type="submit" class="btn btn-primary">Send Request</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -200,5 +222,15 @@
         });
     });
 </script>
-
+<script>
+    // join request
+    $(document).ready(function () {
+    $('#joinRequestModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget); // Button that triggered the modal
+        var companyId = button.data('companyid'); // Extract info from data-* attributes
+        var modal = $(this);
+        modal.find('#joinRequestCompanyId').val(companyId); // Update the modal's content.
+    });
+});
+</script>
 @stop

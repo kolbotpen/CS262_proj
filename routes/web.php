@@ -168,6 +168,18 @@ Route::get('/calendar', function () {
     return view('boss.calendar');
 });
 
+
+// JOIN REQUEST
+Route::post('/join-request', [JoinRequestController::class, 'store'])->name('join-request.store');
+
+
+// Approve Request
+Route::patch('/requests/approve/{request}', [JoinRequestController::class, 'approve'])->name('requests.approve');
+
+// Reject Request
+Route::delete('/requests/reject/{request}', [JoinRequestController::class, 'reject'])->name('requests.reject');
+
+
 // ALL MEMBERS - REQUESTS
 Route::get('/all-members', function () {
     return view('boss.all-members');

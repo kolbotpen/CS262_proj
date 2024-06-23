@@ -96,7 +96,6 @@
                                 <td colspan="6" class="text-center">No tasks found</td>
                             </tr>
                         @endif
-
                     </tbody>
                 </table>
             </div>
