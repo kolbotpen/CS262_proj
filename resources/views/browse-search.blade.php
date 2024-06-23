@@ -129,7 +129,7 @@
 
 <!-- Company Details Modal -->
 <div id="companyDetailsModal" class="modal fade" role="dialog">
-    <div class="modal-dialog" style="top: 7% !important;">
+    <div class="modal-dialog" style="top: 7% !important; --bs-modal-width: 650px;">
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
