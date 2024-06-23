@@ -92,6 +92,14 @@ class TeamsController extends Controller
         ]);
 
         $team = Team::findOrFail($request->team_id);
+
+        // Check if the user is already a member of the team
+        if ($team->users()->where('user_id', $request->user_id)->exists()) {
+            // Return with an error message if the user is already a member
+            return back()->with('error', 'This user is already a member of the team.');
+        }
+
+        // Attach the user to the team if they are not already a member
         $team->users()->attach($request->user_id);
 
         return back()->with('status', 'Member added successfully!');
@@ -112,7 +120,7 @@ class TeamsController extends Controller
     {
         $team = Team::findOrFail($team_id);
         $team->users()->detach($user_id);
-    
+
         return back()->with('success', 'User removed from the team successfully.');
     }
 }
