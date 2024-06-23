@@ -1,5 +1,6 @@
 @extends('layouts.master-workspace')
 @section('content')
+
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="container">
@@ -90,15 +91,14 @@
                 </div>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="addTeamModal{{ $team->id }}" tabindex="-1" role="dialog"
-                aria-labelledby="addTeamModalLabel" aria-hidden="true">
+            <div class="modal fade" id="addTeamModal{{ $team->id }}" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Add Member</h4>
-                            <a type="button" class="btn-close bounce-click" data-bs-dismiss="modal" aria-label="Close"
-                                title="Close"></a>
+                            <button type="button" class="btn-close bounce-click" data-bs-dismiss="modal" aria-label="Close"
+                                    title="Close"></button>
                         </div>
                         <div class="modal-body bg-gray">
                             <form action="{{ route('team.add.member') }}" method="post">
@@ -115,10 +115,10 @@
                                     </div>
                                 </div>
                                 <div class="btn-group table-border th-btn center" style="background-color: #303030" role="group"
-                                    aria-label="Button group">
+                                        aria-label="Button group">
                                     <button type="submit" class="btn btn-secondary">
                                         <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}"
-                                            draggable="false">Submit
+                                                draggable="false">Submit
                                     </button>
                                 </div>
                             </form>
@@ -134,16 +134,20 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('assets/js/alert-copy.js') }}"></script>
 <script>
-$(document).ready(function () {
-    // Use a generic selector for the modal
-    $('#addTeamModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Button that triggered the modal
-        var teamId = button.data('team-id'); // Extract info from data-* attributes
-        
-        // Use the teamId in your JavaScript code as needed
-        // For example, setting it as a form input value:
-        $(this).find('.modal-body input[name="team_id"]').val(teamId);
+    $(document).ready(function () {
+        $('#addTeamModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var teamId = button.data('team-id'); // Extract info from data-* attributes
+
+            // Use the teamId in your JavaScript code as needed
+            // For example, setting it as a form input value:
+            $(this).find('.modal-body input[name="team_id"]').val(teamId);
+        });
+
+        // Make the modal draggable using Bootstrap's built-in draggable functionality
+        $('.modal .modal-dialog').draggable({
+            handle: ".modal-header"
+        });
     });
-});
 </script>
 @stop
