@@ -1,6 +1,7 @@
 @extends('layouts.master-workspace')
-
 @section('content')
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 <div class="container">
 
@@ -42,7 +43,7 @@
                     <tr>
                         <th class="align-middle">Invite Code</th>
                         <th colspan="2" class="align-middle text-end">
-                            <div class="btn-group table-border th-btn"
+                            <div class="btn-group table-border th-btn overflow-hidden"
                                 style="background-color: #202020; display: flex; align-items: center;" role="group"
                                 aria-label="Button group">
                                 <form method="POST" action="{{ route('company.join') }}"
@@ -51,7 +52,7 @@
                                     <input type="text" class="form-control bg-transparent border-0 text-white"
                                         id="company_code" name="company_code" placeholder="Code" required
                                         style="flex: 1;">
-                                    <button class="btn btn-secondary" type="submit" style="flex: none;">
+                                    <button class="btn btn-secondary rounded-0" type="submit" style="flex: none;">
                                         <img src="{{ asset('assets/images/icon-checkmark.svg') }}" class="icon"
                                             draggable="false">
                                     </button>
@@ -103,14 +104,19 @@
                         <td class="align-middle">{{ $company->industry }}</td>
                         <td class="align-middle text-center">
                             <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
-                                <a href="company-details/{{ $company->id }}" class="btn btn-secondary">
+                                {{-- <a href="company-details/{{ $company->id }}" class="btn btn-secondary">
                                     <img class="icon" src="{{ asset('assets/images/icon-view.svg') }}"
                                         draggable="false">
+                                </a> --}}
+                                <a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#companyDetailsModal"
+                                    data-companyname="{{ $company->name }}" data-companyindustry="{{ $company->industry }}"
+                                    data-companydescription="{{ $company->description }}">
+                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-view.svg') }}" draggable="false">
                                 </a>
                                 <a href="company-request-join/{{ $company->id }}" class="btn btn-secondary">
-                                    <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}"
-                                        draggable="false">
+                                    <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">
                                 </a>
+                                
                             </div>
                         </td>
                     </tr>
@@ -119,10 +125,64 @@
             </table>
         </div>
     </div>
-
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Company Details Modal -->
+<div id="companyDetailsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="top: 7% !important; --bs-modal-width: 650px;">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Company Details</h4>
+                <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
+            </div>
+            <div class="modal-body bg-gray">
+                <div class="col-md-12 d-flex align-items-stretch">
+                    <div class="container text-white p-3 rounded h-100">
+                        {{-- Company Image --}}
+                        <div class="modal-image-container mb-4 rounded">
+                            <img class="modal-image company_image" src="{{asset ('assets/images/photo2.png')}}">
+                        </div>
+
+                        <label for="company_name">Company Name</label>
+                        <p id="company_name" class="text-gray mt-2"></p>
+                        
+                        <label for="company_industry">Industry</label>
+                        <p id="company_industry" class="text-gray mt-2"></p>
+                        
+                        <label for="company_description">Description</label>
+                        <p id="company_description" class="text-gray mt-2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#companyDetailsModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var companyName = button.data('companyname');
+            var companyIndustry = button.data('companyindustry');
+            var companyDescription = button.data('companydescription');
+
+            var modal = $(this);
+            modal.find('#company_name').text(companyName);
+            modal.find('#company_industry').text(companyIndustry);
+            modal.find('#company_description').text(companyDescription);
+        });
+
+        // Make modal draggable
+        $('#companyDetailsModal .modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+    });
+</script>
+
 <script>
     // live search functionality
     $(document).ready(function() {
@@ -140,6 +200,5 @@
         });
     });
 </script>
-
 
 @stop
