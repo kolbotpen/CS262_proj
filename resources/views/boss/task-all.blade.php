@@ -1,6 +1,5 @@
 @extends('layouts.master-workspace')
 @section('content')
-
 {{-- CONTAINER 1 --}}
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
@@ -8,43 +7,46 @@
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">All Tasks</a>
     </div>
-
-    <div class="container bg-transparent p-0 rounded container-border">
-        @foreach($teams as $team)
-            {{-- Display each team --}}
-            <div class="table-container-scroll table-border rounded mb-5">
-                <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th class="align-middle">Team</th>
-                            <th class="align-middle">{{ $team->name }}</th>
-                            <th class="align-middle text-center">
-                                <div class="btn-group table-border th-btn" role="group" aria-label="Button group">
-                                    <a class="btn btn-success bg-green-gradient"
-                                        href="{{ url('task-insert?team_id=' . $team->id) }}" role="button">
-                                        <img class="icon me-2" src="{{ asset('assets/images/icon-add.svg') }}"
-                                            draggable="false">Add Task
-                                    </a>
-                                </div>
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-                <table class="table m-0" style="table-layout: fixed; width: 100%;">
-                    <thead>
-                        <tr>
-                            <th class="align-middle">Tasks</th>
-                            <th class="align-middle">Assigned To</th>
-                            <th class="align-middle">Due Date</th>
-                            <th class="align-middle text-center">Priority</th>
-                            <th class="align-middle text-center">Progress</th>
-                            <th class="align-middle text-center w-16">Options</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+    @if($teams->isEmpty())
+        <div class="alert alert-info" role="alert">
+            There are currently no teams available. Please add a team.
+        </div>
+    @else
+        <div class="container bg-transparent p-0 rounded container-border">
+            @foreach($teams as $team)
+                {{-- Display each team --}}
+                <div class="table-ctainer-scroll table-border rounded mb-5">
+                    <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">Team</th>
+                                <th class="align-middle">{{ $team->name }}</th>
+                                <th class="align-middle text-center">
+                                    <div class="btn-group table-border th-btn" role="group" aria-label="Button group">
+                                        <a class="btn btn-success bg-green-gradient"
+                                            href="{{ url('task-insert?team_id=' . $team->id) }}" role="button">
+                                            <img class="icon me-2" src="{{ asset('assets/images/icon-add.svg') }}"
+                                                draggable="false">Add Task
+                                        </a>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <table class="table m-0" style="table-layout: fixed; width: 100%;">
+                        <thead>
+                            <tr>
+                                <th class="align-middle">Tasks</th>
+                                <th class="align-middle">Assigned To</th>
+                                <th class="align-middle">Due Date</th>
+                                <th class="align-middle text-center">Priority</th>
+                                <th class="align-middle text-center">Progress</th>
+                                <th class="align-middle text-center w-16">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         {{-- Iterate over tasks for this team --}}
-                        {{-- Task 1 --}}
-                        @if($tasks->isNotEmpty())
+                        @if($tasks->where('team_id', $team->id)->isNotEmpty())
                             @foreach($tasks->where('team_id', $team->id) as $task)
                                 {{-- Display each task --}}
                                 <tr>
@@ -60,16 +62,6 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <div class="btn-group" role="group" aria-label="Task options">
-                                            <!-- <button src="{{asset('assets/images/icon-trash.svg')}}" type="button"
-                                                class="btn btn-danger"
-                                                onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();"></button>
-                                            <form id="delete-task-form-{{ $task->id }}"
-                                                action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
-                                                @csrf
-                                                @method('DELETE')
-                                            </form> -->
-                                        </div>
                                         <div class="btn-group table-border option-btn" style="background-color: #303030"
                                             role="group" aria-label="Button group">
                                             <a class="btn btn-secondary" href="{{ url('task-details/' . $task->id) }}"  role="button">
@@ -96,11 +88,11 @@
                                 <td colspan="6" class="text-center">No tasks found</td>
                             </tr>
                         @endif
-                    </tbody>
-                </table>
-            </div>
-        @endforeach
-    </div>
+                        </tbody>
+                    </table>
+                </div>
+            @endforeach
+        </div>
+    @endif
 </div>
-
 @stop
