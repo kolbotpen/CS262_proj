@@ -27,6 +27,10 @@ class Company extends Model
     {
         return $this->users()->wherePivot('is_boss', true);
     }
+    public function creator()
+    {
+        return $this->belongsToMany(User::class, 'company_to_user')->wherePivot('is_boss', 1);
+    }
     // THIS IS FOR GENERATING THE CODE FOR JOINING COMPANY
     protected static function boot()
     {
@@ -51,16 +55,16 @@ class Company extends Model
         return $query->where('visibility', 'public');
     }
     public function tasks()
-{
-    return $this->hasManyThrough(
-        Task::class, // The model to access through the relationship
-        Team::class, // The intermediate model
-        'company_id', // Foreign key on the Team model
-        'team_id', // Foreign key on the Task model
-        'id', // Local key on the Company model
-        'id'  // Local key on the Team model
-    );
-}
+    {
+        return $this->hasManyThrough(
+            Task::class, // The model to access through the relationship
+            Team::class, // The intermediate model
+            'company_id', // Foreign key on the Team model
+            'team_id', // Foreign key on the Task model
+            'id', // Local key on the Company model
+            'id'  // Local key on the Team model
+        );
+    }
 }
 
 

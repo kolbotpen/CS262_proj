@@ -52,7 +52,7 @@
                                 <td>{{ $company->industry }}</td>
                                 <td>{{ $company->visibility }}</td>
                                 <td>{{ $company->company_code }}</td>
-                                <td>{{ $company->boss->first()->name }}</td>
+                                <td>{{ $company->creator->first()->name ?? 'N/A' }}</td>
                                 <td>
                                     <button class="btn btn-link" onclick="editCompany({{ $company->id }})">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
