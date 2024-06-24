@@ -52,7 +52,7 @@
                                 <td>{{ $company->industry }}</td>
                                 <td>{{ $company->visibility }}</td>
                                 <td>{{ $company->company_code }}</td>
-                                <td>Admin</td>
+                                <td>{{ $company->boss->first()->name }}</td>
                                 <td>
                                     <button class="btn btn-link" onclick="editCompany({{ $company->id }})">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
@@ -90,46 +90,46 @@
     <!-- /.card -->
 
     <!-- Add Company Modal -->
-<div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addCompanyModalLabel">Add Company</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+    <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCompanyModalLabel">Add Company</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addCompanyForm" method="POST" action="{{ route('companies.store') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="add_company_name" class="col-form-label">Company Name:</label>
+                            <input type="text" class="form-control" id="add_company_name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="add_company_description" name="description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_industry" class="col-form-label">Industry:</label>
+                            <input type="text" class="form-control" id="add_company_industry" name="industry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="add_company_visibility" class="col-form-label">Visibility:</label>
+                            <select class="form-control" id="add_company_visibility" name="visibility" required>
+                                <option value="public">Public</option>
+                                <option value="private">Private</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
             </div>
-            <form id="addCompanyForm" method="POST" action="{{ route('companies.store') }}">
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="add_company_name" class="col-form-label">Company Name:</label>
-                        <input type="text" class="form-control" id="add_company_name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="add_company_description" class="col-form-label">Description:</label>
-                        <textarea class="form-control" id="add_company_description" name="description"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="add_company_industry" class="col-form-label">Industry:</label>
-                        <input type="text" class="form-control" id="add_company_industry" name="industry" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="add_company_visibility" class="col-form-label">Visibility:</label>
-                        <select class="form-control" id="add_company_visibility" name="visibility" required>
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
         </div>
     </div>
-</div>
 
     <!-- Edit Company Modal -->
     <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
@@ -141,7 +141,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form id="editCompanyForm" method="POST" action="">
+                <form id="editCompanyForm" method="POST" action="{{ route('companies.update', $company) }}">
                     @csrf
                     @method('PUT')
                     <div class="modal-body">
@@ -183,21 +183,31 @@
 
 <script>
 function editCompany(companyId) {
-    $.get(`/companies/${companyId}/edit`, function(company) {
-        $('#edit_company_name').val(company.name);
-        $('#edit_company_description').val(company.description);
-        $('#edit_company_industry').val(company.industry);
-        $('#edit_company_visibility').val(company.visibility);
-        
-        // Populate the users list
-        $('#edit_company_users').empty();
-        company.users.forEach(user => {
-            $('#edit_company_users').append(`<li class="list-group-item">${user.name}</li>`);
-        });
+    $.ajax({
+        url: `/workspace/companies/${companyId}/edit`, // Ensure the URL matches your route structure
+        method: 'GET',
+        success: function(company) {
+            // Populate form fields
+            $('#edit_company_name').val(company.name);
+            $('#edit_company_description').val(company.description);
+            $('#edit_company_industry').val(company.industry);
+            $('#edit_company_visibility').val(company.visibility);
+            
+            // Populate the users list (if applicable)
+            $('#edit_company_users').empty();
+            company.users.forEach(user => {
+                $('#edit_company_users').append(`<li class="list-group-item">${user.name}</li>`);
+            });
 
-        $('#editCompanyForm').attr('action', `/companies/${companyId}`);
-        $('#editCompanyModal').modal('show');
+            // Set form action dynamically
+            $('#editCompanyForm').attr('action', `/workspace/companies/${companyId}`);
+            $('#editCompanyModal').modal('show');
+        },
+        error: function(xhr, status, error) {
+            console.error(xhr.responseText);
+        }
     });
 }
+
 </script>
 @endsection

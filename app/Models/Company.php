@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Str;
 
 class Company extends Model
@@ -16,13 +17,16 @@ class Company extends Model
     {
         return $this->hasMany(Team::class);
     }
-    public function users()
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'company_to_user')
                     ->withPivot('is_boss')
                     ->withTimestamps();
     }
-
+    public function boss(): BelongsToMany
+    {
+        return $this->users()->wherePivot('is_boss', true);
+    }
     // THIS IS FOR GENERATING THE CODE FOR JOINING COMPANY
     protected static function boot()
     {
