@@ -106,7 +106,7 @@ class CompanyController extends Controller
             'visibility' => $request->visibility,
         ]);
 
-        return redirect()->route('company-workspace')->with('success', 'Company updated successfully.');
+        return redirect()->route('company.workspace')->with('success', 'Company updated successfully.');
     }
     
     // CREATE COMPANY IN BROWSE

@@ -206,10 +206,10 @@ Route::get('/settings', function () {
 // ---------- VISOTH'S CODE | END ----------
 // ---------- FRONTEND | END --------------
 
+
 // ---------- BACKEND | START ----------------
 // WORKSPACE
 Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
-Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 
@@ -217,6 +217,7 @@ Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
 Route::get('/setting', [HomeController::class,'setting'])->name('setting');
+Route::get('/companies/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
 
 // AUTHENTICATION
 Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
@@ -243,8 +244,16 @@ Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.sto
 // ROUTE FOR UPDATING
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
 
+// CRUD FOR WORKSPACE/COMPANIES
+Route::prefix('workspace')->group(function () {
+    Route::get('/companies', [CompanyController::class, 'showWorkspace'])->name('company.workspace'); // Assuming this is for listing companies
+    Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->name('companies.edit'); // For editing a specific company
+    Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update'); // For updating a specific company
+    Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store'); // For storing a new company
+    Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy'); // For deleting a company
+});
+
 // ROUTE FOR DELETING
-Route::delete('/workspace/companies/destroy/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
 Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
 Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
