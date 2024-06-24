@@ -32,10 +32,9 @@
                                 <td>{{ $task->priority }}</td>
                                 <td>{{ $task->progress }}</td>
                                 <td>{{ $task->due_date}}</td>
-                                    <!-- Task Action Buttons (Edit/Delete) -->
+                                <!-- Task Action Buttons (Edit/Delete) -->
                                 <td>
-                                    <button class="btn btn-link" data-toggle="modal"
-                                        data-target="#}">
+                                    <button class="btn btn-link" data-toggle="modal" data-target="#}">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                             <path
@@ -43,20 +42,20 @@
                                             </path>
                                         </svg>
                                     </button>
-                                    <form action="#" method="POST"
-                                        style="display:inline;">
+                                    <form id="delete-task-form-{{ $task->id }}"
+                                        action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger p-0"
-                                            onclick="return confirm('Are you sure you want to delete this user?');">
-                                            <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
+                                    </form>
+                                    <button type="button" class="btn btn-link text-danger p-0 "
+                                        onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();">
+                                        <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path ath fill-rule="evenodd"
                                                     d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
                                                     clip-rule="evenodd"></path>
                                             </svg>
-                                        </button>
-                                    </form>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
