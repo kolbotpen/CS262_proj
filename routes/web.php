@@ -19,11 +19,12 @@ use App\Http\Controllers\JoinRequestController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// ---------- FRONTEND | START ----------------
-// LARAVEL WELCOME
+// ---------- LANDING ----------------
+
 Route::get('/', function () {
-    return view('/welcome');
+    return view('landing');
 });
+// ---------- FRONTEND | START ----------------
 
 // WORKSPACE
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
@@ -59,10 +60,7 @@ Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('wor
 Route::get('/rat', function () {
     return view('RAT');
 });
-// Landing
-Route::get('/', function () {
-    return view('landing');
-});
+
 Route::get('/landing', function () {
     return view('landing');
 });
