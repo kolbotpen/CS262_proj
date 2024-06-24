@@ -37,6 +37,7 @@ class JoinRequestController extends Controller
         $request->save();
         // Add user to company as a regular member (is_boss = 0)
         $request->company->users()->attach($request->user_id, ['is_boss' => 0]);
+        $request->delete();
         return redirect()->route('all-members.index')->with('success', 'Request approved.');
     }
     public function reject($id)
