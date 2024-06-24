@@ -1,7 +1,8 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('adminhome') }}" class="brand-link">
-        <img src="{{ asset('assets/images/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="{{ asset('assets/images/AdminLTELogo.png') }}" alt="AdminLTE Logo"
+            class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">ADMIN DASHBOARD</span>
     </a>
 
@@ -26,8 +27,10 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item has-treeview {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') ? 'active' : '' }}">
+                <li
+                class="nav-item has-treeview {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || Request::is('workspace/tasks*') ? 'menu-open' : '' }}">
+                    <a href="#"
+                    class="nav-link {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || Request::is('workspace/tasks*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Workspace
@@ -36,21 +39,31 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('company.workspace') }}" class="nav-link {{ Request::is('workspace/companies*') ? 'active' : '' }}">
+                            <a href="{{ route('company.workspace') }}"
+                                class="nav-link {{ Request::is('workspace/companies*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-building"></i>
                                 <p>Company</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('team.workspace') }}" class="nav-link {{ Request::is('workspace/teams*') ? 'active' : '' }}">
+                            <a href="{{ route('team.workspace') }}"
+                                class="nav-link {{ Request::is('workspace/teams*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>Team</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('user.workspace') }}" class="nav-link {{ Request::is('workspace/users*') ? 'active' : '' }}">
+                            <a href="{{ route('user.workspace') }}"
+                                class="nav-link {{ Request::is('workspace/users*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>Users</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('task.workspace') }}"
+                                class="nav-link {{ Request::is('workspace/tasks*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-tasks"></i>
+                                <p>Tasks</p>
                             </a>
                         </li>
                     </ul>

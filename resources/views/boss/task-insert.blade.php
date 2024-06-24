@@ -93,7 +93,7 @@
             <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group"
               aria-label="Button group">
               <button type="submit" class="btn btn-secondary" role="button">
-                <img class="icon me-2 mt-1" src="assets/images/icon-submit.svg" draggable="false">Submit
+                <img class="icon me-2 mt-1" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">Submit
               </button>
             </div>
           </div>

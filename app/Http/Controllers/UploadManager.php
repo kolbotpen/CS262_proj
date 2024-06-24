@@ -15,7 +15,7 @@ class UploadManager extends Controller
     public function tasksForCompany(Company $company)
     {
         $teams = Team::where('company_id', $company->id)->get();
-        $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get(); // This line is correct but ensure it's used properly in the view
+        $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get(); 
 
         // Ensure the view differentiates tasks by team correctly
         return view('boss.task-all', compact('teams', 'company', 'tasks'));
@@ -100,6 +100,7 @@ class UploadManager extends Controller
                 'progress' => 'required|string',
                 'due_date' => 'required|date',
                 // Validate other fields as necessary
+                'file' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
             ]);
 
             // Find the task and update it
@@ -117,10 +118,22 @@ class UploadManager extends Controller
             return redirect()->back()->with('success', 'Task updated successfully.');
         }
 
-        // If not a PUT request, proceed to show the edit form
         $task = Task::findOrFail($id);
         $users = User::all();
+
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $path = $file->store('public/tasks');
+            $task->file_path = $path;
+        }
+
         return view('boss.task-details-edit', compact('task', 'users'));
+    }
+    public function showWorkspace()
+    {
+        $tasks = Task::with(['team', 'user'])->get();
+
+        return view('admin.task-workspace', compact('tasks'));
     }
 
 }

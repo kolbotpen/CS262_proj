@@ -212,6 +212,7 @@ Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
+Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
 
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
