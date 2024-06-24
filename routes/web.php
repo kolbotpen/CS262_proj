@@ -61,7 +61,7 @@ Route::get('/rat', function () {
 });
 // Landing
 Route::get('/', function () {
-    return view('landing');
+    return view('auth.login');
 });
 Route::get('/landing', function () {
     return view('landing');
@@ -209,6 +209,10 @@ Route::get('/settings', function () {
 
 // ---------- BACKEND | START ----------------
 // WORKSPACE
+Route::get('/adminhome', function () {
+    return view('boss.adminhome'); 
+})->middleware(['auth'])->name('adminhome');
+
 Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
