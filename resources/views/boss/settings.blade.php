@@ -40,20 +40,20 @@
                         <!-- LEFT | Profile Picture Section -->
                         <div class="contact-input rounded mt-1 p-0 text-center profile-box d-flex align-items-center justify-content-center" style="width: 100%;">
                             <div class="rounded-circle position-relative">
-                                <img id="profile-img" src="{{ asset('assets/images/avatar.png') }}" alt="Profile Picture" class="rounded-circle img-fluid mb-3" style="width: 215px; height: 215px;">
-                                <!-- Update Password Button -->
+                                <img id="profile-img" src="{{ asset('public/profiles/' . auth()->user()->profile_picture) }}" alt="Profile Picture" class="rounded-circle img-fluid mb-3" style="width: 215px; height: 215px;">
+                                <!-- Update Picture Button -->
                                 <div class="d-flex justify-content-center mt-4">
                                     <label for="profile-image" class="btn btn-secondary btn-change-profile" role="button">
                                         <img class="icon me-2" src="{{ asset('assets/images/icon-file-image.svg') }}" draggable="false">Change Picture
                                     </label>
-                                    <input type="file" id="profile-image" class="d-none">
+                                    <input type="file" id="profile-image" class="d-none" name="profile_picture" form="profile-form">
                                 </div>
                             </div>
                         </div>
 
                         <!-- MIDDLE | Profile Edit Form -->
                         <div class="contact-input rounded p-2 profile-box" style="width: 100%;">
-                            <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                            <form id="profile-form" method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
                                 @csrf
                                 @method('PATCH')
                                 <!-- Full Name -->
@@ -103,6 +103,7 @@
                                 </div>
                             </form>
                         </div>
+
 
                         <!-- RIGHT | Password Update Form -->
                         <div class="contact-input rounded p-2 profile-box" style="width: 100%;">

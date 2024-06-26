@@ -7,13 +7,11 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -21,27 +19,29 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-        $request->user()->save();
+        if ($request->hasFile('profile_picture')) {
+            if ($user->profile_picture && $user->profile_picture != 'assets/images/avatar.png') {
+                Storage::delete('public/profiles/' . $user->profile_picture);
+            }
 
-        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
-        // VISOTH WAS HERE. I changed the route to settings instead of profile.edit
+            $path = $request->file('profile_picture')->store('profiles', 'public');
+            $user->profile_picture = basename($path);
+        }
+
+        $user->save();
+
         return redirect()->route('boss.settings')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -59,6 +59,7 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
     public function settings(Request $request): View
     {
         return view('boss.settings', [
