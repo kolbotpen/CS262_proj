@@ -22,9 +22,17 @@ use App\Http\Controllers\JoinRequestController;
 // ---------- LANDING ----------------
 
 Route::get('/', function () {
-    return view('landing');
+    return view('auth.login');
 });
-// ---------- FRONTEND | START ----------------
+
+
+
+
+// SHOW COMPANY 
+Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
+
+
+// ---------- BACKEND | START ----------------
 
 // WORKSPACE
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
@@ -51,161 +59,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-// SHOW COMPANY 
-Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
-
-// ---------- VISOTH'S CODE | START ----------
-Route::get('/rat', function () {
-    return view('RAT');
-});
-
-Route::get('/landing', function () {
-    return view('landing');
-});
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-// LOGGED IN STARTS FROM HERE
-// Browse
-Route::get('/browse', function () {
-    return view('browse');
-});
-Route::get('/browse-create', function () {
-    return view('browse-create');
-})->name('browse-create');
-Route::get('/browse-search', function () {
-    return view('browse-search');
-});
-Route::get('/browse-request', function () {
-    return view('browse-request');
-});
-
-// Routes for browsing and joining companies
-Route::get('/browse-search', [CompanyController::class, 'showBrowseSearch'])->name('browse-search');
-Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('company.join');
-
-// Route for creating a company in the browse section
-Route::post('/browse-create', [CompanyController::class, 'storeInBrowse'])->name('browse.store');
-
-// LOGGED IN AS "BOSS" STARTS FROM HERE
-// Companies
-Route::get('/companies', function () {
-    return view('boss.companies');
-});
-
-// Team
-Route::get('/team-all', function () {
-    return view('boss.team-all');
-});
-Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams']); // THIS ONE IS TO GET ALL THE TEAM MEMBERS
-
-Route::get('/team', function () {
-    return view('boss.team');
-});
-
-Route::get('/team/{team}', [TeamsController::class, 'showTeam'])->name('team.show'); // THIS ONE IS TO GET JUST THE ONE TEAM YOU SELECT 
-Route::get('/team/{id}', [TeamsController::class, 'showOneTeam'])->name('team.one');
-
-Route::delete('/team/{team_id}/remove/{user_id}', [TeamsController::class, 'removeMember'])->name('team.remove.member');
-
-Route::post('/check-team-name', [TeamsController::class, 'checkTeamName'])->name('check.team.name'); // THIS CHECKS IF TEAM NAME ALREADY EXISTS IN COMPANY
-Route::post('/check-member-exists', [TeamsController::class, 'checkMemberExists'])->name('check.member.exists'); // THIS CHECKS IF MEMBER ALREADY EXISTS IN TEAM
-
-
-Route::get('/team-add', function () {
-    return view('boss.team-add');
-});
-Route::get('/team-add-member', function () {
-    return view('boss.team-add-member');
-});
-
-Route::post('/team-add', [TeamsController::class, 'storeInBoss'])->name('boss.add'); // ADDing TO 
-Route::get('/team-add', [TeamsController::class, 'showTeamAddForm'])->name('boss.team-add'); // FOR BOSS.ADDTEAM To WORK
-Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
-
-Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams'])->name('team.all');
-Route::post('/team/add-member', [TeamsController::class, 'addMember'])->name('team.add.member');
-
-// Task
-Route::get('/task-all', function () {
-    return view('boss.task-all');
-});
-Route::get('/task', function () {
-    return view('boss.task');
-});
-Route::get('/task-all/{company}', [UploadManager::class, 'tasksForCompany'])->name('task.forCompany');
-Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
-// INSERTING FILES
-Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
-Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
-
-// Task Details
-Route::get('/task-details', function () {
-    return view('boss.task-details');
-});
-Route::get('/task-details-edit', function () {
-    return view('boss.task-details-edit');
-});
-// Viewing a task
-Route::get('/task-details/{id}', [UploadManager::class, 'show'])->name('task.show');
-
-// Editing task details
-Route::get('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
-Route::put('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
-
-// Task Insert
-Route::get('/task-insert', function () {
-    return view('boss.task-insert');
-});
-Route::get('/task-insert', [UploadManager::class, "upload"])->name("upload");
-Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.post");
-// Calendar
-Route::get('/calendar', function () {
-    return view('boss.calendar');
-});
-
-
-// JOIN REQUEST
-Route::post('/join-request', [JoinRequestController::class, 'store'])->name('join-request.store');
-
-
-// Approve Request
-Route::patch('/requests/approve/{request}', [JoinRequestController::class, 'approve'])->name('requests.approve');
-
-// Reject Request
-Route::delete('/requests/reject/{request}', [JoinRequestController::class, 'reject'])->name('requests.reject');
-
-
-// ALL MEMBERS - REQUESTS
-Route::get('/all-members', function () {
-    return view('boss.all-members');
-});
-Route::get('/all-members', [JoinRequestController::class, 'index'])->name('all-members.index');
-Route::patch('/all-members/{request}/approve', [JoinRequestController::class, 'approve'])->name('all-members.approve');
-Route::delete('/all-members/{request}/reject', [JoinRequestController::class, 'reject'])->name('all-members.reject');
-
-
-
-// Settings
-Route::get('/settings', function () {
-    return view('boss.settings');
-})->name('boss.settings');
-
-// LOGGED IN AS "WORKER" STARTS FROM HERE
-// nothing here yet, just us chickens
-
-
-// ---------- VISOTH'S CODE | END ----------
-// ---------- FRONTEND | END --------------
-
-
-// ---------- BACKEND | START ----------------
 // WORKSPACE
 Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
@@ -259,4 +112,6 @@ Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destro
 // // ROUTE FOR SHOWING THE WORKSPACE
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
 
+// TASKS
+Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
 require __DIR__.'/auth.php';
