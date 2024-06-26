@@ -26,12 +26,6 @@ Route::get('/', function () {
 });
 // ---------- FRONTEND | START ----------------
 
-// WORKSPACE
-Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
-Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
-Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
-Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
-
 // WORKSPACE EDITING
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');
@@ -54,7 +48,7 @@ Route::middleware('auth')->group(function () {
 
 
 // SHOW COMPANY 
-Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
+// Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
 
 // ---------- VISOTH'S CODE | START ----------
 Route::get('/rat', function () {
@@ -94,10 +88,9 @@ Route::post('/browse-search', [CompanyController::class, 'joinCompany'])->name('
 Route::post('/browse-create', [CompanyController::class, 'storeInBrowse'])->name('browse.store');
 
 // LOGGED IN AS "BOSS" STARTS FROM HERE
-// Companies
-Route::get('/companies', function () {
-    return view('boss.companies');
-});
+
+// ROUTE FOR SHOWING THE WORKSPACE
+Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
 
 // Team
 Route::get('/team-all', function () {
@@ -127,7 +120,6 @@ Route::get('/team-add-member', function () {
 
 Route::post('/team-add', [TeamsController::class, 'storeInBoss'])->name('boss.add'); // ADDing TO 
 Route::get('/team-add', [TeamsController::class, 'showTeamAddForm'])->name('boss.team-add'); // FOR BOSS.ADDTEAM To WORK
-Route::get('/companies', [HomeController::class, 'showCompanies'])->name('companies');
 
 Route::get('/team-all/{company}', [TeamsController::class, 'showAllTeams'])->name('team.all');
 Route::post('/team/add-member', [TeamsController::class, 'addMember'])->name('team.add.member');
@@ -190,8 +182,6 @@ Route::get('/all-members', [JoinRequestController::class, 'index'])->name('all-m
 Route::patch('/all-members/{request}/approve', [JoinRequestController::class, 'approve'])->name('all-members.approve');
 Route::delete('/all-members/{request}/reject', [JoinRequestController::class, 'reject'])->name('all-members.reject');
 
-
-
 // Settings
 Route::get('/settings', function () {
     return view('boss.settings');
@@ -203,60 +193,4 @@ Route::get('/settings', function () {
 
 // ---------- VISOTH'S CODE | END ----------
 // ---------- FRONTEND | END --------------
-
-
-// ---------- BACKEND | START ----------------
-// WORKSPACE
-Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
-Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
-Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
-Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
-
-// EDITING
-Route::get('/edit', [HomeController::class,'edit'])->name('edit');
-Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
-Route::get('/setting', [HomeController::class,'setting'])->name('setting');
-Route::get('/companies/{id}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
-
-// AUTHENTICATION
-Route::get('post',[HomeController::class,'post'])->middleware(['auth', 'admin']);
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Add the boss.settings route
-    Route::get('/boss/settings', [ProfileController::class, 'settings'])->name('boss.settings');
-});
-
-// ADDING COMPS, TEAMS
-Route::get('/admin-addcompany', [CompanyController::class, 'showAddCompanyForm'])->name('admin.addcompany');
-Route::get('/admin-addteam', [TeamsController::class, 'showAddTeamForm'])->name('admin.addteam');
-Route::get('/admin-adduser', [UserController::class, 'showAddUserForm'])->name('admin.adduser');
-
-// ROUTE FOR STORING
-Route::post('/admin-addteam', [TeamsController::class, 'store'])->name('team.store');
-Route::post('/admin-addcompany', [CompanyController::class, 'store'])->name('companies.store');
-Route::post('/admin-adduser', [UserController::class, 'store'])->name('users.store');
-
-// ROUTE FOR UPDATING
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
-
-// CRUD FOR WORKSPACE/COMPANIES
-Route::prefix('workspace')->group(function () {
-    Route::get('/companies', [CompanyController::class, 'showWorkspace'])->name('company.workspace'); // Assuming this is for listing companies
-    Route::get('/companies/{company}/edit', [CompanyController::class, 'edit'])->name('companies.edit'); // For editing a specific company
-    Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update'); // For updating a specific company
-    Route::post('/companies', [CompanyController::class, 'store'])->name('companies.store'); // For storing a new company
-    Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy'); // For deleting a company
-});
-
-// ROUTE FOR DELETING
-Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
-Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
-// // ROUTE FOR SHOWING THE WORKSPACE
-Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
-
 require __DIR__.'/auth.php';
