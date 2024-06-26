@@ -30,8 +30,6 @@
 
 
 
-
-
 /* Sidebar Styles */
 #sidebarMenu {
     z-index: 2;
@@ -44,7 +42,14 @@
     overflow-y: auto;
     transition: width 0.2s ease;
     padding-top: 60px;
+    scrollbar-width: none; /* Firefox */
 }
+/* Hide scrollbar */
+#sidebarMenu::-webkit-scrollbar {
+    width: 0;  /* Safari and Chrome */
+    height: 0; /* Safari and Chrome */
+}
+
 
 @media (min-width: 768px) {
     #sidebarMenu {

@@ -171,7 +171,9 @@ a.btn {
 
 .btn-group {
     /* margin: auto; */
-    overflow: hidden;
+    scrollbar-width: none;
+    overflow-x: scroll !important;
+    /* overflow: hidden; */
     min-width: 0 !important;
     max-width: fit-content;
     border-radius: 8px;

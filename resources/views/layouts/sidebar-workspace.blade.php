@@ -4,7 +4,8 @@
         <div class="text-left m-3 mt-4 mb-4 rounded welcome-message" style="background-color: #222222;">
             <div class="d-flex align-items-center p-4 text-green-gradient">
                 <h5 class="inter m-0 welcome-title">
-                    <strong class="welcome-text">WELCOME,<br>{{ Auth::user()->name }}</strong>
+                    <strong class="welcome-text text-nowrap" id="greeting"></strong>
+                    <strong class="welcome-text"><br>{{ Auth::user()->name }}</strong>
                 </h5>
             </div>
         </div>
@@ -66,3 +67,4 @@
 </nav>
 
 <script src="{{ asset('assets/js/sidebar-workspace-collapse.js') }}"></script>
+<script src="{{ asset('assets/js/greeting.js')}}"></script>

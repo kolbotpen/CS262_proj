@@ -102,4 +102,26 @@ class ProfileController extends Controller
 
         return redirect()->back()->with('status', 'profile-picture-updated');
     }
+
+    /**
+     * Update the user's password.
+     */
+    public function updatePassword(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'current_password' => ['required'],
+            'password' => ['required', 'confirmed', 'min:8'],
+        ]);
+
+        $user = $request->user();
+
+        if (!Hash::check($request->current_password, $user->password)) {
+            return redirect()->back()->withErrors(['current_password' => 'Current password is incorrect.']);
+        }
+
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return redirect()->route('boss.settings')->with('status', 'password-updated');
+    }
 }

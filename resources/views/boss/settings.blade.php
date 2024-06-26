@@ -1,30 +1,30 @@
 @extends('layouts.master-workspace')
 @section('content')
 
-<link rel="stylesheet" href="{{ asset('assets/css/settings.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/css/login.css')}}">
-<link rel="stylesheet" href="{{ asset('assets/css/sign-up.css')}}">
+<link rel="stylesheet" href="{{ asset('assets/css/settings.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/login.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/sign-up.css') }}">
 
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
         <a href="#" class="breadcrumb-link">Settings</a>
     </div>
 
-    @if (session('status'))
+    @if (session('status') === 'profile-picture-updated')
     <div class="alert alert-success">
-        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">Picture updated successfully!
+        <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">Picture updated successfully!
     </div>
     @endif
 
     @if (session('status') === 'profile-updated')
     <div class="alert alert-success">
-        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">Profile updated successfully!
+        <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">Profile updated successfully!
     </div>
     @endif
 
-    @if (session('status') == 'password-updated')
+    @if (session('status') === 'password-updated')
     <div class="alert alert-success">
-        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">Password updated successfully!
+        <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">Password updated successfully!
     </div>
     @endif
 
@@ -51,7 +51,7 @@
                                     @method('PATCH')
                                     <div class="profile-picture-container rounded-circle bounce-profile-click">
                                         <!-- Update Picture Button -->
-                                        <label for="profile-image" class="btn-change-profile" role="button">
+                                        <label for="profile-image" class="btn-change-profile" role="button" title="Change Profile Picture">
                                             <img id="profile-img" src="{{ auth()->user()->profile_picture }}" alt="Profile Picture" class="img-fluid mb-3">
                                         </label>
                                         <input type="file" id="profile-image" class="d-none" name="profile_picture">
@@ -65,9 +65,6 @@
                                 </form>
                             </div>
                         </div>
-
-
-
 
                         <!-- MIDDLE | Profile Edit Form -->
                         <div class="contact-input rounded p-2 profile-box" style="width: 100%;">
@@ -127,34 +124,48 @@
                             <form method="POST" action="{{ route('password.update') }}">
                                 @csrf
                                 @method('PUT')
-
+                        
                                 <!-- Current Password -->
-                                <div class="mb-3">
+                                <div class="mb-3 position-relative">
                                     <label for="current_password" class="form-label">
                                         <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> Current Password
                                     </label>
-                                    <x-text-input id="current_password" class="form-control bg-black text-white border-0" type="password" name="current_password" placeholder="••••••••" required />
+                                    <div class="input-group">
+                                        <x-text-input id="current_password" class="form-control bg-black text-white border-0 position-relative" type="password" name="current_password" placeholder="••••••••" required />
+                                        <button type="button" class="btn btn-outline-secondary toggle-password" onclick="togglePassword('current_password', this)">
+                                            <img src="{{ asset('assets/images/icon-view-hide.svg') }}" alt="Show" class="password-icon" draggable="false">
+                                        </button>
+                                    </div>
                                     <x-input-error :messages="$errors->updatePassword->get('current_password')" class="mt-2 text-red" />
                                 </div>
-
+                        
                                 <!-- New Password -->
-                                <div class="mb-3">
+                                <div class="mb-3 position-relative">
                                     <label for="password" class="form-label">
                                         <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> New Password
                                     </label>
-                                    <x-text-input id="password" class="form-control bg-black text-white border-0" type="password" name="password" placeholder="••••••••" required />
+                                    <div class="input-group">
+                                        <x-text-input id="password" class="form-control bg-black text-white border-0 position-relative" type="password" name="password" placeholder="••••••••" required />
+                                        <button type="button" class="btn btn-outline-secondary toggle-password" onclick="togglePassword('password', this)">
+                                            <img src="{{ asset('assets/images/icon-view-hide.svg') }}" alt="Show" class="password-icon" draggable="false">
+                                        </button>
+                                    </div>
                                     <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2 text-red" />
                                 </div>
-
+                        
                                 <!-- Confirm New Password -->
-                                <div class="mb-3">
+                                <div class="mb-3 position-relative">
                                     <label for="password_confirmation" class="form-label">
                                         <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> Confirm New Password
                                     </label>
-                                    <x-text-input id="password_confirmation" class="form-control bg-black text-white border-0" type="password" name="password_confirmation" placeholder="••••••••" required />
-                                    <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2 text-red" />
+                                    <div class="input-group">
+                                        <x-text-input id="password_confirmation" class="form-control bg-black text-white border-0 position-relative" type="password" name="password_confirmation" placeholder="••••••••" required />
+                                        <button type="button" class="btn btn-outline-secondary toggle-password" onclick="togglePassword('password_confirmation', this)">
+                                            <img src="{{ asset('assets/images/icon-view-hide.svg') }}" alt="Show" class="password-icon" draggable="false">
+                                        </button>
+                                    </div>
                                 </div>
-
+                        
                                 <!-- Save Changes Button -->
                                 <div class="d-flex justify-content-center mt-4">
                                     <button type="submit" class="btn btn-secondary" role="button">
@@ -170,6 +181,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Toggle password visibility
+    function togglePassword(inputId, button) {
+    var input = document.getElementById(inputId);
+    var icon = button.querySelector('img');
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.src = '{{ asset('assets/images/icon-view.svg') }}';
+        icon.alt = 'Hide';
+    } else {
+        input.type = 'password';
+        icon.src = '{{ asset('assets/images/icon-view-hide.svg') }}';
+        icon.alt = 'Show';
+    }
+}
+</script>
 
 <script>
     // Profile picture change functionality

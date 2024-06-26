@@ -6,6 +6,7 @@
     z-index: 1000;
     height: 60px;
     background-color: #1c1c1c;
+    box-shadow: #0000004d 0px 0px 25px 0px;
 }
 
 .navbar-nav .nav-item .nav-link {
@@ -68,6 +69,16 @@
 
 .dropdown-menu {
     background-color: #181818;
+    position: absolute !important;
+    top: calc(100% + 15px) !important;
+    right: -7px !important;
+    min-width: 180px;
+    z-index: 1001;
+    display: none; /* Initially hidden */
+}
+
+.dropdown-menu.show {
+    display: block; /* Show when dropdown is open */
 }
 
 .dropdown-menu li .dropdown-item:hover {
