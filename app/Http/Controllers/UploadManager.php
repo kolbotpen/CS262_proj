@@ -135,5 +135,9 @@ class UploadManager extends Controller
 
         return view('admin.task-workspace', compact('tasks'));
     }
-
+    public function tasksForTeam(Team $team)
+    {
+        $tasks = Task::where('team_id', $team->id)->get();
+        return view('boss.task', compact('tasks', 'team'));
+    }
 }

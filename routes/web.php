@@ -155,6 +155,9 @@ Route::get('/task-details-edit', function () {
 // Viewing a task
 Route::get('/task-details/{id}', [UploadManager::class, 'show'])->name('task.show');
 
+// Single Task
+Route::get('/tasks/{team}', [UploadManager::class, 'tasksForTeam'])->name('team.tasks');
+
 // Editing task details
 Route::get('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
 Route::put('/task-details-edit/{id}', [UploadManager::class, 'edit'])->name('task.edit');
