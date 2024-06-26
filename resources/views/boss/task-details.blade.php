@@ -54,13 +54,18 @@
             <p><strong>Priority:</strong><br>
             <div
               class="pill {{ $task->priority == 'Low' ? 'pill-green' : ($task->priority == 'Medium' ? 'pill-yellow' : 'pill-red') }}">
-              {{ $task->priority }}</div>
+              {{ $task->priority }}
+            </div>
             </p>
             <p><strong>Progress:</strong><br>
-            <div class="pill {{ $task->progress == 'Completed' ? 'pill-green' : ($task->progress == 'In Progress' ? 'pill-yellow' : '') }} ">
+            <div
+              class="pill {{ $task->progress == 'Completed' ? 'pill-green' : ($task->progress == 'In Progress' ? 'pill-yellow' : '') }} ">
               {{ $task->progress }}
             </div>
             </p>
+            @if($task->file_path)
+              <small>Current file: <a href="{{ Storage::url($task->file_path) }}" target="_blank">View file</a></small>
+            @endif
           </div>
         </div>
       </div>

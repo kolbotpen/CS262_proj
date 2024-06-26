@@ -3,6 +3,50 @@ input#fileElem.left-0 {
     background-color: #73C649 !important;
 }
 
+/* ----- PROFILE PICTURE ----- */
+.profile-picture-container {
+    width: 215px;
+    height: 215px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-picture-container img {
+    margin-top: 18px;
+    width: 100%;
+    height: 100%; /* Ensure the image height fills the container */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+    transition-duration: 0.4s;
+}
+
+.profile-picture-container img:hover {
+    transform: scale(1.12);
+}
+
+.mini-profile-picture {
+    width: 45px;
+    height: 45px;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.mini-profile-picture:hover {
+    box-shadow: 0 0 0 2px transparent, 0 0 0 2px #73C64A, 0 0 0 1px #10834c;
+}
+
+
+
+.mini-profile-picture img {
+    width: 100%;
+    height: 100%; /* Ensure the image height fills the container */
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+}
+
+
+
 /* ----- TEXTS ----- */
 
 .count {
