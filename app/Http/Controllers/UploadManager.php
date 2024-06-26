@@ -144,7 +144,7 @@ class UploadManager extends Controller
 
     public function showCalendar()
     {
-        $tasks = Task::all(); // Assuming you want all tasks, adjust the query as needed
-        return view('boss.calendar', compact('tasks')); // Pass tasks to the view
+        $tasks = Task::all(); 
+        return view('boss.calendar', compact('tasks'));
     }
 }
