@@ -38,4 +38,8 @@ class Task extends Model
                 return ''; // Default case if none of the above matches
         }
     }
+    public function assignedUser()
+    {
+        return $this->belongsTo(User::class, 'assigned_to');
+    }
 }

@@ -15,7 +15,7 @@ class UploadManager extends Controller
     public function tasksForCompany(Company $company)
     {
         $teams = Team::where('company_id', $company->id)->get();
-        $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get(); 
+        $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get();
 
         // Ensure the view differentiates tasks by team correctly
         return view('boss.task-all', compact('teams', 'company', 'tasks'));
@@ -89,46 +89,43 @@ class UploadManager extends Controller
     // Method to edit a task's details
     public function edit(Request $request, $id)
     {
-        // Check if the request is a PUT request: this means we're updating
+        $task = Task::findOrFail($id);
+        $teamId = $request->query('team_id', $task->team_id);
+
+        // Fetch users belonging to the team
+        $users = User::whereHas('teams', function ($query) use ($teamId) {
+            $query->where('team_id', $teamId);
+        })->get();
+
         if ($request->isMethod('PUT')) {
-            // Perform validation
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
                 'assigned_to' => 'required|integer',
+                'assigned_email' => 'required|email',
                 'priority' => 'required|string',
                 'progress' => 'required|string',
                 'due_date' => 'required|date',
-                // Validate other fields as necessary
                 'file' => 'nullable|file|mimes:jpeg,png,jpg,pdf,docx,zip,mp4,mkv,mov,avi,mp3,wav,ogg,html,css,js,cpp,java,exe,py,txt,xml,csv,xls,xlsx,php,c,cs,sql',
             ]);
 
-            // Find the task and update it
-            $task = Task::findOrFail($id);
-            $task->title = $validatedData['title'];
-            $task->description = $validatedData['description'];
-            $task->user_id = $validatedData['assigned_to']; // Assuming 'assigned_to' is stored in 'user_id' column
-            $task->priority = $validatedData['priority'];
-            $task->progress = $validatedData['progress'];
-            $task->due_date = $validatedData['due_date'];
-            // Update other fields as necessary
-            $task->save();
+            $task->update($validatedData);
+            $task->assigned_email = $request->input('assigned_email');
 
-            // Redirect after update
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
+                $path = $file->store('public/tasks');
+                $task->file_path = $path;
+            }
+
+            $task->save();
             return redirect()->back()->with('success', 'Task updated successfully.');
         }
 
-        $task = Task::findOrFail($id);
-        $users = User::all();
-
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            $path = $file->store('public/tasks');
-            $task->file_path = $path;
-        }
-
-        return view('boss.task-details-edit', compact('task', 'users'));
+        return view('boss.task-details-edit', compact('task', 'users', 'teamId'));
     }
+
+
     public function showWorkspace()
     {
         $tasks = Task::with(['team', 'user'])->get();
@@ -144,7 +141,7 @@ class UploadManager extends Controller
 
     public function showCalendar()
     {
-        $tasks = Task::all(); 
-        return view('boss.calendar', compact('tasks'));
+        $tasks = Task::all(); // Assuming you want all tasks, adjust the query as needed
+        return view('boss.calendar', compact('tasks')); // Pass tasks to the view
     }
 }

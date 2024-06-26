@@ -43,9 +43,12 @@
                                 <label for="assigned_to">Assigned To</label>
                                 <select class="form-control bg-black text-white border-0 mb-2" id="assigned_to" name="assigned_to">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}" {{ $task->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
+                                        <option value="{{ $user->id }}" {{ $task->assigned_to == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
+                                <label for="assigned_email">Assigned Email</label>
+                                <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" value="{{ $task->assigned_email }}" placeholder="Assigned email">
+                                <input type="hidden" name="team_id" value="{{ $teamId }}">
                             </div>
                         </div>
                     </div>
@@ -71,6 +74,9 @@
                                 <label for="due_date">Due Date</label>
                                 <input type="date" class="form-control bg-black text-white border-0 mb-2" id="due_date" name="due_date" value="{{ $task->due_date }}">
                             </div>
+                            @if($task->file_path)
+                                <small>Current file: <a href="{{ Storage::url($task->file_path) }}" target="_blank">View file</a></small>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -84,9 +90,6 @@
                                 <div id="fileList"></div>
                             </div>
                         </div>
-                        @if($task->file_path)
-                            <small>Current file: <a href="{{ Storage::url($task->file_path) }}" target="_blank">View file</a></small>
-                        @endif
                         <div class="btn-group table-border th-btn center my-3" style="background-color: #303030" role="group" aria-label="Button group">
                             <button type="submit" class="btn btn-secondary">
                                 <img class="icon me-2" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">Update
@@ -112,6 +115,13 @@ document.getElementById('fileElem').addEventListener('change', function() {
         li.textContent = this.files[i].name;
         fileList.appendChild(li);
     }
+});
+
+document.getElementById('assigned_to').addEventListener('change', function() {
+    var userId = this.value;
+    var users = @json($users);
+    var user = users.find(user => user.id == userId);
+    document.getElementById('assigned_email').value = user ? user.email : '';
 });
 </script>
 @stop
