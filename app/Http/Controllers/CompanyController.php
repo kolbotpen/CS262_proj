@@ -144,6 +144,7 @@ class CompanyController extends Controller
             'company_code' => 'required|string|size:6',
         ]);
 
+        // Find the company by the provided company code
         $company = Company::where('company_code', $request->company_code)->first();
 
         if (!$company) {
@@ -162,6 +163,7 @@ class CompanyController extends Controller
 
         return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
+
 
     // public function showJoinedCompanies()
     // {
