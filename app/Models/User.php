@@ -9,7 +9,6 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    protected $table = 'users';
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
@@ -17,7 +16,7 @@ class User extends Authenticatable
         'email',
         'password',
         'usertype',
-        'profile_picture', // Add this line
+        'profile_picture',
     ];
 
     public function teams()
@@ -41,9 +40,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // Add this accessor for the profile picture
+    // Accessor for the profile picture
     public function getProfilePictureAttribute($value)
     {
-        return $value ? 'public/profiles/' . $value : 'assets/images/avatar.png';
+        return $value ? asset('storage/profiles/' . $value) : asset('assets/images/avatar.png');
     }
 }
