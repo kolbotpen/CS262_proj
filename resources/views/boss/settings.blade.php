@@ -10,6 +10,12 @@
         <a href="#" class="breadcrumb-link">Settings</a>
     </div>
 
+    @if (session('status'))
+    <div class="alert alert-success">
+        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">Picture updated successfully!
+    </div>
+    @endif
+
     @if (session('status') === 'profile-updated')
     <div class="alert alert-success">
         <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">Profile updated successfully!
