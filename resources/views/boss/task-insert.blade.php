@@ -6,7 +6,7 @@
   <div class="breadcrumb mt-4 mb-4">
     <a href="/companies" class="breadcrumb-link">Companies</a>
     <i class="arrow-right"></i>
-    <a href="/task" class="breadcrumb-link">Task</a>
+    <a href="/tasks/{{ $teamId }}" class="breadcrumb-link">Task</a>
     <i class="arrow-right"></i>
     <a href="#" class="breadcrumb-link">Add</a>
   </div>
@@ -44,10 +44,11 @@
                 placeholder="Task Description"></textarea>
               <label for="assigned_to">Assigned To</label>
               <select id="assigned_to" name="assigned_to" class="form-control bg-black text-white border-0 mb-2">
-              @foreach($users as $user)
-                  <option value="{{ $user->id }}" data-email="{{ $user->email }}">{{ $user->name }}</option>
-              @endforeach
+                @foreach($users as $user)
+                    <option value="{{ $user->id }}" data-email="{{ $user->email }}">{{ $user->name }}</option>
+                @endforeach
               </select>
+              
               <label for="assigned_email">Assigned Email</label>
               <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
               <input type="hidden" name="team_id" value="{{ $teamId }}">
@@ -82,8 +83,7 @@
           <div class="col-md-12">
             <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
               <p class="mb-3">Drag and drop file here</p>
-              <button id="uploadButton" class="btn btn-secondary mb-2">Or click here to select
-                file(s)</button>
+              <button id="uploadButton" class="btn btn-secondary mb-2">Import</button>
               <!-- Display area for uploaded files -->
               <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0">
               <div id="fileListContainer" class="d-flex flex-column align-items-center">
@@ -111,9 +111,29 @@
 <script src="{{asset ('assets/js/task-insert-display.js')}}"></script>
 
 <script>
-  document.getElementById('assigned_to').addEventListener('change', function() {
-      var selectedUserEmail = this.options[this.selectedIndex].getAttribute('data-email');
-      document.getElementById('assigned_email').value = selectedUserEmail;
+  document.addEventListener('DOMContentLoaded', function() {
+      var select = document.getElementById('assigned_to');
+      var emailInput = document.getElementById('assigned_email');
+
+      function updateEmail() {
+          var selectedUserEmail = select.options[select.selectedIndex].getAttribute('data-email');
+          emailInput.value = selectedUserEmail;
+      }
+
+      function updateMemberName() {
+          var email = emailInput.value;
+          for (var i = 0; i < select.options.length; i++) {
+              if (select.options[i].getAttribute('data-email') === email) {
+                  select.selectedIndex = i;
+                  break;
+              }
+          }
+      }
+
+      select.addEventListener('change', updateEmail);
+      emailInput.addEventListener('input', updateMemberName);
+
+      updateEmail();
   });
 </script>
 <script>

@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
   <div class="breadcrumb mt-4 mb-4">
-    <a href="#" class="breadcrumb-link">Companies</a>
+    <a href="/companies" class="breadcrumb-link">Companies</a>
     <i class="arrow-right"></i>
-    <a href="/task" class="breadcrumb-link">Task</a>
+    <a href="javascript:history.back()" class="breadcrumb-link">Tasks</a>
     <i class="arrow-right"></i>
     <a href="#" class="breadcrumb-link">Details</a>
   </div>

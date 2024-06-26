@@ -14,7 +14,7 @@
             <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
                 <thead>
                     <tr>
-                        <th class="align-middle">{{ $team->name }}</th>
+                        <th class="align-middle">Team &nbsp;{{ $team->name }}</th>
                         <th class="align-middle"></th>
                         <th class="align-middle text-center">
                             <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"

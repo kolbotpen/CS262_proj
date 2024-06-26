@@ -13,12 +13,12 @@
 
     @if (session('success'))
     <div class="alert alert-success">
-        <img class="me-2" src="{{asset ('assets/images/icon-checkmark-green.svg')}}">{{ session('success') }}
+        <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">{{ session('success') }}
     </div>
     @endif
     @if (session('error'))
         <div class="alert alert-danger">
-            <img class="me-2" src="{{asset ('assets/images/icon-cross-red.svg')}}">{{ session('error') }}
+            <img class="me-2" src="{{ asset('assets/images/icon-cross-red.svg') }}">{{ session('error') }}
         </div>
     @endif
 
@@ -59,42 +59,54 @@
                             <tr>
                                 <th class="align-middle">No.</th>
                                 <th class="align-middle">Member</th>
+                                <th class="align-middle">Email</th>
                                 <th class="align-middle text-center w-16">Options</th>
                             </tr>
                         </thead>
                         <tbody>
-                           {{-- Inside the loop for displaying team members --}}
-                            @foreach ($team->users as $index => $user)
+                            {{-- Inside the loop for displaying team members --}}
+                            @forelse ($team->users as $index => $user)
                                 <tr>
                                     <td class="align-middle">{{ $index + 1 }}</td>
-                                    <td class="align-middle">{{ $user->name }}</td>
+                                    <td class="align-middle">
+                                        <div class="d-flex align-items-center">
+                                            <div class="mini-profile-picture rounded-circle me-3">
+                                                <img class="img-fluid" src="{{ $user->profile_picture }}" alt="{{ $user->name }}">
+                                            </div>
+                                            {{ $user->name }}
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        <a style="text-decoration: none; color: white;" href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                    </td>
                                     <td class="align-middle text-center">
-                                        <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                            role="group" aria-label="Button group">
+                                        <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                             <a class="btn btn-secondary" href="mailto:{{ $user->email }}" role="button">
-                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
-                                                    draggable="false">
+                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}" draggable="false">
                                             </a>
                                             {{-- Delete Member Form Conditional Display --}}
                                             @if($company->users->find(auth()->id())->pivot->is_boss)
-                                                <form
-                                                    action="{{ route('team.remove.member', ['team_id' => $team->id, 'user_id' => $user->id]) }}"
-                                                    method="POST"
-                                                    onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
+                                                <form action="{{ route('team.remove.member', ['team_id' => $team->id, 'user_id' => $user->id]) }}"
+                                                      method="POST"
+                                                      onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-danger rounded-0" role="button">
-                                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
-                                                            draggable="false">
+                                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false">
                                                     </button>
                                                 </form>
                                             @endif
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">No members found</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+                    
                 </div>
             </div>
             <!-- Modal -->

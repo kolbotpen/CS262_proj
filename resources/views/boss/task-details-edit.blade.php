@@ -12,7 +12,9 @@
     <div class="breadcrumb mt-4 mb-4">
         <a href="/companies" class="breadcrumb-link">Companies</a>
         <i class="arrow-right"></i>
-        <a href="#" class="breadcrumb-link">Edit Task</a>
+        <a href="/tasks/{{ $teamId }}" class="breadcrumb-link">Task</a>
+        <i class="arrow-right"></i>
+        <a href="#" class="breadcrumb-link">Edit</a>
     </div>
     <div class="container bg-gray p-0 rounded container-border">
         <form action="{{ route('task.edit', $task->id) }}" method="POST" enctype="multipart/form-data">
@@ -24,7 +26,14 @@
                         <tr>
                             <th class="align-middle">Edit</th>
                             <th class="align-middle"></th>
-                            <th class="align-middle text-center"></th>
+                            <th class="align-middle text-center">
+                                <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
+                                  aria-label="Button group">
+                                  <a class="btn btn-secondary" href="{{ url('task-details/' . $task->id) }}" role="button">
+                                    <img class="icon me-2" src="{{asset('assets/images/icon-cross.svg')}}" style="transform: scale(0.7)" draggable="false">Discard
+                                  </a>
+                                </div>
+                              </th>
                         </tr>
                     </thead>
                 </table>
@@ -84,7 +93,7 @@
                     <div class="col-md-12">
                         <div id="fileDropArea" class="p-4 text-center bg-dark text-white border rounded">
                             <p class="mb-3">Drag and drop file here</p>
-                            <button id="uploadButton" class="btn btn-secondary mb-2 table-border" type="button">Or click here to select file(s)</button>
+                            <button id="uploadButton" class="btn btn-secondary mb-2 table-border" type="button">Import</button>
                             <input name="file" type="file" id="fileElem" multiple accept="*" class="left-0 d-none">
                             <div id="fileListContainer" class="d-flex flex-column align-items-center">
                                 <div id="fileList"></div>

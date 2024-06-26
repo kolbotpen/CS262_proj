@@ -35,31 +35,42 @@
                     <tr>
                         <th class="align-middle">No.</th>
                         <th class="align-middle">Member</th>
+                        <th class="align-middle">Email</th>
                         <th class="align-middle text-center w-16">Options</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($team->users as $index => $member)
+                    @forelse($team->users as $index => $member)
                         <tr>
                             <td class="align-middle">{{ $index + 1 }}.</td>
-                            <td class="align-middle">{{ $member->name }}</td>
+                            <td class="align-middle">
+                                <div class="d-flex align-items-center">
+                                    <div class="mini-profile-picture rounded-circle me-3">
+                                        <img class="img-fluid" src="{{ $member->profile_picture }}" alt="{{ $member->name }}">
+                                    </div>
+                                    {{ $member->name }}
+                                </div>
+                            </td>
+                            <td>
+                                <a style="text-decoration: none; color: white;" href="mailto:{{ $member->email }}">{{ $member->email }}</a>
+                            </td>
                             <td class="align-middle text-center">
-                                <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                    role="group" aria-label="Button group">
+                                <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
                                     <a class="btn btn-secondary" href="mailto:{{ $member->email }}" role="button">
-                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
-                                            draggable="false">
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}" draggable="false">
                                     </a>
-                                    <!-- <a class="btn btn-danger" href="#" role="button">
-                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
-                                            draggable="false">
-                                    </a> -->
+                                    <!-- Add more buttons/options here if needed -->
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">No members found</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
+            
         </div>
     </div>
 </div>
