@@ -172,7 +172,7 @@ Route::post('/task-insert', [UploadManager::class, "uploadPost"])->name("upload.
 Route::get('/calendar', function () {
     return view('boss.calendar');
 });
-
+Route::get('/calendar', [UploadManager::class, 'showCalendar'])->name('calendar.show');
 
 // JOIN REQUEST
 Route::post('/join-request', [JoinRequestController::class, 'store'])->name('join-request.store');
