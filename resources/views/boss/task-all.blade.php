@@ -54,7 +54,7 @@
                                 {{-- Display each task --}}
                                 <tr>
                                     <td>{{ $task->title }}</td>
-                                    <td>{{ $task->assigned_to }}</td>
+                                    <td>{{ $task->assignedUser->name }}</td>
                                     <td>{{ $task->due_date}}</td>
                                     <td class="text-center">
                                         <div class="pill {{ $task->priority == 'Low' ? 'pill-green' : ($task->priority == 'Medium' ? 'pill-yellow' : 'pill-red') }} center">{{ $task->priority }}</div>
@@ -72,9 +72,8 @@
                                                     draggable="false">
                                             </a>
                                             @if($company->users->find(auth()->id())->pivot->is_boss)
-                                            <a class="btn btn-secondary" href="{{ url('task-details-edit/' . $task->id) }}" role="button">
-                                                <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
-                                                    draggable="false">
+                                            <a class="btn btn-secondary" href="{{ url('task-details-edit/' . $task->id . '?team_id=' . $team->id) }}" role="button">
+                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-edit.svg') }}" draggable="false">
                                             </a>
                                             @endif
                                             @if($company->users->find(auth()->id())->pivot->is_boss)

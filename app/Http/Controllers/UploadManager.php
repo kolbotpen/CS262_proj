@@ -92,6 +92,11 @@ class UploadManager extends Controller
         $task = Task::findOrFail($id);
         $teamId = $request->query('team_id', $task->team_id);
 
+        // Fetch users belonging to the team
+        $users = User::whereHas('teams', function ($query) use ($teamId) {
+            $query->where('team_id', $teamId);
+        })->get();
+
         if ($request->isMethod('PUT')) {
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
@@ -117,9 +122,9 @@ class UploadManager extends Controller
             return redirect()->back()->with('success', 'Task updated successfully.');
         }
 
-        $users = User::all();
         return view('boss.task-details-edit', compact('task', 'users', 'teamId'));
     }
+
 
     public function showWorkspace()
     {
