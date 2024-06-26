@@ -45,11 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-// SHOW COMPANY 
-// Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
-
 // ---------- VISOTH'S CODE | START ----------
 Route::get('/rat', function () {
     return view('RAT');
