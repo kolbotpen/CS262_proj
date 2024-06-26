@@ -134,6 +134,9 @@
     transition: opacity 0.2s ease;
     opacity: 1;
 }
+.welcome-message div {
+    padding: 22px 18px !important;
+}
 
 #sidebarMenu.collapsed .welcome-message {
     opacity: 0; /* Hide welcome message when collapsed */

@@ -2,7 +2,7 @@
     <div class="sidebar-inner">
         {{-- WELCOME MESSAGE --}}
         <div class="text-left m-3 mt-4 mb-4 rounded welcome-message" style="background-color: #222222;">
-            <div class="d-flex align-items-center p-4 text-green-gradient">
+            <div class="d-flex align-items-center text-green-gradient">
                 <h5 class="inter m-0 welcome-title">
                     <strong class="welcome-text text-nowrap" id="greeting"></strong>
                     <strong class="welcome-text"><br>{{ Auth::user()->name }}</strong>
