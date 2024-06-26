@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,16 +27,21 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $filePath = $file->store('public/profiles');
+            $user->profile_picture = basename($filePath);
         }
 
-        $request->user()->save();
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
 
-        // return Redirect::route('profile.edit')->with('status', 'profile-updated');
-        // VISOTH WAS HERE. I changed the route to settings instead of profile.edit
+        $user->save();
+
         return redirect()->route('boss.settings')->with('status', 'profile-updated');
     }
 
@@ -59,10 +65,41 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
     public function settings(Request $request): View
     {
         return view('boss.settings', [
             'user' => $request->user(),
         ]);
+    }
+
+    /**
+     * Update the user's profile picture.
+     */
+    public function updatePicture(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+        ]);
+
+        $user = Auth::user();
+        $oldProfilePicture = $user->profile_picture;
+
+        if ($request->hasFile('profile_picture')) {
+            $file = $request->file('profile_picture');
+            $fileName = time().'.'.$file->getClientOriginalExtension();
+            $file->storeAs('public/profiles', $fileName);
+
+            // Update user's profile picture
+            $user->profile_picture = $fileName;
+            $user->save();
+
+            // Delete the old profile picture if it exists
+            if ($oldProfilePicture && $oldProfilePicture !== 'assets/images/avatar.png') {
+                Storage::delete('public/profiles/'.$oldProfilePicture);
+            }
+        }
+
+        return redirect()->back()->with('status', 'profile-picture-updated');
     }
 }

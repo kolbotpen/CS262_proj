@@ -46,6 +46,9 @@
                                         <option value="{{ $user->id }}" {{ $task->user_id == $user->id ? 'selected' : '' }}>{{ $user->name }}</option>
                                     @endforeach
                                 </select>
+                                <label for="assigned_email">Assigned Email</label>
+                                <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" value="{{ $task->assigned_email }}" placeholder="Assigned email">
+                                <input type="hidden" name="team_id" value="{{ $teamId }}">
                             </div>
                         </div>
                     </div>

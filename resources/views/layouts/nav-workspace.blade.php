@@ -16,7 +16,7 @@
         <!-- Profile Picture -->
         <li class="nav-item ms-3">
           <a class="nav-link p-0" href="{{url('/settings')}}">
-            <img src="{{ asset('assets/images/avatar.png') }}" alt="Profile Picture" class="rounded-circle" width="40" height="40">
+            <img src="{{ auth()->user()->profile_picture }}" alt="Profile Picture" class="rounded-circle" width="40" height="40">
           </a>
         </li>
 
