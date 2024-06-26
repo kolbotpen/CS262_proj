@@ -40,12 +40,15 @@
                                 <th class="align-middle text-center">
                                     <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
                                         aria-label="Button group">
-                                        <a class="btn btn-success bg-green-gradient" href="#" role="button"
-                                            data-bs-toggle="modal" data-bs-target="#addTeamModal{{ $team->id }}">
-                                            <img class="icon me-2" src="{{ asset('assets/images/icon-user-add.svg') }}"
-                                                draggable="false">
-                                            Add Member
-                                        </a>
+                                        {{-- Add Member Button Conditional Display --}}
+                                        @if($company->users->find(auth()->id())->pivot->is_boss)
+                                            <a class="btn btn-success bg-green-gradient" href="#" role="button"
+                                                data-bs-toggle="modal" data-bs-target="#addTeamModal{{ $team->id }}">
+                                                <img class="icon me-2" src="{{ asset('assets/images/icon-user-add.svg') }}"
+                                                    draggable="false">
+                                                Add Member
+                                            </a>
+                                        @endif
                                     </div>
                                 </th>
                             </tr>
@@ -60,6 +63,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                           {{-- Inside the loop for displaying team members --}}
                             @foreach ($team->users as $index => $user)
                                 <tr>
                                     <td class="align-middle">{{ $index + 1 }}</td>
@@ -71,17 +75,20 @@
                                                 <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
                                                     draggable="false">
                                             </a>
-                                            <form
-                                                action="{{ route('team.remove.member', ['team_id' => $team->id, 'user_id' => $user->id]) }}"
-                                                method="POST"
-                                                onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger rounded-0" role="button">
-                                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
-                                                        draggable="false">
-                                                </button>
-                                            </form>
+                                            {{-- Delete Member Form Conditional Display --}}
+                                            @if($company->users->find(auth()->id())->pivot->is_boss)
+                                                <form
+                                                    action="{{ route('team.remove.member', ['team_id' => $team->id, 'user_id' => $user->id]) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Are you sure you want to remove this user from the team?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger rounded-0" role="button">
+                                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
+                                                            draggable="false">
+                                                    </button>
+                                                </form>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

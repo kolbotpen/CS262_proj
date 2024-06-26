@@ -23,11 +23,14 @@
                                 <th class="align-middle">{{ $team->name }}</th>
                                 <th class="align-middle text-center">
                                     <div class="btn-group table-border th-btn" role="group" aria-label="Button group">
+                                        {{-- Add Member Button Conditional Display --}}
+                                        @if($company->users->find(auth()->id())->pivot->is_boss)
                                         <a class="btn btn-success bg-green-gradient"
                                             href="{{ url('task-insert?team_id=' . $team->id) }}" role="button">
                                             <img class="icon me-2" src="{{ asset('assets/images/icon-add.svg') }}"
                                                 draggable="false">Add Task
                                         </a>
+                                        @endif
                                     </div>
                                 </th>
                             </tr>
@@ -68,17 +71,23 @@
                                                 <img class="icon mx-auto" src="{{asset('assets/images/icon-view.svg')}}"
                                                     draggable="false">
                                             </a>
+                                            @if($company->users->find(auth()->id())->pivot->is_boss)
                                             <a class="btn btn-secondary" href="{{ url('task-details-edit/' . $task->id) }}" role="button">
                                                 <img class="icon mx-auto" src="{{asset('assets/images/icon-edit.svg')}}"
                                                     draggable="false">
                                             </a>
+                                            @endif
+                                            @if($company->users->find(auth()->id())->pivot->is_boss)
                                             <form id="delete-task-form-{{ $task->id }}" action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
                                                 @csrf
                                                 @method('DELETE')
                                             </form>
+                                            
                                             <button type="button" class="btn btn-danger" onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();">
                                                 <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false">
                                             </button>
+                                            @endif
+
                                         </div>
                                     </td>
                                 </tr>
