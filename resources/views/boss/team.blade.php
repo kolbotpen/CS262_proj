@@ -19,12 +19,12 @@
                         <th class="align-middle text-center">
                             <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
                                 aria-label="Button group">
-                                <a class="btn btn-success bg-green-gradient" href="#" role="button"
+                                <!-- <a class="btn btn-success bg-green-gradient" href="#" role="button"
                                     data-bs-toggle="modal" data-bs-target="#addTeamModal{{ $team->id }}">
                                     <img class="icon me-2" src="{{ asset('assets/images/icon-user-add.svg') }}"
                                         draggable="false">
                                     Add Member
-                                </a>
+                                </a> -->
                             </div>
                         </th>
                     </tr>
@@ -50,10 +50,10 @@
                                         <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
                                             draggable="false">
                                     </a>
-                                    <a class="btn btn-danger" href="#" role="button">
+                                    <!-- <a class="btn btn-danger" href="#" role="button">
                                         <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}"
                                             draggable="false">
-                                    </a>
+                                    </a> -->
                                 </div>
                             </td>
                         </tr>

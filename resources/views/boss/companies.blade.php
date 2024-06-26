@@ -65,8 +65,8 @@
                                             <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
                                                 <img class="icon mx-auto" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
                                             </a>
-                                            <a href="task" class="btn btn-secondary">
-                                                <img class="icon mx-auto" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
+                                            <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
+                                                <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
                                             </a>
                                         </div>
                                     </td>
@@ -130,7 +130,7 @@
                                             <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
                                                 <img class="icon" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
                                             </a>
-                                            <a href="task" class="btn btn-secondary">
+                                            <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
                                                 <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
                                             </a>
                                         </div>
