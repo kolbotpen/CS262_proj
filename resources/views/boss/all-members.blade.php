@@ -66,7 +66,7 @@
 
 
     {{-- Current Members --}}
-    <div class="container bg-transparent p-0 rounded container-border mb-5">
+    <!-- <div class="container bg-transparent p-0 rounded container-border mb-5">
         <h3>Current Members <span class="count">{{ $userCount }}</span></h3>
         @if ($users->isEmpty())
             <p>No users found</p>
@@ -106,7 +106,7 @@
                 </table>
             </div>
         @endif
-    </div>
+    </div> -->
 
 
 
