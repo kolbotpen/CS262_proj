@@ -39,15 +39,17 @@
 
                         <!-- LEFT | Profile Picture Section -->
                         <div class="contact-input rounded mt-1 p-0 text-center profile-box d-flex align-items-center justify-content-center" style="width: 100%;">
-                            <div class="rounded-circle position-relative">
+                            <div class="position-relative">
                                 <form id="profile-picture-form" method="POST" action="{{ route('profile.updatePicture') }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PATCH')
-                                    <!-- Update Picture Button -->
-                                    <label for="profile-image" class="btn-change-profile" role="button">
-                                        <img id="profile-img" src="{{ auth()->user()->profile_picture }}" alt="Profile Picture" class="rounded-circle img-fluid mb-3" style="width: 215px; height: 215px;">
-                                    </label>
-                                    <input type="file" id="profile-image" class="d-none" name="profile_picture">
+                                    <div class="profile-picture-container rounded-circle bounce-profile-click">
+                                        <!-- Update Picture Button -->
+                                        <label for="profile-image" class="btn-change-profile" role="button">
+                                            <img id="profile-img" src="{{ auth()->user()->profile_picture }}" alt="Profile Picture" class="img-fluid mb-3">
+                                        </label>
+                                        <input type="file" id="profile-image" class="d-none" name="profile_picture">
+                                    </div>
                                     <!-- Save Changes Button -->
                                     <div class="d-flex justify-content-center mt-4">
                                         <button type="submit" class="btn btn-secondary" role="button">
@@ -57,6 +59,8 @@
                                 </form>
                             </div>
                         </div>
+
+
 
 
                         <!-- MIDDLE | Profile Edit Form -->

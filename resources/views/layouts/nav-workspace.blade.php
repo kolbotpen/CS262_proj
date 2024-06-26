@@ -1,49 +1,68 @@
 <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1c1c1c;">
-  <div class="container-fluid d-flex justify-content-between">
-    <div class="d-flex align-items-center">
-      <a id="sidebarToggleBtn" class="navbar-brand px-2 me-5" style="cursor: pointer; user-select: none;">
-        <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
-      </a>
+  <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <a class="navbar-brand text-white d-flex align-items-center" href="{{ url('/landing') }}">
-        <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
-      </a>
-    </div>
-
-    <div class="d-flex align-items-center">
-      <ul class="navbar-nav flex-row">
-
-        <!-- Profile Picture -->
-        <li class="nav-item ms-3">
-          <a class="nav-link p-0" href="{{url('/settings')}}">
-            <img src="{{ auth()->user()->profile_picture }}" alt="Profile Picture" class="rounded-circle" width="40" height="40">
+      <!-- Left section: Logo and Sidebar toggle -->
+      <div class="d-flex align-items-center">
+          <a id="sidebarToggleBtn" class="navbar-brand px-2 me-4" style="cursor: pointer; user-select: none;">
+              <img id="sidebarToggleIcon" class="icon rotated-icon" style="filter: brightness(0.5);" src="{{ asset('assets/images/toggle.svg')}}" draggable="false">
           </a>
-        </li>
-
-        <!-- Notification -->
-        <li class="nav-item ms-3">
-          <a class="nav-link p-0" href="#">
-            <div class="rounded-circle bg-green-gradient d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
-              <img src="{{ asset('assets/images/icon-bell.svg') }}" alt="Notification" class="rounded-circle" style="max-width: 100%; max-height: 100%;">
-            </div>
+          <a class="navbar-brand text-white d-flex align-items-center" href="{{ url('/landing') }}">
+              <img src="{{ asset('assets/images/logo.svg') }}" alt="logo" draggable="false" width="40" height="40" style="transform: scale(2);">
           </a>
-        </li>
+      </div>
 
-        
-        <!-- Logout -->
-        <li class="nav-item" style="scale: 0.9;">
-          <form method="POST" action="{{ route('logout') }}" class="p-0">
-              @csrf
-              <button type="submit" class="btn btn-secondary d-flex align-items-center rounded nav-link px-3 py-2 logout-btn" style="background: none;">
-                  <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" class="logout-icon" style="margin-right: 8px; width: 20px;">
-                  <span class="text-white">{{ __('Log out') }}</span>
-              </button>
-          </form>
-        </li>
+      <!-- Right section: User info, Notifications, and Logout -->
+      <div class="d-flex align-items-center">
+          <ul class="navbar-nav flex-row align-items-center">
+              <!-- User Name -->
+              <li class="nav-item ms-3">
+                  <a class="nav-link font-weight-bold nav-username" href="/profile">{{ Auth::user()->name }}</a>
+              </li>
 
+              <!-- Profile Picture -->
+              <li class="nav-item ms-3">
+                  <a href="/profile">
+                      <div class="mini-profile-picture rounded-circle">
+                          <img class="img-fluid" src="{{ auth()->user()->profile_picture }}" alt="Profile Picture">
+                      </div>
+                  </a>
+              </li>
 
+              <!-- Notification Bell -->
+              <li class="nav-item ms-1">
+                  <div class="text-center mx-2">
+                      <button type="button" class="btn btn-secondary d-flex align-items-center justify-content-center">
+                          <span class="btn__content">
+                              <img src="{{asset ('assets/images/icon-bell.svg')}}" alt="bell" style="width: 0.8em; margin-top: -5px;">
+                          </span>
+                      </button>
+                      <!-- Example Dropdown for Notifications -->
+                      <div class="menu">
+                          <!-- Dropdown content here -->
+                      </div>
+                  </div>
+              </li>
 
-      </ul>
-    </div>
+              <!-- Logout Dropdown -->
+              <li class="nav-item ms-1 dropdown">
+                <button class="btn btn-secondary d-flex align-items-center justify-content-center" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="{{ asset('assets/images/icon-dropdown.svg') }}" alt="dropdown" style="width: 0.8em; margin-top: 3px;">
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <!-- Logout Form -->
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" class="p-0">
+                            @csrf
+                            <button type="submit" class="dropdown-item" style="cursor: pointer;">
+                                <img src="{{ asset('assets/images/nav-logout.svg') }}" alt="Logout" class="logout-icon" style="margin-right: 8px; width: 20px;">
+                                <span class="text-white">{{ __('Log out') }}</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            
+          </ul>
+      </div>
   </div>
 </nav>

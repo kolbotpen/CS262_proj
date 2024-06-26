@@ -368,6 +368,10 @@ section.fade-in {
   animation: bounce 0.3s;
 }
 
+.bounce-profile-click:active {
+  animation: bounceProfile 0.3s;
+}
+
 @keyframes bounceInAlert {
   0% {
       transform: translateX(-50%) scale(0.5);
@@ -409,6 +413,20 @@ section.fade-in {
   }
   80% {
       transform: scale(0.9);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
+@keyframes bounceProfile {
+  0% {
+      transform: scale(0.97);
+  }
+  60% {
+      transform: scale(1.01);
+  }
+  80% {
+      transform: scale(0.99);
   }
   100% {
       transform: scale(1);
