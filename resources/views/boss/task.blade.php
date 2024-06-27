@@ -45,7 +45,7 @@
                             {{-- Display each task --}}
                             <tr>
                                 <td>{{ $task->title }}</td>
-                                <td>{{ $task->assigned_to }}</td>
+                                <td>{{ $task->assignedUser->name }}</td>
                                 <td>{{ $task->due_date}}</td>
                                 <td class="text-center">
                                     <div

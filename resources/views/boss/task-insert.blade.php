@@ -72,8 +72,8 @@
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
               </select>
-              {{-- <label for="due_date">Due Date</label>
-              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date"> --}}
+              <label for="due_date">Due Date</label>
+              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date">
             </div>
           </div>
         </div>
