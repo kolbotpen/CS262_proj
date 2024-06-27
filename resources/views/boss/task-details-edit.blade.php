@@ -75,7 +75,7 @@
                                 <label for="progress">Progress</label>
                                 <select class="form-select bg-black text-white border-0 mb-2" id="progress" name="progress">
                                     <option value="Not Started" {{ $task->progress == 'Not Started' ? 'selected' : '' }}>Not Started</option>
-                                    <option value="In Progress" {{ $task->progress == 'In Progress' ? 'selected' : '' }}>In Progress</option>
+                                    {{-- <option value="In Progress" {{ $task->progress == 'In Progress' ? 'selected' : '' }}>In Progress</option> --}}
                                     <option value="Completed" {{ $task->progress == 'Completed' ? 'selected' : '' }}>Completed</option>
                                 </select>
                             </div>
