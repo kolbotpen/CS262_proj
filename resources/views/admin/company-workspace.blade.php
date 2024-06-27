@@ -47,7 +47,7 @@
                     <tbody>
                         @foreach ($companies as $index => $company)
                             <tr>
-                                <td>{{$index+1}}</td>
+                                <td>{{$index + 1}}</td>
                                 <td>{{ $company->name }}</td>
                                 <td>{{ $company->industry }}</td>
                                 <td>{{ $company->visibility }}</td>
@@ -57,16 +57,22 @@
                                     <button class="btn btn-link" onclick="editCompany({{ $company->id }})">
                                         <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                             viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path>
+                                            <path
+                                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
+                                            </path>
                                         </svg>
                                     </button>
-                                    <form action="{{ route('companies.destroy', $company) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('companies.destroy', $company) }}" method="POST"
+                                        style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-link text-danger p-0" onclick="return confirm('Are you sure you want to delete this company?');">
+                                        <button type="submit" class="btn btn-link text-danger p-0"
+                                            onclick="return confirm('Are you sure you want to delete this company?');">
                                             <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
                                                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path ath fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                <path ath fill-rule="evenodd"
+                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                                    clip-rule="evenodd"></path>
                                             </svg>
                                         </button>
                                     </form>
@@ -90,7 +96,8 @@
     <!-- /.card -->
 
     <!-- Add Company Modal -->
-    <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel" aria-hidden="true">
+    <div class="modal fade" id="addCompanyModal" tabindex="-1" role="dialog" aria-labelledby="addCompanyModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -132,7 +139,8 @@
     </div>
 
     <!-- Edit Company Modal -->
-    <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editCompanyModal" tabindex="-1" role="dialog" aria-labelledby="editCompanyModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -165,6 +173,12 @@
                             </select>
                         </div>
                         <div class="form-group">
+                            <label for="edit_company_boss" class="col-form-label">Boss:</label>
+                            <ul id="edit_company_boss" class="list-group">
+                                <!-- Boss will be populated here by JavaScript -->
+                            </ul>
+                        </div>
+                        <div class="form-group">
                             <label for="edit_company_users" class="col-form-label">Users:</label>
                             <ul id="edit_company_users" class="list-group">
                                 <!-- Users will be populated here by JavaScript -->
@@ -182,32 +196,41 @@
 </section>
 
 <script>
-function editCompany(companyId) {
-    $.ajax({
-        url: `/workspace/companies/${companyId}/edit`, // Ensure the URL matches your route structure
-        method: 'GET',
-        success: function(company) {
-            // Populate form fields
-            $('#edit_company_name').val(company.name);
-            $('#edit_company_description').val(company.description);
-            $('#edit_company_industry').val(company.industry);
-            $('#edit_company_visibility').val(company.visibility);
-            
-            // Populate the users list (if applicable)
-            $('#edit_company_users').empty();
-            company.users.forEach(user => {
-                $('#edit_company_users').append(`<li class="list-group-item">${user.name}</li>`);
-            });
+    function editCompany(companyId) {
+        $.ajax({
+            url: `/workspace/companies/${companyId}/edit`,
+            method: 'GET',
+            success: function (company) {
+                // Populate form fields
+                $('#edit_company_name').val(company.name);
+                $('#edit_company_description').val(company.description);
+                $('#edit_company_industry').val(company.industry);
+                $('#edit_company_visibility').val(company.visibility);
 
-            // Set form action dynamically
-            $('#editCompanyForm').attr('action', `/workspace/companies/${companyId}`);
-            $('#editCompanyModal').modal('show');
-        },
-        error: function(xhr, status, error) {
-            console.error(xhr.responseText);
-        }
-    });
-}
+                // Populate the boss list (if applicable)
+                $('#edit_company_boss').empty();
+                if (company.creator && company.creator.length > 0) {
+                    $('#edit_company_boss').append(`<li class="list-group-item">${company.creator[0].name}</li>`);
+                } else {
+                    $('#edit_company_boss').append(`<li class="list-group-item">N/A</li>`);
+                }
+
+                // Populate the users list (if applicable)
+                $('#edit_company_users').empty();
+                company.users.forEach(user => {
+                    $('#edit_company_users').append(`<li class="list-group-item">${user.name}</li>`);
+                });
+
+                // Set form action dynamically
+                $('#editCompanyForm').attr('action', `/workspace/companies/${companyId}`);
+                $('#editCompanyModal').modal('show');
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            }
+        });
+    }
+
 
 </script>
 @endsection

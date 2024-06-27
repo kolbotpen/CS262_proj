@@ -54,7 +54,7 @@ class CompanyController extends Controller
     // EDIT 
     public function edit($id)
     {
-        $company = Company::with('users')->findOrFail($id);
+        $company = Company::with(['creator', 'users'])->findOrFail($id);
         return response()->json($company);
     }
     // SHOW COMPANIES IN ADMIN WORKSPACE
