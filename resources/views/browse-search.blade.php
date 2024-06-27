@@ -104,18 +104,29 @@
                         <td class="align-middle">{{ $company->industry }}</td>
                         <td class="align-middle text-center">
                             <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
-                                {{-- <a href="company-details/{{ $company->id }}" class="btn btn-secondary">
-                                    <img class="icon" src="{{ asset('assets/images/icon-view.svg') }}"
-                                        draggable="false">
-                                </a> --}}
+                                {{-- VIEW DETAILS BUTTON --}}
                                 <a type="button" class="btn btn-secondary" data-toggle="modal" data-target="#companyDetailsModal"
                                     data-companyname="{{ $company->name }}" data-companyindustry="{{ $company->industry }}"
                                     data-companydescription="{{ $company->description }}">
                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-view.svg') }}" draggable="false">
                                 </a>
-                                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#joinRequestModal" data-companyid="{{ $company->id }}">
-                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false"></button>
+                            
+                                {{-- REQUEST JOIN BUTTON --}}
+                                @php
+                                    $isMemberOrBoss = $company->users()->where('user_id', Auth::id())->exists();
+                                @endphp
+                                @if ($isMemberOrBoss)
+                                    {{-- <button type="button" class="btn btn-secondary" id="joinRequestButton" disabled>
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false">
+                                    </button> --}}
+                                @else
+                                    <button type="button" class="btn btn-secondary" id="joinRequestButton" data-toggle="modal"
+                                        data-target="#joinRequestModal" data-companyid="{{ $company->id }}">
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false">
+                                    </button>
+                                @endif
                             </div>
+                            
                         </td>
                     </tr>
                     @endforeach
@@ -138,9 +149,9 @@
                 <div class="col-md-12 d-flex align-items-stretch">
                     <div class="container text-white p-3 rounded h-100">
                         <!-- Company Image -->
-                        <div class="modal-image-container mb-4 rounded">
+                        {{-- <div class="modal-image-container mb-4 rounded">
                             <img class="modal-image company_image" src="{{ asset('assets/images/photo2.png') }}">
-                        </div>
+                        </div> --}}
 
                         <label for="company_name">Company Name</label>
                         <p id="company_name" class="text-gray mt-2"></p>

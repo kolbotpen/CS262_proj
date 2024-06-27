@@ -119,3 +119,4 @@ require __DIR__.'/auth.php';
 
 Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
 
+Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');

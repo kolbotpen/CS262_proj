@@ -15,7 +15,7 @@ class CompanyController extends Controller
         $companies = Company::public()->get(); // Fetch only public companies
         return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
     }
-
+    
     // ADD COMPANIES
     public function showAddCompanyForm()
     {

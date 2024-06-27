@@ -22,9 +22,10 @@
                 <h3 class="card-title">Company Table</h3>
                 <div class="card-tools">
                     <div class="input-group input-group" style="width: 250px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                            id="searchInput">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
+                            <button class="btn btn-secondary" type="button" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -44,7 +45,7 @@
                             <th width="100">Option</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="companyTableBody">
                         @foreach ($companies as $index => $company)
                             <tr>
                                 <td>{{$index + 1}}</td>
@@ -179,7 +180,8 @@
                             </ul>
                         </div>
                         <div class="form-group">
-                            <label for="edit_company_users" class="col-form-label">Users(Select or Unselect to make them boss):</label>
+                            <label for="edit_company_users" class="col-form-label">Users(Select or Unselect to make them
+                                boss):</label>
                             <ul id="edit_company_users" class="list-group">
                                 <!-- Users will be populated here by JavaScript -->
                             </ul>
@@ -195,6 +197,8 @@
     </div>
 </section>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     function editCompany(companyId) {
         $.ajax({
@@ -243,6 +247,23 @@
             }
         });
     }
+</script>
+
+<script>
+    // live search functionality
+    $(document).on('input', '#searchInput', function () {
+        var searchText = $(this).val().toLowerCase();
+
+        $('#companyTableBody tr').each(function () {
+            var companyText = $(this).find('td:nth-child(2)').text().toLowerCase();
+            if (companyText.includes(searchText)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 
 </script>
+
 @endsection
