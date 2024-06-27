@@ -105,7 +105,7 @@ class UploadManager extends Controller
             $validatedData = $request->validate([
                 'title' => 'required|string|max:255',
                 'description' => 'required|string',
-                'assigned_to' => 'required|integer',
+                'assigned_to' => 'required|exists:users,id',
                 'assigned_email' => 'required|email',
                 'priority' => 'required|string',
                 'progress' => 'required|string',
