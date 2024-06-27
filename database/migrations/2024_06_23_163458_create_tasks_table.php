@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('team_id')->nullable();
             $table->string('title');
             $table->text('description');
-            $table->string('assigned_to');
+            $table->unsignedBigInteger ('assigned_to');
             $table->string('assigned_email');
             $table->string('priority');
             $table->string('progress');
@@ -28,6 +28,7 @@ class CreateTasksTable extends Migration
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $table->foreign('team_id')->references('id')->on('teams')->onDelete('set null');
+            $table->foreign('assigned_to')->references('id')->on('users')->onDelete('set null');
         });
     }
 

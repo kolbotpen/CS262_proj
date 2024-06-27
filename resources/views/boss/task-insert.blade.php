@@ -72,8 +72,8 @@
                 <option value="In Progress">In Progress</option>
                 <option value="Completed">Completed</option>
               </select>
-              <label for="due_date">Due Date</label>
-              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date">
+              {{-- <label for="due_date">Due Date</label>
+              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date"> --}}
             </div>
           </div>
         </div>
@@ -137,10 +137,23 @@
   });
 </script>
 <script>
+  // DATE FORMAT
   $(function() {
     $("#due_date").datepicker({
       dateFormat: 'yy-mm-dd'
     });
+  });
+
+  // SELECT CURRENT DATE
+  document.addEventListener("DOMContentLoaded", function() {
+      var dateInput = document.getElementById('due_date');
+      var today = new Date();
+      var day = String(today.getDate()).padStart(2, '0');
+      var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+      var year = today.getFullYear();
+
+      var todayDate = year + '-' + month + '-' + day;
+      dateInput.value = todayDate;
   });
 </script>
 

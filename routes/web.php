@@ -179,6 +179,7 @@ Route::get('/all-members', function () {
 Route::get('/all-members', [JoinRequestController::class, 'index'])->name('all-members.index');
 Route::patch('/all-members/{request}/approve', [JoinRequestController::class, 'approve'])->name('all-members.approve');
 Route::delete('/all-members/{request}/reject', [JoinRequestController::class, 'reject'])->name('all-members.reject');
+// Route::get('/all-members', [CompanyController::class, 'showAllMember'])->name('member.show');
 
 // Settings
 Route::get('/settings', function () {

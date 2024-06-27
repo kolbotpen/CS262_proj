@@ -16,7 +16,11 @@ class UploadManager extends Controller
     {
         $teams = Team::where('company_id', $company->id)->get();
         $tasks = Task::whereIn('team_id', $teams->pluck('id'))->get();
-
+        // foreach ($tasks as $task) {
+        //     // $task->team = $task->team;
+        //     $user = $task->assignedUser;
+        //     dd($user->email);
+        // }
         // Ensure the view differentiates tasks by team correctly
         return view('boss.task-all', compact('teams', 'company', 'tasks'));
     }
@@ -54,7 +58,7 @@ class UploadManager extends Controller
         $task = new Task;
         $task->title = $request->title;
         $task->description = $request->description;
-        $task->assigned_to = $assignedUser->name;
+        $task->assigned_to = $request->assigned_to;
         $task->assigned_email = $assignedUser->email;
         $task->priority = $request->priority;
         $task->progress = $request->progress;

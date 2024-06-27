@@ -50,7 +50,7 @@
                         <tbody>
                         {{-- Iterate over tasks for this team --}}
                         @if($tasks->where('team_id', $team->id)->isNotEmpty())
-                            @foreach($tasks->where('team_id', $team->id) as $task)
+                            @foreach($tasks as $task)
                                 {{-- Display each task --}}
                                 <tr>
                                     <td>{{ $task->title }}</td>
