@@ -149,9 +149,9 @@
                 <div class="col-md-12 d-flex align-items-stretch">
                     <div class="container text-white p-3 rounded h-100">
                         <!-- Company Image -->
-                        <div class="modal-image-container mb-4 rounded">
+                        {{-- <div class="modal-image-container mb-4 rounded">
                             <img class="modal-image company_image" src="{{ asset('assets/images/photo2.png') }}">
-                        </div>
+                        </div> --}}
 
                         <label for="company_name">Company Name</label>
                         <p id="company_name" class="text-gray mt-2"></p>
