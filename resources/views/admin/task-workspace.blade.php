@@ -28,7 +28,7 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $task->title }}</td>
-                                <td>{{ $task->user->name ?? 'N/A' }}</td>
+                                <td>{{ $task->assignedUser->name  ?? 'N/A' }}</td>
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->priority }}</td>
                                 <td>{{ $task->progress }}</td>
