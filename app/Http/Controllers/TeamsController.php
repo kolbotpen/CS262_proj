@@ -51,10 +51,18 @@ class TeamsController extends Controller
         return back()->with('status', 'Team added successfully!');
     }
 
-    public function showWorkspace()
+    public function showWorkspace(Request $request)
     {
-        $teams = Team::with('company', 'users')->get();
-        $companies = Company::all();
+        $query = Team::with('company', 'users');
+
+        // Check if a company_id is present in the request
+        if ($request->has('company_id') && $request->company_id != '') {
+            $query->where('company_id', $request->company_id);
+        }
+
+        $teams = $query->get();
+        $companies = Company::all(); // Assuming you have a Company model
+
         return view('admin.team-workspace', compact('teams', 'companies'));
     }
 
@@ -129,10 +137,10 @@ class TeamsController extends Controller
     public function checkTeamName(Request $request)
     {
         $exists = Team::where('name', $request->name)
-                    ->where('company_id', $request->company_id)
-                    ->exists();
+            ->where('company_id', $request->company_id)
+            ->exists();
         return response()->json(['exists' => $exists]);
     }
 
-    
+
 }
