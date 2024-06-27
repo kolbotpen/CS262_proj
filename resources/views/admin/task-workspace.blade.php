@@ -97,17 +97,15 @@
                                 <label for="assigned_to" class="col-form-label">Assigned To:</label>
                                 <select class="form-control" id="assigned_to" name="assigned_to">
                                     @foreach($users as $user)
-                                        <option value="{{ $user->id }}" data-email="{{ $user->email }}" {{ $task->assigned_to == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }}
-                                        </option>
+                                        <option value="{{ $user->id }}" {{ $task->assigned_to == $user->id ? 'selected' : '' }}>
+                                            {{ $user->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="form-group">
                                 <label for="assigned_email" class="col-form-label">Assigned Email:</label>
                                 <input type="email" id="assigned_email" name="assigned_email" class="form-control"
                                     value="{{ $task->assigned_email }}" required>
                             </div>
+
                             <div class="form-group">
                                 <label for="priority" class="col-form-label">Priority:</label>
                                 <select class="form-control" id="priority" name="priority">
@@ -145,7 +143,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -204,6 +202,26 @@
                         console.error('Error:', error); // Log any errors
                         alert('An error occurred while saving.'); // Alert user of error
                     });
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var users = {
+            @foreach($users as $user)
+                "{{ $user->id }}": "{{ $user->email }}",
+            @endforeach
+        };
+
+        // Adjust this to target all instances of the dropdown
+        document.querySelectorAll('[id^="assigned_to-"]').forEach(function (dropdown) {
+            dropdown.addEventListener('change', function () {
+                var selectedUserId = this.value;
+                var userEmail = users[selectedUserId];
+                // Construct the corresponding "Assigned Email" field's ID based on the dropdown's ID
+                var emailFieldId = 'assigned_email-' + this.id.split('-')[1];
+                document.getElementById(emailFieldId).value = userEmail;
             });
         });
     });

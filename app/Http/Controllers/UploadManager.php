@@ -125,7 +125,7 @@ class UploadManager extends Controller
             $task->save();
         }
 
-        return redirect()->route('team.workspace')->with('status', 'Team added successfully!');
+        return redirect()->route('team.workspace')->with('status', 'Team added successfully!')->compact('task', 'users', 'teamId');
     }
 
 
