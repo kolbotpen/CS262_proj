@@ -42,7 +42,7 @@
               <span class="text-gray">{{ $task->description }}</span>
             </p>
             <p><strong>Assigned to:</strong><br>
-              <span class="text-gray">{{ $task->assigned_to }} - <a
+              <span class="text-gray">{{ $task->assignedUser->name }} - <a
                   href="mailto:{{ $task->assigned_email }}">{{ $task->assigned_email }}</a></span>
             </p>
           </div>
