@@ -179,7 +179,7 @@
                             </ul>
                         </div>
                         <div class="form-group">
-                            <label for="edit_company_users" class="col-form-label">Users:</label>
+                            <label for="edit_company_users" class="col-form-label">Users(Select or Unselect to make them boss):</label>
                             <ul id="edit_company_users" class="list-group">
                                 <!-- Users will be populated here by JavaScript -->
                             </ul>
@@ -207,18 +207,31 @@
                 $('#edit_company_industry').val(company.industry);
                 $('#edit_company_visibility').val(company.visibility);
 
-                // Populate the boss list (if applicable)
+                // Populate the boss list with all users who are bosses
                 $('#edit_company_boss').empty();
-                if (company.creator && company.creator.length > 0) {
-                    $('#edit_company_boss').append(`<li class="list-group-item">${company.creator[0].name}</li>`);
+                let bosses = company.users.filter(user => user.pivot.is_boss);
+                if (bosses.length > 0) {
+                    bosses.forEach(boss => {
+                        $('#edit_company_boss').append(`<li class="list-group-item">${boss.name}</li>`);
+                    });
                 } else {
                     $('#edit_company_boss').append(`<li class="list-group-item">N/A</li>`);
                 }
 
-                // Populate the users list (if applicable)
+                // Populate the users list with checkboxes for making a user a boss
                 $('#edit_company_users').empty();
                 company.users.forEach(user => {
-                    $('#edit_company_users').append(`<li class="list-group-item">${user.name}</li>`);
+                    const isBossChecked = user.pivot.is_boss ? 'checked' : '';
+                    $('#edit_company_users').append(`
+                    <li class="list-group-item">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="is_boss[]" id="user_${user.id}" value="${user.id}" ${isBossChecked}>
+                            <label class="form-check-label" for="user_${user.id}">
+                                ${user.name}
+                            </label>
+                        </div>
+                    </li>
+                `);
                 });
 
                 // Set form action dynamically
@@ -230,7 +243,6 @@
             }
         });
     }
-
 
 </script>
 @endsection
