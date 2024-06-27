@@ -39,6 +39,7 @@ Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace')
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
+Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
 
 // WORKSPACE EDITING
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
@@ -115,3 +116,6 @@ Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('com
 // TASKS
 Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
 require __DIR__.'/auth.php';
+
+Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
+

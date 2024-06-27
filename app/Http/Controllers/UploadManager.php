@@ -22,7 +22,7 @@ class UploadManager extends Controller
         //     dd($user->email);
         // }
         // Ensure the view differentiates tasks by team correctly
-        return view('boss.task-all', compact('teams', 'company', 'tasks'));
+        return view('admin.task-wrokspace', compact('teams', 'company', 'tasks'));
     }
     public function upload(Request $request)
     {
@@ -123,19 +123,24 @@ class UploadManager extends Controller
             }
 
             $task->save();
-            return redirect()->back()->with('success', 'Task updated successfully.');
         }
 
-        return view('boss.task-details-edit', compact('task', 'users', 'teamId'));
+        return redirect()->route('team.workspace')->with('status', 'Team added successfully!');
     }
 
 
     public function showWorkspace()
     {
+        // Fetch all tasks with their associated teams and users
         $tasks = Task::with(['team', 'user'])->get();
 
-        return view('admin.task-workspace', compact('tasks'));
+        // Fetch all users, or you can modify the query to fetch only relevant users
+        $users = User::all();
+
+        // Pass the tasks and users to the view
+        return view('admin.task-workspace', compact('tasks', 'users'));
     }
+
     public function tasksForTeam(Team $team)
     {
         $tasks = Task::where('team_id', $team->id)->get();

@@ -70,7 +70,7 @@
                     </tbody>
                 </table>
             </div>
-            <!-- <div class="card-footer clearfix">
+            <div class="card-footer clearfix">
                 <ul class="pagination pagination m-0 float-right">
                     <li class="page-item"><a class="page-link" href="#">«</a></li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -78,11 +78,104 @@
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item"><a class="page-link" href="#">»</a></li>
                 </ul>
-            </div> -->
+            </div>
         </div>
     </div>
     <!-- /.card -->
 
-    <!-- Edit Task Modal -->
-    
+    <!-- Edit Team Modal -->
+    <div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="editTeamModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTeamModalLabel">Edit Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="editTeamForm" method="POST" action="{{ route('team.update', ['team' => 0]) }}">
+                    @csrf
+                    @method('PUT')
+                    <div class="modal-body">
+                        <input type="hidden" name="team_id" id="team_id">
+                        <div class="form-group">
+                            <label for="team_name" class="col-form-label">Team Name:</label>
+                            <input type="text" class="form-control" id="team_name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="company_id" class="col-form-label">Company:</label>
+                            <select class="form-control" id="company_id" name="company_id">
+                                @foreach($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="users" class="col-form-label">Users:</label>
+                            <ul id="team_users" class="list-group">
+                                <!-- Users will be dynamically populated here -->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Team Modal -->
+    <div class="modal fade" id="addTeamModal" tabindex="-1" role="dialog" aria-labelledby="addTeamModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTeamModalLabel">Add Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addTeamForm" method="POST" action="{{ route('team.store') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="new_team_name" class="col-form-label">Team Name:</label>
+                            <input type="text" class="form-control" id="new_team_name" name="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="new_company_id" class="col-form-label">Company:</label>
+                            <select class="form-control" id="new_company_id" name="company_id">
+                                @foreach($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Team</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<script>
+    function editTeam(team) {
+        $('#editTeamModal').modal('show');
+        $('#editTeamForm').attr('action', '/teams/' + team.id);
+        $('#team_id').val(team.id);
+        $('#team_name').val(team.name);
+        $('#company_id').val(team.company_id);
+
+        // Clear and populate the users list
+        $('#team_users').empty();
+        team.users.forEach(user => {
+            $('#team_users').append('<li class="list-group-item">' + user.name + '</li>');
+        });
+    }
+</script>
 @stop

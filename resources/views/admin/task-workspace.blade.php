@@ -18,6 +18,7 @@
                             <th>Description</th>
                             <th>Priority</th>
                             <th>Progress</th>
+                            <th>File</th>
                             <th>Due Date</th>
                             <th>Option</th>
                         </tr>
@@ -31,30 +32,28 @@
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->priority }}</td>
                                 <td>{{ $task->progress }}</td>
-                                <td>{{ $task->due_date}}</td>
-                                <!-- Task Action Buttons (Edit/Delete) -->
                                 <td>
-                                    <button class="btn btn-link" data-toggle="modal" data-target="#}">
-                                        <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
-                                            viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                            <path
-                                                d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z">
-                                            </path>
-                                        </svg>
+                                    @if($task->file_path)
+                                        <a href="{{ Storage::url($task->file_path) }}" target="_blank">
+                                            View file
+                                        </a>
+                                    @endif
+                                </td>
+                                <td>{{ $task->due_date }}</td>
+                                <td>
+                                    <!-- Task Action Buttons (Edit/Delete) -->
+                                    <button class="btn btn-link" data-toggle="modal"
+                                        data-target="#editTaskModal-{{ $task->id }}">
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                     <form id="delete-task-form-{{ $task->id }}"
                                         action="{{ route('task.delete', $task->id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
-                                    <button type="button" class="btn btn-link text-danger p-0 "
+                                    <button type="button" class="btn btn-link text-danger p-0"
                                         onclick="event.preventDefault(); if(confirm('Are you sure?')) document.getElementById('delete-task-form-{{ $task->id }}').submit();">
-                                        <svg class="filament-link-icon w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                                <path ath fill-rule="evenodd"
-                                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-                                                    clip-rule="evenodd"></path>
-                                            </svg>
+                                        <i class="fas fa-trash-alt"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -65,5 +64,148 @@
             <!-- Pagination -->
         </div>
     </div>
+
+    @foreach ($tasks as $task)
+        <!-- Edit Task Modal -->
+        <div class="modal fade" id="editTaskModal-{{ $task->id }}" tabindex="-1" role="dialog"
+            aria-labelledby="editTaskModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="editTaskForm-{{ $task->id }}" action="{{ route('task.edit', $task->id) }}" method="POST"
+                        enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="modal-body">
+                            <input type="hidden" name="team_id" id="team_id" value="{{ $task->team_id }}">
+                            <div class="form-group">
+                                <label for="title" class="col-form-label">Task Title:</label>
+                                <input type="text" class="form-control" id="title" name="title" value="{{ $task->title }}"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <textarea class="form-control" id="description" name="description" rows="5"
+                                    required>{{ $task->description }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="assigned_to" class="col-form-label">Assigned To:</label>
+                                <select class="form-control" id="assigned_to" name="assigned_to">
+                                    @foreach($users as $user)
+                                        <option value="{{ $user->id }}" data-email="{{ $user->email }}" {{ $task->assigned_to == $user->id ? 'selected' : '' }}>
+                                            {{ $user->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="assigned_email" class="col-form-label">Assigned Email:</label>
+                                <input type="email" id="assigned_email" name="assigned_email" class="form-control"
+                                    value="{{ $task->assigned_email }}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="priority" class="col-form-label">Priority:</label>
+                                <select class="form-control" id="priority" name="priority">
+                                    <option value="Low" {{ $task->priority == 'Low' ? 'selected' : '' }}>Low</option>
+                                    <option value="Medium" {{ $task->priority == 'Medium' ? 'selected' : '' }}>Medium</option>
+                                    <option value="High" {{ $task->priority == 'High' ? 'selected' : '' }}>High</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="progress" class="col-form-label">Progress:</label>
+                                <select class="form-control" id="progress" name="progress">
+                                    <option value="Not Started" {{ $task->progress == 'Not Started' ? 'selected' : '' }}>Not
+                                        Started</option>
+                                    <option value="In Progress" {{ $task->progress == 'In Progress' ? 'selected' : '' }}>In
+                                        Progress</option>
+                                    <option value="Completed" {{ $task->progress == 'Completed' ? 'selected' : '' }}>Completed
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="due_date" class="col-form-label">Due Date:</label>
+                                <input type="date" class="form-control" id="due_date" name="due_date"
+                                    value="{{ $task->due_date }}">
+                            </div>
+                            @if($task->file_path)
+                                <div class="form-group">
+                                    <label for="current_file" class="col-form-label">Current File:</label>
+                                    <p><a href="{{ Storage::url($task->file_path) }}" target="_blank">View file</a></p>
+                                </div>
+                            @endif
+                            <div class="form-group">
+                                <label for="file" class="col-form-label">File:</label>
+                                <input type="file" class="form-control" id="file" name="file" accept="*">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" data-dismiss="modal">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.modal').forEach(modal => {
+            const form = modal.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        $(modal).modal('hide');
+                        location.reload(); // Refresh page to reflect changes
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.modal').forEach(modal => {
+            const form = modal.querySelector('form');
+            form.addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent default form submission
+
+                const formData = new FormData(this);
+                const url = this.getAttribute('action'); // Get form action URL
+
+                fetch(url, {
+                    method: 'POST', // POST method because of Laravel's method spoofing
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    },
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data); // Log response for debugging
+                        $(modal).modal('hide'); // Hide modal on successful submission
+                        updateTaskList(); // Update task list without page reload
+                    })
+                    .catch(error => {
+                        console.error('Error:', error); // Log any errors
+                        alert('An error occurred while saving.'); // Alert user of error
+                    });
+            });
+        });
+    });
+</script>
 @stop
