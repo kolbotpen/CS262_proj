@@ -25,6 +25,13 @@
 			</div>
 			<div class="card-body">
 				<p class="login-box-msg">Login in to start your session</p>
+				@if($errors->any())
+					<div class="alert alert-danger">
+						@foreach ($errors->all() as $error)
+							<p>{{ $error }}</p>
+						@endforeach
+					</div>
+				@endif
 				<form action="{{ route('login') }}" method="POST">
 					@csrf
 					<div class="input-group mb-3">
