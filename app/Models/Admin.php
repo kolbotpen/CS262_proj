@@ -17,6 +17,7 @@ class Admin extends Authenticatable
         'email',
         'password',
         'usertype',
+        'profile_picture',
     ];
     // Add any additional methods or properties needed for your admins
 }
