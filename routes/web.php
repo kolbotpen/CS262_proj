@@ -8,6 +8,8 @@ use App\Http\Controllers\UploadManager;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JoinRequestController;
+use App\Http\Controllers\AdminAuth\LoginController as AdminLoginController;
+use App\Http\Controllers\AdminAuth\RegisterController as AdminRegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,21 @@ use App\Http\Controllers\JoinRequestController;
 Route::get('/', function () {
     return view('auth.login');
 });
+// TRYING NEW LOGIN
+Route::get('/admin-login', [AdminLoginController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin-login', [AdminLoginController::class, 'login']);
+Route::post('/admin-logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 
+Route::get('/admin-register', [AdminRegisterController::class, 'showRegistrationForm'])->name('admin.register');
+Route::post('/admin-register', [AdminRegisterController::class, 'register']);
 
+Route::get('/adminhome', function () {
+    return view('admin.adminhome');
+})->middleware('auth:admin')->name('adminhome');
 
+Route::middleware(['auth:admin'])->group(function () {
+    Route::resource('users', UserController::class);
+});
 
 // SHOW COMPANY 
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');

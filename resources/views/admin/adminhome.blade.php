@@ -62,4 +62,6 @@
 			</div>
 		</div>
 	</div>
+	<!-- /.card-body -->
+	 </section>
 	@stop
