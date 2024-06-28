@@ -28,9 +28,10 @@
                     </a>
                 </li>
                 <li
-                class="nav-item has-treeview {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || Request::is('workspace/tasks*') ? 'menu-open' : '' }}">
+                class="nav-item has-treeview {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || Request::is('workspace/tasks*') || Request::is('workspace/request*') ? 'menu-open' : '' }}">
                     <a href="#"
-                    class="nav-link {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || Request::is('workspace/tasks*') ? 'active' : '' }}">
+                    class="nav-link {{ Request::is('workspace/companies*') || Request::is('workspace/teams*') || Request::is('workspace/users*') || 
+                    Request::is('workspace/tasks*') || Request::is('workspace/request*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file-alt"></i>
                         <p>
                             Workspace
@@ -64,6 +65,13 @@
                                 class="nav-link {{ Request::is('workspace/tasks*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-tasks"></i>
                                 <p>Tasks</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('request.workspace') }}"
+                                class="nav-link {{ Request::is('workspace/request*') ? 'active' : '' }}">
+                                <i class="nav-icon fas fa-envelope"></i>
+                                <p>Request</p>
                             </a>
                         </li>
                     </ul>

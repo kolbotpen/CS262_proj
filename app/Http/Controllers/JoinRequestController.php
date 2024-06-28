@@ -14,7 +14,7 @@ class JoinRequestController extends Controller
         $requestCount = $requests->count();
         $users = User::all();
         $userCount = $users->count();
-        return view('boss.all-members', compact('requests', 'requestCount', 'users', 'userCount'));
+        return view('admin.request', compact('requests', 'requestCount', 'users', 'userCount'));
     }
 
     // store in db
@@ -38,13 +38,23 @@ class JoinRequestController extends Controller
         // Add user to company as a regular member (is_boss = 0)
         $request->company->users()->attach($request->user_id, ['is_boss' => 0]);
         $request->delete();
-        return redirect()->route('all-members.index')->with('success', 'Request approved.');
+        return back()->with('success', 'Request approved.');
     }
     public function reject($id)
     {
         $request = JoinRequest::findOrFail($id);
         $request->delete();
 
-        return redirect()->route('all-members.index')->with('success', 'Request rejected.');
+        return back()->with('success', 'Request rejected.');
+    }
+
+    // show in admin
+    public function showWorkspace()
+    {
+        $requests = JoinRequest::with('user')->get();
+        $requestCount = $requests->count();
+        $users = User::all();
+        $userCount = $users->count();
+        return view('admin.request', compact('requests', 'requestCount', 'users', 'userCount'));
     }
 }

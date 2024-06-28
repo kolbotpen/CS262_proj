@@ -34,12 +34,13 @@ Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('wor
 
 // ---------- BACKEND | START ----------------
 
-// WORKSPACE
+// WORKSPACES
 Route::get('/workspace', [HomeController::class,'workspace'])->name('workspace');
 Route::get('/workspace/companies', [CompanyController::class,'showWorkspace'])->name('company.workspace');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
+Route::get('/workspace/request', [JoinRequestController::class, 'showWorkspace'])->name('task.request');
 
 // WORKSPACE EDITING
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
@@ -65,6 +66,7 @@ Route::get('/adminhome', [HomeController::class,'index'])->name('adminhome');
 Route::get('/workspace/teams', [TeamsController::class, 'showWorkspace'])->name('team.workspace');
 Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('user.workspace');
 Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
+Route::get('/workspace/request', [JoinRequestController::class, 'showWorkspace'])->name('request.workspace');
 
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
@@ -121,3 +123,7 @@ Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
 
 Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
 
+// JOIN REQUESTS
+Route::get('/join-requests', [JoinRequestController::class, 'index'])->name('join-requests.index');
+Route::post('/join-requests/{id}/approve', [JoinRequestController::class, 'approve'])->name('join-requests.approve');
+Route::post('/join-requests/{id}/reject', [JoinRequestController::class, 'reject'])->name('join-requests.reject');
