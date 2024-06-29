@@ -52,7 +52,7 @@
                                 <td>{{$user->email}}</td>
                                 <td>
                                     @foreach($user->companies as $company) 
-                                        {{ $company->name }}
+                                        {{ $company->name }}, 
                                     @endforeach
                                 </td>
                                 <td>
