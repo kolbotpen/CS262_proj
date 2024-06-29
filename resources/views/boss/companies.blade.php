@@ -41,10 +41,10 @@
                                         <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
                                             <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                                         </a>
-                                        <button type="button" class="btn btn-secondary" data-toggle="modal"
-                                            data-target="#CompanySettingsModal" data-companyid="{{ $company->id }}">
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#CompanySettingsModal" data-companyid="{{ $company->id }}">
                                             <img class="icon mx-auto" src="assets/images/icon-gear.svg" draggable="false">
                                         </button>
+
                                     </div>
                                 </th>
                             </tr>
@@ -81,94 +81,104 @@
                 </div>
                 <!-- Modal | Company Settings -->
                 <div id="CompanySettingsModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog" style="top: 10% !important;">
+                    <div class="modal-dialog" style="top: 10% !important; max-width: 580px;">
                         <!-- Modal content-->
                         <div class="modal-content">
-                            <div class="modal-header">
+                            <div class="modal-header p-4">
                                 <h4 class="modal-title">Company Settings</h4>
                                 <button type="button" class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></button>
                             </div>
-                            <div class="modal-body bg-gray">
+                            <div class="modal-body bg-gray p-4">
                                 <form id="companySettingsForm" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <input type="hidden" name="company_id" id="company_id">
 
-                                    <!-- Company Name -->
-                                    <div class="col-md-12 mb-3">
-                                        <label for="company_name">Company Name</label>
-                                        <input type="text" id="company_name" name="name" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Name" value="{{ $company->name ?? '' }}">
-                                    </div>
+                                    <div class="row">
+                                        <!-- LEFT SIDE -->
+                                        <div class="col-md-6">
+                                            <!-- Company Name -->
+                                            <div class="mb-3">
+                                                <label for="company_name">Company Name</label>
+                                                <input type="text" id="company_name" name="name" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Name" value="{{ $company->name ?? '' }}">
+                                            </div>
 
-                                    <!-- Company Industry -->
-                                    <div class="col-md-12 mb-3">
-                                        <label for="company_industry">Industry</label>
-                                        <input type="text" id="company_industry" name="industry" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Industry" value="{{ $company->industry ?? '' }}">
-                                    </div>
-
-                                    <!-- Company Description -->
-                                    <div class="col-md-12 mb-3">
-                                        <label for="company_description">Description</label>
-                                        <textarea id="company_description" name="description" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Description" rows="4">{{ $company->description ?? '' }}</textarea>
-                                    </div>
-
-                                    <!-- Company Visibility -->
-                                    <div class="col-md-12 mb-3">
-                                        <label for="company_visibility">Visibility</label>
-                                        <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" required>
-                                            <option value="public" {{ isset($company) && $company->visibility == 'public' ? 'selected' : '' }}>Public</option>
-                                            <option value="private" {{ isset($company) && $company->visibility == 'private' ? 'selected' : '' }}>Private</option>
-                                        </select>
-                                    </div>
-
-                                    <!-- Company Code -->
-                                    <div class="col-md-12 mb-3">
-                                        <label for="company_code">Company Code</label>
-                                        <div class="boss-user-input d-flex align-items-center mb-2">
-                                            <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0" placeholder="Enter Company Code" value="{{ $company->company_code ?? '' }}" readonly>
-                                            <button type="button" class="btn btn-secondary ml-2 generate-company-code"><img class="icon mx-auto" src="{{ asset('assets/images/icon-random.svg') }}" draggable="false"></button>
+                                            <!-- Company Industry -->
+                                            <div class="mb-3">
+                                                <label for="company_industry">Industry</label>
+                                                <input type="text" id="company_industry" name="industry" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Industry" value="{{ $company->industry ?? '' }}">
+                                            </div>
                                         </div>
-                                    </div>
 
-                                    <!-- Manage Boss Users -->
-                                    <div class="col-md-12 mb-4">
-                                        <label for="boss_users">Boss Users</label>
-                                        <div class="mb-3 d-flex align-items-end">
-                                            <div class="flex-grow-1">
-                                                <select id="new_boss_user" class="form-control bg-black text-white border-0">
-                                                    <option value="">Select a user to add as Boss</option>
-                                                    @foreach($company->users as $user)
-                                                        @if(!is_array($company->boss_users) || !in_array($user->id, $company->boss_users))
-                                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                                        @endif
-                                                    @endforeach
+                                        <!-- RIGHT SIDE -->
+                                        <div class="col-md-6">
+                                            <!-- Company Visibility -->
+                                            <div class="mb-3">
+                                                <label for="company_visibility">Visibility</label>
+                                                <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" required>
+                                                    <option value="public" {{ isset($company) && $company->visibility == 'public' ? 'selected' : '' }}>Public</option>
+                                                    <option value="private" {{ isset($company) && $company->visibility == 'private' ? 'selected' : '' }}>Private</option>
                                                 </select>
                                             </div>
-                                            <div>
-                                                <button type="button" class="btn btn-secondary mt-2 ml-2" id="addBossUserButton"><img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false"></button>
+
+                                            <!-- Company Code -->
+                                            <div class="mb-3">
+                                                <label for="company_code">Company Code</label>
+                                                <div class="d-flex align-items-center">
+                                                    <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0 mt-2 rounded-0 rounded-start" placeholder="Enter Company Code" value="{{ $company->company_code ?? '' }}" readonly>
+                                                    <button type="button" class="btn btn-secondary generate-company-code mt-2 rounded-0 rounded-end">
+                                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-random.svg') }}" draggable="false">
+                                                    </button>
+                                                </div>                                                
                                             </div>
-                                        </div>
-                                        <div id="bossUsersContainer">
-                                            <!-- Existing Boss Users will be displayed here -->
-                                            @if (isset($company->boss_users) && is_array($company->boss_users))
-                                                @foreach ($company->boss_users as $boss_user_id)
-                                                    @php
-                                                        $boss_user = App\User::find($boss_user_id);
-                                                    @endphp
-                                                    @if ($boss_user)
-                                                        <div class="boss-user-input d-flex align-items-center mb-2">
-                                                            <input type="text" name="boss_users[]" class="form-control bg-black text-white border-0" value="{{ $boss_user->name }}" readonly>
-                                                            <button type="submit" class="btn btn-danger ml-2 remove-boss-user-button"><img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false"></button>
-                                                        </div>
-                                                    @endif
-                                                @endforeach
-                                            @endif
                                         </div>
                                     </div>
 
+                                    <!-- BOTTOM -->
+                                    <div class="row">
+                                        <div class="col-md-12 mb-3">
+                                            <label for="company_description">Description</label>
+                                            <textarea id="company_description" name="description" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Description" rows="4">{{ $company->description ?? '' }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <!-- Boss Users Table -->
+                                    <div class="row mb-4">
+                                        <div class="col-md-12">
+                                            <label for="boss_users">Boss Users</label>
+                                            <div class="d-flex align-items-end mb-3">
+                                                <div class="flex-grow-1">
+                                                    <select id="new_boss_user" class="form-control bg-black text-white border-0 rounded-0 rounded-start">
+                                                        <option value="">--</option>
+                                                        {{-- This will be dynamically populated --}}
+                                                    </select>
+                                                </div>
+                                                <button type="button" class="btn btn-secondary rounded-0 rounded-end" id="addBossUserButton">
+                                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false">
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="table-border rounded overflow-hidden">
+                                                <table class="table p-0 m-0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th class="text-center">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bossUsersTableBody">
+                                                        <!-- Existing Boss Users will be displayed here -->
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                     <!-- Submit Button -->
-                                    <div class="btn-group table-border th-btn center mb-2" style="background-color: #303030" role="group" aria-label="Button group">
-                                        <button type="submit" id="submitCompanySettings" class="btn btn-secondary" role="button">
+                                    <div class="d-flex justify-content-center">
+                                        <button type="submit" id="submitCompanySettings" class="btn btn-secondary">
                                             <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">Submit
                                         </button>
                                     </div>
@@ -177,6 +187,7 @@
                         </div>
                     </div>
                 </div>
+
 
 
 
@@ -340,76 +351,64 @@
 </script>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $('#CompanySettingsModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var companyId = button.data('companyid');
-            var modal = $(this);
-            modal.find('.modal-body #company_id').val(companyId);
-
-            // Set the form action to the correct route
-            var formAction = '{{ route("companies.update", ":companyId") }}';
-            formAction = formAction.replace(':companyId', companyId);
-            $('#companySettingsForm').attr('action', formAction);
-
-            // Load company details via AJAX or populate fields directly if available
-            loadCompanyDetails(companyId);
-        });
-
-        $('#addBossUserButton').click(function () {
-            var newBossUserId = $('#new_boss_user').val();
-            if (newBossUserId) {
-                var newBossUserName = $('#new_boss_user option:selected').text();
-                $('#bossUsersContainer').append('<div class="boss-user-input d-flex align-items-center mb-2"><input type="text" name="boss_users[]" class="form-control bg-black text-white border-0" value="' + newBossUserName + '" readonly><button type="button" class="btn btn-danger ml-2 remove-boss-user-button"><img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false"></button></div>');
-                $('#new_boss_user').val(''); // Clear the select field
-                $('#new_boss_user option[value="' + newBossUserId + '"]').remove(); // remove the added user from the select options
-            }
-        });
-
-        $(document).on('click', '.remove-boss-user-button', function () {
-            var userId = $(this).closest('.boss-user-input').find('input').val();
-            $(this).closest('.boss-user-input').remove();
-            $('#new_boss_user').append('<option value="' + userId + '">' + userId + '</option>'); // Add the removed user back to the select options
-        });
-
-        // Load company details (this function should be implemented to fetch data from the server)
-        function loadCompanyDetails(companyId) {
-            // Example AJAX call to get company details
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var companyId = button.data('companyid'); // Extract info from data-* attributes
+    
+            // Fetch boss users and all users from the server
             $.ajax({
-                url: '/companies/details/' + companyId,
-                type: 'GET',
-                success: function (response) {
-                    $('#company_name').val(response.name);
-                    $('#company_industry').val(response.industry);
-                    $('#company_description').val(response.description);
-                    $('#company_visibility').val(response.visibility); // Set the visibility
-
-                    // Populate boss users
-                    $('#bossUsersContainer').empty();
-                    if (response.boss_users && Array.isArray(response.boss_users)) {
-                        response.boss_users.forEach(function (userId) {
-                            var bossUser = response.users.find(function (user) {
-                                return user.id === userId;
+                url: '/companies/' + companyId + '/boss-users',
+                method: 'GET',
+                success: function(bossUsers) {
+                    var bossUserIds = bossUsers.map(user => user.id);
+                    var tbody = $('#bossUsersTableBody');
+                    tbody.empty(); // Clear any existing rows
+    
+                    bossUsers.forEach(function(user) {
+                        var row = `
+                            <tr>
+                                <td>${user.name}</td>
+                                <td>${user.email}</td>
+                                <td class="text-center">
+                                    <button type="button" class="btn btn-danger remove-boss-user-button">
+                                        <img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false">
+                                    </button>
+                                </td>
+                            </tr>
+                        `;
+                        tbody.append(row);
+                    });
+    
+                    // Fetch all users and update the select options
+                    $.ajax({
+                        url: '/companies/' + companyId + '/users',
+                        method: 'GET',
+                        success: function(allUsers) {
+                            var select = $('#new_boss_user');
+                            select.empty(); // Clear existing options
+                            select.append('<option value="">--</option>');
+    
+                            allUsers.forEach(function(user) {
+                                if (!bossUserIds.includes(user.id)) {
+                                    var option = `<option value="${user.id}" data-email="${user.email}">${user.name}</option>`;
+                                    select.append(option);
+                                }
                             });
-                            if (bossUser) {
-                                $('#bossUsersContainer').append('<div class="boss-user-input d-flex align-items-center mb-2"><input type="text" name="boss_users[]" class="form-control bg-black text-white border-0" value="' + bossUser.name + '" readonly><button type="button" class="btn btn-danger ml-2 remove-boss-user-button"><img class="icon mx-auto" src="{{ asset('assets/images/icon-trash.svg') }}" draggable="false"></button></div>');
-                            }
-                        });
-                    }
-
-                    // Populate the select options for new boss users
-                    $('#new_boss_user').empty();
-                    $('#new_boss_user').append('<option value="">Select a user to add as Boss</option>');
-                    response.users.forEach(function (user) {
-                        if (!response.boss_users || !response.boss_users.includes(user.id)) {
-                            $('#new_boss_user').append('<option value="' + user.id + '">' + user.name + '</option>');
+                        },
+                        error: function() {
+                            alert('Failed to fetch users.');
                         }
                     });
+                },
+                error: function() {
+                    alert('Failed to fetch boss users.');
                 }
             });
-        }
+        });
     });
-</script>
+    </script>
+    
 
 <script>
     // Generate a random company code with route company.generateCode

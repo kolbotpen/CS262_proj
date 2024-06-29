@@ -27,6 +27,8 @@ Route::get('/', function () {
 // ---------- FRONTEND | START ----------------
 
 // WORKSPACE EDITING
+Route::get('/companies/{companyId}/users', 'App\Http\Controllers\CompanyController@getAllUsers')->name('companies.users');
+Route::get('/companies/{companyId}/boss-users', 'App\Http\Controllers\CompanyController@getBossUsers')->name('companies.boss_users');
 Route::get('company/generate-code', [CompanyController::class, 'generateCode'])->name('company.generateCode');
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');

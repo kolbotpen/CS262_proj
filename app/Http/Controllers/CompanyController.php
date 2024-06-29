@@ -58,7 +58,21 @@ class CompanyController extends Controller
     //     return response()->json($company);
     // }
 
-    // EDIT - VISOTH WAS HERE
+    // EDIT - VISOTH WAS HERE 1
+    // public function edit($id)
+    // {
+    //     $company = Company::with('users')->findOrFail($id);
+    //     return response()->json([
+    //         'name' => $company->name,
+    //         'industry' => $company->industry,
+    //         'description' => $company->description,
+    //         'visibility' => $company->visibility,
+    //         'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
+    //         'users' => $company->users,
+    //     ]);
+    // }
+
+    // EDIT - VISOTH WAS HERE 2
     public function edit($id)
     {
         $company = Company::with('users')->findOrFail($id);
@@ -68,9 +82,37 @@ class CompanyController extends Controller
             'description' => $company->description,
             'visibility' => $company->visibility,
             'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
-            'users' => $company->users,
+            'users' => $company->users->map(function($user) {
+                return [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email
+                ];
+            })
         ]);
     }
+
+    // SHOW ALL BOSSES BELONGING TO A COMPANY
+
+    public function getBossUsers($companyId)
+    {
+        $company = Company::findOrFail($companyId);
+        
+        // Fetch only users who are bosses (is_boss = 1)
+        $bossUsers = $company->users()->wherePivot('is_boss', 1)->get();
+
+        return response()->json($bossUsers);
+    }
+
+    // SHOW ALL USERS BELONGING TO A COMPANY
+    public function getAllUsers($companyId)
+    {
+        $company = Company::findOrFail($companyId);
+        $users = $company->users;
+
+        return response()->json($users);
+    }
+
 
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
@@ -129,6 +171,8 @@ class CompanyController extends Controller
         return redirect()->route('companies.show')->with('success', 'Company updated successfully.');
     }
 
+
+    // GENERATE COMPANY CODE IN MODAL
     public function generateCode()
     {
         $code = Company::generateUniqueCompanyCode();
