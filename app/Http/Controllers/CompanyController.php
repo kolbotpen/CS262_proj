@@ -47,16 +47,31 @@ class CompanyController extends Controller
         $company->users()->attach($user->id, ['is_boss' => 1]);
 
         // Redirect to the companies index with a success message
-        return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
+        return redirect()->route('companies.show')->with('success', 'Company created successfully.');
     }
     
 
-    // EDIT 
+    // EDIT - ORIGINAL
+    // public function edit($id)
+    // {
+    //     $company = Company::with('users')->findOrFail($id);
+    //     return response()->json($company);
+    // }
+
+    // EDIT - VISOTH WAS HERE
     public function edit($id)
     {
         $company = Company::with('users')->findOrFail($id);
-        return response()->json($company);
+        return response()->json([
+            'name' => $company->name,
+            'industry' => $company->industry,
+            'description' => $company->description,
+            'visibility' => $company->visibility,
+            'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
+            'users' => $company->users,
+        ]);
     }
+
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {
@@ -97,16 +112,27 @@ class CompanyController extends Controller
             'description' => 'nullable|string',
             'industry' => 'nullable|string',
             'visibility' => 'required|in:public,private',
+            'company_code' => 'nullable|string|max:6|unique:companies,company_code,' . $company->id, // Validate the company_code if it's provided
         ]);
+
+        // Use provided company code or generate a new one if not provided
+        $companyCode = $request->company_code ?: ($company->company_code ?: Company::generateUniqueCompanyCode());
 
         $company->update([
             'name' => $request->name,
             'description' => $request->description,
             'industry' => $request->industry,
             'visibility' => $request->visibility,
+            'company_code' => $companyCode,
         ]);
 
-        return redirect()->route('company.workspace')->with('success', 'Company updated successfully.');
+        return redirect()->route('companies.show')->with('success', 'Company updated successfully.');
+    }
+
+    public function generateCode()
+    {
+        $code = Company::generateUniqueCompanyCode();
+        return response()->json(['code' => $code]);
     }
     
     // CREATE COMPANY IN BROWSE

@@ -27,6 +27,7 @@ Route::get('/', function () {
 // ---------- FRONTEND | START ----------------
 
 // WORKSPACE EDITING
+Route::get('company/generate-code', [CompanyController::class, 'generateCode'])->name('company.generateCode');
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
