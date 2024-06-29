@@ -22,8 +22,8 @@
                 <h3 class="card-title">Team Table</h3>
                 <div class="card-tools">
                     <div class="input-group input-group" style="width: 250px;">
-                        <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-                        <div class="input-group-append">
+                    <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
+                    <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -229,5 +229,28 @@
         window.location.href = '{{ url("/workspace/teams") }}?company_id=' + companyId;
     });
 </script>
+<script>
+    document.getElementById('table_search').addEventListener('keyup', function () {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('table_search');
+    filter = input.value.toUpperCase();
+    table = document.querySelector('.table');
+    tr = table.getElementsByTagName('tr');
 
+    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+        tr[i].style.display = 'none';
+        td = tr[i].getElementsByTagName('td');
+        for (var j = 0; j < td.length; j++) {
+            if (td[j]) {
+                txtValue = td[j].textContent || td[j].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                    break; // Stop the loop once a match is found
+                }
+            }
+        }
+    }
+});
+
+</script>
 @stop
