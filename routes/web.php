@@ -108,9 +108,12 @@ Route::prefix('workspace')->group(function () {
     Route::delete('/companies/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy'); // For deleting a company
 });
 Route::delete('/companies/{companyId}/users/{userId}', [CompanyController::class, 'removeUserFromCompany'])->name('company.users.remove');
+
+// ROUTE FOR ADDING USERS TO COMPANIES
 Route::post('/companies/add-user', [CompanyController::class, 'addUser'])->name('companies.addUser');
 
-
+// ROUTE FOR ADDING USERS TO TEAMS
+Route::post('/teams/{team}/add-member', [TeamsController::class, 'addMember'])->name('teams.addMember');
 // ROUTE FOR DELETING
 Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
 Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');

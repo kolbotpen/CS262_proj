@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Team;
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class TeamsController extends Controller
 {
@@ -54,16 +55,14 @@ class TeamsController extends Controller
     public function showWorkspace(Request $request)
     {
         $query = Team::with('company', 'users');
-
-        // Check if a company_id is present in the request
         if ($request->has('company_id') && $request->company_id != '') {
             $query->where('company_id', $request->company_id);
         }
-
         $teams = $query->get();
         $companies = Company::all(); // Assuming you have a Company model
-
-        return view('admin.team-workspace', compact('teams', 'companies'));
+        $users = User::all(); // Fetch all users to pass to the view
+        $teamId = $teams->first()->id ?? null;
+        return view('admin.team-workspace', compact('teams', 'companies', 'teamId', 'users'));
     }
 
 
@@ -146,8 +145,8 @@ class TeamsController extends Controller
     {
         $team = Team::findOrFail($teamId);
         $team->users()->detach($userId);
-    
+
         return response()->json(['success' => 'User removed from the team successfully.']);
     }
-    
+
 }

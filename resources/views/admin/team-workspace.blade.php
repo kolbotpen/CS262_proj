@@ -5,9 +5,22 @@
     <div class="row mb-2">
         <div class="col-sm-6">
             <h1>Team</h1>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         </div>
         <div class="col-sm-6 text-right">
             <button class="btn btn-primary" data-toggle="modal" data-target="#addTeamModal">Add Team</button>
+            <!-- Button to trigger add user modal -->
+            <button class="btn btn-success ml-2" data-toggle="modal" data-target="#addUserModal">Add User</button>
         </div>
     </div>
 </div>
@@ -22,8 +35,9 @@
                 <h3 class="card-title">Team Table</h3>
                 <div class="card-tools">
                     <div class="input-group input-group" style="width: 250px;">
-                    <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
-                    <div class="input-group-append">
+                        <input type="text" id="table_search" name="table_search" class="form-control float-right"
+                            placeholder="Search">
+                        <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
                             </button>
@@ -176,7 +190,46 @@
             </div>
         </div>
     </div>
-
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add User to Team</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addUserForm" method="POST" action="{{ route('teams.addMember', ['team' => $teamId]) }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="team_id" class="col-form-label">Select Team:</label>
+                            <!-- Changed from company_id to team_id -->
+                            <select class="form-control" id="team_id" name="team_id"> <!-- Adjusted name and id -->
+                                @foreach ($teams as $team) <!-- Assuming $teams is passed to the view -->
+                                    <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id" class="col-form-label">Select User:</label>
+                            <select class="form-control" id="user_id" name="user_id" required>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->email }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
@@ -208,17 +261,17 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                success: function(response) {
+                success: function (response) {
                     // Refresh the modal or the page to reflect the changes
                     location.reload();
                 },
-                error: function(error) {
+                error: function (error) {
                     console.error(error);
                 }
             });
         }
     }
-    
+
 </script>
 <script>
     document.getElementById('company_filter').addEventListener('change', function () {
@@ -231,26 +284,26 @@
 </script>
 <script>
     document.getElementById('table_search').addEventListener('keyup', function () {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById('table_search');
-    filter = input.value.toUpperCase();
-    table = document.querySelector('.table');
-    tr = table.getElementsByTagName('tr');
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById('table_search');
+        filter = input.value.toUpperCase();
+        table = document.querySelector('.table');
+        tr = table.getElementsByTagName('tr');
 
-    for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
-        tr[i].style.display = 'none';
-        td = tr[i].getElementsByTagName('td');
-        for (var j = 0; j < td.length; j++) {
-            if (td[j]) {
-                txtValue = td[j].textContent || td[j].innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = '';
-                    break; // Stop the loop once a match is found
+        for (i = 1; i < tr.length; i++) { // Start from 1 to skip the header row
+            tr[i].style.display = 'none';
+            td = tr[i].getElementsByTagName('td');
+            for (var j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = '';
+                        break; // Stop the loop once a match is found
+                    }
                 }
             }
         }
-    }
-});
+    });
 
 </script>
 @stop
