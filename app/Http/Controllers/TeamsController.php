@@ -109,7 +109,7 @@ class TeamsController extends Controller
         // Attach the user to the team if they are not already a member
         $team->users()->attach($request->user_id);
 
-        return back()->with('status', 'Member added successfully!');
+        return back()->with('success', 'Member added successfully!');
     }
     public function showTeam(Team $team)
     {
