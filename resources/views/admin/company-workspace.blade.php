@@ -5,9 +5,22 @@
     <div class="row mb-2">
         <div class="col-sm-6">
             <h1>Company</h1>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
         </div>
         <div class="col-sm-6 text-right">
             <button class="btn btn-primary" data-toggle="modal" data-target="#addCompanyModal">Add Company</button>
+            <!-- Button to trigger add user modal -->
+            <button class="btn btn-success ml-2" data-toggle="modal" data-target="#addUserModal">Add User</button>
         </div>
     </div>
 </div>
@@ -195,6 +208,46 @@
             </div>
         </div>
     </div>
+
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add User to Company</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="addUserForm" method="POST" action="{{ route('companies.addUser') }}">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="company_id" class="col-form-label">Select Company:</label>
+                            <select class="form-control" id="company_id" name="company_id">
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}">{{ $company->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_id" class="col-form-label">Select User:</label>
+                            <select class="form-control" id="user_id" name="user_id" required>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }} - {{ $user->email }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add User</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 
@@ -256,23 +309,23 @@
     }
 
     function removeUserFromCompany(companyId, userId) {
-    if (confirm('Are you sure you want to remove this user from the company?')) {
-        $.ajax({
-            url: '/companies/' + companyId + '/users/' + userId,
-            type: 'DELETE',
-            data: {
-                _token: '{{ csrf_token() }}'
-            },
-            success: function(response) {
-                // Refresh the modal or the page to reflect the changes
-                location.reload();
-            },
-            error: function(error) {
-                console.error(error);
-            }
-        });
+        if (confirm('Are you sure you want to remove this user from the company?')) {
+            $.ajax({
+                url: '/companies/' + companyId + '/users/' + userId,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    // Refresh the modal or the page to reflect the changes
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
     }
-}
 
 </script>
 

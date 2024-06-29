@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +22,7 @@ class CompanyController extends Controller
     public function showAddCompanyForm()
     {
         $companies = Company::with('users')->get(); // Fetch all companies
-        return view('admin.admin-addcompany',['companies' => $companies]);
+        return view('admin.admin-addcompany', ['companies' => $companies]);
     }
 
     // STORE COMPANIES
@@ -49,13 +51,13 @@ class CompanyController extends Controller
         // Redirect to the companies index with a success message
         return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
     }
-    
+
 
     // EDIT 
     public function edit($id)
     {
         $company = Company::with('users')->findOrFail($id);
-        
+
         return response()->json($company);
     }
 
@@ -64,7 +66,9 @@ class CompanyController extends Controller
     public function showWorkspace()
     {
         $companies = Company::all();
-        return view('admin.company-workspace', ['companies' => $companies]);
+        $users = User::all();
+
+        return view('admin.company-workspace', ['companies' => $companies, 'users' => $users]);
     }
 
     // SHOW COMPANIES IN BOSS WORKSPACE
@@ -122,7 +126,7 @@ class CompanyController extends Controller
 
         return redirect()->route('company.workspace')->with('success', 'Company updated successfully.');
     }
-    
+
     // CREATE COMPANY IN BROWSE
     public function storeInBrowse(Request $request)
     {
@@ -180,13 +184,36 @@ class CompanyController extends Controller
     public function removeUserFromCompany($companyId, $userId)
     {
         $company = Company::findOrFail($companyId);
-    
+
         // Detach the user from the company
         $company->users()->detach($userId);
-    
+
         return response()->json(['success' => 'User removed from the team successfully.']);
     }
 
+    public function addUser(Request $request)
+    {
+        // Validate the request
+        $request->validate([
+            'company_id' => 'required|integer|exists:companies,id',
+            'user_id' => 'required|integer|exists:users,id',
+        ]);
+
+        // Fetch the company and user
+        $company = Company::findOrFail($request->company_id);
+        $user = User::findOrFail($request->user_id);
+
+        // // Check if the user is already a member of the company
+        // if ($company->users()->where('user_id', $user->id)->exists()) {
+        //     return response()->json(['message' => 'User is already a member of the company.'], 409);
+        // }
+
+        // Attach the user to the company
+        $company->users()->attach($user->id, ['is_boss' => 0]);
+
+        // Return a success response
+        return redirect()->back()->with('success', 'User added to the company successfully.');
+    }
     // public function showJoinedCompanies()
     // {
     //     $user = Auth::user();
