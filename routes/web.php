@@ -68,6 +68,7 @@ Route::get('/workspace/users', [UserController::class, 'showWorkspace'])->name('
 Route::get('/workspace/tasks', [UploadManager::class, 'showWorkspace'])->name('task.workspace');
 Route::get('/workspace/request', [JoinRequestController::class, 'showWorkspace'])->name('request.workspace');
 
+Route::get('/admin/task-workspace', [UploadManager::class, 'showWorkspace'])->name('admin.task-workspace');
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
 Route::get('/edituser', [HomeController::class,'edituser'])->name('edituser');
@@ -116,10 +117,13 @@ Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destro
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
 
 // TASKS
+Route::get('/task/store', [UploadManager::class, "upload"])->name("upload");
+Route::post('/task/store', [UploadManager::class, 'uploadPost'])->name('upload.post');
 Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
+Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
 require __DIR__.'/auth.php';
 
-Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
+
 
 Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
 
@@ -127,3 +131,5 @@ Route::get('/search-companies', [CompanyController::class, 'search'])->name('com
 Route::get('/join-requests', [JoinRequestController::class, 'index'])->name('join-requests.index');
 Route::post('/join-requests/{id}/approve', [JoinRequestController::class, 'approve'])->name('join-requests.approve');
 Route::post('/join-requests/{id}/reject', [JoinRequestController::class, 'reject'])->name('join-requests.reject');
+
+
