@@ -41,6 +41,9 @@
                                         <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
                                             <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                                         </a>
+                                        <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
+                                            <img class="icon mx-auto" src="assets/images/icon-gear.svg" draggable="false">
+                                        </a>
                                     </div>
                                 </th>
                             </tr>
