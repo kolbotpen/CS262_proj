@@ -3,10 +3,10 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
+    <h3>Tasks</h3>
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Task Table</h3>
-                <!-- Search and other card tools -->
             </div>
             <div class="card-body table-responsive p-0">
                 <table class="table table-hover text-nowrap">
