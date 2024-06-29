@@ -26,6 +26,8 @@ Route::get('/', function () {
 });
 
 
+
+
 // SHOW COMPANY 
 Route::get('/workspace', [CompanyController::class, 'showWorkspace'])->name('workspace.show');
 

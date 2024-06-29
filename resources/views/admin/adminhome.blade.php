@@ -1,6 +1,7 @@
 @extends('adminlayout.master')
 @section('content')
 
+
 <div class="container-fluid">
 	<div class="row mb-2">
 		<div class="col-sm-6">
@@ -56,10 +57,9 @@
 						<i class="ion ion-person-add"></i>
 					</div>
 					<a href="{{route('user.workspace')}}" class="small-box-footer text-dark">More info <i
-							class="fas fa-arrow-circle-right"></i></a>
+						class="fas fa-arrow-circle-right"></i></a>
 				</div>
 			</div>
 		</div>
 	</div>
-
 	@stop

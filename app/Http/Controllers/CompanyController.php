@@ -20,7 +20,7 @@ class CompanyController extends Controller
     public function showAddCompanyForm()
     {
         $companies = Company::with('users')->get(); // Fetch all companies
-        return view('admin.admin-addcompany', ['companies' => $companies]);
+        return view('admin.admin-addcompany',['companies' => $companies]);
     }
 
     // STORE COMPANIES
@@ -49,19 +49,18 @@ class CompanyController extends Controller
         // Redirect to the companies index with a success message
         return redirect()->route('company.workspace')->with('success', 'Company created successfully.');
     }
-
+    
 
     // EDIT 
     public function edit($id)
     {
-        $company = Company::with(['creator', 'users'])->findOrFail($id);
+        $company = Company::with('users')->findOrFail($id);
         return response()->json($company);
     }
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {
-        $user = Auth::user();
-        $companies = $user->companies; // Assuming there's a 'companies' relationship defined in the User model
+        $companies = Company::all();
         return view('admin.company-workspace', ['companies' => $companies]);
     }
 
@@ -98,8 +97,6 @@ class CompanyController extends Controller
             'description' => 'nullable|string',
             'industry' => 'nullable|string',
             'visibility' => 'required|in:public,private',
-            'is_boss' => 'array', // Expect an array of user IDs
-            'is_boss.*' => 'integer|exists:users,id' // Each element must be a valid user ID
         ]);
 
         $company->update([
@@ -109,20 +106,9 @@ class CompanyController extends Controller
             'visibility' => $request->visibility,
         ]);
 
-        // Set all users to is_boss = 0 first
-        $company->users()->update(['is_boss' => 0]);
-
-        // Set the specified users as bosses
-        if ($request->has('is_boss')) {
-            foreach ($request->is_boss as $bossId) {
-                $company->users()->updateExistingPivot($bossId, ['is_boss' => 1]);
-            }
-        }
-
         return redirect()->route('company.workspace')->with('success', 'Company updated successfully.');
     }
-
-
+    
     // CREATE COMPANY IN BROWSE
     public function storeInBrowse(Request $request)
     {
@@ -158,6 +144,7 @@ class CompanyController extends Controller
             'company_code' => 'required|string|size:6',
         ]);
 
+        // Find the company by the provided company code
         $company = Company::where('company_code', $request->company_code)->first();
 
         if (!$company) {
@@ -176,6 +163,7 @@ class CompanyController extends Controller
 
         return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
+
 
     // public function showJoinedCompanies()
     // {
