@@ -170,7 +170,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button type="submit" class="btn btn-primary">Add Team</button>
                     </div>
                 </form>
             </div>
@@ -181,14 +181,15 @@
 
 <script>
     function editTeam(team) {
+        $('#editTeamModal').modal('show');
+        $('#editTeamForm').attr('action', '/teams/' + team.id);
         $('#team_id').val(team.id);
         $('#team_name').val(team.name);
         $('#company_id').val(team.company_id);
 
-        // Clear previous users
+        // Clear and populate the users list
         $('#team_users').empty();
-
-        // Populate users
+        // User area
         team.users.forEach(user => {
             const listItem = `
                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -198,10 +199,7 @@
             `;
             $('#team_users').append(listItem);
         });
-
-        $('#editTeamModal').modal('show');
     }
-
     function removeUserFromTeam(teamId, userId) {
         if (confirm('Are you sure you want to remove this user from the team?')) {
             $.ajax({
@@ -210,16 +208,17 @@
                 data: {
                     _token: '{{ csrf_token() }}'
                 },
-                success: function (response) {
+                success: function(response) {
                     // Refresh the modal or the page to reflect the changes
                     location.reload();
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error(error);
                 }
             });
         }
     }
+    
 </script>
 <script>
     document.getElementById('company_filter').addEventListener('change', function () {
