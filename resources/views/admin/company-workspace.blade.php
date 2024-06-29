@@ -228,11 +228,18 @@
                     const isBossChecked = user.pivot.is_boss ? 'checked' : '';
                     $('#edit_company_users').append(`
                     <li class="list-group-item">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="is_boss[]" id="user_${user.id}" value="${user.id}" ${isBossChecked}>
-                            <label class="form-check-label" for="user_${user.id}">
-                                ${user.name}
-                            </label>
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="is_boss[]" id="user_${user.id}" value="${user.id}" ${isBossChecked}>
+                                    <label class="form-check-label" for="user_${user.id}">
+                                        ${user.name}
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-danger btn-sm" onclick="removeUserFromCompany(${company.id}, ${user.id})">Remove</button>
+                            </div>
                         </div>
                     </li>
                 `);
@@ -247,6 +254,26 @@
             }
         });
     }
+
+    function removeUserFromCompany(companyId, userId) {
+    if (confirm('Are you sure you want to remove this user from the company?')) {
+        $.ajax({
+            url: '/companies/' + companyId + '/users/' + userId,
+            type: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                // Refresh the modal or the page to reflect the changes
+                location.reload();
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    }
+}
+
 </script>
 
 <script>

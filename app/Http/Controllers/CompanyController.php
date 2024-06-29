@@ -177,7 +177,15 @@ class CompanyController extends Controller
 
         return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
     }
-
+    public function removeUserFromCompany($companyId, $userId)
+    {
+        $company = Company::findOrFail($companyId);
+    
+        // Detach the user from the company
+        $company->users()->detach($userId);
+    
+        return response()->json(['success' => 'User removed from the team successfully.']);
+    }
 
     // public function showJoinedCompanies()
     // {
