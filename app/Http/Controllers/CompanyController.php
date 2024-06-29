@@ -15,7 +15,7 @@ class CompanyController extends Controller
         $companies = Company::public()->get(); // Fetch only public companies
         return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
     }
-    
+
     // ADD COMPANIES
     public function showAddCompanyForm()
     {
@@ -60,7 +60,8 @@ class CompanyController extends Controller
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {
-        $companies = Company::all();
+        $user = Auth::user();
+        $companies = $user->companies; // Assuming there's a 'companies' relationship defined in the User model
         return view('admin.company-workspace', ['companies' => $companies]);
     }
 

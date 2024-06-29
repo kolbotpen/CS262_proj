@@ -15,10 +15,6 @@ class HomeController extends Controller
     {
         if (Auth::id()) {
             $usertype = Auth()->user()->usertype;
-            if ($usertype == 'user') {
-                $teams = Team::all();
-                return view('landing', ['teams' => $teams]);
-            } else if ($usertype == 'admin') {
                 $totalCompanies = Company::count();
                 $totalTeams = Team::count();
                 $totalUsers = User::count();
@@ -30,7 +26,7 @@ class HomeController extends Controller
                 ]);
             } else {
                 return redirect()->back();
-            }
+            
         }
     }
 
@@ -45,7 +41,7 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
             $teams = Team::all();
             if ($usertype == 'user') {
-                return view('landing', ['teams' => $teams]);
+                return view('admin.adminhome', ['teams' => $teams]);
             }
             else {
              return redirect()->back();
@@ -59,7 +55,7 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
 
             if ($usertype == 'user') {
-                return view('landing');
+                return view('admin.adminhome');
             } else if ($usertype == 'admin') {
                 return view('admin.edit');
             } else {
@@ -73,7 +69,7 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
 
             if ($usertype == 'user') {
-                return view('landing');
+                return view('admin.adminhome');
             } else if ($usertype == 'admin') {
                 return view('admin.edituser');
             } else {
@@ -87,7 +83,7 @@ class HomeController extends Controller
             $usertype = Auth()->user()->usertype;
 
             if ($usertype == 'user') {
-                return view('landing');
+                return view('admin.adminhome');
             } else if ($usertype == 'admin') {
                 return view('admin.setting');
             } else {
