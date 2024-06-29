@@ -111,6 +111,7 @@ Route::prefix('workspace')->group(function () {
 // ROUTE FOR DELETING
 Route::delete('/workspace/teams/destroy/{team}', [TeamsController::class, 'destroy'])->name('team.destroy');
 Route::delete('/workspace/users/destroy/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::delete('teams/{team}/users/{user}', [TeamsController::class, 'removeUser'])->name('teams.removeUser');
 
 // // ROUTE FOR SHOWING THE WORKSPACE
 Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('companies.show');
@@ -118,9 +119,7 @@ Route::get('/companies', [CompanyController::class, 'showCompanies'])->name('com
 // TASKS
 Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delete');
 require __DIR__.'/auth.php';
-
 Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
-
 Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
 
 // JOIN REQUESTS

@@ -142,5 +142,12 @@ class TeamsController extends Controller
         return response()->json(['exists' => $exists]);
     }
 
-
+    public function removeUser($teamId, $userId)
+    {
+        $team = Team::findOrFail($teamId);
+        $team->users()->detach($userId);
+    
+        return response()->json(['success' => 'User removed from the team successfully.']);
+    }
+    
 }

@@ -170,7 +170,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Team</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
                     </div>
                 </form>
             </div>
@@ -181,17 +181,44 @@
 
 <script>
     function editTeam(team) {
-        $('#editTeamModal').modal('show');
-        $('#editTeamForm').attr('action', '/teams/' + team.id);
         $('#team_id').val(team.id);
         $('#team_name').val(team.name);
         $('#company_id').val(team.company_id);
 
-        // Clear and populate the users list
+        // Clear previous users
         $('#team_users').empty();
+
+        // Populate users
         team.users.forEach(user => {
-            $('#team_users').append('<li class="list-group-item">' + user.name + '</li>');
+            const listItem = `
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    ${user.name}
+                    <button class="btn btn-danger btn-sm" onclick="removeUserFromTeam(${team.id}, ${user.id})">Remove</button>
+                </li>
+            `;
+            $('#team_users').append(listItem);
         });
+
+        $('#editTeamModal').modal('show');
+    }
+
+    function removeUserFromTeam(teamId, userId) {
+        if (confirm('Are you sure you want to remove this user from the team?')) {
+            $.ajax({
+                url: '/teams/' + teamId + '/users/' + userId,
+                type: 'DELETE',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function (response) {
+                    // Refresh the modal or the page to reflect the changes
+                    location.reload();
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
     }
 </script>
 <script>
