@@ -55,8 +55,11 @@ class CompanyController extends Controller
     public function edit($id)
     {
         $company = Company::with('users')->findOrFail($id);
+        
         return response()->json($company);
     }
+
+
     // SHOW COMPANIES IN ADMIN WORKSPACE
     public function showWorkspace()
     {
@@ -97,6 +100,8 @@ class CompanyController extends Controller
             'description' => 'nullable|string',
             'industry' => 'nullable|string',
             'visibility' => 'required|in:public,private',
+            'is_boss' => 'array', // Expect an array of user IDs
+            'is_boss.*' => 'integer|exists:users,id' // Each element must be a valid user ID
         ]);
 
         $company->update([
@@ -105,6 +110,15 @@ class CompanyController extends Controller
             'industry' => $request->industry,
             'visibility' => $request->visibility,
         ]);
+        // Set all users to is_boss = 0 first
+        $company->users()->update(['is_boss' => 0]);
+
+        // Set the specified users as bosses
+        if ($request->has('is_boss')) {
+            foreach ($request->is_boss as $bossId) {
+                $company->users()->updateExistingPivot($bossId, ['is_boss' => 1]);
+            }
+        }
 
         return redirect()->route('company.workspace')->with('success', 'Company updated successfully.');
     }
