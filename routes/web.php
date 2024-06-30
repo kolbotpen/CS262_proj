@@ -128,6 +128,16 @@ require __DIR__.'/auth.php';
 Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
 Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
 
+// Route for displaying the task creation form
+Route::get('/task/create', [UploadManager::class, 'upload'])->name('task.create');
+
+// Route for handling the task creation form submission
+Route::post('/task/store', [UploadManager::class, 'uploadPost'])->name('task.store');
+
+// Route for fetching users based on the selected team (for AJAX)
+Route::get('/team/{team}/users', [UploadManager::class, 'getTeamUsers'])->name('team.users');
+
+
 // JOIN REQUESTS
 Route::get('/join-requests', [JoinRequestController::class, 'index'])->name('join-requests.index');
 Route::post('/join-requests/{id}/approve', [JoinRequestController::class, 'approve'])->name('join-requests.approve');

@@ -40,6 +40,7 @@
                             <th>#</th>
                             <th>Task Title</th>
                             <th>Assigned to</th>
+                            <th>Team</th>
                             <th>Description</th>
                             <th>Priority</th>
                             <th>Progress</th>
@@ -53,7 +54,8 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $task->title }}</td>
-                                <td>{{ $task->assignedUser->name  ?? 'N/A' }}</td>
+                                <td>{{ $task->assignedUser->name ?? 'N/A' }}</td>
+                                <td>{{ $task->team->name ?? 'N/A' }}</td>
                                 <td>{{ $task->description }}</td>
                                 <td>{{ $task->priority }}</td>
                                 <td>{{ $task->progress }}</td>
@@ -123,7 +125,8 @@
                                 <select class="form-control" id="assigned_to" name="assigned_to">
                                     @foreach($users as $user)
                                         <option value="{{ $user->id }}" {{ $task->assigned_to == $user->id ? 'selected' : '' }}>
-                                            {{ $user->name }}</option>
+                                            {{ $user->name }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <label for="assigned_email" class="col-form-label">Assigned Email:</label>
@@ -176,6 +179,83 @@
         </div>
     @endforeach
 
+    <!-- Add Task Modal -->
+    <!-- Adding task Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addTaskModalLabel">Add New Task</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="{{ route('task.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="team_id">Team:</label>
+                            <select class="form-control" id="team_id" name="team_id">
+                                <option value="">Select a Team</option>
+                                @foreach($teams as $team)
+                                    <option value="{{ $team->id }}">{{ $team->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="assigned_to">Assigned To:</label>
+                            <select class="form-control" id="assigned_to" name="assigned_to">
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="assigned_email">Assigned Email:</label>
+                            <input type="email" id="assigned_email" name="assigned_email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="priority">Priority</label>
+                            <select class="form-control" id="priority" name="priority" required>
+                                <option value="High">High</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Low">Low</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="progress">Progress:</label>
+                            <select class="form-control" id="progress" name="progress">
+                                <option value="Not Started">Not Started</option>
+                                <option value="In Progress">In Progress</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="due_date">Due Date:</label>
+                            <input type="date" class="form-control" id="due_date" name="due_date">
+                        </div>
+                        <div class="form-group">
+                            <label for="file">File:</label>
+                            <input type="file" class="form-control" id="file" name="file" accept="*">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Task</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 
 <script>
@@ -199,6 +279,26 @@
             });
         });
     });
+</script>
+<script>
+   document.getElementById('team_id').addEventListener('change', function() {
+  const selectedTeamId = this.value;
+  const usersSelect = document.getElementById('assigned_to');
+  
+  // Clear current users options
+  usersSelect.innerHTML = '';
+  
+  // Check if the selected team has any users
+  if (teamToUsersMap[selectedTeamId]) {
+    // Populate the users select with users from the selected team
+    teamToUsersMap[selectedTeamId].forEach(user => {
+      const option = document.createElement('option');
+      option.value = user.id;
+      option.textContent = user.name;
+      usersSelect.appendChild(option);
+    });
+  }
+});
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

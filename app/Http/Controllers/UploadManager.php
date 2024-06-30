@@ -137,20 +137,16 @@ class UploadManager extends Controller
         // Fetch all users, or you can modify the query to fetch only relevant users
         $users = User::all();
 
+        $teams = Team::all(); // Add this line to fetch teams
+
         // Pass the tasks and users to the view
-        return view('admin.task-workspace', compact('tasks', 'users'));
+    return view('admin.task-workspace', compact('tasks', 'users', 'teams'));
     }
 
-    public function tasksForTeam(Team $team)
+    public function getTeamUsers($teamId)
     {
-        $tasks = Task::where('team_id', $team->id)->get();
-        return view('boss.task', compact('tasks', 'team'));
-    }
-
-
-    public function showCalendar()
-    {
-        $tasks = Task::all(); // Assuming you want all tasks, adjust the query as needed
-        return view('boss.calendar', compact('tasks')); // Pass tasks to the view
+        $team = Team::findOrFail($teamId);
+        $users = $team->users()->select('id', 'name')->get();
+        return response()->json($users);
     }
 }
