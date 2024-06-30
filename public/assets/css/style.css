@@ -448,6 +448,20 @@ section.fade-in {
       transform: scale(1);
   }
 }
+@keyframes bounceSoft {
+  0% {
+      transform: scale(0.82);
+  }
+  55% {
+      transform: scale(1.015);
+  }
+  80% {
+      transform: scale(0.97);
+  }
+  100% {
+      transform: scale(1);
+  }
+}
 @keyframes bounceProfile {
   0% {
       transform: scale(0.97);

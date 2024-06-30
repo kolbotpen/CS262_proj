@@ -26,6 +26,10 @@ Route::get('/', function () {
 });
 // ---------- FRONTEND | START ----------------
 
+route::get('/test', function () {
+    return view('test');
+});
+
 // WORKSPACE EDITING
 Route::get('/companies/{companyId}/users', 'App\Http\Controllers\CompanyController@getAllUsers')->name('companies.users');
 Route::get('/companies/{companyId}/boss-users', 'App\Http\Controllers\CompanyController@getBossUsers')->name('companies.boss_users');

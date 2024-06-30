@@ -2,12 +2,6 @@
 
 @section('content')
 
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-
 <div class="container">
     <div class="breadcrumb mt-4 mb-4">
         <a href="/companies" class="breadcrumb-link">Companies</a>
@@ -16,6 +10,13 @@
         <i class="arrow-right"></i>
         <a href="#" class="breadcrumb-link">Edit</a>
     </div>
+
+    @if (session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+    @endif
+
     <div class="container bg-gray p-0 rounded container-border">
         <form action="{{ route('task.edit', $task->id) }}" method="POST" enctype="multipart/form-data">
             @csrf

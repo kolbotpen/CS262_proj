@@ -15,7 +15,7 @@
         <div class="container bg-transparent p-0 rounded container-border">
             @foreach($teams as $team)
                 {{-- Display each team --}}
-                <div class="table-ctainer-scroll table-border rounded mb-5">
+                <div class="table-container-scroll table-border rounded mb-5">
                     <table class="table-company-name table m-0" style="table-layout: fixed; width: 100%;">
                         <thead>
                             <tr>

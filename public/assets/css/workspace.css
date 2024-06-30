@@ -143,7 +143,7 @@ td {
 }
 
 .table-container {
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 .table-container-scroll {
@@ -208,12 +208,16 @@ img.icon {
     flex-direction: row;
     min-width: 0px;
     max-width: fit-content;
-    height: 30px;
+    height: 10px !important;
     border-radius: 16px;
 
     padding: 16px;
     /* margin-left: auto;
     margin-right: auto; */
+}
+
+.pill-default {
+    background: rgb(67, 67, 67);
 }
 
 .pill-red {
@@ -240,7 +244,7 @@ img.icon {
     border-radius: 9px !important;
     width: 100% !important;
     max-width: 100% !important;
-    overflow-x: auto; /* Enable horizontal scrolling */
+    z-index: -1 !important;
 }
 
 .fc-header-toolbar {
@@ -249,7 +253,6 @@ img.icon {
     padding: 10px !important;
     background-color: none !important;
     color: white !important;
-    overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .fc-button {
@@ -269,6 +272,7 @@ img.icon {
 
 .fc-dayGridMonth-view {
     overflow-x: auto !important;
+    overflow-y: auto !important;
 }
 
 #calendar table {
@@ -517,3 +521,28 @@ body.modal-open {
 /* .ui-datepicker-week-end a {
     color: red !important;
 } */
+
+
+
+/* POPPER AND TOOLTIPS */
+.popper,
+.tooltip {
+    font-family: "Poppins", sans-serif !important;
+    text-align: center;
+}
+/* Task block */
+.fc-event-start {
+    margin: 1px !important;
+    padding: 0 !important;
+    border: none !important;
+}
+.tooltip-inner {
+    background-color: #222222;
+    color: #ffffff;
+    border: #373738 1px solid !important;
+    border-radius: 5px;
+    padding: 15px;
+    text-align: center;
+    filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+    animation: bounceSoft 0.25s;
+}

@@ -31,7 +31,7 @@ class Task extends Model
             case 'In-Progress':
                 return 'pill-yellow'; // Assuming you want the same color as Medium
             case 'Not Started':
-                return ''; // Default pill class, no additional color
+                return 'pill-default'; // Default pill class, no additional color
             case 'Completed':
                 return 'pill-green';
             default:
