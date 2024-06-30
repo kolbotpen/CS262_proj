@@ -44,14 +44,15 @@
                 placeholder="Task Description"></textarea>
               <label for="assigned_to">Assigned To</label>
               <select id="assigned_to" name="assigned_to" class="form-control bg-black text-white border-0 mb-2">
+                <option value="">Select a user</option> {{-- Add this line --}}
                 @foreach($users as $user)
-                    <option value="{{ $user->id }}" data-email="{{ $user->email }}">{{ $user->name }}</option>
+                  <option value="{{ $user->id }}" data-team-id="{{ $user->team_id }}">{{ $user->name }}</option>
                 @endforeach
               </select>
-              
-              <label for="assigned_email">Assigned Email</label>
-              <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
-              <input type="hidden" name="team_id" value="{{ $teamId }}">
+                <label for="assigned_email">Assigned Email</label>
+                <input type="email" id="assigned_email" name="assigned_email"
+                  class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
+                <input type="hidden" name="team_id" value="{{ $teamId }}">
             </div>
           </div>
 
@@ -73,7 +74,8 @@
                 {{-- <option value="Completed">Completed</option> --}}
               </select>
               <label for="due_date">Due Date</label>
-              <input type="text" id="due_date" name="due_date" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date">
+              <input type="text" id="due_date" name="due_date"
+                class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Due date">
             </div>
           </div>
         </div>
@@ -107,54 +109,78 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="{{asset ('assets/js/task-insert.js')}}"></script>
-<script src="{{asset ('assets/js/task-insert-display.js')}}"></script>
+<script src="{{asset('assets/js/task-insert.js')}}"></script>
+<script src="{{asset('assets/js/task-insert-display.js')}}"></script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-      var select = document.getElementById('assigned_to');
-      var emailInput = document.getElementById('assigned_email');
 
-      function updateEmail() {
-          var selectedUserEmail = select.options[select.selectedIndex].getAttribute('data-email');
-          emailInput.value = selectedUserEmail;
+
+  document.addEventListener('DOMContentLoaded', function () {
+    var select = document.getElementById('assigned_to');
+    var emailInput = document.getElementById('assigned_email');
+
+    function updateEmail() {
+      var selectedUserEmail = select.options[select.selectedIndex].getAttribute('data-email');
+      emailInput.value = selectedUserEmail;
+    }
+
+    function updateMemberName() {
+      var email = emailInput.value;
+      for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].getAttribute('data-email') === email) {
+          select.selectedIndex = i;
+          break;
+        }
       }
+    }
 
-      function updateMemberName() {
-          var email = emailInput.value;
-          for (var i = 0; i < select.options.length; i++) {
-              if (select.options[i].getAttribute('data-email') === email) {
-                  select.selectedIndex = i;
-                  break;
-              }
-          }
-      }
+    select.addEventListener('change', updateEmail);
+    emailInput.addEventListener('input', updateMemberName);
 
-      select.addEventListener('change', updateEmail);
-      emailInput.addEventListener('input', updateMemberName);
-
-      updateEmail();
+    updateEmail();
   });
 </script>
 <script>
   // DATE FORMAT
-  $(function() {
+  $(function () {
     $("#due_date").datepicker({
       dateFormat: 'yy-mm-dd'
     });
   });
 
   // SELECT CURRENT DATE
-  document.addEventListener("DOMContentLoaded", function() {
-      var dateInput = document.getElementById('due_date');
-      var today = new Date();
-      var day = String(today.getDate()).padStart(2, '0');
-      var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
-      var year = today.getFullYear();
+  document.addEventListener("DOMContentLoaded", function () {
+    var dateInput = document.getElementById('due_date');
+    var today = new Date();
+    var day = String(today.getDate()).padStart(2, '0');
+    var month = String(today.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+    var year = today.getFullYear();
 
-      var todayDate = year + '-' + month + '-' + day;
-      dateInput.value = todayDate;
+    var todayDate = year + '-' + month + '-' + day;
+    dateInput.value = todayDate;
   });
 </script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const assignedToSelect = document.getElementById('assigned_to');
+  const teamSelect = document.querySelector('[name="team_id"]'); // Adjust the selector as needed
 
+  teamSelect.addEventListener('change', function() {
+    const selectedTeamId = this.value;
+    const options = assignedToSelect.querySelectorAll('option');
+
+    // Show only options that match the selected team
+    options.forEach(option => {
+      if (option.value === "" || option.dataset.teamId === selectedTeamId) {
+        option.style.display = '';
+      } else {
+        option.style.display = 'none';
+      }
+    });
+
+    // Reset the "Assigned To" dropdown to prompt selection
+    assignedToSelect.value = '';
+  });
+});
+</script>
 @stop
