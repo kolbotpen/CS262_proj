@@ -46,7 +46,7 @@
             </ul>
         </div>
 
-        <div class="sidebar-menu">
+        {{-- <div class="sidebar-menu">
             <h6 class="pb-2 ms-3 mt-4 mb-2 text-gray">UPCOMING DEADLINES</h6>
             <ul class="todo-list">
                 <li class="ms-3 mb-2">
@@ -62,7 +62,7 @@
                     <a href="#" class="text-decoration-none"><span>HTML Design</span></a>
                 </li>
             </ul>
-        </div>
+        </div> --}}
     </div>
 </nav>
 
