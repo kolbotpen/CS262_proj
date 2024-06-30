@@ -1,9 +1,34 @@
 @extends('adminlayout.master')
 @section('content')
+
+
+<div class="container-fluid my-2">
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <h1>Tasj</h1>
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
+        <div class="col-sm-6 text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addTaskModal">
+                Add Task
+            </button>
+        </div>
+    </div>
+</div>
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-    <h3>Tasks</h3>
+
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title">Task Table</h3>
