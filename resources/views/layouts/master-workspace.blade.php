@@ -13,6 +13,17 @@
   <link href="{{ asset('assets/css/sidebar-workspace.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/footer.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/workspace.css') }}" rel="stylesheet">
+  {{-- Full Calendar --}}
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.14/index.global.min.js'></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth'
+      });
+      calendar.render();
+    });
+  </script>
 </head>
 
 <body>

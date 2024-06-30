@@ -97,19 +97,23 @@ select {
 .table-company-name {
     border-bottom: rgb(73, 73, 73) 2px solid;
 }
-
 .container-border {
     border: rgb(73, 73, 73) 0px solid;
 }
-
 .table-border {
     border: rgb(73, 73, 73) 2px solid;
 }
 
-table,
-th,
-tr,
-td {
+table:not(#calendar) {
+    padding-left: 15px !important;
+    padding-right: 15px;
+    font-family: 'Outfit', sans-serif !important;
+    color: white !important;
+}
+
+th:not(#calendar),
+tr:not(#calendar),
+td:not(#calendar) {
     padding-left: 15px !important;
     padding-right: 15px;
     font-family: 'Outfit', sans-serif !important;
@@ -120,7 +124,6 @@ td {
 th {
     background-color: #373738 !important;
     height: 55px;
-    /* specific height */
     display: table-cell;
     vertical-align: middle;
 }
@@ -135,13 +138,10 @@ tbody tr:nth-child(odd) td {
 
 td {
     height: fit-content;
-    /* Match the height of the header */
     display: table-cell;
     vertical-align: middle;
 }
 
-
-/* The minimum width of the table is 836px and will become scrollable it tries to get any smaller */
 .table-container {
     overflow: hidden;
 }
@@ -231,43 +231,68 @@ img.icon {
 
 
 /* ----- CALENDAR ----- */
-.calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    padding: 10px;
-    background-color: #282828;
-    /* border-radius: 10px; */
+#calendar {
+    background-color: none !important;
+    color: white !important;
+    /* margin: 0 auto !important; */
+    /* padding: 0 !important; */
+    overflow: hidden !important;
+    border: gray 2px solid !important;
+    border-radius: 9px;
 }
 
-.calendar div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 40px;
-    color: white;
+.fc-header-toolbar{
+    height: fit-content !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    background-color: none !important;
+    color: white !important;
 }
 
-.calendar .header {
-    font-weight: 600;
+.fc-button {
+    color: white !important;
+    border: none !important;
 }
 
-.calendar .day {
-    background-color: #202020;
-    border-radius: 5px;
+.fc-button-today {
+    background-color: #7200cf !important;
 }
 
-.calendar-header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.2em;
-    color: white;
-    margin-bottom: 10px;
-    font-weight: 600;
+.fc-prev-button, .fc-next-button {
+    background-color: #7200cf !important;
 }
 
+#calendar table {
+    background-color: none !important;
+    padding: 0 !important;
+    border: none !important;
+}
 
+#calendar th, #calendar td {
+    color: white !important;
+    padding: 0 !important;
+}
+
+#calendar th {
+    background-color: #7200cf !important;
+    color: white !important;
+}
+
+#calendar th a {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+#calendar td {
+    background-color: #202020 !important;
+    color: white !important;
+    border: #373738 1px solid !important;
+}
+
+#calendar td a {
+    text-decoration: none !important;
+    color: white !important;
+}
 
 
 /* ----- CUSTOM ALERT BOX ----- */
