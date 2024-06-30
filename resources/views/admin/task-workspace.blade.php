@@ -5,7 +5,7 @@
 <div class="container-fluid my-2">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h1>Tasj</h1>
+            <h1>Task</h1>
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -171,7 +171,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <button type="submit" class="btn btn-primary btn-refresh" onclick="refreshPage()">Save changes</button>
                         </div>
                     </form>
                 </div>
@@ -250,7 +250,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add Task</button>
+                        <button type="submit" class="btn btn-primary btn-refresh" onclick="refreshPage()">Add Task</button>
                     </div>
                 </form>
             </div>
@@ -258,6 +258,11 @@
     </div>
 </section>
 
+<script>
+  function refreshPage() {
+    window.location.reload();
+  }
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('.modal').forEach(modal => {
