@@ -3,7 +3,7 @@
     <a href="{{ route('adminhome') }}" class="brand-link">
         <img src="{{ asset('assets/images/AdminLTELogo.png') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">ADMIN DASHBOARD</span>
+        <span class="brand-text font-weight-light">OURDEN</span>
     </a>
 
     <!-- Sidebar -->
@@ -14,7 +14,7 @@
                 <!-- User Image -->
             </div>
             <div class="info">
-                <a href="#" class="d-block">Welcome Admin</a>
+                <a href="#" class="d-block">Welcome Admin Dashboard</a>
             </div>
         </div>
 
