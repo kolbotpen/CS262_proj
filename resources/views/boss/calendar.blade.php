@@ -15,6 +15,25 @@
     
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: [
+          @foreach($tasks as $task)
+            {
+              title: '{{ $task->title }}',
+              start: '{{ $task->due_date }}',
+              description: '{{ $task->priority }} - {{ $task->progress }} - {{ $task->description }}'
+            },
+          @endforeach
+        ]
+      });
+      calendar.render();
+    });
+  </script>
+
 
 {{-- <script src="{{ asset('assets/js/calendar.js')}}"></script> --}}
 

@@ -232,24 +232,29 @@ img.icon {
 
 /* ----- CALENDAR ----- */
 #calendar {
-    background-color: none !important;
+    font-family: "Poppins", sans-serif !important;
+    /* background-color: none !important; */
     color: white !important;
-    /* margin: 0 auto !important; */
-    /* padding: 0 !important; */
     overflow: hidden !important;
     border: gray 2px solid !important;
-    border-radius: 9px;
+    border-radius: 9px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto; /* Enable horizontal scrolling */
 }
 
-.fc-header-toolbar{
+.fc-header-toolbar {
     height: fit-content !important;
     margin: 0 !important;
     padding: 10px !important;
     background-color: none !important;
     color: white !important;
+    overflow-x: auto; /* Enable horizontal scrolling */
 }
 
 .fc-button {
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
     color: white !important;
     border: none !important;
 }
@@ -260,6 +265,10 @@ img.icon {
 
 .fc-prev-button, .fc-next-button {
     background-color: #7200cf !important;
+}
+
+.fc-dayGridMonth-view {
+    overflow-x: auto !important;
 }
 
 #calendar table {
@@ -274,11 +283,13 @@ img.icon {
 }
 
 #calendar th {
+    vertical-align: middle !important;
     background-color: #7200cf !important;
     color: white !important;
 }
 
 #calendar th a {
+    font-weight: 500 !important;
     text-decoration: none !important;
     color: white !important;
 }
@@ -293,6 +304,7 @@ img.icon {
     text-decoration: none !important;
     color: white !important;
 }
+
 
 
 /* ----- CUSTOM ALERT BOX ----- */
