@@ -96,11 +96,8 @@
                                             <img src="{{ asset('assets/images/icon-social-google.svg') }}" alt="Google"
                                                 class="me-2" draggable="false"> Google
                                         </button>
-                                        <button
-                                            class="btn button-gray-social w-100 d-flex align-items-center justify-content-center"
-                                            onclick="window.location.href='https://www.facebook.com/v2.12/dialog/oauth'">
-                                            <img src="{{ asset('assets/images/icon-social-facebook.svg') }}"
-                                                alt="Facebook" class="me-2" draggable="false"> Facebook
+                                        <button class="btn button-gray-social w-100 d-flex align-items-center justify-content-center" onclick="window.location.href='{{ route('facebook.login') }}'">
+                                            <img src="{{ asset('assets/images/icon-social-facebook.svg') }}" alt="Facebook" class="me-2" draggable="false"> Facebook
                                         </button>
                                         <button
                                             class="btn button-gray-social w-100 d-flex align-items-center justify-content-center"
@@ -131,4 +128,24 @@
 
 
 <script src="{{ asset('assets/js/section-fade-in.js') }}"></script>
+
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '837784697779932',
+        xfbml      : true,
+        version    : 'v20.0'
+      });
+      FB.AppEvents.logPageView();
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+</script>
+
 @stop

@@ -71,6 +71,7 @@
                             <form id="profile-form" method="POST" action="{{ route('profile.update') }}">
                                 @csrf
                                 @method('PATCH')
+                                
                                 <!-- Full Name -->
                                 <div class="mb-3">
                                     <label for="name" class="form-label">
@@ -79,14 +80,25 @@
                                     <input type="text" class="form-control bg-black text-white border-0" id="name" name="name" placeholder="John Doe" value="{{ old('name', auth()->user()->name) }}" required autofocus autocomplete="name">
                                     <x-input-error :messages="$errors->get('name')" class="mt-2 text-red" />
                                 </div>
+
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">
-                                        <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email
-                                    </label>
-                                    <input type="email" class="form-control bg-black text-white border-0" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" required autocomplete="username">
+                                    {{-- IF LOGGED IN WITH SOCIALITES, EMAIL IS READ-ONLY --}}
+                                    @if(auth()->user()->provider)
+                                        <label for="email" class="form-label">
+                                            <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email ({{ old('provider', auth()->user()->provider) }} account)
+                                        </label>
+                                        <input type="email" class="form-control bg-black text-white border-0" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" disabled readonly>
+                                    {{-- IF LOGGED IN WITH REGULAR EMAIL, EMAIL IS EDITABLE --}}
+                                    @else
+                                        <label for="email" class="form-label">
+                                            <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email
+                                        </label>
+                                        <input type="email" class="form-control bg-black text-white border-0" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" required autocomplete="username">
+                                    @endif
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 text-red" />
                                 </div>
+
                                 <!-- Role -->
                                 <div class="mb-3">
                                     <label for="role" class="form-label">
@@ -96,6 +108,7 @@
                                         <option value="Worker" {{ old('role', auth()->user()->role) == 'Worker' ? 'selected' : '' }}>Worker</option>
                                     </select>
                                 </div>
+                                
                                 <!-- Stay Logged in -->
                                 <div class="second-div-text mb-3 text-start">
                                     <label class="form-check form-switch">
@@ -103,6 +116,7 @@
                                         <span class="form-check-label">Stay Logged in</span>
                                     </label>
                                 </div>
+                                
                                 <!-- Email Notification -->
                                 <div class="second-div-text mb-3 text-start">
                                     <label class="form-check form-switch">
@@ -110,6 +124,7 @@
                                         <span class="form-check-label">Email Notification</span>
                                     </label>
                                 </div>
+                                
                                 <!-- Save Changes Button -->
                                 <div class="d-flex justify-content-center mt-4">
                                     <button type="submit" class="btn btn-secondary" role="button">
@@ -213,6 +228,15 @@
             }
             reader.readAsDataURL(file);
         }
+    });
+</script>
+
+<script>
+    // Ensure email input is readonly for third-party logins
+    document.addEventListener('DOMContentLoaded', function() {
+        @if(auth()->user()->provider)
+            document.getElementById('email').setAttribute('readonly', 'readonly');
+        @endif
     });
 </script>
 

@@ -59,7 +59,7 @@
                             <!-- Third-party login options -->
                             <div class="d-grid gap-3 mb-3">
                                 <label style="margin-bottom: -10px"><img class="icon" src="{{ asset('assets/images/icon-user-lock.svg') }}" draggable="false"> Sign up with</label>
-                                <button class="btn button-gray-social w-100 d-flex align-items-center justify-content-center" onclick="window.location.href='https://accounts.google.com/o/oauth2/auth'">
+                                <button class="btn button-gray-social w-100 d-flex align-items-center justify-content-center" onclick="window.location.href='{{ route('google.redirect') }}'">
                                     <img src="{{ asset('assets/images/icon-social-google.svg') }}" alt="Google" class="me-2" draggable="false"> Google
                                 </button>
                                 <button class="btn button-gray-social w-100 d-flex align-items-center justify-content-center" onclick="window.location.href='https://www.facebook.com/v2.12/dialog/oauth'">
@@ -89,4 +89,5 @@
 
 
 <script src="{{ asset('assets/js/section-fade-in.js') }}"></script>
+
 @stop
