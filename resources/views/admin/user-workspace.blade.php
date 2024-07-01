@@ -24,7 +24,7 @@
                     <div class="input-group input-group" style="width: 250px;">
                         <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
+                            <button type="submit" class="btn btn-secondary">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>

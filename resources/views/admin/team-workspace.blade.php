@@ -38,19 +38,19 @@
                         <input type="text" id="table_search" name="table_search" class="form-control float-right"
                             placeholder="Search">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-default">
+                            <button type="submit" class="btn btn-secondary" id="searchButton">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
                     </div>
-                    <div class="input-group input-group" style="width: 250px; margin-top: 10px;">
+                    <!-- <div class="input-group input-group" style="width: 250px; margin-top: 10px;">
                         <select class="form-control float-right" id="company_filter">
                             <option value="">Filter by Company</option>
                             @foreach($companies as $company)
                                 <option value="{{ $company->id }}">{{ $company->name }}</option>
                             @endforeach
                         </select>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="card-body table-responsive p-0">
@@ -308,6 +308,6 @@
             }
         }
     });
-
 </script>
+
 @stop
