@@ -417,7 +417,6 @@ body.modal-open {
     max-width: 100% !important;
     z-index: -1 !important;
 }
-
 .fc-header-toolbar {
     height: fit-content !important;
     margin: 0 !important;
@@ -425,66 +424,53 @@ body.modal-open {
     background-color: none !important;
     color: white !important;
 }
-
 .fc-button {
     font-weight: 500 !important;
     text-transform: uppercase !important;
     color: white !important;
     border: none !important;
 }
-
 .fc-button-today {
     background-color: #7200cf !important;
 }
-
 .fc-prev-button, .fc-next-button {
     background-color: #7200cf !important;
 }
-
 .fc-dayGridMonth-view {
     overflow-x: auto !important;
     overflow-y: auto !important;
 }
-
 #calendar table {
     background-color: none !important;
     padding: 0 !important;
     border: none !important;
 }
-
 #calendar th, #calendar td {
     color: white !important;
     padding: 0 !important;
 }
-
 #calendar th {
     vertical-align: middle !important;
     background-color: #7200cf !important;
     color: white !important;
 }
-
 #calendar th a {
     font-weight: 500 !important;
     text-decoration: none !important;
     color: white !important;
 }
-
 #calendar td {
     background-color: #202020 !important;
     color: white !important;
     border: #373738 2px solid !important;
     border-style: dotted !important;
 }
-
 #calendar td a {
     text-decoration: none !important;
     color: white !important;
 }
 
-
-
-
-/* POPPER AND TOOLTIPS */
+/* ----- POPPER AND TOOLTIPS ----- */
 .popper,
 .tooltip {
     font-family: "Poppins", sans-serif !important;
@@ -505,32 +491,27 @@ body.modal-open {
     border-radius: 5px;
     padding: 15px;
     text-align: center;
-    filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.627));
+    filter: drop-shadow(0 0 14px rgba(0, 0, 0, 0.786));
     animation: bounceSoft 0.25s;
 }
-
 .tooltip-inner h5 {
     color: #ffffff !important;
+    filter: brightness(1.2) !important;
 }
-
 .tooltip-inner hr {
     border: 1px solid;
     margin: 6px auto !important;
 }
-
 .tooltip-inner .pill {
     color: #ffffff !important;
     filter: brightness(1.2) !important;
 }
-
-
 
 /* ----- PILLS ----- */
 .center {
     margin-left: auto;
     margin-right: auto;
 }
-
 .pill {
     display: flex;
     align-items: center;
@@ -545,19 +526,15 @@ body.modal-open {
     /* margin-left: auto;
     margin-right: auto; */
 }
-
 .pill-default {
     background: rgb(67, 67, 67);
 }
-
 .pill-red {
     background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);
 }
-
 .pill-yellow {
     background: linear-gradient(90deg, #FED816 0%, #D38001 100%);
 }
-
 .pill-green {
     background: linear-gradient(90deg, #73C649 0%, #128850 100%);
 }
