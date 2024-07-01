@@ -194,123 +194,6 @@ img.icon {
     margin-right: 5px;
 }
 
-
-/* ----- PILLS ----- */
-.center {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.pill {
-    display: flex;
-    align-items: center;
-    text-align: center;
-    flex-direction: row;
-    min-width: 0px;
-    max-width: fit-content;
-    height: 10px !important;
-    border-radius: 16px;
-
-    padding: 16px;
-    /* margin-left: auto;
-    margin-right: auto; */
-}
-
-.pill-default {
-    background: rgb(67, 67, 67);
-}
-
-.pill-red {
-    background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);
-}
-
-.pill-yellow {
-    background: linear-gradient(90deg, #FED816 0%, #D38001 100%);
-}
-
-.pill-green {
-    background: linear-gradient(90deg, #73C649 0%, #128850 100%);
-}
-
-
-
-/* ----- CALENDAR ----- */
-#calendar {
-    font-family: "Poppins", sans-serif !important;
-    /* background-color: none !important; */
-    color: white !important;
-    overflow: hidden !important;
-    border: gray 2px solid !important;
-    border-radius: 9px !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    z-index: -1 !important;
-}
-
-.fc-header-toolbar {
-    height: fit-content !important;
-    margin: 0 !important;
-    padding: 10px !important;
-    background-color: none !important;
-    color: white !important;
-}
-
-.fc-button {
-    font-weight: 500 !important;
-    text-transform: uppercase !important;
-    color: white !important;
-    border: none !important;
-}
-
-.fc-button-today {
-    background-color: #7200cf !important;
-}
-
-.fc-prev-button, .fc-next-button {
-    background-color: #7200cf !important;
-}
-
-.fc-dayGridMonth-view {
-    overflow-x: auto !important;
-    overflow-y: auto !important;
-}
-
-#calendar table {
-    background-color: none !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-#calendar th, #calendar td {
-    color: white !important;
-    padding: 0 !important;
-}
-
-#calendar th {
-    vertical-align: middle !important;
-    background-color: #7200cf !important;
-    color: white !important;
-}
-
-#calendar th a {
-    font-weight: 500 !important;
-    text-decoration: none !important;
-    color: white !important;
-}
-
-#calendar td {
-    background-color: #202020 !important;
-    color: white !important;
-    border: #373738 1px solid !important;
-}
-
-#calendar td a {
-    text-decoration: none !important;
-    color: white !important;
-}
-
-
-
 /* ----- CUSTOM ALERT BOX ----- */
 .custom-alert {
     position: fixed;
@@ -522,6 +405,83 @@ body.modal-open {
     color: red !important;
 } */
 
+/* ----- CALENDAR ----- */
+#calendar {
+    font-family: "Poppins", sans-serif !important;
+    /* background-color: none !important; */
+    color: white !important;
+    overflow: hidden !important;
+    border: gray 2px solid !important;
+    border-radius: 9px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    z-index: -1 !important;
+}
+
+.fc-header-toolbar {
+    height: fit-content !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    background-color: none !important;
+    color: white !important;
+}
+
+.fc-button {
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    color: white !important;
+    border: none !important;
+}
+
+.fc-button-today {
+    background-color: #7200cf !important;
+}
+
+.fc-prev-button, .fc-next-button {
+    background-color: #7200cf !important;
+}
+
+.fc-dayGridMonth-view {
+    overflow-x: auto !important;
+    overflow-y: auto !important;
+}
+
+#calendar table {
+    background-color: none !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+#calendar th, #calendar td {
+    color: white !important;
+    padding: 0 !important;
+}
+
+#calendar th {
+    vertical-align: middle !important;
+    background-color: #7200cf !important;
+    color: white !important;
+}
+
+#calendar th a {
+    font-weight: 500 !important;
+    text-decoration: none !important;
+    color: white !important;
+}
+
+#calendar td {
+    background-color: #202020 !important;
+    color: white !important;
+    border: #373738 2px solid !important;
+    border-style: dotted !important;
+}
+
+#calendar td a {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+
 
 
 /* POPPER AND TOOLTIPS */
@@ -532,17 +492,73 @@ body.modal-open {
 }
 /* Task block */
 .fc-event-start {
+    font-size: medium !important;
     margin: 1px !important;
-    padding: 0 !important;
+    padding: 0 10px !important;
     border: none !important;
+    cursor: default !important;
 }
 .tooltip-inner {
     background-color: #222222;
-    color: #ffffff;
-    border: #373738 1px solid !important;
+    color: #b8b8b8;
+    border: #373738 2px solid !important;
     border-radius: 5px;
     padding: 15px;
     text-align: center;
-    filter: drop-shadow(0 0 15px rgb(0, 0, 0));
+    filter: drop-shadow(0 0 35px rgba(0, 0, 0, 0.627));
     animation: bounceSoft 0.25s;
 }
+
+.tooltip-inner h5 {
+    color: #ffffff !important;
+}
+
+.tooltip-inner hr {
+    border: 1px solid;
+    margin: 6px auto !important;
+}
+
+.tooltip-inner .pill {
+    color: #ffffff !important;
+    filter: brightness(1.2) !important;
+}
+
+
+
+/* ----- PILLS ----- */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pill {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: row;
+    min-width: 0px;
+    max-width: fit-content;
+    height: 10px !important;
+    border-radius: 16px;
+
+    padding: 12px 18px;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+.pill-default {
+    background: rgb(67, 67, 67);
+}
+
+.pill-red {
+    background: linear-gradient(90deg, #E63D08 0%, #B6192A 65.37%, #9C063C 100%);
+}
+
+.pill-yellow {
+    background: linear-gradient(90deg, #FED816 0%, #D38001 100%);
+}
+
+.pill-green {
+    background: linear-gradient(90deg, #73C649 0%, #128850 100%);
+}
+

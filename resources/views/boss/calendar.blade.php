@@ -36,7 +36,7 @@
                 info.el.classList.add(priorityClass); // Add priority class to the event element
                 
                 var tooltip = new bootstrap.Tooltip(info.el, {
-                    title: '<h5>' + info.event.title + '</h5>' + 
+                    title: '<h5>' + info.event.title + '</h5><hr>' + 
                            info.event.extendedProps.description3 + '<br>' + // Description
                            info.event.extendedProps.assignedTo + '<br>' + 
                            '<div class="d-flex justify-content-center align-items-center my-2">' +
