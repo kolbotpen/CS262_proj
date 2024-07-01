@@ -42,16 +42,16 @@
               <label for="description">Description</label>
               <textarea name="description" class="form-control bg-black text-white border-0 mb-2" rows="5"
                 placeholder="Task Description"></textarea>
-              <label for="assigned_to">Assigned To</label>
-              <select id="assigned_to" name="assigned_to" class="form-control bg-black text-white border-0 mb-2">
-                <option value="">Select a user</option> {{-- Add this line --}}
-                @foreach($users as $user)
-                  <option value="{{ $user->id }}" data-team-id="{{ $user->team_id }}">{{ $user->name }}</option>
-                @endforeach
-              </select>
+                {{-- AUTOFILL BACK AND FOURTH --}}
+                <label for="assigned_to">Assigned To</label>
+                <select id="assigned_to" name="assigned_to" class="form-control bg-black text-white border-0 mb-2">
+                    <option value="">Select a user</option>
+                    @foreach($users as $user)
+                        <option value="{{ $user->id }}" data-email="{{ $user->email }}" data-team-id="{{ $user->team_id }}">{{ $user->name }}</option>
+                    @endforeach
+                </select>
                 <label for="assigned_email">Assigned Email</label>
-                <input type="email" id="assigned_email" name="assigned_email"
-                  class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
+                <input type="email" id="assigned_email" name="assigned_email" class="form-control mt-b bg-black text-white border-0 mb-2" placeholder="Assigned email">
                 <input type="hidden" name="team_id" value="{{ $teamId }}">
             </div>
           </div>
@@ -113,25 +113,29 @@
 <script src="{{asset('assets/js/task-insert-display.js')}}"></script>
 
 <script>
-
-
   document.addEventListener('DOMContentLoaded', function () {
     var select = document.getElementById('assigned_to');
     var emailInput = document.getElementById('assigned_email');
 
     function updateEmail() {
-      var selectedUserEmail = select.options[select.selectedIndex].getAttribute('data-email');
-      emailInput.value = selectedUserEmail;
+      var selectedOption = select.options[select.selectedIndex];
+      if (selectedOption) {
+        var selectedUserEmail = selectedOption.getAttribute('data-email');
+        if (selectedUserEmail) {
+          emailInput.value = selectedUserEmail;
+        }
+      }
     }
 
     function updateMemberName() {
-      var email = emailInput.value;
+      var email = emailInput.value.trim();
       for (var i = 0; i < select.options.length; i++) {
         if (select.options[i].getAttribute('data-email') === email) {
           select.selectedIndex = i;
-          break;
+          return;
         }
       }
+      select.selectedIndex = 0; // Reset to default if no match
     }
 
     select.addEventListener('change', updateEmail);
