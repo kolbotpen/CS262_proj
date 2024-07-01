@@ -63,11 +63,3 @@ Route::middleware('auth')->group(function () {
 // Google
 Route::get('/google/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle'])->name('google.redirect');
 Route::get('/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback'])->name('google.callback');
-// Facebook
-Route::get('/facebook/callback', [AuthController::class, 'handleFacebookCallback']);
-Route::get('/facebook/redirect', [AuthController::class, 'redirectToFacebook']);
-
-Route::prefix('facebook')->name('facebook.')->group(function () {
-    Route::get('auth', [App\Http\Controllers\FacebookLoginController::class, 'loginUsingFacebook'])->name('login');
-    Route::get('callback', [App\Http\Controllers\FacebookLoginController::class, 'callbackFromFacebook'])->name('callback');
-});

@@ -17,8 +17,6 @@ class User extends Authenticatable
         'password',
         'usertype',
         'profile_picture',
-        'provider', // Determine whether user is logged in with Third Party provider or not
-        'provider_id', // Third Party provider ID (Facebook uses it)
     ];
 
     public function teams()

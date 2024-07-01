@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
-use GuzzleHttp\Client;
 
 class GoogleLoginController extends Controller
 {
@@ -16,26 +15,14 @@ class GoogleLoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+
     public function handleGoogleCallback()
     {
-        $client = new Client(['verify' => 'D:/CS262_proj/cacert.pem']);
-        $googleUser = Socialite::driver('google')
-            ->setHttpClient($client)
-            ->stateless()
-            ->user();
-
+        $googleUser = Socialite::driver('google')->stateless()->user();
         $user = User::where('email', $googleUser->email)->first();
-
-        if (!$user) {
-            $user = User::create([
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'password' => \Hash::make(rand(100000, 999999)),
-                'provider' => 'Google',
-                'provider_id' => $googleUser->getId(),
-            ]);
-        } else {
-            $user->update(['provider' => 'Google', 'provider_id' => $googleUser->getId()]);
+        if(!$user)
+        {
+            $user = User::create(['name' => $googleUser->name, 'email' => $googleUser->email, 'password' => \Hash::make(rand(100000,999999))]);
         }
 
         Auth::login($user);
