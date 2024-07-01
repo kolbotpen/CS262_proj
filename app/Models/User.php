@@ -17,6 +17,7 @@ class User extends Authenticatable
         'password',
         'usertype',
         'profile_picture',
+        'provider',
     ];
 
     public function teams()

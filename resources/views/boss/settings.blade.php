@@ -81,10 +81,19 @@
                                 </div>
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    <label for="email" class="form-label">
-                                        <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email
-                                    </label>
-                                    <input type="email" class="form-control bg-black text-white border-0" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" required autocomplete="username">
+                                    {{-- if logged in user has a provider, disabled input field --}}
+                                    @if(auth()->user()->provider)
+                                        <label for="email" class="form-label">
+                                            <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email  <span class="text-gray">({{ old('email', auth()->user()->provider) }} Account)</span>
+                                        </label>
+                                        <input type="email" class="form-control bg-black text-white border-0" style="cursor: not-allowed;" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" readonly>
+                                    {{-- if logged in user has no provider, input field is enabled --}}
+                                    @else
+                                        <label for="email" class="form-label">
+                                            <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email
+                                        </label>
+                                        <input type="email" class="form-control bg-black text-white border-0" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" required autocomplete="username">
+                                    @endif
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 text-red" />
                                 </div>
                                 <!-- Role -->
