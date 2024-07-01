@@ -7,7 +7,7 @@
         <a href="#" class="breadcrumb-link">Calendar</a>
     </div>
 
-    <div id='calendar'></div>
+    <div id="calendar" class="mb-5"></div>
     
 </div>
 
