@@ -12,7 +12,7 @@ class Team extends Model
     // Define the relationship with User through the team_to_user table
     public function users()
     {
-        return $this->belongsToMany(User::class, 'team_to_user');
+        return $this->belongsToMany(User::class, 'team_to_user', 'team_id', 'user_id');
     }
 
     // Existing company relationship
@@ -20,5 +20,6 @@ class Team extends Model
     {
         return $this->belongsTo(Company::class);
     }
+    
     
 }

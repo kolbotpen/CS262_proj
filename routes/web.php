@@ -127,6 +127,7 @@ Route::delete('/task/{id}', [UploadManager::class, 'destroy'])->name('task.delet
 require __DIR__.'/auth.php';
 Route::put('/task/{task}', [UploadManager::class, 'edit'])->name('task.edit');
 Route::get('/search-companies', [CompanyController::class, 'search'])->name('companies.search');
+Route::get('/getTeamUsers/{team}', [UploadManager::class, 'getTeamUsers']);
 
 // Route for displaying the task creation form
 Route::get('/task/create', [UploadManager::class, 'upload'])->name('task.create');

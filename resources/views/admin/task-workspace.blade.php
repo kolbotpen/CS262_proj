@@ -179,7 +179,6 @@
         </div>
     @endforeach
 
-    <!-- Add Task Modal -->
     <!-- Adding task Modal -->
     <div class="modal fade" id="addTaskModal" tabindex="-1" role="dialog" aria-labelledby="addTaskModalLabel"
         aria-hidden="true">
@@ -258,6 +257,29 @@
     </div>
 </section>
 
+<script>
+$(document).ready(function() {
+    $('#team_id').change(function() {
+        var teamId = $(this).val();
+        if (teamId) {
+            $.ajax({
+                url: '/getTeamUsers/' + teamId,
+                type: "GET",
+                dataType: "json",
+                success:function(data) {
+                    $('#assigned_to').empty();
+                    $('#assigned_to').append('<option value="">Select a User</option>');
+                    $.each(data, function(key, value) {
+                        $('#assigned_to').append('<option value="'+ key +'">'+ value +'</option>');
+                    });
+                }
+            });
+        }else{
+            $('#assigned_to').empty();
+        }
+    });
+});
+</script>
 <script>
   function refreshPage() {
     window.location.reload();

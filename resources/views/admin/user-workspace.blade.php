@@ -51,14 +51,22 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{$user->email}}</td>
                                 <td>
-                                    @foreach($user->companies as $company) 
-                                        {{ $company->name }}, 
-                                    @endforeach
+                                    @if($user->companies->isEmpty())
+                                        No Company
+                                    @else
+                                        @foreach($user->companies as $company) 
+                                            {{ $company->name }},
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td>
-                                    @foreach($user->teams as $team)
-                                        {{ $team->name }}
-                                    @endforeach
+                                    @if($user->teams->isEmpty())
+                                        No Team
+                                    @else
+                                        @foreach($user->teams as $team)
+                                            {{ $team->name }}
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td>Active</td>
                                 <td>
@@ -197,24 +205,24 @@
 </section>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    // Get the search input element and the table rows
-    const searchInput = document.querySelector('input[name="table_search"]');
-    const tableRows = document.querySelectorAll(".table tbody tr");
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the search input element and the table rows
+        const searchInput = document.querySelector('input[name="table_search"]');
+        const tableRows = document.querySelectorAll(".table tbody tr");
 
-    // Function to filter table rows based on search input
-    function filterTableRows() {
-        const searchText = searchInput.value.toLowerCase();
+        // Function to filter table rows based on search input
+        function filterTableRows() {
+            const searchText = searchInput.value.toLowerCase();
 
-        tableRows.forEach(row => {
-            const cells = row.querySelectorAll("td");
-            const rowText = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(" ");
-            row.style.display = rowText.includes(searchText) ? "" : "none";
-        });
-    }
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll("td");
+                const rowText = Array.from(cells).map(cell => cell.textContent.toLowerCase()).join(" ");
+                row.style.display = rowText.includes(searchText) ? "" : "none";
+            });
+        }
 
-    // Add event listener to search input
-    searchInput.addEventListener("keyup", filterTableRows);
-});
+        // Add event listener to search input
+        searchInput.addEventListener("keyup", filterTableRows);
+    });
 </script>
 @stop
