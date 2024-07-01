@@ -92,7 +92,7 @@
                                             Sign up with</label>
                                         <button
                                             class="btn button-gray-social w-100 d-flex align-items-center justify-content-center"
-                                            onclick="window.location.href='https://accounts.google.com/o/oauth2/auth'">
+                                            onclick="window.location.href='{{ route('google.redirect') }}'">
                                             <img src="{{ asset('assets/images/icon-social-google.svg') }}" alt="Google"
                                                 class="me-2" draggable="false"> Google
                                         </button>
