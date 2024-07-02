@@ -213,15 +213,16 @@
                         <div class="form-group">
                             <label for="assigned_to">Assigned To:</label>
                             <select class="form-control" id="assigned_to" name="assigned_to">
+                                <option value="">Select a User</option>
                                 @foreach($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                    <option value="{{ $user->id }}" data-email="{{ $user->email }}">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="assigned_email">Assigned Email:</label>
                             <input type="email" id="assigned_email" name="assigned_email" class="form-control" required>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label for="priority">Priority</label>
                             <select class="form-control" id="priority" name="priority" required>
@@ -256,7 +257,18 @@
         </div>
     </div>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const userSelect = document.getElementById('assigned_to');
+    const emailInput = document.getElementById('assigned_email');
 
+    userSelect.addEventListener('change', function () {
+        const selectedOption = userSelect.options[userSelect.selectedIndex];
+        const email = selectedOption.getAttribute('data-email');
+        emailInput.value = email;
+    });
+});
+</script>
 <script>
 $(document).ready(function() {
     $('#team_id').change(function() {
