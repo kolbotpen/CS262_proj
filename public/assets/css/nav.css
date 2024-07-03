@@ -29,6 +29,7 @@ nav {
 
 /* Navbar styles */
 .navbar {
+    max-height: 61.45px !important;
     background: linear-gradient(to right, #73C649, #128850);
     border-radius: 20px;
     overflow: hidden;

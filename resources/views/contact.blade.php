@@ -39,16 +39,25 @@
                 <h1 class="display-6 text-center mb-4">Find Our Den &<br>Inquire With Us</h1>
             </div>
         </div>
-        <div class="row">
+        <div id="scrollhere" class="row">
             <div class="col-md-12">
                 <p class="section2-description text-gray text-center-justify mb-4">Got Concerns? Send us an email!<br>Got Questions? Send us a request!<br>Bored? Come join the Community!</p>
             </div>
         </div>
         <br>
+
         {{-- CONTACT US BOX | STARTS HERE --}}
+        
+        @if (session('success'))
+            <div class="container mb-4 p-0">
+                <div class="alert alert-success m-0">
+                    <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">{{ session('success') }}
+                </div>
+            </div>
+        @endif
+
         <div class="container rounded overflow-hidden">
             <div class="row mobile-flex-reverse bg-gray">
-
                 {{-- CONTAINER --}}
                 <div class="contact-address d-grid col-md-6 bg-green-gradient pt-4 pe-4 pb-0 ps-4">
                     <h4 class="mb-4"><img class="icon" src="assets/images/icon-location.svg" draggable="false">Our Contact Info</h4>
@@ -74,17 +83,18 @@
                         </table>
                     </div>
                 </div>
-                
+
                 <hr class="contact-hr">
 
                 {{-- CONTAINER --}}
-                <div class="col-md-6 bg-gray pt-4 pe-4 pb-5 ps-4"> 
+                <div class="col-md-6 bg-gray pt-4 pe-4 pb-5 ps-4">
                     <h4 class="mb-4"><img class="icon" src="assets/images/icon-mail-write.svg" draggable="false">Send your request</h4>
                     <div class="contact-input rounded p-4" style="border: #383838 1px solid;">
-                        <form action="" method="post">
+                        <form id="contactForm" action="{{ route('contact.submit') }}" method="POST">
+                            @csrf
                             <div class="mb-3">
-                                <label for="name" class="form-label"><img class="icon" src="assets/images/icon-fullname.svg" draggable="false">Full name</label>
-                                <input type="text" class="form-control bg-black text-white border-0" id="name" name="name" placeholder="John Doe" required>
+                                <label for="fullname" class="form-label"><img class="icon" src="assets/images/icon-fullname.svg" draggable="false">Full name</label>
+                                <input type="text" class="form-control bg-black text-white border-0" id="fullname" name="fullname" placeholder="John Doe" required>
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label"><img class="icon" src="assets/images/icon-email.svg" draggable="false">Email</label>
@@ -92,7 +102,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="message" class="form-label"><img class="icon" src="assets/images/icon-mail.svg" draggable="false">Message to us</label>
-                                <textarea class="form-control bg-black text-white  border-0" id="message" name="message" rows="3" placeholder="Love from Cambodia ❤️" required></textarea>
+                                <textarea class="form-control bg-black text-white border-0" id="message" name="message" rows="3" placeholder="Love from Cambodia ❤️" required></textarea>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <button type="submit" class="button-green-gradient">SUBMIT</button>
@@ -100,13 +110,26 @@
                         </form>
                     </div>
                 </div>
-
             </div>
-            {{-- CONTACT US BOX | ENDS HERE --}}
+        </div>
+        {{-- CONTACT US BOX | ENDS HERE --}}
+
         </div>
     </div>
 </section>
 
 <script src="assets/js/section-fade-in.js"></script>
+<script>
+    // Function to scroll to the form if success message is present
+    document.addEventListener('DOMContentLoaded', function() {
+        var successMessage = '{{ session('success') }}';
+        if (successMessage) {
+            var formElement = document.getElementById('scrollhere');
+            if (formElement) {
+                formElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    });
+</script>
 
 @stop

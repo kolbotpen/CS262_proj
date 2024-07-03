@@ -8,6 +8,7 @@ use App\Http\Controllers\UploadManager;
 use App\Http\Controllers\TeamsController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JoinRequestController;
+use App\Http\Controllers\ContactMailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,13 @@ Route::get('/', function () {
 route::get('/test', function () {
     return view('test');
 });
+
+// CONTACT US MAIL
+Route::get('/test-mail', [ContactMailController::class, 'sendMail']);
+
+// Handle form submission and send mail
+Route::post('/contact', [ContactMailController::class, 'sendMail'])->name('contact.submit');
+
 
 // WORKSPACE EDITING
 Route::get('/companies/{companyId}/users', 'App\Http\Controllers\CompanyController@getAllUsers')->name('companies.users');

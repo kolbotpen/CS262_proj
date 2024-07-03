@@ -96,7 +96,7 @@
                                             <img src="{{ asset('assets/images/icon-social-google.svg') }}" alt="Google"
                                                 class="me-2" draggable="false"> Google
                                         </button>
-                                        <button
+                                        {{-- <button
                                             class="btn button-gray-social w-100 d-flex align-items-center justify-content-center"
                                             onclick="window.location.href='https://www.facebook.com/v2.12/dialog/oauth'">
                                             <img src="{{ asset('assets/images/icon-social-facebook.svg') }}"
@@ -107,7 +107,7 @@
                                             onclick="window.location.href='https://api.twitter.com/oauth/authenticate'">
                                             <img src="{{ asset('assets/images/icon-social-x.svg') }}" alt="X"
                                                 class="me-2" draggable="false"> X.com
-                                        </button>
+                                        </button> --}}
                                     </div>
                                 </div>
                             </div>
