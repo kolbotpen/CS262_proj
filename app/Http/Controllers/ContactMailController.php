@@ -23,7 +23,7 @@ class ContactMailController extends Controller
         $message = $request->input('message');
 
         // Send the email
-        Mail::to('cwattanak@paragoniu.edu.kh')->send(new ContactUs($fullname, $email, $message));
+        Mail::to('ourden.cs262@gmail.com')->send(new ContactUs($fullname, $email, $message));
 
         // Redirect back with success message
         return redirect()->back()->with('success', 'Your message has been sent successfully!');

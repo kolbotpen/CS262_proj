@@ -38,7 +38,7 @@ class ContactMailController extends Controller
         try {
             $email = (new Email())
                 ->from(new Address($email, $fullname))
-                ->to(new Address('cwattanak@paragoniu.edu.kh'))
+                ->to(new Address('ourden.cs262@gmail.com'))
                 ->subject('Contact Us | Message from ' . $fullname)
                 ->text($message);
 

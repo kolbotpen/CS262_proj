@@ -29,9 +29,10 @@ class ContactUs extends Mailable
      */
     public function build()
     {
+        // This is what the recepieint will see when they receive the email
         return $this->from(config('mail.from.address'), config('mail.from.name'))
                     ->subject('Contact Us | Message from ' . $this->fullname)
-                    ->markdown('test-mail')
+                    ->markdown('test-mail') // This is the view file for the email, you can design the mail in this page
                     ->with([
                         'fullname' => $this->fullname,
                         'email' => $this->email,
