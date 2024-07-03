@@ -16,7 +16,7 @@ class ContactMailController extends Controller
 
     public function __construct()
     {
-        $apiKey = 'a754644a3e92efa1e21fd04961ab7420';
+        $apiKey = env('MAILTRAP_API_KEY'); // Fetching the API key from the .env file
         $this->mailtrap = new MailtrapClient(new Config($apiKey));
     }
 
