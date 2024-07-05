@@ -29,16 +29,28 @@
                 </li>
 
                 <!-- Notification Bell -->
-                <li class="nav-item ms-2">
-                    <a href="/all-members" type="button" class="btn btn-secondary d-flex align-items-center justify-content-center" id="notificationButton">
-                        <span class="btn__content">
-                            <img src="{{asset ('assets/images/icon-bell.svg')}}" alt="bell" style="width: 0.8em; margin-top: -5px;">
-                        </span>
-                    </a>
-                    <!-- Example Dropdown for Notifications -->
-                    <div class="menu notification-menu" id="notificationMenu">
-                        <!-- Dropdown content here -->
-                    </div>
+                <li class="nav-item ms-2 dropdown">
+                    <button class="btn btn-secondary d-flex align-items-center justify-content-center" type="button" id="notificationDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{{ asset('assets/images/icon-bell.svg') }}" alt="bell" style="width: 0.8em; margin-top: 2px;">
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationDropdownButton">
+                        <!-- Incoming Requests -->
+                        <li class="dropdown-header">Incoming Requests <span class="badge" style="background-color: #2c2c2c">0</span></li>
+                        {{-- <li class="dropdown-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>John Doe</strong>
+                                <p>Request description here.</p>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-success">
+                                    <img class="icon" src="{{ asset('assets/images/icon-checkmark.svg') }}" draggable="false">
+                                </button>
+                                <button type="button" class="btn btn-danger">
+                                    <img class="icon" src="{{ asset('assets/images/icon-cross.svg') }}" draggable="false">
+                                </button>
+                            </div>
+                        </li> --}}
+                    </ul>
                 </li>
 
                 <!-- Dropdown -->
@@ -71,4 +83,3 @@
 
     </div>
 </nav>
-
