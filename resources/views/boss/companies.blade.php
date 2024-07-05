@@ -51,10 +51,9 @@
                                     <a class="btn btn-secondary" href="{{ route('task.forCompany', ['company' => $company->id]) }}" role="button">
                                         <img class="icon me-2" src="assets/images/icon-sidebar-tasks.svg" draggable="false">All
                                     </a>
-                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#CompanySettingsModal" data-companyid="{{ $company->id }}">
+                                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#CompanySettingsModal{{ $company->id }}">
                                         <img class="icon mx-auto" src="assets/images/icon-gear.svg" draggable="false">
                                     </button>
-
                                 </div>
                             </th>
                         </tr>
@@ -89,14 +88,12 @@
                             </td>
                         </tr>
                     @endforeach
-
                     </tbody>
                 </table>
             </div>
 
-
             <!-- Modal | Company Settings -->
-            <div id="CompanySettingsModal" class="modal fade" role="dialog">
+            <div id="CompanySettingsModal{{ $company->id }}" class="modal fade" role="dialog">
                 <div class="modal-dialog" style="top: 10% !important; max-width: 580px;">
                     <!-- Modal content-->
                     <div class="modal-content">
@@ -105,10 +102,10 @@
                             <button type="button" class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></button>
                         </div>
                         <div class="modal-body bg-gray p-4">
-                            <form id="companySettingsForm" method="post" enctype="multipart/form-data">
+                            <form id="companySettingsForm{{ $company->id }}" method="post" enctype="multipart/form-data" action="{{ route('companies.update', ['company' => $company->id]) }}">
                                 @csrf
                                 @method('PUT')
-                                <input type="hidden" name="company_id" id="company_id">
+                                <input type="hidden" name="company_id" id="company_id" value="{{ $company->id }}">
 
                                 <div class="row">
                                     <!-- LEFT SIDE -->
@@ -131,9 +128,9 @@
                                         <!-- Company Visibility -->
                                         <div class="mb-3">
                                             <label for="company_visibility">Visibility</label>
-                                            <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" {{ $company->visibility }} required>
-                                                <option value="public">Public</option>
-                                                <option value="private">Private</option>
+                                            <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" required>
+                                                <option value="public" {{ $company->visibility == 'public' ? 'selected' : '' }}>Public</option>
+                                                <option value="private" {{ $company->visibility == 'private' ? 'selected' : '' }}>Private</option>
                                             </select>
                                         </div>
 
@@ -141,7 +138,7 @@
                                         <div class="mb-3">
                                             <label for="company_code">Company Code</label>
                                             <div class="d-flex align-items-center">
-                                                <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0 mt-2 rounded-0 rounded-start" placeholder="Enter Company Code" {{ $company->code }} readonly>
+                                                <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0 mt-2 rounded-0 rounded-start" placeholder="Enter Company Code" value="{{ $company->company_code }}" readonly>
                                                 <button type="button" class="btn btn-secondary generate-company-code mt-2 rounded-0 rounded-end">
                                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-random.svg') }}" draggable="false">
                                                 </button>
@@ -169,7 +166,6 @@
                     </div>
                 </div>
             </div>
-
 
         @endforeach
         @endif

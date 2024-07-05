@@ -73,24 +73,24 @@ class CompanyController extends Controller
     // }
 
     // EDIT - VISOTH WAS HERE 2
-    public function edit($id)
-    {
-        $company = Company::with('users')->findOrFail($id);
-        return response()->json([
-            'name' => $company->name,
-            'industry' => $company->industry,
-            'description' => $company->description,
-            'visibility' => $company->visibility,
-            'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
-            'users' => $company->users->map(function($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email
-                ];
-            })
-        ]);
-    }
+    // public function edit($id)
+    // {
+    //     $company = Company::with('users')->findOrFail($id);
+    //     return response()->json([
+    //         'name' => $company->name,
+    //         'industry' => $company->industry,
+    //         'description' => $company->description,
+    //         'visibility' => $company->visibility,
+    //         'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
+    //         'users' => $company->users->map(function($user) {
+    //             return [
+    //                 'id' => $user->id,
+    //                 'name' => $user->name,
+    //                 'email' => $user->email
+    //             ];
+    //         })
+    //     ]);
+    // }
 
     // SHOW ALL BOSSES BELONGING TO A COMPANY
 
@@ -154,18 +154,15 @@ class CompanyController extends Controller
             'description' => 'nullable|string',
             'industry' => 'nullable|string',
             'visibility' => 'required|in:public,private',
-            'company_code' => 'nullable|string|max:6|unique:companies,company_code,' . $company->id, // Validate the company_code if it's provided
+            'is_boss' => 'array', // Expect an array of user IDs
+            'is_boss.*' => 'integer|exists:users,id' // Each element must be a valid user ID
         ]);
-
-        // Use provided company code or generate a new one if not provided
-        $companyCode = $request->company_code ?: ($company->company_code ?: Company::generateUniqueCompanyCode());
 
         $company->update([
             'name' => $request->name,
             'description' => $request->description,
             'industry' => $request->industry,
             'visibility' => $request->visibility,
-            'company_code' => $companyCode,
         ]);
 
         return redirect()->route('companies.show')->with('success', 'Company updated successfully.');
