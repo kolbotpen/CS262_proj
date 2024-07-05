@@ -93,6 +93,8 @@
                     </tbody>
                 </table>
             </div>
+
+
             <!-- Modal | Company Settings -->
             <div id="CompanySettingsModal" class="modal fade" role="dialog">
                 <div class="modal-dialog" style="top: 10% !important; max-width: 580px;">
@@ -114,13 +116,13 @@
                                         <!-- Company Name -->
                                         <div class="mb-3">
                                             <label for="company_name">Company Name</label>
-                                            <input type="text" id="company_name" name="name" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Name" value="{{ $company->name ?? '' }}">
+                                            <input type="text" id="company_name" name="name" class="form-control bg-black text-white border-0 mt-2" value="{{ $company->name }}" placeholder="Enter Company Name">
                                         </div>
 
                                         <!-- Company Industry -->
                                         <div class="mb-3">
                                             <label for="company_industry">Industry</label>
-                                            <input type="text" id="company_industry" name="industry" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Industry" value="{{ $company->industry ?? '' }}">
+                                            <input type="text" id="company_industry" name="industry" class="form-control bg-black text-white border-0 mt-2" value="{{ $company->industry }}" placeholder="Enter Company Industry">
                                         </div>
                                     </div>
 
@@ -129,9 +131,9 @@
                                         <!-- Company Visibility -->
                                         <div class="mb-3">
                                             <label for="company_visibility">Visibility</label>
-                                            <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" required>
-                                                <option value="public" {{ isset($company) && $company->visibility == 'public' ? 'selected' : '' }}>Public</option>
-                                                <option value="private" {{ isset($company) && $company->visibility == 'private' ? 'selected' : '' }}>Private</option>
+                                            <select id="company_visibility" name="visibility" class="form-control bg-black text-white border-0 mt-2" {{ $company->visibility }} required>
+                                                <option value="public">Public</option>
+                                                <option value="private">Private</option>
                                             </select>
                                         </div>
 
@@ -139,7 +141,7 @@
                                         <div class="mb-3">
                                             <label for="company_code">Company Code</label>
                                             <div class="d-flex align-items-center">
-                                                <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0 mt-2 rounded-0 rounded-start" placeholder="Enter Company Code" value="{{ $company->company_code ?? '' }}" readonly>
+                                                <input type="text" name="company_code" id="company_code" class="form-control bg-black text-white border-0 mt-2 rounded-0 rounded-start" placeholder="Enter Company Code" {{ $company->code }} readonly>
                                                 <button type="button" class="btn btn-secondary generate-company-code mt-2 rounded-0 rounded-end">
                                                     <img class="icon mx-auto" src="{{ asset('assets/images/icon-random.svg') }}" draggable="false">
                                                 </button>
@@ -152,43 +154,9 @@
                                 <div class="row">
                                     <div class="col-md-12 mb-3">
                                         <label for="company_description">Description</label>
-                                        <textarea id="company_description" name="description" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Description" rows="4">{{ $company->description ?? '' }}</textarea>
+                                        <textarea id="company_description" name="description" class="form-control bg-black text-white border-0 mt-2" placeholder="Enter Company Description" rows="4">{{ $company->description }}</textarea>
                                     </div>
                                 </div>
-
-                                <!-- Boss Users Table -->
-                                <div class="row mb-4">
-                                    <div class="col-md-12">
-                                        <label for="boss_users">Boss Users</label>
-                                        <div class="d-flex align-items-end mb-3">
-                                            <div class="flex-grow-1">
-                                                <select id="new_boss_user" class="form-control bg-black text-white border-0 rounded-0 rounded-start">
-                                                    <option value="">--</option>
-                                                    {{-- This will be dynamically populated --}}
-                                                </select>
-                                            </div>
-                                            <button type="button" class="btn btn-secondary rounded-0 rounded-end" id="addBossUserButton">
-                                                <img class="icon mx-auto" src="{{ asset('assets/images/icon-add.svg') }}" draggable="false">
-                                            </button>
-                                        </div>
-                                        
-                                        <div class="table-border rounded overflow-hidden">
-                                            <table class="table p-0 m-0">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Name</th>
-                                                        <th>Email</th>
-                                                        <th class="text-center">Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody id="bossUsersTableBody">
-                                                    <!-- Existing Boss Users will be displayed here -->
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-
 
                                 <!-- Submit Button -->
                                 <div class="d-flex justify-content-center">
@@ -201,8 +169,6 @@
                     </div>
                 </div>
             </div>
-
-
 
 
         @endforeach
@@ -422,7 +388,6 @@
         });
     });
 </script>
-
 
 <script>
     $(document).ready(function () {
