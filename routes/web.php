@@ -203,8 +203,6 @@ Route::get('/settings', function () {
 
 Route::patch('/settings/update-picture', [ProfileController::class, 'updatePicture'])->name('profile.updatePicture'); // Added profile.updatePicture route
 
-// LOGGED IN AS "WORKER" STARTS FROM HERE
-// nothing here yet, just us chickens
 
 
 // ---------- VISOTH'S CODE | END ----------

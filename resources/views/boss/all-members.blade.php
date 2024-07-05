@@ -14,11 +14,21 @@
         <h3>Incoming Requests <span class="count">{{ $requestCount }}</span></h3>
         @if (session('success'))
             <div class="alert alert-success">
-                {{ session('success') }}
+                <img class="me-2" src="{{ asset('assets/images/icon-checkmark-green.svg') }}">{{ session('success') }}
             </div>
         @endif
         @if ($requests->isEmpty())
-            <p>No incoming requests</p>
+        <div class="table-container table-border rounded mt-3 mb-5">
+            <table class="table m-0" style="table-layout: fixed; width: 100%;">
+                <thead>
+                    <tr>
+                        <th colspan="3" class="align-middle">
+                            <img class="me-2 mb-1" src="{{asset ('assets/images/icon-exclamation-green.svg')}}" draggable="false">No incoming requests.
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
         @else
             <div class="table-container table-border rounded mb-5">
                 <table class="table table-requests m-0" style="table-layout: fixed; width: 100%;">

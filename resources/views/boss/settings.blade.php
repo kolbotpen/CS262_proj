@@ -81,13 +81,13 @@
                                 </div>
                                 <!-- Email -->
                                 <div class="mb-3">
-                                    {{-- if logged in user has a provider, disabled input field --}}
+                                    {{-- if logged in user has a provider, disable input field --}}
                                     @if(auth()->user()->provider)
                                         <label for="email" class="form-label">
                                             <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email  <span class="text-gray">({{ old('email', auth()->user()->provider) }} Account)</span>
                                         </label>
-                                        <input type="email" class="form-control bg-black text-white border-0" style="cursor: not-allowed;" id="email" name="email" placeholder="johndoe@email.com" value="{{ old('email', auth()->user()->email) }}" readonly>
-                                    {{-- if logged in user has no provider, input field is enabled --}}
+                                        <input type="email" class="form-control bg-black text-white border-0" style="cursor: not-allowed;" title="🚫 You cannot edit 3rd-party email!" id="email" name="email" value="{{ old('email', auth()->user()->email) }}" disabled readonly>
+                                    {{-- if logged in user has no provider, enable input field --}}
                                     @else
                                         <label for="email" class="form-label">
                                             <img class="icon" src="{{ asset('assets/images/icon-email.svg') }}" draggable="false"> Email
@@ -101,11 +101,16 @@
                                     <label for="role" class="form-label">
                                         <img class="icon" src="{{ asset('assets/images/icon-role.svg') }}" draggable="false"> Role
                                     </label>
-                                    <select class="form-control bg-black text-white border-0" id="role" name="role">
-                                        <option value="Worker" {{ old('role', auth()->user()->role) == 'Worker' ? 'selected' : '' }}>Worker</option>
+                                    <select class="form-control bg-black text-white border-0" id="role" name="role" style="cursor: not-allowed;" title="🚫 Changeable only in Admin dashboard" disabled>
+                                        <option value="Worker" {{ old('role', auth()->user()->usertype) == 'worker' ? 'selected' : ''}}>Worker</option>
+                                        @if(auth()->user()->usertype == 'admin')
+                                        <option value="Admin" {{ old('role', auth()->user()->usertype) == 'admin' ? 'selected' : ''}}>Admin</option>
+                                        @endif
                                     </select>
+                                                                      
+                                    
                                 </div>
-                                <!-- Stay Logged in -->
+                                {{-- <!-- Stay Logged in -->
                                 <div class="second-div-text mb-3 text-start">
                                     <label class="form-check form-switch">
                                         <input class="form-check-input" type="checkbox" id="stayLoggedInSwitch" name="stayLoggedInSwitch" {{ auth()->user()->stay_logged_in ? 'checked' : '' }}>
@@ -118,7 +123,7 @@
                                         <input class="form-check-input" type="checkbox" id="emailNotificationSwitch" name="emailNotificationSwitch" {{ auth()->user()->email_notifications ? 'checked' : '' }}>
                                         <span class="form-check-label">Email Notification</span>
                                     </label>
-                                </div>
+                                </div> --}}
                                 <!-- Save Changes Button -->
                                 <div class="d-flex justify-content-center mt-4">
                                     <button type="submit" class="btn btn-secondary" role="button">
@@ -131,9 +136,49 @@
                         <!-- RIGHT | Password Update Form -->
                         <div class="contact-input rounded p-2 profile-box" style="width: 100%;">
                             <form method="POST" action="{{ route('password.update') }}">
+                                {{-- if logged in user has a provider, disable input field --}}
+                                @if(auth()->user()->provider)
+                                <!-- Current Password | DISABLED -->
+                                <div class="mb-3 position-relative">
+                                    <label for="current_password" class="form-label">
+                                        <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> Current Password
+                                    </label>
+                                    <div class="input-group">
+                                        <input id="current_password" class="form-control bg-black text-white border-0 position-relative" type="password" name="current_password" placeholder="••••••••" style="cursor: not-allowed;" title="🚫 You cannot edit 3rd-party account password!" disabled readonly required />
+                                    </div>
+                                </div>
+                        
+                                <!-- New Password | DISABLED -->
+                                <div class="mb-3 position-relative">
+                                    <label for="password" class="form-label">
+                                        <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> New Password
+                                    </label>
+                                    <div class="input-group">
+                                        <input id="password" class="form-control bg-black text-white border-0 position-relative" type="password" name="password" placeholder="••••••••" style="cursor: not-allowed;" title="🚫 You cannot edit 3rd-party account password!" disabled readonly required />
+                                    </div>
+                                </div>
+                        
+                                <!-- Confirm New Password | DISABLED -->
+                                <div class="mb-3 position-relative">
+                                    <label for="password_confirmation" class="form-label">
+                                        <img class="icon" src="{{ asset('assets/images/icon-password.svg') }}" draggable="false"> Confirm New Password
+                                    </label>
+                                    <div class="input-group">
+                                        <input id="password_confirmation" class="form-control bg-black text-white border-0 position-relative" type="password" name="password_confirmation" placeholder="••••••••" style="cursor: not-allowed;" title="🚫 You cannot edit 3rd-party account password!" disabled readonly required />
+                                    </div>
+                                </div>
+
+                                <!-- Save Changes Button -->
+                                <div class="d-flex justify-content-center mt-4" style="cursor: not-allowed;" title="🚫 You cannot edit 3rd-party account password!" >
+                                    <button type="submit" class="btn btn-secondary" role="button" disabled>
+                                        <img class="icon me-2" src="{{ asset('assets/images/icon-save.svg') }}" draggable="false">Save Changes
+                                    </button>
+                                </div>
+
+                                {{-- if logged in user has no provider, enable input field --}}
+                                @else
                                 @csrf
                                 @method('PUT')
-                        
                                 <!-- Current Password -->
                                 <div class="mb-3 position-relative">
                                     <label for="current_password" class="form-label">
@@ -181,6 +226,7 @@
                                         <img class="icon me-2" src="{{ asset('assets/images/icon-save.svg') }}" draggable="false">Save Changes
                                     </button>
                                 </div>
+                                @endif
                             </form>
                         </div>
 

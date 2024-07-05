@@ -8,9 +8,17 @@
         <a href="#" class="breadcrumb-link">All Tasks</a>
     </div>
     @if($teams->isEmpty())
-        <div class="alert alert-info" role="alert">
-            There are currently no teams available. Please add a team.
-        </div>
+    <div class="table-container table-border rounded mt-3 mb-5">
+        <table class="table m-0" style="table-layout: fixed; width: 100%;">
+            <thead>
+                <tr>
+                    <th colspan="3" class="align-middle">
+                        <img class="me-2 mb-1" src="{{asset ('assets/images/icon-exclamation-green.svg')}}" draggable="false">There are currently no tasks available. Please add a team.
+                    </th>
+                </tr>
+            </thead>
+        </table>
+    </div>
     @else
         <div class="container bg-transparent p-0 rounded container-border">
             @foreach($teams as $team)

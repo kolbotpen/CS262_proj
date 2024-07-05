@@ -129,8 +129,9 @@ class TeamsController extends Controller
     public function checkTeamName(Request $request)
     {
         $exists = Team::where('name', $request->name)
-                    ->where('company_id', $request->company_id)
-                    ->exists();
+                      ->where('company_id', $request->company_id)
+                      ->exists();
+
         return response()->json(['exists' => $exists]);
     }
 

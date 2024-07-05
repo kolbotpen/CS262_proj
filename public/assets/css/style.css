@@ -201,6 +201,16 @@ input[type="password"] {
   transform: translateY(-50%) scale(0.9);
 }
 
+input:disabled {
+  background-color: #232323 !important;
+  color: #8a8a8a !important;
+}
+
+select:disabled {
+  background-color: #232323 !important;
+  color: #8a8a8a !important;
+}
+
 
 
 /* fonts */
@@ -276,6 +286,11 @@ input[type="password"] {
 .btn-secondary:focus, .btn-secondary:active {
   border: #282828 1px solid;
   background-color: #282828;
+}
+.btn-secondary:disabled {
+  background-color: #303030 !important;
+  border-color: #303030 !important;
+  color: #8a8a8a !important;
 }
 
 /* gray button */
