@@ -29,7 +29,7 @@
                 </li>
 
                 <!-- Notification Bell -->
-                <li class="nav-item ms-2 dropdown">
+                <li class="nav-item ms-3 dropdown">
                     <button class="btn btn-secondary d-flex align-items-center justify-content-center" type="button" id="notificationDropdownButton" data-bs-toggle="dropdown" aria-expanded="false">
                         <img src="{{ asset('assets/images/icon-bell.svg') }}" alt="bell" style="width: 0.8em; margin-top: 2px;">
                     </button>
