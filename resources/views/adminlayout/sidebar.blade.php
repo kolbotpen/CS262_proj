@@ -76,12 +76,12 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{route('setting')}}" class="nav-link {{ Request::is('setting*') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>Settings</p>
                     </a>
-                </li>
+                </li> --}}
                 <!-- Add more sidebar items here -->
             </ul>
         </nav>
