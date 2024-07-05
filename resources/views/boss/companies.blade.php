@@ -71,24 +71,25 @@
                     <tbody>
                         {{-- Loop through each team of the current company --}}
                         @foreach ($company->teams as $team)
-                            <tr>
-                                <td class="align-middle">{{ $loop->iteration }}</td>
-                                <td class="align-middle">{{ $team->name }}</td>
-                                <td class="align-middle text-center">
-                                    <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
-                                        <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
-                                            <img class="icon mx-auto" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
-                                        </a>
-                                        <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
-                                            <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
-                                        </a>
-                                        <a class="btn btn-danger"  data-toggle="modal" data-target="#deleteTeamModal" >
-                                            <img class="icon" src="{{asset ('assets/images/icon-trash.svg')}}" draggable="false">
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td class="align-middle">{{ $loop->iteration }}</td>
+                            <td class="align-middle">{{ $team->name }}</td>
+                            <td class="align-middle text-center">
+                                <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
+                                    <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
+                                        <img class="icon mx-auto" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
+                                    </a>
+                                    <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
+                                        <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
+                                    </a>
+                                    <a class="btn btn-danger" data-toggle="modal" data-target="#deleteTeamModal" data-team-id="{{ $team->id }}" data-team-name="{{ $team->name }}">
+                                        <img class="icon" src="{{asset ('assets/images/icon-trash.svg')}}" draggable="false">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
                     </tbody>
                 </table>
             </div>
@@ -261,21 +262,25 @@
                         <tbody>
                             {{-- Loop through each team of the current company --}}
                             @foreach ($company->teams as $team)
-                                <tr>
-                                    <td class="align-middle">{{ $loop->iteration }}</td>
-                                    <td class="align-middle">{{ $team->name }}</td>
-                                    <td class="align-middle text-center">
-                                        <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
-                                            <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
-                                                <img class="icon" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
-                                            </a>
-                                            <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
-                                                <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                            <tr>
+                                <td class="align-middle">{{ $loop->iteration }}</td>
+                                <td class="align-middle">{{ $team->name }}</td>
+                                <td class="align-middle text-center">
+                                    <div class="btn-group table-border option-btn" role="group" aria-label="Button group">
+                                        <a href="{{ route('team.show', ['team' => $team->id]) }}" class="btn btn-secondary"> 
+                                            <img class="icon mx-auto" src="{{asset ('assets/images/icon-team.svg')}}" draggable="false"> 
+                                        </a>
+                                        <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
+                                            <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
+                                        </a>
+                                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteTeamModal" data-team-id="{{ $team->id }}" data-team-name="{{ $team->name }}">
+                                            <img class="icon" src="{{asset ('assets/images/icon-trash.svg')}}" draggable="false">
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
+
                         </tbody>
                     </table>
                 </div>
@@ -330,7 +335,7 @@
                 <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
             </div>
             <div class="modal-body bg-gray">
-                <form id="deleteTeamForm" action="" method="post" enctype="multipart/form-data">
+                <form id="deleteTeamForm" action="" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="hidden" name="team_id" id="delete_team_id">
@@ -351,9 +356,6 @@
 </div>
 
 
-
-
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -362,9 +364,10 @@
 <script>
     $(document).ready(function () {
         $('#deleteTeamModal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            var teamName = button.closest('tr').find('td:nth-child(2)').text(); // Assuming team name is in the second column
-            var teamId = button.closest('tr').find('td:nth-child(1)').text(); // Assuming team ID is in the first column
+            var button = $(event.relatedTarget); // Button that triggered the modal
+            var teamId = button.data('team-id'); // Extract info from data-* attributes
+            var teamName = button.data('team-name');
+
             var modal = $(this);
             modal.find('.modal-body #delete_team_name').text(teamName);
             modal.find('.modal-body #delete_team_id').val(teamId);
@@ -372,6 +375,7 @@
         });
     });
 </script>
+
 
 <script>
     $(document).ready(function () {

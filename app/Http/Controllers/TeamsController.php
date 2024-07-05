@@ -59,11 +59,14 @@ class TeamsController extends Controller
     }
 
 
-    public function destroy(Team $team)
+    public function destroy($team)
     {
+        $team = Team::findOrFail($team);
         $team->delete();
-        return redirect()->route('companies.show')->with('success', 'Team Deleted Successfully');
+
+        return redirect()->back()->with('success', 'Team deleted successfully.');
     }
+
 
     public function update(Request $request, Team $team)
     {
