@@ -235,9 +235,9 @@
                                         <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
                                             <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
                                         </a>
-                                        <a class="btn btn-danger" data-toggle="modal" data-target="#deleteTeamModal" data-team-id="{{ $team->id }}" data-team-name="{{ $team->name }}">
+                                        {{-- <a class="btn btn-danger" data-toggle="modal" data-target="#deleteTeamModal" data-team-id="{{ $team->id }}" data-team-name="{{ $team->name }}">
                                             <img class="icon" src="{{asset ('assets/images/icon-trash.svg')}}" draggable="false">
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </td>
                             </tr>

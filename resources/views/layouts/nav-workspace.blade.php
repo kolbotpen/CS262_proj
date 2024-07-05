@@ -30,11 +30,11 @@
 
                 <!-- Notification Bell -->
                 <li class="nav-item ms-2">
-                    <button type="button" class="btn btn-secondary d-flex align-items-center justify-content-center" id="notificationButton">
+                    <a href="/all-members" type="button" class="btn btn-secondary d-flex align-items-center justify-content-center" id="notificationButton">
                         <span class="btn__content">
                             <img src="{{asset ('assets/images/icon-bell.svg')}}" alt="bell" style="width: 0.8em; margin-top: -5px;">
                         </span>
-                    </button>
+                    </a>
                     <!-- Example Dropdown for Notifications -->
                     <div class="menu notification-menu" id="notificationMenu">
                         <!-- Dropdown content here -->
