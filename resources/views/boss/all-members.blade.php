@@ -74,13 +74,8 @@
         @endif
     </div>
 
-    {{-- Companies Created by User --}}
-    
-
-
-
-    {{-- Current Members --}}
-    <!-- <div class="container bg-transparent p-0 rounded container-border mb-5">
+    {{-- Members from Companies Created by Current User --}}
+    <div class="container bg-transparent p-0 rounded container-border mb-5">
         <h3>Current Members <span class="count">{{ $userCount }}</span></h3>
         @if ($users->isEmpty())
             <p>No users found</p>
@@ -97,38 +92,32 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            <tr>
-                                <td class="align-middle">{{ $user->name }}</td>
-                                <td class="align-middle">{{ $user->email }}</td>
-                                <td class="align-middle">{{ $user->company->name ?? 'N/A' }}</td>
-                                <td class="align-middle text-center">
-                                    <div class="btn-group table-border option-btn" style="background-color: #303030"
-                                        role="group" aria-label="Button group">
-                                        <a class="btn btn-secondary" href="mailto:jane.smith@example.com" role="button">
-                                            <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}"
-                                                draggable="false">
-                                        </a>
-                                        <a class="btn btn-danger" href="#" role="button">
-                                            <img class="icon mx-auto" src="{{ asset('assets/images/nav-logout.svg') }}"
-                                                draggable="false">
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
+                            @foreach ($user->companies as $company)
+                                @if (in_array($company->id, $bossCompanies))
+                                    <tr>
+                                        <td class="align-middle">{{ $user->name }}</td>
+                                        <td class="align-middle">{{ $user->email }}</td>
+                                        <td class="align-middle">{{ $company->name }}</td>
+                                        <td class="align-middle text-center">
+                                            <div class="btn-group table-border option-btn" style="background-color: #303030" role="group" aria-label="Button group">
+                                                <a class="btn btn-secondary" href="mailto:{{ $user->email }}" role="button">
+                                                    <img class="icon mx-auto" src="{{ asset('assets/images/icon-mail.svg') }}" draggable="false">
+                                                </a>
+                                                <a class="btn btn-danger" href="#" role="button">
+                                                    <img class="icon mx-auto" src="{{ asset('assets/images/nav-logout.svg') }}" draggable="false">
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endif
+                            @endforeach
                         @endforeach
                     </tbody>
                 </table>
             </div>
         @endif
-    </div> -->
-
-
-
-
-
+    </div>
 </div>
-
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
