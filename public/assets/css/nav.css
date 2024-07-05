@@ -52,6 +52,9 @@ nav {
         text-align: left !important;
         padding-left: 12px !important;
     }
+    .navbar {
+        max-height: fit-content !important;
+    }
     
 }
 
