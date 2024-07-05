@@ -143,9 +143,16 @@ class UploadManager extends Controller
     }
 
 
-    public function showCalendar()
+    public function showCalendar(Request $request)
     {
-        $tasks = Task::all(); // Assuming you want all tasks, adjust the query as needed
-        return view('boss.calendar', compact('tasks')); // Pass tasks to the view
+        $user = $request->user();  // Get the current authenticated user
+        $companies = $user->companies;  // Assuming the User model has a 'companies' relationship
+
+        $tasks = Task::whereHas('team', function($query) use ($companies) {
+            $query->whereIn('company_id', $companies->pluck('id'));
+        })->with('assignedUser')->get();
+
+        return view('boss.calendar', compact('tasks', 'companies'));
     }
+
 }

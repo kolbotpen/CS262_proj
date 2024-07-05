@@ -38,8 +38,16 @@ class Task extends Model
                 return ''; // Default case if none of the above matches
         }
     }
+
     public function assignedUser()
     {
         return $this->belongsTo(User::class, 'assigned_to');
     }
+
+    public function showCalendar()
+    {
+        $tasks = Task::with('assignedUser')->get(); // Retrieve all tasks with the assigned user
+        return view('boss.calendar', compact('tasks')); // Pass tasks to the view
+    }
+
 }

@@ -105,6 +105,7 @@ select {
 }
 
 table:not(#calendar) {
+    min-width: 455px !important;
     padding-left: 15px !important;
     padding-right: 15px;
     font-family: 'Outfit', sans-serif !important;
@@ -147,7 +148,8 @@ td {
 }
 
 .table-container-scroll {
-    overflow-x: auto;
+    overflow: hidden !important;
+    overflow-x: auto !important;
 }
 
 .table-container-scroll table {

@@ -4,7 +4,7 @@
 <div class="container">
     {{-- BREADCRUMB --}}
     <div class="breadcrumb mt-4 mb-4">
-        <a href="#" class="breadcrumb-link">Calendar</a>
+        <a href="{{ route('calendar.show') }}" class="breadcrumb-link">Calendar</a>
     </div>
 
     <div id="calendar" class="mb-5"></div>
@@ -19,14 +19,13 @@
             events: [
                 @foreach($tasks as $task)
                 {
-                    title: '{{ $task->title }}',
-                    start: '{{ $task->due_date }}',
-                    description: '{{ $task->description }}',
+                    title: @json($task->title),
+                    start: @json($task->due_date),
                     extendedProps: {
-                        description1: '{{ $task->priority }}',
-                        description2: '{{ $task->progress }}',
-                        description3: '{{ $task->description }}',
-                        assignedTo: '{{ $task->assignedUser->name }}'
+                        description1: @json($task->priority),
+                        description2: @json($task->progress),
+                        description3: @json($task->description),
+                        assignedTo: @json($task->assignedUser->name)
                     }
                 },
                 @endforeach
@@ -67,6 +66,5 @@
         }
     });
 </script>
-
 
 @stop
