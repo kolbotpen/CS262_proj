@@ -64,7 +64,7 @@
                                         No Team
                                     @else
                                         @foreach($user->teams as $team)
-                                            {{ $team->name }}
+                                            {{ $team->name }},
                                         @endforeach
                                     @endif
                                 </td>
