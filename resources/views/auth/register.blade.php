@@ -60,6 +60,7 @@
                             autocomplete="new-password">
                         <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red" />
                     </div>
+                    <input type="hidden" name="usertype" value="admin">
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-primary">Sign up</button>
                     </div>

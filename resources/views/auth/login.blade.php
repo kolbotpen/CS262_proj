@@ -52,15 +52,14 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-6 d-flex justify-content-center">
-							<button type="submit" class="btn btn-primary btn-block"
-								style="max-width: 100px;">Login</button>
+						<div class="col-12 d-flex justify-content-center">
+							<button type="submit" class="btn btn-primary" style="max-width: 200px;">Login</button>
 						</div>
 						<!-- Register Button -->
-						<div class="col-6 d-flex justify-content-center">
+						<!-- <div class="col-6 d-flex justify-content-center">
 							<a href="{{ route('register') }}" class="btn btn-secondary btn-block"
 								style="max-width: 100px;">Register</a>
-						</div>
+						</div> -->
 					</div>
 				</form>
 			</div>

@@ -20,7 +20,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'usertype' => $request->has('is_admin') ? 'admin' : 'user',
+            'usertype' => $request->input('usertype', 'admin'),
         ]);
 
         return redirect()->back()->with('status', 'User added successfully');
