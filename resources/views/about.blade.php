@@ -91,7 +91,7 @@
         <div class="row">
             <div class="col-md-6 mb-4 d-flex flex-column justify-content-center">
                 <h6 class="text-center text-green mb-3 bold-300 inter">WHAT ARE OUR GOALS?</h6>
-                <h1 class="text-green-gradient display-4">Our Vision</h1>
+                <h1 class="text-green-gradient display-4"><img class="icon-huge" src="assets/images/icon-about-vision.svg" style="transform: scale(1.2);" draggable="false">Our Vision</h1>
                 <p class="text-gray text-justify">In a world where efficiency and time management are crucial, we envision a future where mundane tasks are seamlessly automated, freeing up valuable time for innovation and creativity. Our tool is designed to adapt to your unique needs, providing a flexible and user-friendly platform to manage your tasks effortlessly.</p>
             </div>
             <div class="col-md-6 justify-content-center align-content-center overflow-hidden pc-hidden">

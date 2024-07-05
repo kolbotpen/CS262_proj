@@ -54,15 +54,13 @@
 </section>
 
 
-
-
 <!-- Section 3 -->
 <section id="section3" class="py-5">
     <div class="container align-content-center" style="height:600px;">
         <div class="row">
             <div class="col-md-6 mb-4 d-flex flex-column justify-content-center">
                 <h6 class="text-center text-green mb-3 bold-300 inter">PERKS & FEATURES</h6>
-                <h1 class="text-green-gradient display-4">Automate Tasks &<br>Streamline Workflows</h1>
+                <h1 class="text-green-gradient display-4">Automate Tasks &<img class="icon-huge ms-4" style="transform: scale(1.1);" src="assets/images/icon-landing-workflow.svg" draggable="false"><br>Streamline Workflows</h1>
                 <p class="text-gray text-justify"><b class="bold">OURDEN</b> is your best solution for boosting productivity and performance. Our platform simplifies processes, reduces manual effort, and integrates seamlessly with existing systems. Experience efficient workflows with ease.</p>
             </div>
             <div class="col-md-6 justify-content-center align-content-center overflow-hidden pc-hidden">

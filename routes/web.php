@@ -44,7 +44,9 @@ Route::get('/companies/{companyId}/boss-users', 'App\Http\Controllers\CompanyCon
 Route::get('company/generate-code', [CompanyController::class, 'generateCode'])->name('company.generateCode');
 Route::put('/companies/{company}', [CompanyController::class, 'update'])->name('companies.update');
 Route::put('/teams/{team}', [TeamsController::class, 'update'])->name('team.update');
+Route::delete('/teams/{team}', [TeamsController::class, 'destroy'])->name('team.delete'); // Delete team from company
 Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); // Added users.update route
+
 
 // EDITING
 Route::get('/edit', [HomeController::class,'edit'])->name('edit');
@@ -115,6 +117,7 @@ Route::get('/team', function () {
 Route::get('/team/{team}', [TeamsController::class, 'showTeam'])->name('team.show'); // THIS ONE IS TO GET JUST THE ONE TEAM YOU SELECT 
 Route::get('/team/{id}', [TeamsController::class, 'showOneTeam'])->name('team.one');
 
+Route::delete('/team/delete', [TeamsController::class, 'destroy'])->name('team.delete');
 Route::delete('/team/{team_id}/remove/{user_id}', [TeamsController::class, 'removeMember'])->name('team.remove.member');
 
 Route::post('/check-team-name', [TeamsController::class, 'checkTeamName'])->name('check.team.name'); // THIS CHECKS IF TEAM NAME ALREADY EXISTS IN COMPANY

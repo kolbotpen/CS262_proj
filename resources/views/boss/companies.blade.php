@@ -41,10 +41,10 @@
                                 <div class="btn-group table-border th-btn" style="background-color: #303030" role="group"
                                     aria-label="Button group">
                                     <!-- Trigger the modal with a button -->
-                                    <button type="button" class="btn btn-success bg-green-gradient" data-toggle="modal"
+                                    <a type="button" class="btn btn-success bg-green-gradient" data-toggle="modal"
                                         data-target="#addTeamModal" data-companyid="{{ $company->id }}">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">Add Team
-                                    </button>
+                                    </a>
                                     <a class="btn btn-secondary" href="{{ route('team.all', ['company' => $company->id]) }}" role="button">
                                         <img class="icon me-2" src="assets/images/icon-team.svg" draggable="false">All
                                     </a>
@@ -81,6 +81,9 @@
                                         </a>
                                         <a href="{{ route('team.tasks', ['team' => $team->id]) }}" class="btn btn-secondary">
                                             <img class="icon" src="{{asset ('assets/images/icon-sidebar-tasks.svg')}}" draggable="false">
+                                        </a>
+                                        <a class="btn btn-danger"  data-toggle="modal" data-target="#deleteTeamModal" >
+                                            <img class="icon" src="{{asset ('assets/images/icon-trash.svg')}}" draggable="false">
                                         </a>
                                     </div>
                                 </td>
@@ -314,66 +317,121 @@
     </div>
 </div>
 
+<!-- Modal | Delete Team -->
+<div id="deleteTeamModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    <img class="icon ms-1 me-3" style="transform: scale(1.5);" src="{{ asset('assets/images/icon-warning.svg') }}" draggable="false">
+                    Warning
+                </h4>
+                <a class="btn-close bounce-click" data-dismiss="modal" aria-label="Close" title="Close"></a>
+            </div>
+            <div class="modal-body bg-gray">
+                <form id="deleteTeamForm" action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="team_id" id="delete_team_id">
+                    <div class="col-md-12 d-flex align-items-stretch">
+                        <div class="container text-white p-3 rounded h-100">
+                            <label for="name">You are about to delete the team "<b id="delete_team_name"></b>" from your company. Are you sure you want to proceed?</label>
+                        </div>
+                    </div>
+                    <div class="btn-group table-border th-btn center" style="background-color: #303030" role="group" aria-label="Button group">
+                        <button type="submit" class="btn btn-secondary" role="button">
+                            <img class="icon" src="{{ asset('assets/images/icon-submit.svg') }}" draggable="false">Submit
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="{{ asset('assets/js/alert-copy.js') }}"></script>
+
 <script>
-$(document).ready(function () {
-    $('#addTeamModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget);
-        var companyId = button.data('companyid');
-        var modal = $(this);
-        modal.find('.modal-body #company_id').val(companyId);
+    $(document).ready(function () {
+        $('#deleteTeamModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var teamName = button.closest('tr').find('td:nth-child(2)').text(); // Assuming team name is in the second column
+            var teamId = button.closest('tr').find('td:nth-child(1)').text(); // Assuming team ID is in the first column
+            var modal = $(this);
+            modal.find('.modal-body #delete_team_name').text(teamName);
+            modal.find('.modal-body #delete_team_id').val(teamId);
+            modal.find('form').attr('action', '/teams/' + teamId);
+        });
     });
+</script>
 
-    // Check input to see if team name already exists
-    $('#teamName').on('input', function () {
-        var teamName = $(this).val().trim();
-        var companyId = $('#company_id').val();
+<script>
+    $(document).ready(function () {
+        // Populate the Add Team Modal
+        $('#addTeamModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var companyId = button.data('companyid');
+            var modal = $(this);
+            modal.find('.modal-body #company_id').val(companyId);
+        });
 
-        if (teamName.length > 0) {
-            $.ajax({
-                url: '{{ route("check.team.name") }}',
-                type: 'POST',
-                data: {
-                    _token: '{{ csrf_token() }}',
-                    name: teamName,
-                    company_id: companyId
-                },
-                success: function (response) {
-                    if (response.exists) {
-                        $('#teamNameError').show();
+        // Check input to see if team name already exists
+        $('#teamName').on('input', function () {
+            var teamName = $(this).val().trim();
+            var companyId = $('#company_id').val();
+
+            if (teamName.length > 0) {
+                $.ajax({
+                    url: '{{ route("check.team.name") }}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        name: teamName,
+                        company_id: companyId
+                    },
+                    success: function (response) {
+                        if (response.exists) {
+                            $('#teamNameError').show();
+                            $('#addTeamForm button[type="submit"]').prop('disabled', true);
+                        } else {
+                            $('#teamNameError').hide();
+                            $('#addTeamForm button[type="submit"]').prop('disabled', false);
+                        }
+                    },
+                    error: function () {
+                        $('#teamNameError').text('Error checking team name. Please try again.').show();
                         $('#addTeamForm button[type="submit"]').prop('disabled', true);
-                    } else {
-                        $('#teamNameError').hide();
-                        $('#addTeamForm button[type="submit"]').prop('disabled', false);
                     }
-                },
-                error: function () {
-                    $('#teamNameError').text('Error checking team name. Please try again.').show();
-                    $('#addTeamForm button[type="submit"]').prop('disabled', true);
-                }
-            });
-        } else {
-            $('#teamNameError').hide();
-            $('#addTeamForm button[type="submit"]').prop('disabled', false);
-        }
+                });
+            } else {
+                $('#teamNameError').hide();
+                $('#addTeamForm button[type="submit"]').prop('disabled', false);
+            }
+        });
     });
+</script>
 
-    // Make the modal draggable
-    $('.modal .modal-dialog').draggable({
-        handle: ".modal-header"
+
+<script>
+    $(document).ready(function () {
+        // Make the modal draggable
+        $('.modal .modal-dialog').draggable({
+            handle: ".modal-header"
+        });
+    
+        // Make the logo draggable
+        $('.footer-logo').draggable({
+            cursor: 'grabbing'
+        });
     });
-
-    // Make the logo draggable
-    $('.footer-logo').draggable({
-        cursor: 'grabbing'
-    });
-});
-
 </script>
 
 <script>

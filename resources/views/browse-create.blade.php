@@ -42,7 +42,7 @@
                                 placeholder="Automobile" value="" required>
                             <label for="description">Description</label>
                             <textarea name="description" class="form-control bg-black text-white border-0 mb-2" rows="5"
-                                placeholder="What the company is all about"></textarea>
+                                placeholder="What the company is all about" required></textarea>
                         </div>
                     </div>
 

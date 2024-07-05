@@ -62,7 +62,7 @@ class TeamsController extends Controller
     public function destroy(Team $team)
     {
         $team->delete();
-        return redirect()->route('team.workspace')->with('success', 'Team Deleted Successfully');
+        return redirect()->route('companies.show')->with('success', 'Team Deleted Successfully');
     }
 
     public function update(Request $request, Team $team)
