@@ -95,7 +95,7 @@
                                     </button>
                                     <button class="btn btn-secondary" type="button" id="sortButton" title="Sort Company by Name">
                                         <img id="sortIcon" src="{{ asset('assets/images/icon-sort-za.svg') }}" class="icon"
-                                            draggable="false">
+                                            draggable="false"> Sort by Company
                                     </button>
                                 </div>
                             </th>

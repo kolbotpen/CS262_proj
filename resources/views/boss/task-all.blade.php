@@ -57,8 +57,7 @@
                         </thead>
                         <tbody>
                         {{-- Iterate over tasks for this team --}}
-                        @if($tasks->where('team_id', $team->id)->isNotEmpty())
-                            @foreach($tasks as $task)
+                        @foreach($team->tasks as $task)
                                 {{-- Display each task --}}
                                 <tr>
                                     <td>{{ $task->title }}</td>
@@ -98,8 +97,8 @@
                                         </div>
                                     </td>
                                 </tr>
-                            @endforeach
-                        @else
+                        @endforeach
+                        @if($team->tasks->isEmpty())
                             <tr>
                                 <td colspan="6" class="text-center">No tasks found</td>
                             </tr>
@@ -111,4 +110,4 @@
         </div>
     @endif
 </div>
-@stop
+@stop 

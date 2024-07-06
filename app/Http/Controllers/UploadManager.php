@@ -27,20 +27,19 @@ class UploadManager extends Controller
     public function upload(Request $request)
     {
         $user = Auth::user(); // Get the currently authenticated user
-        $teams = $user->teams;
-        $userIds = [];
-        foreach ($teams as $team) {
-            $teamUserIds = $team->users->pluck('id')->toArray();
-            $userIds = array_merge($userIds, $teamUserIds);
-        }
-
-
-        $userIds = array_unique($userIds);
-        $users = User::whereIn('id', $userIds)->get();
         $teamId = $request->query('team_id'); // Retrieve the team ID from the query parameters
+
+        // Fetch the specified team and its company
+        $team = Team::with('company')->findOrFail($teamId);
+
+        // Fetch users belonging to the specified team
+        $users = User::whereHas('teams', function ($query) use ($teamId) {
+            $query->where('team_id', $teamId);
+        })->get();
+
         return view("boss.task-insert", compact('user', 'users', 'teamId'));
     }
-
+    
     public function uploadPost(Request $request)
     {
         $validatedData = $request->validate([
@@ -72,7 +71,7 @@ class UploadManager extends Controller
             $task->file_path = $path;
         }
         $task->save();
-        return redirect()->route('upload')->with('status', 'upload-success');
+        return redirect()->route('upload', ['team_id' => $request->team_id])->with('status', 'upload-success');
     }
 
     public function destroy($id)

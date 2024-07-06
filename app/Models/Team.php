@@ -21,4 +21,8 @@ class Team extends Model
         return $this->belongsTo(Company::class);
     }
     
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
 }
