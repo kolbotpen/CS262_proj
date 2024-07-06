@@ -19,7 +19,7 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('team_id')->nullable();
             $table->string('title');
             $table->text('description');
-            $table->unsignedBigInteger ('assigned_to');
+            $table->unsignedBigInteger ('assigned_to')->nullable;
             $table->string('assigned_email');
             $table->string('priority');
             $table->string('progress');
