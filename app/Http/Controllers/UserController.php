@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function showWorkspace()
     {
-        $users = User::all();
+        $users = User::where('usertype', '!=', 'admin')->get();
         return view('admin.user-workspace', ['users' => $users]);
     }
 
