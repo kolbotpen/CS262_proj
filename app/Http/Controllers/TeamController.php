@@ -254,7 +254,7 @@ class TeamController extends Controller
     /**
      * Add a user to a team.
      */
-    public function addMemberToTeam(Request $request, $team_id)
+    public function addMemberToTeam(Request $request, $company_id, $team_id)
     {
         $validate = Validator::make($request->all(), [
             'user_id' => 'required|integer|exists:users,id',
@@ -272,8 +272,6 @@ class TeamController extends Controller
 
         $user = Auth::user();
         $team = Team::find($team_id);
-
-        $company_id = $team->company_id;
 
         $isBoss = $user->companies()->where('company_id', $company_id)->wherePivot('is_boss', 1)->exists();
         if (!$isBoss) {

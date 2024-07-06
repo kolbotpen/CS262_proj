@@ -43,7 +43,7 @@ class LoginRegisterController extends Controller
     $data['user'] = $user;
 
     // Send the email
-    // Mail::to($user->email)->send(new MyEmail($user->name)); // Uncomment to send an email
+    Mail::to($user->email)->send(new MyEmail($user->name)); // Uncomment to send an email
 
     $response = [
         'status' => 'success',
