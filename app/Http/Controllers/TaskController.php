@@ -65,55 +65,59 @@ class TaskController extends Controller
     }
 
     public function store(Request $request, $company_id, $team_id)
-    {
-        $validate = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'user_id' => 'required|integer|exists:users,id',
-            'priority' => 'required|string|in:High,Medium,Low',
-            'progress' => 'required|string|in:In-Progress,Not Started,Completed',
-            'due_date' => 'required|date',
-            'file_path' => 'nullable|mimes:jpeg,png,bmp,gif,svg,pdf,doc,docx,txt,zip|max:204800', // Adjust mime types as needed
-        ]);
+{
+    $validate = Validator::make($request->all(), [
+        'title' => 'required|string|max:255',
+        'description' => 'required|string',
+        'user_id' => 'required|integer|exists:users,id',
+        'priority' => 'required|string|in:High,Medium,Low',
+        'progress' => 'required|string|in:In-Progress,Not Started,Completed',
+        'due_date' => 'required|date',
+        'user_email' => 'required|email|exists:users,email',
+        'file_path' => 'nullable|mimes:jpeg,png,bmp,gif,svg,pdf,doc,docx,txt,zip|max:204800',
+    ]);
 
-        if ($validate->fails()) {
-            return response()->json([
-                'status' => 'failed',
-                'message' => 'Validation Error!',
-                'errors' => $validate->errors(),
-            ], 403);
-        }
-
-        // Handle file upload
-        if ($request->hasFile('file_path')) {
-            $file = $request->file('file_path');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $path = $file->storeAs('public/task_files', $filename);
-            $fileUrl = asset('storage/task_files/' . $filename);
-        } else {
-            $fileUrl = null;
-        }
-
-        // Create task with file path
-        $task = Task::create([
-            'title' => $request->input('title'),
-            'description' => $request->input('description'),
-            'user_id' => $request->input('user_id'),
-            'team_id' => $team_id,
-            'priority' => $request->input('priority'),
-            'progress' => $request->input('progress'),
-            'due_date' => $request->input('due_date'),
-            'file_path' => $fileUrl, // Store the URL or path to access the file
-        ]);
-
-        $response = [
-            'status' => 'success',
-            'message' => 'Task created successfully.',
-            'data' => $task,
-        ];
-
-        return response()->json($response, 201);
+    if ($validate->fails()) {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Validation Error!',
+            'errors' => $validate->errors(),
+        ], 403);
     }
+
+    // Handle file upload
+    if ($request->hasFile('file_path')) {
+        $file = $request->file('file_path');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $path = $file->storeAs('public/task_files', $filename);
+        $fileUrl = asset('storage/task_files/' . $filename);
+    } else {
+        $fileUrl = null;
+    }
+
+    // Create task with file path
+    $task = Task::create([
+        'title' => $request->input('title'),
+        'description' => $request->input('description'),
+        'user_id' => $request->input('user_id'),
+        'team_id' => $team_id,
+        'priority' => $request->input('priority'),
+        'progress' => $request->input('progress'),
+        'due_date' => $request->input('due_date'),
+        'assigned_to' => $request->input('user_id'),
+        'assigned_email' => $request->input('user_email'),
+        'file_path' => $fileUrl, // Store the URL or path to access the file
+    ]);
+
+    $response = [
+        'status' => 'success',
+        'message' => 'Task created successfully.',
+        'data' => $task,
+    ];
+
+    return response()->json($response, 201);
+}
+
 
 
     /**
