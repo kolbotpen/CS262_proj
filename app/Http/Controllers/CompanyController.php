@@ -3,254 +3,259 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use Validator;
+
 
 class CompanyController extends Controller
 {
-    // SHOW PUBLIC COMPANIES IN BROWSE-SEARCH
-    public function showBrowseSearch()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
-        // $companies = Company::all(); // Fetch all companies
-        $companies = Company::public()->get(); // Fetch only public companies
-        return view('browse-search', ['companies' => $companies]); // Pass the companies to the view
-    }
+        $companies = Company::latest()->get();
+        
+        if (is_null($companies->first())) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'No Company found!',
+            ], 200);
+        }
+        $response = [
+            'status' => 'success',
+            'message' => 'Companies are retrieved successfully.',
+            'data' => $companies,
+        ];
 
-    // ADD COMPANIES
-    public function showAddCompanyForm()
+        return response()->json($response, 200);
+    }
+    public function getUsersCompanies()
     {
-        $companies = Company::with('users')->get(); // Fetch all companies
-        return view('admin.admin-addcompany',['companies' => $companies]);
+        $user = Auth::user();
+        $companies = $user->companies()->get();
+    
+        if ($companies->isEmpty()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'No companies found for the authenticated user!',
+            ], 200);
+        }
+    
+        $response = [
+            'status' => 'success',
+            'message' => 'User\'s companies are retrieved successfully.',
+            'data' => $companies,
+        ];
+    
+        return response()->json($response, 200);
     }
-
-    // STORE COMPANIES
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'industry' => 'required|string|max:255',
-            'visibility' => 'required|string|in:public,private',
+        $validate = Validator::make($request->all(), [
+            'name' => 'required|string|max:250',
+            'industry' => 'required|string|max:250',
+            'description' => 'required|string|',
+            'visibility' => 'required|string'
         ]);
-
-        // Create a new company
-        $company = new Company();
-        $company->name = $request->name;
-        $company->description = $request->description;
-        $company->industry = $request->industry;
-        $company->visibility = $request->visibility;
-        $company->save();
-
-        // Attach the company to the authenticated user and set is_boss to 1
-        $user = Auth::user();
-        $company->users()->attach($user->id, ['is_boss' => 1]);
-
-        // Redirect to the companies index with a success message
-        return redirect()->route('companies.show')->with('success', 'Company created successfully.');
-    }
-    
-
-    // EDIT - ORIGINAL
-    // public function edit($id)
-    // {
-    //     $company = Company::with('users')->findOrFail($id);
-    //     return response()->json($company);
-    // }
-
-    // EDIT - VISOTH WAS HERE 1
-    // public function edit($id)
-    // {
-    //     $company = Company::with('users')->findOrFail($id);
-    //     return response()->json([
-    //         'name' => $company->name,
-    //         'industry' => $company->industry,
-    //         'description' => $company->description,
-    //         'visibility' => $company->visibility,
-    //         'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
-    //         'users' => $company->users,
-    //     ]);
-    // }
-
-    // EDIT - VISOTH WAS HERE 2
-    public function edit($id)
-    {
-        $company = Company::with('users')->findOrFail($id);
-        return response()->json([
-            'name' => $company->name,
-            'industry' => $company->industry,
-            'description' => $company->description,
-            'visibility' => $company->visibility,
-            'boss_users' => $company->users->where('pivot.is_boss', 1)->pluck('id')->toArray(),
-            'users' => $company->users->map(function($user) {
-                return [
-                    'id' => $user->id,
-                    'name' => $user->name,
-                    'email' => $user->email
-                ];
-            })
-        ]);
-    }
-
-    // SHOW ALL BOSSES BELONGING TO A COMPANY
-
-    public function getBossUsers($companyId)
-    {
-        $company = Company::findOrFail($companyId);
         
-        // Fetch only users who are bosses (is_boss = 1)
-        $bossUsers = $company->users()->wherePivot('is_boss', 1)->get();
-
-        return response()->json($bossUsers);
-    }
-
-    // SHOW ALL USERS BELONGING TO A COMPANY
-    public function getAllUsers($companyId)
-    {
-        $company = Company::findOrFail($companyId);
-        $users = $company->users;
-
-        return response()->json($users);
-    }
-
-
-    // SHOW COMPANIES IN ADMIN WORKSPACE
-    public function showWorkspace()
-    {
-        $companies = Company::all();
-        return view('admin.company-workspace', ['companies' => $companies]);
-    }
-
-    // SHOW COMPANIES IN BOSS WORKSPACE
-    public function showCompanies()
-    {
-        $user = Auth::user();
-
-        // Fetch companies where the user is the boss
-        $createdCompanies = $user->companies()->wherePivot('is_boss', 1)->get();
-
-        // Fetch companies where the user is not the boss
-        $joinedCompanies = $user->companies()->wherePivot('is_boss', 0)->get();
-
-        return view('boss.companies', [
-            'createdCompanies' => $createdCompanies,
-            'joinedCompanies' => $joinedCompanies
-        ]);
-    }
-
-
-    // DELETE COMPANY IN ADMIN
-    public function destroy(Company $company)
-    {
-        $company->delete();
-        return redirect(route('workspace.show'))->with('success', 'Company Deleted Successfully');
-    }
-
-    // UPDATE COMPANY IN ADMIN
-    public function update(Request $request, Company $company)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'industry' => 'nullable|string',
-            'visibility' => 'required|in:public,private',
-            'company_code' => 'nullable|string|max:6|unique:companies,company_code,' . $company->id, // Validate the company_code if it's provided
-        ]);
-
-        // Use provided company code or generate a new one if not provided
-        $companyCode = $request->company_code ?: ($company->company_code ?: Company::generateUniqueCompanyCode());
-
-        $company->update([
-            'name' => $request->name,
-            'description' => $request->description,
-            'industry' => $request->industry,
-            'visibility' => $request->visibility,
-            'company_code' => $companyCode,
-        ]);
-
-        return redirect()->route('companies.show')->with('success', 'Company updated successfully.');
-    }
-
-
-    // GENERATE COMPANY CODE IN MODAL
-    public function generateCode()
-    {
-        $code = Company::generateUniqueCompanyCode();
-        return response()->json(['code' => $code]);
-    }
-    
-    // CREATE COMPANY IN BROWSE
-    public function storeInBrowse(Request $request)
-    {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'industry' => 'required|string|max:255',
-            'visibility' => 'required|string|in:Public,Private',
-        ]);
-
-        // Create a new company
-        $company = new Company();
-        $company->name = $request->name;
-        $company->description = $request->description;
-        $company->industry = $request->industry;
-        $company->visibility = $request->visibility;
-        $company->save();
-
+        if($validate->fails()){  
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Validation Error!',
+                'data' => $validate->errors(),
+            ], 403);    
+        }
+        
+        $company = Company::create($request->all());
         // Attach the company to the authenticated user and set is_boss to 1
         $user = Auth::user();
         $company->users()->attach($user->id, ['is_boss' => 1]);
+        
+        $response = [
+            'status' => 'success',
+            'message' => 'Company is added successfully.',
+            'data' => $company,
+        ];
 
-        // Redirect to the companies index with a success message
-        return redirect()->route('browse-create')->with('success', 'Company added successfully.');
+        return response()->json($response, 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        $company = Company::find($id);
+  
+        if (is_null($company)) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Company is not found!',
+            ], 200);
+        }
+
+        $response = [
+            'status' => 'success',
+            'message' => 'Company is retrieved successfully.',
+            'data' => $company,
+        ];
+        
+        return response()->json($response, 200);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, $id)
+    {
+    $validate = Validator::make($request->all(), [
+        'name' => 'required|string|max:250',
+        'industry' => 'required|string|max:250',
+        'description' => 'required|string',
+        'visibility' => 'required|string',
+    ]);
+
+    if ($validate->fails()) {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Validation Error!',
+            'data' => $validate->errors(),
+        ], 403);
+    }
+    
+    $company = Company::find($id);
+
+    if (is_null($company)) {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Company is not found!',
+        ], 200);
+    }
+
+    $user = Auth::user();
+    $isBoss = $user->companies()->where('company_id', $id)->wherePivot('is_boss', 1)->exists();
+
+    if (!$isBoss) {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Unauthorized: Only the boss of the company can update the company.',
+        ], 403);
+    }
+
+    $company->update($request->all());
+
+    $response = [
+        'status' => 'success',
+        'message' => 'Company is updated successfully.',
+        'data' => $company,
+    ];
+
+    return response()->json($response, 200);
     }
 
 
-    // JOIN COMPANY USING INVITE CODE
-    public function joinCompany(Request $request)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy($id)
     {
-        $request->validate([
-            'company_code' => 'required|string|size:6',
+        $company = Company::find($id);
+    
+        if (is_null($company)) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Company is not found!',
+            ], 200);
+        }
+        $companyExists = Company::where('id', $id)->exists();
+        if (!$companyExists) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Unauthorized: Specified Company does not exist.',
+            ], 403);
+        }
+        $user = Auth::user();
+        $isBoss = $user->companies()->where('company_id', $id)->wherePivot('is_boss', 1)->exists();
+
+        if (!$isBoss) {
+        return response()->json([
+            'status' => 'failed',
+            'message' => 'Unauthorized: Only the boss of the company can delete the company.',
+        ], 403);
+        }
+
+        Company::destroy($id);
+        
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Company is deleted successfully.'
+            ], 200);
+    }
+
+
+
+    /**
+     * Add a user to a company.
+     */
+    public function addMemberToCompany(Request $request, $company_id)
+    {
+        // Validate the incoming request
+        $validate = Validator::make($request->all(), [
+            'user_id' => 'required|integer|exists:users,id',
         ]);
 
-        // Find the company by the provided company code
-        $company = Company::where('company_code', $request->company_code)->first();
-
-        if (!$company) {
-            return redirect()->back()->withErrors(['company_code' => 'Invalid company code.']);
+        if ($validate->fails()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Validation Error!',
+                'data' => $validate->errors(),
+            ], 403);
         }
+        $companyExists = Company::where('id', $company_id)->exists();
+        if (!$companyExists) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Unauthorized: Specified Company does not exist.',
+            ], 403);
+        }
+        $user_id = $request->input('user_id');
 
         $user = Auth::user();
-        $isMemberOrBoss = $company->users()->where('user_id', $user->id)->exists();
 
-        if ($isMemberOrBoss) {
-            return redirect()->back()->with('message', 'You are already in the company.');
+        // Check if the authenticated user is a boss in the company
+        $isBoss = $user->companies()->where('company_id', $company_id)->wherePivot('is_boss', 1)->exists();
+
+        if (!$isBoss) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'Unauthorized: Only the boss can add members to the company.',
+            ], 403);
         }
 
-        // Attach the user to the company with is_boss set to 0
-        $company->users()->attach($user->id, ['is_boss' => 0]);
+        $company = Company::find($company_id);
 
-        return redirect()->route('browse-search')->with('message', 'Successfully joined the company.');
+        // Ensure the user being added is not already part of the company
+        if ($company->users()->where('user_id', $user_id)->exists()) {
+            return response()->json([
+                'status' => 'failed',
+                'message' => 'User is already a member of the company.',
+            ], 403);
+        }
+
+        // Add the user to the company
+        $company->users()->attach($user_id);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User added to the company successfully.',
+        ], 200);
     }
-
-
-    // public function showJoinedCompanies()
-    // {
-    //     $user = Auth::user();
-
-    //     // Fetch companies where the user is the boss
-    //     $bossCompanies = $user->companies()->wherePivot('is_boss', 1)->get();
-
-    //     // Fetch companies where the user is not the boss
-    //     $joinedCompanies = $user->companies()->wherePivot('is_boss', 0)->get();
-
-    //     // Merge both collections
-    //     $allCompanies = $bossCompanies->merge($joinedCompanies);
-
-    //     return view('boss.companies', ['companies' => $allCompanies]);
-    // }
-
-
+    
 }
-
